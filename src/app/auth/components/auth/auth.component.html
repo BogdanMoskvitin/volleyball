@@ -1,0 +1,56 @@
+<div class="auth">
+    <p class="auth__title">Авторизация</p>
+    <form [formGroup]="authForm" novalidate (ngSubmit)="sendService()">
+        <table>
+            <tr>
+                <td> <span class="auth__subtitle">Фамилия:</span> </td>
+                <td> 
+                    <input class="auth__input" formControlName="lastName"> 
+                    <span class="auth__err" *ngIf="authForm.controls['lastName'].invalid && authForm.controls['lastName'].touched">Введите фамилию!</span>
+                </td>
+            </tr>
+            <tr>
+                <td> <span class="auth__subtitle">Имя:</span> </td>
+                <td> 
+                    <input class="auth__input" formControlName="firstName"> 
+                    <span class="auth__err" *ngIf="authForm.controls['firstName'].invalid && authForm.controls['firstName'].touched">Введите имя!</span>
+                </td>
+            </tr>
+            <tr>
+                <td> <span class="auth__subtitle">Отчество:</span> </td>
+                <td> 
+                    <input class="auth__input" formControlName="middleName"> 
+                    <span class="auth__err" *ngIf="authForm.controls['middleName'].invalid && authForm.controls['middleName'].touched">Введите отчество!</span>
+                </td>
+            </tr>
+            <tr>
+                <td> <span class="auth__subtitle">E-mail:</span> </td>
+                <td> 
+                    <input class="auth__input" formControlName="email"> 
+                    <span class="auth__err" *ngIf="authForm.controls['email'].invalid && authForm.controls['email'].touched">Введите e-mail!</span>
+                </td>
+            </tr>
+            <tr>
+                <td> <span class="auth__subtitle">Придумайте пароль:</span> </td>
+                <td> 
+                    <input class="auth__input" formControlName="password"> 
+                    <span class="auth__err" *ngIf="authForm.controls['password'].invalid && authForm.controls['password'].touched">Придумайте пароль!</span>
+                </td>
+            </tr>
+            <tr>
+                <td> <span class="auth__subtitle">Телефон:</span> </td>
+                <td> 
+                    <input class="auth__input" formControlName="phone"> 
+                    <span class="auth__err" *ngIf="authForm.controls['phone'].invalid && authForm.controls['phone'].touched">Введите телефон!</span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td> 
+                    <button class="auth__btn" [disabled]="authForm.invalid">Зарегестрироваться</button>
+                </td>
+            </tr>
+            
+        </table>
+    </form>
+</div>

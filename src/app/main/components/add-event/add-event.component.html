@@ -1,0 +1,42 @@
+<div class="add-event">
+    <p class="add-event__title">Добавить событие</p>
+    <form [formGroup]="addEventForm" novalidate (ngSubmit)="sendService()">
+        <table>
+            <tr>
+                <td> <span class="add-event__subtitle">ID:</span> </td>
+                <td> 
+                    <input class="add-event__input" formControlName="id"> 
+                    <span class="add-event__err" *ngIf="addEventForm.controls['id'].invalid && addEventForm.controls['id'].touched">Введите ID!</span>
+                </td>
+            </tr>
+            <tr>
+                <td> <span class="add-event__subtitle">Время:</span> </td>
+                <td> 
+                    <input class="add-event__input" formControlName="time"> 
+                    <span class="add-event__err" *ngIf="addEventForm.controls['time'].invalid && addEventForm.controls['time'].touched">Введите время!</span>
+                </td>
+            </tr>
+            <tr>
+                <td> <span class="add-event__subtitle">Место:</span> </td>
+                <td> 
+                    <input class="add-event__input" formControlName="location"> 
+                    <span class="add-event__err" *ngIf="addEventForm.controls['location'].invalid && addEventForm.controls['location'].touched">Введите место!</span>
+                </td>
+            </tr>
+            <tr>
+                <td> <span class="add-event__subtitle">Цена:</span> </td>
+                <td> 
+                    <input class="add-event__input" formControlName="price"> 
+                    <span class="add-event__err" *ngIf="addEventForm.controls['price'].invalid && addEventForm.controls['price'].touched">Введите цену!</span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td> 
+                    <button class="add-event__btn" [disabled]="addEventForm.invalid">Сохранить событие</button>
+                </td>
+            </tr>
+            
+        </table>
+    </form>
+</div>

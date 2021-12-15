@@ -1,0 +1,18 @@
+<div class="main">
+    <p class="main__title">Главная</p>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Время</td>
+            <td>Место</td>
+            <td>Цена</td>
+        </tr>
+        <tr class="tr" *ngFor="let event of events">
+            <td [routerLink]="['../event', event.id]">{{event.id}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.time}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.location}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.price}}</td>
+        </tr>
+    </table>
+    <button class="main__btn" [routerLink]="['../add-event']">Добавить событие</button>
+</div>

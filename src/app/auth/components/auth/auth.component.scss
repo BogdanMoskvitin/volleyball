@@ -1,0 +1,38 @@
+.auth {
+    width: 450px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px 30px;
+    margin: 200px auto 0 auto;
+}
+.auth__title {
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+td {
+    position: relative;
+    text-align: end;
+    padding: 15px 0;
+}
+.auth__subtitle {
+    font-size: 18px;
+    margin-right: 10px;
+}
+.auth__input {
+    height: 25px;
+    font-size: 18px;
+    padding-left: 5px;
+}
+.auth__err {
+    position: absolute;
+    display: block;
+    font-size: 16px;
+    color: red;
+}
+.auth__btn {
+    width: 228px;
+    height: 29px;
+    font-size: 16px;
+    cursor: pointer;
+}

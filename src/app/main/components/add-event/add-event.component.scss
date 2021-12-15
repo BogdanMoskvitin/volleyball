@@ -1,0 +1,41 @@
+.add-event {
+    width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px 30px;
+    margin: 200px auto 0 auto;
+}
+.add-event__title {
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+td {
+    position: relative;
+    text-align: end;
+    padding: 15px 0;
+}
+.add-event__subtitle {
+    font-size: 18px;
+    margin-right: 10px;
+}
+.add-event__input {
+    height: 25px;
+    font-size: 18px;
+    padding-left: 5px;
+}
+.add-event__err {
+    position: absolute;
+    display: block;
+    font-size: 16px;
+    color: red;
+}
+.add-event__btn {
+    width: 228px;
+    height: 29px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.add-event__btn:hover {
+    background: #E0E4E7;
+}
