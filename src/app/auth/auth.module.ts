@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthComponent } from './components/auth/auth.component';
+import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
-    AuthComponent
+    LoginComponent,
+    RegisterComponent
   ],
   exports: [
     
@@ -18,12 +20,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule.forChild([
       {
         path: '',
-        redirectTo: 'auth',
+        redirectTo: 'login',
         pathMatch: 'full'
       },
       {
-        path: 'auth', component: AuthComponent
-      }
+        path: 'login', component: LoginComponent
+      },
+      {
+        path: 'register', component: RegisterComponent
+      },
     ])
   ],
   providers: []

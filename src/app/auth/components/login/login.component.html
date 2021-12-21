@@ -1,0 +1,29 @@
+<div class="auth">
+    <p class="auth__title">Авторизация</p>
+    <form [formGroup]="authForm" novalidate (ngSubmit)="sendService()">
+        <table>
+            <tr>
+                <td> <span class="auth__subtitle">Введите логин:</span> </td>
+                <td> 
+                    <input class="auth__input" formControlName="username"> 
+                    <span class="auth__err" *ngIf="authForm.controls['username'].invalid && authForm.controls['username'].touched">Введите логин!</span>
+                </td>
+            </tr>
+            <tr>
+                <td> <span class="auth__subtitle">Введите пароль:</span> </td>
+                <td> 
+                    <input class="auth__input" formControlName="password"> 
+                    <span class="auth__err" *ngIf="authForm.controls['password'].invalid && authForm.controls['password'].touched">Придумайте пароль!</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="auth__btn" [routerLink]="['../register']" type="button">Зарегестрироваться</button>
+                </td>
+                <td> 
+                    <button class="auth__btn" [disabled]="authForm.invalid || authForm.disabled">Войти</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

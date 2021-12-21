@@ -37,11 +37,13 @@ td {
     background-color: rgb(133, 248, 133);
     border: 1px solid #ccc;
 }
-.event__btn_red {
+.event__btn {
     width: 228px;
     height: 29px;
     font-size: 16px;
-    cursor: pointer;
-    background-color: rgb(255, 81, 81);
     border: 1px solid #ccc;
+    cursor: pointer;
+}
+.event__btn:hover {
+    background: #E0E4E7;
 }

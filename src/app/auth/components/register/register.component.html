@@ -1,0 +1,36 @@
+<div class="auth">
+    <p class="auth__title">Регистрация</p>
+    <form [formGroup]="regForm" novalidate (ngSubmit)="sendService()">
+        <table>
+            <tr>
+                <td> <span class="auth__subtitle">E-mail:</span> </td>
+                <td> 
+                    <input class="auth__input" formControlName="username"> 
+                    <span class="auth__err" *ngIf="regForm.controls['username'].invalid && regForm.controls['username'].touched">Введите e-mail!</span>
+                </td>
+            </tr>
+            <tr>
+                <td> <span class="auth__subtitle">Придумайте пароль:</span> </td>
+                <td> 
+                    <input class="auth__input" formControlName="password"> 
+                    <span class="auth__err" *ngIf="regForm.controls['password'].invalid && regForm.controls['password'].touched">Придумайте пароль!</span>
+                </td>
+            </tr>
+            <tr>
+                <td> <span class="auth__subtitle">Телефон:</span> </td>
+                <td> 
+                    <input class="auth__input" formControlName="phone_number"> 
+                    <span class="auth__err" *ngIf="regForm.controls['phone_number'].invalid && regForm.controls['phone_number'].touched">Введите телефон!</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="auth__btn" [routerLink]="['../login']" type="button">Войти</button>
+                </td>
+                <td> 
+                    <button class="auth__btn" [disabled]="regForm.invalid || regForm.disabled">Зарегестрироваться</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

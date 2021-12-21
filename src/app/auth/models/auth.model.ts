@@ -1,4 +1,4 @@
-export interface Auth {
+export interface User {
     lastName: string;
     firstName: string;
     middleName: string;

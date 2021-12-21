@@ -1,3 +1,4 @@
+<button class="event__btn" (click)="back()">назад</button>
 <div class="event">
     <p class="event__title">Событие</p>
     <table>
@@ -8,16 +9,23 @@
                 <td>Место</td>
                 <td>Цена</td>
             </tr>
-            <tr>
+            <tr class="tr">
                 <td>{{event.id}}</td>
-                <td>{{event.time}}</td>
-                <td>{{event.location}}</td>
+                <td>{{event.time_start}}</td>
+                <td>{{event.location.name}}</td>
                 <td>{{event.price}}</td>
             </tr>
         </table>
     </table>
     <div class="event__box_btns">
-        <button class="event__btn_green">Приду</button>
-        <button class="event__btn_red">Не приду</button>
+        <!-- <mat-form-field appearance="fill">
+            <mat-label>Игроки</mat-label>
+            <mat-select formControlName="player">
+                <mat-option *ngFor="let player of players" [value]="players.id">
+                    {{player.full_name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field> -->
+        <button class="event__btn_green" (click)="sendStatus()">Приду</button>
     </div>
 </div>

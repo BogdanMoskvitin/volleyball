@@ -1,0 +1,21 @@
+<button class="add-team__btn" [routerLink]="['../home']">назад</button>
+<div class="add-team">
+    <p class="add-team__title">Добавить команду</p>
+    <form [formGroup]="addTeamForm" novalidate (ngSubmit)="sendService()">
+        <table>
+            <tr>
+                <td> <span class="add-team__subtitle">Название:</span> </td>
+                <td> 
+                    <input class="add-team__input" formControlName="full_name">
+                    <span class="add-team__err" *ngIf="addTeamForm.controls['full_name'].invalid && addTeamForm.controls['full_name'].touched">Введите название команды!</span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td> 
+                    <button class="add-team__btn" [disabled]="addTeamForm.invalid">Добавить команду</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
