@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MyData } from 'src/app/my-data.service';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'add-player-service-page',
@@ -17,7 +18,10 @@ export class AddPlayerComponent implements OnInit {
     teams;
     mydata;
 
-    constructor(private http: HttpClient, private myData: MyData) {
+    constructor(
+        private http: HttpClient, 
+        private myData: MyData,
+        private location: Location) {
         this.addPlayerForm = new FormGroup({
             team: new FormControl('', Validators.required),
             number: new FormControl('', Validators.required),
@@ -51,5 +55,9 @@ export class AddPlayerComponent implements OnInit {
             .subscribe((res) => {
                 this.teams = res;
         });
+    }
+
+    back(){
+        this.location.back();
     }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'players-service-page',
@@ -9,19 +10,28 @@ import { HttpClient } from '@angular/common/http';
 
 export class PlayersComponent implements OnInit {
 
-    url:string = 'https://api.dev.freeteamcollaboration.ru/';
+    id: number;
+    url: string = 'https://api.dev.freeteamcollaboration.ru/';
     players;
+    team;
 
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient, 
+        private activateRoute: ActivatedRoute,
+        private router: Router) {
+        this.id = this.activateRoute.snapshot.params['id'];
+    }
     
     ngOnInit() {
-        this.getPlayers();
+
+        this.http.get(this.url + `teams/${this.id}/`)
+            .subscribe((res) => {
+                this.team = res;
+                console.log(this.team);
+        });
     }
 
-    getPlayers() {
-        return this.http.get(this.url + 'players')
-            .subscribe((res) => {
-                this.players = res;
-        });
+    back(){
+        this.router.navigateByUrl('main/header/teams');
     }
 }

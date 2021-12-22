@@ -1,4 +1,4 @@
-<button class="add-player__btn" [routerLink]="['../home']">назад</button>
+<button class="add-player__btn" (click)="back()">назад</button>
 <div class="add-player">
     <p class="add-player__title">Добавить игрока</p>
     <form [formGroup]="addPlayerForm" novalidate (ngSubmit)="sendService()">

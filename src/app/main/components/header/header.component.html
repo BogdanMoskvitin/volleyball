@@ -1,0 +1,20 @@
+<div class="header__container">
+    <div class="logo__container">
+        <div class="logo"></div>
+        <p class="logo__title">FreeTeamCollaboration</p>
+    </div>
+
+    <div>
+        <button routerLinkActive="active" class="btn" [routerLink]="['./home']">Главная</button>
+        <button routerLinkActive="active" class="btn" [routerLink]="['./teams']">Команды</button>
+        <button routerLinkActive="active" class="btn" [routerLink]="['./locations']">Места</button>
+    </div>
+
+    <div class="box">
+        <a [routerLink]="['./user']"><div class="avatar"></div></a>
+    </div>
+</div>
+
+<div class="router-outlet">
+    <router-outlet></router-outlet>
+</div>

@@ -14,6 +14,8 @@ import { AddLocationComponent } from './components/add-location/add-location.com
 import { PlayersComponent } from './components/players/players.component';
 import { LocationsComponent } from './components/locations/locations.component';
 import { TeamsComponent } from './components/teams/teams.component';
+import { HeaderComponent } from './components/header/header.component';
+import { UserComponent } from './components/user/user.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { TeamsComponent } from './components/teams/teams.component';
     EventComponent,
     PlayersComponent,
     LocationsComponent,
-    TeamsComponent
+    TeamsComponent,
+    HeaderComponent,
+    UserComponent
   ],
   exports: [
     
@@ -41,36 +45,48 @@ import { TeamsComponent } from './components/teams/teams.component';
     RouterModule.forChild([
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'header',
         pathMatch: 'full'
       },
       {
-        path: 'home', component: HomeComponent
+        path: 'header', component: HeaderComponent, children: [
+          {
+            path: '',
+            redirectTo: 'home',
+            pathMatch: 'full'
+          },
+          {
+            path: 'home', component: HomeComponent
+          },
+          {
+            path: 'event/:id', component: EventComponent
+          },
+          {
+            path: 'add-event', component: AddEventComponent
+          },
+          {
+            path: 'add-team', component: AddTeamComponent
+          },
+          {
+            path: 'add-player', component: AddPlayerComponent
+          },
+          {
+            path: 'add-location', component: AddLocationComponent
+          },
+          {
+            path: 'players/:id', component: PlayersComponent
+          },
+          {
+            path: 'locations', component: LocationsComponent
+          },
+          {
+            path: 'teams', component: TeamsComponent
+          },
+          {
+            path: 'user', component: UserComponent
+          }
+        ]
       },
-      {
-        path: 'event/:id', component: EventComponent
-      },
-      {
-        path: 'add-event', component: AddEventComponent
-      },
-      {
-        path: 'add-team', component: AddTeamComponent
-      },
-      {
-        path: 'add-player', component: AddPlayerComponent
-      },
-      {
-        path: 'add-location', component: AddLocationComponent
-      },
-      {
-        path: 'players', component: PlayersComponent
-      },
-      {
-        path: 'locations', component: LocationsComponent
-      },
-      {
-        path: 'teams', component: TeamsComponent
-      }
     ])
   ],
   providers: [DatePipe]

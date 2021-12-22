@@ -16,7 +16,7 @@ export class EventComponent implements OnInit {
     events;
     event;
     id: number;
-    url:string = 'https://api.dev.freeteamcollaboration.ru/';
+    url: string = 'https://api.dev.freeteamcollaboration.ru/';
     data;
     idUser;
     players;
@@ -73,6 +73,6 @@ export class EventComponent implements OnInit {
     }
 
     back(){
-        this.router.navigateByUrl('main/home');
+        this.router.navigateByUrl('main/header/home');
     }
 }
