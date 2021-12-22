@@ -1,0 +1,14 @@
+<div class="teams">
+    <p class="teams__title">Список команд</p>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Название</td>
+        </tr>
+        <tr class="tr" *ngFor="let team of teams?.results">
+            <td>{{team.id}}</td>
+            <td>{{team.full_name}}</td>
+        </tr>
+    </table>
+    <button class="teams__btn" [routerLink]="['../add-team']">Добавить команду</button>
+</div>

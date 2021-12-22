@@ -10,6 +10,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { AddTeamComponent } from './components/add-team/add-team.component';
 import { AddPlayerComponent } from './components/add-player/add-player.component';
+import { AddLocationComponent } from './components/add-location/add-location.component';
+import { PlayersComponent } from './components/players/players.component';
+import { LocationsComponent } from './components/locations/locations.component';
+import { TeamsComponent } from './components/teams/teams.component';
 
 
 @NgModule({
@@ -17,7 +21,12 @@ import { AddPlayerComponent } from './components/add-player/add-player.component
     HomeComponent,
     AddEventComponent,
     AddTeamComponent,
-    AddPlayerComponent
+    AddPlayerComponent,
+    AddLocationComponent,
+    EventComponent,
+    PlayersComponent,
+    LocationsComponent,
+    TeamsComponent
   ],
   exports: [
     
@@ -49,6 +58,18 @@ import { AddPlayerComponent } from './components/add-player/add-player.component
       },
       {
         path: 'add-player', component: AddPlayerComponent
+      },
+      {
+        path: 'add-location', component: AddLocationComponent
+      },
+      {
+        path: 'players', component: PlayersComponent
+      },
+      {
+        path: 'locations', component: LocationsComponent
+      },
+      {
+        path: 'teams', component: TeamsComponent
       }
     ])
   ],

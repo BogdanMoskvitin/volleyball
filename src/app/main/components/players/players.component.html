@@ -1,0 +1,14 @@
+<div class="players">
+    <p class="players__title">Список игроков</p>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Номер</td>
+        </tr>
+        <tr class="tr" *ngFor="let player of players?.results">
+            <td>{{player.id}}</td>
+            <td>{{player.number}}</td>
+        </tr>
+    </table>
+    <button class="players__btn" [routerLink]="['../add-player']">Добавить игрока</button>
+</div>

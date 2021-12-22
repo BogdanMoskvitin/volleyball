@@ -1,0 +1,42 @@
+.add-location {
+    width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px 30px;
+    margin: 200px auto 0 auto;
+}
+.add-location__title {
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+td {
+    position: relative;
+    text-align: end;
+    padding: 15px 0;
+}
+.add-location__subtitle {
+    font-size: 18px;
+    margin-right: 10px;
+}
+.add-location__input {
+    height: 25px;
+    font-size: 18px;
+    padding-left: 5px;
+}
+.add-location__err {
+    position: absolute;
+    display: block;
+    font-size: 16px;
+    color: red;
+}
+.add-location__btn {
+    width: 228px;
+    height: 29px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.add-location__btn:hover {
+    background: #E0E4E7;
+}

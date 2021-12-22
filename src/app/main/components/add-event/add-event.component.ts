@@ -13,6 +13,7 @@ export class AddEventComponent implements OnInit {
 
     addEventForm: FormGroup;
     events;
+    locations;
     url:string = 'https://api.dev.freeteamcollaboration.ru/';
 
     constructor(private http: HttpClient, private datePipe: DatePipe) {
@@ -26,6 +27,7 @@ export class AddEventComponent implements OnInit {
 
     ngOnInit() {
         this.getEvents();
+        this.getLocations();
     }
 
     getEvents() {
@@ -49,4 +51,10 @@ export class AddEventComponent implements OnInit {
         });
     }
 
+    getLocations() {
+        return this.http.get(this.url + 'locations')
+            .subscribe((res) => {
+                this.locations = res;
+        });
+    }
 }

@@ -1,0 +1,21 @@
+<button class="add-location__btn" [routerLink]="['../home']">назад</button>
+<div class="add-location">
+    <p class="add-location__title">Добавить место</p>
+    <form [formGroup]="addLocationForm" novalidate (ngSubmit)="sendService()">
+        <table>
+            <tr>
+                <td> <span class="add-location__subtitle">Название:</span> </td>
+                <td> 
+                    <input class="add-location__input" formControlName="name">
+                    <span class="add-location__err" *ngIf="addLocationForm.controls['name'].invalid && addLocationForm.controls['name'].touched">Введите название места!</span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td> 
+                    <button class="add-location__btn" [disabled]="addLocationForm.invalid">Добавить место</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

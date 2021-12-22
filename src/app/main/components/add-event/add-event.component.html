@@ -29,8 +29,8 @@
                     <mat-form-field appearance="fill">
                         <mat-label>Место</mat-label>
                         <mat-select formControlName="location">
-                            <mat-option *ngFor="let location of events.results" [value]="location.location.id">
-                                {{location.location.name}}
+                            <mat-option *ngFor="let location of locations?.results" [value]="location.id">
+                                {{location.name}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>

@@ -1,53 +1,25 @@
 <h1 style="text-align: center;">Главная</h1>
 <h3 style="text-align: center;">Привет {{mydata.first_name}} {{mydata.last_name}}!</h3>
 
-<div style="display: flex;">
-    <div class="main">
-        <p class="main__title">Список событий</p>
-        <table>
-            <tr>
-                <td>ID</td>
-                <td>Время</td>
-                <td>Место</td>
-                <td>Цена</td>
-            </tr>
-            <tr class="tr" *ngFor="let event of events.results">
-                <td [routerLink]="['../event', event.id]">{{event.id}}</td>
-                <td [routerLink]="['../event', event.id]">{{event.time_start}}</td>
-                <td [routerLink]="['../event', event.id]">{{event.location.name}}</td>
-                <td [routerLink]="['../event', event.id]">{{event.price}}</td>
-            </tr>
-        </table>
-        <button class="main__btn" [routerLink]="['../add-event']">Добавить событие</button>
-    </div>
+<button [routerLink]="['../teams']">Команды</button>
+<button [routerLink]="['../players']">Игроки</button>
+<button [routerLink]="['../locations']">Места</button>
 
-    <div class="main">
-        <p class="main__title">Список команд</p>
-        <table>
-            <tr>
-                <td>ID</td>
-                <td>Название</td>
-            </tr>
-            <tr class="tr" *ngFor="let team of teams.results">
-                <td>{{team.id}}</td>
-                <td>{{team.full_name}}</td>
-            </tr>
-        </table>
-        <button class="main__btn" [routerLink]="['../add-team']">Добавить команду</button>
-    </div>
-
-    <div class="main">
-        <p class="main__title">Список игроков</p>
-        <table>
-            <tr>
-                <td>ID</td>
-                <td>Номер</td>
-            </tr>
-            <tr class="tr" *ngFor="let player of players.results">
-                <td>{{player.id}}</td>
-                <td>{{player.number}}</td>
-            </tr>
-        </table>
-        <button class="main__btn" [routerLink]="['../add-player']">Добавить игрока</button>
-    </div>
+<div class="main">
+    <p class="main__title">Список событий</p>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Время</td>
+            <td>Место</td>
+            <td>Цена</td>
+        </tr>
+        <tr class="tr" *ngFor="let event of events?.results">
+            <td [routerLink]="['../event', event.id]">{{event.id}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.time_start}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.location.name}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.price}}</td>
+        </tr>
+    </table>
+    <button class="main__btn" [routerLink]="['../add-event']">Добавить событие</button>
 </div>

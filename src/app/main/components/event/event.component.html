@@ -1,31 +1,47 @@
 <button class="event__btn" (click)="back()">назад</button>
 <div class="event">
     <p class="event__title">Событие</p>
+
     <table>
-        <table>
-            <tr>
-                <td>ID</td>
-                <td>Время</td>
-                <td>Место</td>
-                <td>Цена</td>
-            </tr>
-            <tr class="tr">
-                <td>{{event.id}}</td>
-                <td>{{event.time_start}}</td>
-                <td>{{event.location.name}}</td>
-                <td>{{event.price}}</td>
-            </tr>
-        </table>
+        <tr>
+            <td>ID</td>
+            <td>Время</td>
+            <td>Место</td>
+            <td>Цена</td>
+        </tr>
+        <tr class="tr">
+            <td>{{event?.id}}</td>
+            <td>{{event?.time_start}}</td>
+            <td>{{event?.location.name}}</td>
+            <td>{{event?.price}}</td>
+        </tr>
     </table>
+    
+    <form [formGroup]="addStatusForm" novalidate (ngSubmit)="sendStatus()">
     <div class="event__box_btns">
-        <!-- <mat-form-field appearance="fill">
+        <!-- <input type="text" formControlName="player"> -->
+        <mat-form-field appearance="fill">
             <mat-label>Игроки</mat-label>
             <mat-select formControlName="player">
-                <mat-option *ngFor="let player of players" [value]="players.id">
-                    {{player.full_name}}
+                <mat-option *ngFor="let player of players?.results" [value]="player.id">
+                    {{player.number}}
                 </mat-option>
             </mat-select>
-        </mat-form-field> -->
-        <button class="event__btn_green" (click)="sendStatus()">Приду</button>
+        </mat-form-field>
+        <button class="event__btn_green" [disabled]="addStatusForm.invalid">Приду</button>
     </div>
+    </form>
 </div>
+
+<table>
+    <tr>
+        <td>Номер</td>
+    </tr>
+    <tr class="tr">
+        <td>
+            <div *ngFor="let pl of events?.results">
+                <div *ngFor="let x of pl.players">{{x.number}}</div>
+            </div>
+        </td>
+    </tr>
+</table>
