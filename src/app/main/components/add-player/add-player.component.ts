@@ -47,6 +47,7 @@ export class AddPlayerComponent implements OnInit {
         return this.http.post(this.url + 'players/', this.newPlayer)
             .subscribe((res) => {
                 console.log(res);
+                this.back();
         });
     }
 

@@ -1,7 +1,7 @@
-import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'add-team-service-page',
@@ -15,7 +15,7 @@ export class AddTeamComponent implements OnInit {
     url:string = 'https://api.dev.freeteamcollaboration.ru/';
     events;
 
-    constructor(private http: HttpClient, private datePipe: DatePipe) {
+    constructor(private http: HttpClient, private router: Router) {
         this.addTeamForm = new FormGroup({
             full_name: new FormControl('', Validators.required),
         });
@@ -27,6 +27,7 @@ export class AddTeamComponent implements OnInit {
         return this.http.post(this.url + 'teams/', this.addTeamForm.value)
             .subscribe((res) => {
                 console.log(res);
+                this.router.navigateByUrl('main/header/teams');
         });
     }
 }

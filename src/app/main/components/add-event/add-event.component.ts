@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'add-event-service-page',
@@ -16,7 +17,10 @@ export class AddEventComponent implements OnInit {
     locations;
     url:string = 'https://api.dev.freeteamcollaboration.ru/';
 
-    constructor(private http: HttpClient, private datePipe: DatePipe) {
+    constructor(
+        private http: HttpClient, 
+        private datePipe: DatePipe, 
+        private router: Router) {
         this.addEventForm = new FormGroup({
             date: new FormControl('', Validators.required),
             time: new FormControl('', Validators.required),
@@ -48,6 +52,7 @@ export class AddEventComponent implements OnInit {
         return this.http.post(this.url + 'events/', this.newEvent)
             .subscribe((res) => {
                 console.log(res);
+                this.router.navigateByUrl('main/header/home');
         });
     }
 

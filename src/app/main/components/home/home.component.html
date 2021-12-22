@@ -2,14 +2,12 @@
     <p class="home__title">Список событий</p>
     <table>
         <tr>
-            <!-- <td>ID</td> -->
             <td>Время</td>
             <td>Место</td>
             <td>Цена</td>
         </tr>
         <tr class="tr" *ngFor="let event of events?.results">
-            <!-- <td [routerLink]="['../event', event.id]">{{event.id}}</td> -->
-            <td [routerLink]="['../event', event.id]">{{event.time_start}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.time_start | date}}</td>
             <td [routerLink]="['../event', event.id]">{{event.location.name}}</td>
             <td [routerLink]="['../event', event.id]">{{event.price}}</td>
         </tr>

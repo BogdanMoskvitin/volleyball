@@ -12,7 +12,7 @@
         </tr>
         <tr class="tr">
             <td>{{event?.id}}</td>
-            <td>{{event?.time_start}}</td>
+            <td>{{event?.time_start | date}}</td>
             <td>{{event?.location.name}}</td>
             <td>{{event?.price}}</td>
         </tr>
@@ -20,7 +20,6 @@
     
     <form [formGroup]="addStatusForm" novalidate (ngSubmit)="sendStatus()">
     <div class="event__box_btns">
-        <!-- <input type="text" formControlName="player"> -->
         <mat-form-field appearance="fill">
             <mat-label>Игроки</mat-label>
             <mat-select formControlName="player">

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'add-location-service-page',
@@ -13,7 +14,7 @@ export class AddLocationComponent implements OnInit {
     addLocationForm : FormGroup;
     url:string = 'https://api.dev.freeteamcollaboration.ru/';
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private router: Router) {
         this.addLocationForm = new FormGroup({
             name: new FormControl('', Validators.required),
         });
@@ -25,6 +26,7 @@ export class AddLocationComponent implements OnInit {
         return this.http.post(this.url + 'locations/', this.addLocationForm.value)
             .subscribe((res) => {
                 console.log(res);
+                this.router.navigateByUrl('main/header/locations');
         });
     }
 }
