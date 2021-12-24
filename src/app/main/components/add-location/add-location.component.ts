@@ -25,7 +25,6 @@ export class AddLocationComponent implements OnInit {
     sendService(){
         return this.http.post(this.url + 'locations/', this.addLocationForm.value)
             .subscribe((res) => {
-                console.log(res);
                 this.router.navigateByUrl('main/header/locations');
         });
     }

@@ -2,10 +2,14 @@
     <p class="teams__title">Список команд</p>
     <table>
         <tr>
-            <td>Название</td>
+            <td>Полное название</td>
+            <td>Короткое название</td>
+            <td>Количество игроков</td>
         </tr>
         <tr class="tr" *ngFor="let team of teams?.results">
             <td [routerLink]="['../players', team.id]">{{team.full_name}}</td>
+            <td [routerLink]="['../players', team.id]">{{team.short_name}}</td>
+            <td [routerLink]="['../players', team.id]">{{team.players_count}}</td>
         </tr>
     </table>
     <button class="teams__btn" [routerLink]="['../add-team']">Добавить команду</button>

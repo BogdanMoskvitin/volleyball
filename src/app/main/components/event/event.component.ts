@@ -43,7 +43,6 @@ export class EventComponent implements OnInit {
         this.http.get(this.url + 'events')
             .subscribe((res) => {
                 this.events = res;
-                console.log(this.events)
                 for(let e in this.events.results){
                     if(this.events.results[e].id == this.id){
                         this.event = this.events.results[e];
@@ -58,17 +57,13 @@ export class EventComponent implements OnInit {
     }
 
     sendStatus() {
-        return this.http.post(this.url + `events/${this.id}/participation/`, this.addStatusForm.value)
-            .subscribe((res) => {
-                console.log(res);
-            });
+        return this.http.post(this.url + `events/${this.id}/participation/`, this.addStatusForm.value);
     }
 
     getPlayers() {
         this.http.get(this.url + `players/?user=${this.idUser.id}`)
             .subscribe((res) => {
                 this.players = res;
-                console.log(this.players);
         });
     }
 

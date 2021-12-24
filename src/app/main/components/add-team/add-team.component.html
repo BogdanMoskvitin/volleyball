@@ -4,10 +4,17 @@
     <form [formGroup]="addTeamForm" novalidate (ngSubmit)="sendService()">
         <table>
             <tr>
-                <td> <span class="add-team__subtitle">Название:</span> </td>
+                <td> <span class="add-team__subtitle">Полное название:</span> </td>
                 <td> 
                     <input class="add-team__input" formControlName="full_name">
-                    <span class="add-team__err" *ngIf="addTeamForm.controls['full_name'].invalid && addTeamForm.controls['full_name'].touched">Введите название команды!</span>
+                    <span class="add-team__err" *ngIf="addTeamForm.controls['full_name'].invalid && addTeamForm.controls['full_name'].touched">Введите полное название команды!</span>
+                </td>
+            </tr>
+            <tr>
+                <td> <span class="add-team__subtitle">Сокращенное название:</span> </td>
+                <td> 
+                    <input class="add-team__input" formControlName="short_name">
+                    <span class="add-team__err" *ngIf="addTeamForm.controls['short_name'].invalid && addTeamForm.controls['short_name'].touched">Введите сокращенное название команды!</span>
                 </td>
             </tr>
             <tr>

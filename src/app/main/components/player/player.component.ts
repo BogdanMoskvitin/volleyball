@@ -1,36 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
-    selector: 'players-service-page',
-    templateUrl: './players.component.html',
-    styleUrls: ['./players.component.scss'],
+    selector: 'player-service-page',
+    templateUrl: './player.component.html',
+    styleUrls: ['./player.component.scss'],
 })
 
-export class PlayersComponent implements OnInit {
+export class PlayerComponent implements OnInit {
 
     id: number;
     url: string = 'https://api.dev.freeteamcollaboration.ru/';
-    players;
-    team;
+    player;
 
     constructor(
         private http: HttpClient, 
         private activateRoute: ActivatedRoute,
-        private router: Router) {
+        private location: Location) {
         this.id = this.activateRoute.snapshot.params['id'];
     }
     
     ngOnInit() {
-
-        this.http.get(this.url + `teams/${this.id}/`)
+        this.http.get(this.url + `players/${this.id}/`)
             .subscribe((res) => {
-                this.team = res;
+                this.player = res;
         });
     }
 
     back(){
-        this.router.navigateByUrl('main/header/teams');
+        this.location.back();
     }
 }

@@ -26,7 +26,6 @@ export class AuthService {
                     ({access}) => {
                         localStorage.setItem('auth-token', 'Bearer ' + access);
                         this.setToken(access);
-                        console.log(access);
                     }
                 )
             )

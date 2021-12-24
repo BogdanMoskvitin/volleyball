@@ -16,6 +16,7 @@ import { LocationsComponent } from './components/locations/locations.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { HeaderComponent } from './components/header/header.component';
 import { UserComponent } from './components/user/user.component';
+import { PlayerComponent } from './components/player/player.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { UserComponent } from './components/user/user.component';
     LocationsComponent,
     TeamsComponent,
     HeaderComponent,
-    UserComponent
+    UserComponent,
+    PlayerComponent
   ],
   exports: [
     
@@ -84,6 +86,9 @@ import { UserComponent } from './components/user/user.component';
           },
           {
             path: 'user', component: UserComponent
+          },
+          {
+            path: 'players/:id/player/:id', component: PlayerComponent
           }
         ]
       },

@@ -33,7 +33,6 @@ export class AddPlayerComponent implements OnInit {
         this.myData.currentData.subscribe(
             (res) => {
                 this.mydata = res;
-                console.log(this.mydata);
             }
         );
     }
@@ -46,7 +45,6 @@ export class AddPlayerComponent implements OnInit {
         };
         return this.http.post(this.url + 'players/', this.newPlayer)
             .subscribe((res) => {
-                console.log(res);
                 this.back();
         });
     }

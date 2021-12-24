@@ -5,11 +5,13 @@
             <td>Время</td>
             <td>Место</td>
             <td>Цена</td>
+            <td>Кол-во игроков</td>
         </tr>
         <tr class="tr" *ngFor="let event of events?.results">
-            <td [routerLink]="['../event', event.id]">{{event.time_start | date}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
             <td [routerLink]="['../event', event.id]">{{event.location.name}}</td>
             <td [routerLink]="['../event', event.id]">{{event.price}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.players_count}}</td>
         </tr>
     </table>
     <button class="home__btn" [routerLink]="['../add-event']">Добавить событие</button>

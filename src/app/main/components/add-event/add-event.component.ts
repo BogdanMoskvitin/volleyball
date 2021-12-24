@@ -51,7 +51,6 @@ export class AddEventComponent implements OnInit {
         }
         return this.http.post(this.url + 'events/', this.newEvent)
             .subscribe((res) => {
-                console.log(res);
                 this.router.navigateByUrl('main/header/home');
         });
     }

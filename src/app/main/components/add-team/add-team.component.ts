@@ -18,6 +18,7 @@ export class AddTeamComponent implements OnInit {
     constructor(private http: HttpClient, private router: Router) {
         this.addTeamForm = new FormGroup({
             full_name: new FormControl('', Validators.required),
+            short_name: new FormControl('', Validators.required),
         });
     }
 
@@ -26,7 +27,6 @@ export class AddTeamComponent implements OnInit {
     sendService(){
         return this.http.post(this.url + 'teams/', this.addTeamForm.value)
             .subscribe((res) => {
-                console.log(res);
                 this.router.navigateByUrl('main/header/teams');
         });
     }

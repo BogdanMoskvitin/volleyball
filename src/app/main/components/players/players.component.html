@@ -1,12 +1,16 @@
 <button class="players__btn" style="width: 228px;" (click)="back()">назад</button>
 <div class="players">
+    <p>Полное название команды: {{team?.full_name}}</p>
+    <p>Сокращенное название команды: {{team?.short_name}}</p>
     <p class="players__title">Список игроков</p>
     <table>
         <tr>
             <td>Номер</td>
+            <td>Имя</td>
         </tr>
         <tr class="tr" *ngFor="let player of team?.players">
-            <td>{{player.number}}</td>
+            <td [routerLink]="['./player', player.id]">{{player?.number}}</td>
+            <td [routerLink]="['./player', player.id]">{{player?.user.full_name}}</td>
         </tr>
     </table>
     <button class="players__btn" [routerLink]="['../../add-player']">Добавить игрока</button>

@@ -5,14 +5,12 @@
 
     <table>
         <tr>
-            <td>ID</td>
             <td>Время</td>
             <td>Место</td>
             <td>Цена</td>
         </tr>
         <tr class="tr">
-            <td>{{event?.id}}</td>
-            <td>{{event?.time_start | date}}</td>
+            <td>{{event?.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
             <td>{{event?.location.name}}</td>
             <td>{{event?.price}}</td>
         </tr>
@@ -24,7 +22,7 @@
             <mat-label>Игроки</mat-label>
             <mat-select formControlName="player">
                 <mat-option *ngFor="let player of players?.results" [value]="player.id">
-                    {{player.number}}
+                    {{player.team.full_name}} ({{player.number}})
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -34,7 +32,7 @@
 </div>
 
 <div class="event">
-    <p class="event__title">Игроки</p>
+    <p class="event__title">Участники события</p>
 <table>
     <tr>
         <td>Номер</td>
