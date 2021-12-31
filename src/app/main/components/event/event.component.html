@@ -1,10 +1,10 @@
 <button class="event__btn" (click)="back()">назад</button>
 <div style="display: flex;">
-<div class="event">
-    <p class="event__title">Событие</p>
+<div class="container">
+    <p class="title">Событие</p>
 
     <table>
-        <tr>
+        <tr class="tr__head">
             <td>Время</td>
             <td>Место</td>
             <td>Цена</td>
@@ -18,7 +18,7 @@
     
     <form [formGroup]="addStatusForm" novalidate (ngSubmit)="sendStatus()">
     <div class="event__box_btns">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" style="width: 300px;">
             <mat-label>Игроки</mat-label>
             <mat-select formControlName="player">
                 <mat-option *ngFor="let player of players?.results" [value]="player.id">
@@ -26,15 +26,15 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        <button class="event__btn_green" [disabled]="addStatusForm.invalid">Приду</button>
+        <button class="event__btn" [disabled]="addStatusForm.invalid">Приду</button>
     </div>
     </form>
 </div>
 
-<div class="event">
-    <p class="event__title">Участники события</p>
+<div class="container">
+    <p class="title">Участники события</p>
 <table>
-    <tr>
+    <tr class="tr__head">
         <td>Номер</td>
     </tr>
     <tr class="tr">

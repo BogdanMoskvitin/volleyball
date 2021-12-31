@@ -1,7 +1,7 @@
-<div class="teams">
-    <p class="teams__title">Список команд</p>
+<div class="container">
+    <p class="title">Список команд</p>
     <table>
-        <tr>
+        <tr class="tr__head">
             <td>Полное название</td>
             <td>Короткое название</td>
             <td>Количество игроков</td>
@@ -12,5 +12,5 @@
             <td [routerLink]="['../players', team.id]">{{team.players_count}}</td>
         </tr>
     </table>
-    <button class="teams__btn" [routerLink]="['../add-team']">Добавить команду</button>
+    <button class="btn" [routerLink]="['../add-team']">Добавить команду</button>
 </div>

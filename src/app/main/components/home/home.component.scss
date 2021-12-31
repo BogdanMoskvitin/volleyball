@@ -1,37 +1,52 @@
-.home {
-    width: 550px;
-    border: 1px solid #ccc;
+$grey: #CCDBDC;
+$light: #f1f1f1;
+$turquoise: #80CED7;
+$blue: #007EA7;
+$dark: #003249;
+.container {
+    width: 600px;
+    border: 1px solid $grey;
     border-radius: 5px;
     padding: 20px 30px;
     margin: 100px auto 0 auto;
-}
-.home__title {
-    font-size: 30px;
-    text-align: center;
-    padding-bottom: 10px;
 }
 table {
     border-collapse: collapse;
     width: 100%;
 }
+.title {
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 10px;
+    color: $dark;
+}
+.tr__head {
+    background-color: $blue;
+    td {
+        color: $light
+    }
+}
 td {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid $grey;
     padding: 10px 30px;
     font-size: 18px;
     text-align: center;
     cursor: pointer;
+    color: $dark;
 }
 .tr:hover {
-    background-color: #f5f5f5;
+    background-color: $light;
 }
-.home__btn {
+.btn {
     width: 100%;
     height: 29px;
     font-size: 16px;
     cursor: pointer;
-    border: 1px solid #ccc;
+    border: 1px solid $grey;
+    background: $blue;
     margin-top: 20px;
+    color: $light;
 }
-.home__btn:hover {
-    background: #E0E4E7;
+.btn:hover {
+    background: $turquoise;
 }

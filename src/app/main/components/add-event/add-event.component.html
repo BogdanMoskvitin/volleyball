@@ -1,12 +1,12 @@
 <button class="add-event__btn" [routerLink]="['../home']">назад</button>
 <div class="add-event">
-    <p class="add-event__title">Добавить событие</p>
+    <p class="title">Добавить событие</p>
     <form [formGroup]="addEventForm" novalidate (ngSubmit)="sendService()">
         <table>
             <tr>
                 <td> <span class="add-event__subtitle">Дата:</span> </td>
                 <td>
-                    <mat-form-field color="accent" appearance="fill" style="margin-right: 20px;">
+                    <mat-form-field color="accent" appearance="fill" style="width: 250px;">
                         <mat-label>Дата</mat-label>
                         <input formControlName="date" matInput [matDatepicker]="picker2">
                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -17,7 +17,7 @@
             <tr>
                 <td> <span class="add-event__subtitle">Время:</span> </td>
                 <td>
-                    <mat-form-field appearance="outline" style="margin-right: 20px;">
+                    <mat-form-field appearance="outline" style="width: 250px;">
                         <mat-label>Время</mat-label>
                         <input formControlName="time" type="time" matInput name="week" min="09:00" max="18:00">
                     </mat-form-field>
@@ -26,7 +26,7 @@
             <tr>
                 <td> <span class="add-event__subtitle">Место:</span> </td>
                 <td>
-                    <mat-form-field appearance="fill">
+                    <mat-form-field appearance="fill" style="width: 250px;">
                         <mat-label>Место</mat-label>
                         <mat-select formControlName="location">
                             <mat-option *ngFor="let location of locations?.results" [value]="location.id">
@@ -40,7 +40,7 @@
             <tr>
                 <td> <span class="add-event__subtitle">Цена:</span> </td>
                 <td> 
-                    <input class="add-event__input" formControlName="price"> 
+                    <input class="add-event__input" formControlName="price" style="width: 240px; height: 50px;" placeholder="Цена"> 
                     <span class="add-event__err" *ngIf="addEventForm.controls['price'].invalid && addEventForm.controls['price'].touched">Введите цену!</span>
                 </td>
             </tr>

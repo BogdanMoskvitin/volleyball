@@ -1,12 +1,12 @@
-<div class="locations">
-    <p class="locations__title">Список мест</p>
+<div class="container">
+    <p class="title">Список мест</p>
     <table>
-        <tr>
+        <tr class="tr__head">
             <td>Название</td>
         </tr>
         <tr class="tr" *ngFor="let location of locations?.results">
             <td>{{location.name}}</td>
         </tr>
     </table>
-    <button class="locations__btn" [routerLink]="['../add-location']">Добавить место</button>
+    <button class="btn" [routerLink]="['../add-location']">Добавить место</button>
 </div>

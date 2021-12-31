@@ -1,12 +1,12 @@
 <button class="add-player__btn" (click)="back()">назад</button>
 <div class="add-player">
-    <p class="add-player__title">Добавить игрока</p>
+    <p class="title">Добавить игрока</p>
     <form [formGroup]="addPlayerForm" novalidate (ngSubmit)="sendService()">
         <table>
             <tr>
                 <td> <span class="add-player__subtitle">Команда:</span> </td>
                 <td> 
-                    <mat-form-field appearance="fill">
+                    <mat-form-field appearance="fill" style="width: 250px;">
                         <mat-label>Команда</mat-label>
                         <mat-select formControlName="team">
                             <mat-option *ngFor="let team of teams?.results" [value]="team.id">
@@ -19,14 +19,14 @@
             <tr>
                 <td> <span class="add-player__subtitle">Номер игрока:</span> </td>
                 <td> 
-                    <input class="add-player__input" formControlName="number">
+                    <input class="add-player__input" formControlName="number" placeholder="Номер игрока">
                     <span class="add-player__err" *ngIf="addPlayerForm.controls['number'].invalid && addPlayerForm.controls['number'].touched">Введите номер игрока!</span>
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td> 
-                    <button class="add-player__btn" [disabled]="addPlayerForm.invalid">Добавить игрока</button>
+                    <button class="btn" [disabled]="addPlayerForm.invalid">Добавить игрока</button>
                 </td>
             </tr>
         </table>

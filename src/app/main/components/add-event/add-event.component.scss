@@ -1,11 +1,16 @@
+$grey: #CCDBDC;
+$light: #f1f1f1;
+$turquoise: #80CED7;
+$blue: #007EA7;
+$dark: #003249;
 .add-event {
     width: 350px;
-    border: 1px solid #ccc;
+    border: 1px solid $grey;
     border-radius: 5px;
     padding: 20px 30px;
     margin: 100px auto 0 auto;
 }
-.add-event__title {
+.title {
     font-size: 30px;
     text-align: center;
     padding-bottom: 10px;
@@ -18,11 +23,14 @@ td {
 .add-event__subtitle {
     font-size: 18px;
     margin-right: 10px;
+    color: $dark;
 }
 .add-event__input {
     height: 25px;
     font-size: 18px;
-    padding-left: 5px;
+    padding-left: 10px;
+    border: 1px solid $grey;
+    border-radius: 5px;
 }
 .add-event__err {
     position: absolute;
@@ -31,12 +39,12 @@ td {
     color: red;
 }
 .add-event__btn {
-    width: 228px;
+    width: 250px;
     height: 29px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid $grey;
     cursor: pointer;
 }
 .add-event__btn:hover {
-    background: #E0E4E7;
+    background: $grey;
 }

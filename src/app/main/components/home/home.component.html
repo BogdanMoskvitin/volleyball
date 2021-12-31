@@ -1,7 +1,7 @@
-<div class="home">
-    <p class="home__title">Список событий</p>
+<div class="container">
+    <p class="title">Список событий</p>
     <table>
-        <tr>
+        <tr class="tr__head">
             <td>Время</td>
             <td>Место</td>
             <td>Цена</td>
@@ -14,5 +14,5 @@
             <td [routerLink]="['../event', event.id]">{{event.players_count}}</td>
         </tr>
     </table>
-    <button class="home__btn" [routerLink]="['../add-event']">Добавить событие</button>
+    <button class="btn" [routerLink]="['../add-event']">Добавить событие</button>
 </div>
