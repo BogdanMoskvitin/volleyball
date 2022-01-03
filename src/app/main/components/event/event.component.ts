@@ -40,14 +40,9 @@ export class EventComponent implements OnInit {
             this.getPlayers();
         });
         
-        this.http.get(this.url + 'events')
+        this.http.get(this.url + `events/${this.id}`)
             .subscribe((res) => {
-                this.events = res;
-                for(let e in this.events.results){
-                    if(this.events.results[e].id == this.id){
-                        this.event = this.events.results[e];
-                    }
-                }
+                this.event = res;
         });
 
         this.http.get(this.url + `events/${this.id}/participation`)
@@ -57,7 +52,14 @@ export class EventComponent implements OnInit {
     }
 
     sendStatus() {
-        return this.http.post(this.url + `events/${this.id}/participation/`, this.addStatusForm.value);
+        this.http.post(this.url + `events/${this.id}/participation/`, this.addStatusForm.value)
+            .subscribe((res) => {
+                console.log(res);
+                this.http.get(this.url + `events/${this.id}`)
+                    .subscribe((res) => {
+                        this.event = res;
+                });
+        })
     }
 
     getPlayers() {

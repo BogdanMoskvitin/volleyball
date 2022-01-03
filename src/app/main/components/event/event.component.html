@@ -35,14 +35,12 @@
     <p class="title">Участники события</p>
 <table>
     <tr class="tr__head">
+        <td>Команда</td>
         <td>Номер</td>
     </tr>
-    <tr class="tr">
-        <td>
-            <div *ngFor="let pl of events?.results">
-                <div *ngFor="let x of pl.players">{{x.number}}</div>
-            </div>
-        </td>
+    <tr class="tr" *ngFor="let pl of event?.players">
+        <td>{{pl.team.full_name}}</td>
+        <td>{{pl.number}}</td>
     </tr>
 </table>
 </div>
