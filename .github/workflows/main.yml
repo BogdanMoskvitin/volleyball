@@ -18,6 +18,6 @@ jobs:
         password: ${{ secrets.SSH_PASSWORD }}
         script: |
           # Выполняет деплой
-          cd /var/war/front-dev/
+          cd /var/www/front-dev/
           mpm i
           ng build
