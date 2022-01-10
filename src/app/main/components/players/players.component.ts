@@ -14,6 +14,7 @@ export class PlayersComponent implements OnInit {
     url: string = 'https://api.dev.freeteamcollaboration.ru/';
     players;
     team;
+    count;
 
     constructor(
         private http: HttpClient, 
@@ -23,10 +24,14 @@ export class PlayersComponent implements OnInit {
     }
     
     ngOnInit() {
-
         this.http.get(this.url + `teams/${this.id}/`)
             .subscribe((res) => {
                 this.team = res;
+                if(this.team.players_count == 0) {
+                    this.count = 'В команде пока ещё нет игроков';
+                } else {
+                    this.count = this.team.players_count;
+                }
         });
     }
 

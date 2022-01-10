@@ -70,7 +70,7 @@ import { PlayerComponent } from './components/player/player.component';
             path: 'add-team', component: AddTeamComponent
           },
           {
-            path: 'add-player', component: AddPlayerComponent
+            path: 'players/:id/add-player/:id', component: AddPlayerComponent
           },
           {
             path: 'add-location', component: AddLocationComponent

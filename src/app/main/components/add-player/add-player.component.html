@@ -5,16 +5,7 @@
         <table>
             <tr>
                 <td> <span class="add-player__subtitle">Команда:</span> </td>
-                <td> 
-                    <mat-form-field appearance="fill" style="width: 250px;">
-                        <mat-label>Команда</mat-label>
-                        <mat-select formControlName="team">
-                            <mat-option *ngFor="let team of teams?.results" [value]="team.id">
-                                {{team.full_name}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </td>
+                <td>{{team?.full_name}}</td>
             </tr>
             <tr>
                 <td> <span class="add-player__subtitle">Номер игрока:</span> </td>
@@ -26,7 +17,7 @@
             <tr>
                 <td></td>
                 <td> 
-                    <button class="btn" [disabled]="addPlayerForm.invalid">Добавить игрока</button>
+                    <button class="btn" [disabled]="addPlayerForm.invalid">Вступить в команду</button>
                 </td>
             </tr>
         </table>

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MyData } from 'src/app/my-data.service';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'add-player-service-page',
@@ -12,18 +13,20 @@ import { Location } from '@angular/common';
 
 export class AddPlayerComponent implements OnInit {
 
+    id: number;
     addPlayerForm : FormGroup;
     newPlayer = {};
     url:string = 'https://api.dev.freeteamcollaboration.ru/';
-    teams;
+    team;
     mydata;
 
     constructor(
         private http: HttpClient, 
         private myData: MyData,
-        private location: Location) {
+        private location: Location,
+        private activateRoute: ActivatedRoute) {
+        this.id = this.activateRoute.snapshot.params['id'];
         this.addPlayerForm = new FormGroup({
-            team: new FormControl('', Validators.required),
             number: new FormControl('', Validators.required),
         });
     }
@@ -40,7 +43,7 @@ export class AddPlayerComponent implements OnInit {
     sendService(){
         this.newPlayer = {
             user: this.mydata.id,
-            team: this.addPlayerForm.value.team,
+            team: this.id,
             number: this.addPlayerForm.value.number
         };
         return this.http.post(this.url + 'players/', this.newPlayer)
@@ -50,9 +53,9 @@ export class AddPlayerComponent implements OnInit {
     }
 
     getTeams() {
-        return this.http.get(this.url + 'teams')
+        return this.http.get(this.url + `teams/${this.id}`)
             .subscribe((res) => {
-                this.teams = res;
+                this.team = res;
         });
     }
 
