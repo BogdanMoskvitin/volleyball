@@ -19,5 +19,6 @@ jobs:
         script: |
           # Выполняет деплой
           cd /var/www/front-dev/
+          git pull
           mpm i
           ng build
