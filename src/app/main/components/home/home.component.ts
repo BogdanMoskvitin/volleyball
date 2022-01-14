@@ -10,11 +10,15 @@ import { HttpClient } from '@angular/common/http';
 export class HomeComponent implements OnInit {
 
     events;
+    time_start;
     url:string = 'https://api.dev.freeteamcollaboration.ru/';
+    now;
+    currentEvents = [];
 
     constructor(private http: HttpClient) {}
     
     ngOnInit() {
+        this.now = new Date();
         this.getEvents();
     }
 
@@ -22,6 +26,11 @@ export class HomeComponent implements OnInit {
         return this.http.get(this.url + 'events')
             .subscribe((res) => {
                 this.events = res;
+                this.events.results.forEach(key => {
+                    if(key.time_start > this.now.toISOString()){
+                        this.currentEvents.push(key);
+                    }
+                })
         });
     }
 }
