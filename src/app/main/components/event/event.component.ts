@@ -21,6 +21,7 @@ export class EventComponent implements OnInit {
     idUser;
     players;
     addStatusForm: FormGroup;
+    btnTitle: string = '';
 
     constructor(
         private activateRoute: ActivatedRoute, 
@@ -43,6 +44,7 @@ export class EventComponent implements OnInit {
         this.http.get(this.url + `events/${this.id}`)
             .subscribe((res) => {
                 this.event = res;
+                this.checkPlayer();
         });
 
         this.http.get(this.url + `events/${this.id}/participation`)
@@ -51,13 +53,27 @@ export class EventComponent implements OnInit {
         });
     }
 
+    checkPlayer(){
+        if((this.event.players).length != 0) {
+            this.event.players.forEach(key => {
+                if(this.idUser.id == key.user.id){
+                    this.btnTitle = 'Не приду';
+                } else {
+                    this.btnTitle = 'Приду';
+                }
+            });
+        } else {
+            this.btnTitle = 'Приду';
+        }
+    }
+
     sendStatus() {
         this.http.post(this.url + `events/${this.id}/participation/`, this.addStatusForm.value)
             .subscribe((res) => {
-                console.log(res);
                 this.http.get(this.url + `events/${this.id}`)
                     .subscribe((res) => {
                         this.event = res;
+                        this.checkPlayer();
                 });
         })
     }
