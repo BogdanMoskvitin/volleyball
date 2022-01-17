@@ -11,6 +11,20 @@
                 </td>
             </tr>
             <tr>
+                <td> <span class="add-location__subtitle">Адрес:</span> </td>
+                <td> 
+                    <input class="add-location__input" formControlName="address">
+                    <span class="add-location__err" *ngIf="addLocationForm.controls['address'].invalid && addLocationForm.controls['address'].touched">Введите адрес места!</span>
+                </td>
+            </tr>
+            <tr>
+                <td> <span class="add-location__subtitle">Описание:</span> </td>
+                <td> 
+                    <input class="add-location__input" formControlName="description">
+                    <span class="add-location__err" *ngIf="addLocationForm.controls['description'].invalid && addLocationForm.controls['description'].touched">Введите описание места!</span>
+                </td>
+            </tr>
+            <tr>
                 <td></td>
                 <td> 
                     <button class="add-location__btn" [disabled]="addLocationForm.invalid">Добавить место</button>

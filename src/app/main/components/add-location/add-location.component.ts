@@ -17,6 +17,8 @@ export class AddLocationComponent implements OnInit {
     constructor(private http: HttpClient, private router: Router) {
         this.addLocationForm = new FormGroup({
             name: new FormControl('', Validators.required),
+            address: new FormControl('', Validators.required),
+            description: new FormControl('', Validators.required),
         });
     }
 

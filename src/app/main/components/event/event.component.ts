@@ -24,13 +24,13 @@ export class EventComponent implements OnInit {
     btnTitle: string = '';
 
     constructor(
-        private activateRoute: ActivatedRoute, 
+        private activateRoute: ActivatedRoute,
         private http: HttpClient, 
         private myData: MyData,
         private router: Router
         ) {
-        this.id = this.activateRoute.snapshot.params['id'];
-        this.addStatusForm = new FormGroup({
+            this.id = this.activateRoute.snapshot.params['id'];
+            this.addStatusForm = new FormGroup({
             player: new FormControl('', Validators.required)
         })
     }

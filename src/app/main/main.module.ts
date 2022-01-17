@@ -17,6 +17,7 @@ import { TeamsComponent } from './components/teams/teams.component';
 import { HeaderComponent } from './components/header/header.component';
 import { UserComponent } from './components/user/user.component';
 import { PlayerComponent } from './components/player/player.component';
+import { LocationComponent } from './components/location/location.component';
 
 
 @NgModule({
@@ -80,6 +81,9 @@ import { PlayerComponent } from './components/player/player.component';
           },
           {
             path: 'locations', component: LocationsComponent
+          },
+          {
+            path: 'locations/:id', component: LocationComponent
           },
           {
             path: 'teams', component: TeamsComponent

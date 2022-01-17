@@ -3,9 +3,11 @@
     <table>
         <tr class="tr__head">
             <td>Название</td>
+            <td>Адрес</td>
         </tr>
         <tr class="tr" *ngFor="let location of locations?.results">
-            <td>{{location.name}}</td>
+            <td [routerLink]="['../locations', location.id]">{{location.name}}</td>
+            <td [routerLink]="['../locations', location.id]">{{location.address}}</td>
         </tr>
     </table>
     <button class="btn" [routerLink]="['../add-location']">Добавить место</button>
