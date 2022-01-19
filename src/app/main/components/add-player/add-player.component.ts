@@ -53,7 +53,7 @@ export class AddPlayerComponent implements OnInit {
     }
 
     getTeams() {
-        return this.http.get(this.url + `teams/${this.id}`)
+        return this.http.get(this.url + `teams/${this.id}/`)
             .subscribe((res) => {
                 this.team = res;
         });

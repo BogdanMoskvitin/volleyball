@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     }
 
     getEvents() {
-        return this.http.get(this.url + 'events')
+        return this.http.get(this.url + 'events/')
             .subscribe((res) => {
                 this.events = res;
                 this.events.results.forEach(key => {

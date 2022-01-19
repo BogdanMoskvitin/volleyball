@@ -19,7 +19,7 @@ export class TeamsComponent implements OnInit {
     }
 
     getTeams() {
-        return this.http.get(this.url + 'teams')
+        return this.http.get(this.url + 'teams/')
             .subscribe((res) => {
                 this.teams = res;
         });
