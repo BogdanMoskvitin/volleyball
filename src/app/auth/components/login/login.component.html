@@ -12,7 +12,12 @@
             <tr>
                 <td> <span class="auth__subtitle">Введите пароль:</span> </td>
                 <td> 
-                    <input class="auth__input" formControlName="password"> 
+                    <mat-form-field appearance="fill">
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                        <button class="btn__icon" type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
                     <span class="auth__err" *ngIf="authForm.controls['password'].invalid && authForm.controls['password'].touched">Придумайте пароль!</span>
                 </td>
             </tr>

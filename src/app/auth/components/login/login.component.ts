@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 })
 
 export class LoginComponent implements OnInit, OnDestroy {
+    hide = true;
     authForm : FormGroup;
     aSub: Subscription;
 
