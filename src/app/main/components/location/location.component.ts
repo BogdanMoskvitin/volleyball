@@ -23,10 +23,9 @@ export class LocationComponent implements OnInit {
     }
 
     getLocation() {
-        return this.http.get(this.url + `locations/${this.id}`)
+        return this.http.get(this.url + `locations/${this.id}/`)
             .subscribe((res) => {
                 this.location = res;
-                console.log(this.location)
         });
     }
 }

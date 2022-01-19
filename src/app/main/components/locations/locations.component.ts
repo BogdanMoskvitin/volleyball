@@ -19,7 +19,7 @@ export class LocationsComponent implements OnInit {
     }
 
     getLocations() {
-        return this.http.get(this.url + 'locations')
+        return this.http.get(this.url + 'locations/')
             .subscribe((res) => {
                 this.locations = res;
         });
