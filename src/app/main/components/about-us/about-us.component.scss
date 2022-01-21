@@ -1,0 +1,99 @@
+$grey: #CCDBDC;
+$light: #f1f1f1;
+$turquoise: #80CED7;
+$blue: #007EA7;
+$dark: #003249;
+.container {
+    width: 600px;
+    border: 1px solid $grey;
+    border-radius: 5px;
+    padding: 20px 30px;
+    margin: 100px auto 0 auto;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+.title {
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 10px;
+    color: $dark;
+}
+.subtitle {
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 10px;
+    color: $dark;
+    font-style: italic;
+}
+.text {
+    font-size: 20px;
+    color: $dark;
+}
+.tr__head {
+    background-color: $blue;
+    td {
+        color: $light
+    }
+}
+td {
+    border-bottom: 1px solid $grey;
+    padding: 10px 30px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    color: $dark;
+}
+.tr:hover {
+    background-color: $light;
+}
+.btn {
+    width: 100%;
+    height: 29px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid $grey;
+    background: $blue;
+    margin-top: 20px;
+    color: $light;
+}
+.btn:hover {
+    background: $turquoise;
+}
+.cell {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid $grey;
+    width: 300px;
+    margin: 5px;
+    border-radius: 5px;
+}
+.avatar__bg {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-image: url(../../../../assets/img/bg.moskvitin.jpg);
+    background-size: contain;
+}
+.avatar__mr {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-image: url(../../../../assets/img/mr.marshanskiy.jpg);
+    background-size: contain;
+}
+.footer {
+    font-size: 16px;
+    text-align: right;
+    color: #003249;
+    padding-top: 20px;
+}
+.link {
+    font-size: 16px;
+    color: $dark;
+    text-decoration: none;
+}
