@@ -27,7 +27,7 @@ export class AddPlayerComponent implements OnInit {
         private activateRoute: ActivatedRoute) {
         this.id = this.activateRoute.snapshot.params['id'];
         this.addPlayerForm = new FormGroup({
-            number: new FormControl('', Validators.required),
+            number: new FormControl('', [Validators.required, Validators.min(1), Validators.max(24)]),
         });
     }
 
