@@ -11,7 +11,7 @@
                 <td> <span class="add-player__subtitle">Номер игрока:</span> </td>
                 <td> 
                     <input class="add-player__input" formControlName="number" placeholder="Номер игрока">
-                    <span class="add-player__err" *ngIf="addPlayerForm.controls['number'].invalid && addPlayerForm.controls['number'].touched">Введите номер игрока!</span>
+                    <span class="add-player__err" *ngIf="addPlayerForm.controls['number'].invalid && addPlayerForm.controls['number'].touched">Введите номер игрока от 1-24!</span>
                 </td>
             </tr>
             <tr>
