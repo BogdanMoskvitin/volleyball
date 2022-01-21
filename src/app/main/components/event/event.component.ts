@@ -79,7 +79,7 @@ export class EventComponent implements OnInit {
     }
 
     getPlayers() {
-        this.http.get(this.url + `players/?user=${this.idUser.id}/`)
+        this.http.get(this.url + `players/?user=${this.idUser.id}`)
             .subscribe((res) => {
                 this.players = res;
         });
