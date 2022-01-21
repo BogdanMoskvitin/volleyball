@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './auth/services/auth.service';
 import { MyData } from './my-data.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ import { MyData } from './my-data.service';
 })
 export class AppComponent implements OnInit {
 
-  url:string = 'https://api.dev.freeteamcollaboration.ru/';
+  url:string = environment.apiUrl;
 
   constructor(
     private auth: AuthService, 

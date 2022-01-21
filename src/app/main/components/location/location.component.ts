@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'location-service-page',
@@ -10,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 
 export class LocationComponent implements OnInit {
 
-    url:string = 'https://api.dev.freeteamcollaboration.ru/';
+    url:string = environment.apiUrl;
     location;
     id:number;
 

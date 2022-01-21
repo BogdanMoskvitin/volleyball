@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'locations-service-page',
@@ -9,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class LocationsComponent implements OnInit {
 
-    url:string = 'https://api.dev.freeteamcollaboration.ru/';
+    url:string = environment.apiUrl;
     locations;
 
     constructor(private http: HttpClient) {}

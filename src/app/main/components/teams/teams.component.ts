@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'teams-service-page',
@@ -10,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class TeamsComponent implements OnInit {
 
     teams;
-    url:string = 'https://api.dev.freeteamcollaboration.ru/';
+    url:string = environment.apiUrl;
 
     constructor(private http: HttpClient) {}
     

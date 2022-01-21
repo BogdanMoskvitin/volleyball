@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'add-team-service-page',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class AddTeamComponent implements OnInit {
 
     addTeamForm : FormGroup;
-    url:string = 'https://api.dev.freeteamcollaboration.ru/';
+    url:string = environment.apiUrl;
     events;
 
     constructor(private http: HttpClient, private router: Router) {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'history-service-page',
@@ -11,7 +12,7 @@ export class HistoryComponent implements OnInit {
 
     events;
     time_start;
-    url:string = 'https://api.dev.freeteamcollaboration.ru/';
+    url:string = environment.apiUrl;
     now;
     currentEvents = [];
 
