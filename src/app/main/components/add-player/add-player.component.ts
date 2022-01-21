@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MyData } from 'src/app/my-data.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'add-player-service-page',
@@ -16,7 +17,7 @@ export class AddPlayerComponent implements OnInit {
     id: number;
     addPlayerForm : FormGroup;
     newPlayer = {};
-    url:string = 'https://api.dev.freeteamcollaboration.ru/';
+    url:string = environment.apiUrl;
     team;
     mydata;
 

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MyData } from 'src/app/my-data.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'event-service-page',
@@ -16,7 +17,7 @@ export class EventComponent implements OnInit {
     events;
     event;
     id: number;
-    url: string = 'https://api.dev.freeteamcollaboration.ru/';
+    url: string = environment.apiUrl;
     data;
     idUser;
     players;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'player-service-page',
@@ -12,7 +13,7 @@ import { Location } from '@angular/common';
 export class PlayerComponent implements OnInit {
 
     id: number;
-    url: string = 'https://api.dev.freeteamcollaboration.ru/';
+    url: string = environment.apiUrl;
     player;
 
     constructor(

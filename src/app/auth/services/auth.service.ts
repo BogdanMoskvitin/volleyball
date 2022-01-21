@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { User } from "../models/auth.model";
 import { tap } from 'rxjs/operators';
+import { environment } from "src/environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -10,17 +11,16 @@ import { tap } from 'rxjs/operators';
 export class AuthService {
 
     private token = null;
-    url:string = 'https://api.dev.freeteamcollaboration.ru/auth/jwt/create/';
-    urlReg:string = 'https://api.dev.freeteamcollaboration.ru/auth/users/';
+    url:string = environment.apiUrl;
 
     constructor(private http: HttpClient){}
 
     registration(user: User): Observable<User>{
-        return this.http.post<User>(this.urlReg, user);
+        return this.http.post<User>(this.url + 'auth/users/', user);
     }
 
     login(user: User): Observable<{access: string}> {
-        return this.http.post<{access: string}>(this.url, user)
+        return this.http.post<{access: string}>(this.url + 'auth/jwt/create/', user)
             .pipe(
                 tap(
                     ({access}) => {
