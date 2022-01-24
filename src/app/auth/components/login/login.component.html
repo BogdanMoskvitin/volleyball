@@ -3,10 +3,10 @@
     <form [formGroup]="authForm" novalidate (ngSubmit)="sendService()">
         <table>
             <tr>
-                <td> <span class="auth__subtitle">Введите логин:</span> </td>
+                <td> <span class="auth__subtitle">Введите номер телефона:</span> </td>
                 <td> 
-                    <input class="auth__input" formControlName="username"> 
-                    <span class="auth__err" *ngIf="authForm.controls['username'].invalid && authForm.controls['username'].touched">Введите логин!</span>
+                    <input class="auth__input" formControlName="phone_number"> 
+                    <span class="auth__err" *ngIf="authForm.controls['phone_number'].invalid && authForm.controls['phone_number'].touched">Введите номер телефона!</span>
                 </td>
             </tr>
             <tr>

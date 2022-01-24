@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MaterialService } from 'src/app/classes/material.service';
 import { AuthService } from '../../services/auth.service';
+import { User } from '../../models/auth.model';
 
 @Component({
     selector: 'register-service-page',
@@ -15,23 +16,50 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     regForm : FormGroup;
     aSub: Subscription;
+    checkPassword = false;
+    form: User = { } as User;
+    hide = true;
+    hide2 = true;
 
     constructor(
         private authService: AuthService,
         private router: Router,
     ) {
         this.regForm = new FormGroup({
-            username: new FormControl('', [Validators.required]),
-            password: new FormControl('', [Validators.required]),
+            first_name: new FormControl('', [Validators.required]),
+            last_name: new FormControl('', [Validators.required]),
+            email: new FormControl('', [Validators.required]), 
             phone_number: new FormControl('', [Validators.required]),
+            password: new FormControl('', [Validators.required]),
+            password2: new FormControl('', [Validators.required]),
         });
     }
 
     ngOnInit() {}
 
+    checkForm(){
+        let strPassword = this.regForm.value.password;
+        let strPassword2 = this.regForm.value.password2;
+        if(strPassword == strPassword2){
+            this.checkPassword = false;
+            this.constructForm();
+            this.sendService();
+        } else {
+            this.checkPassword = true;
+        }
+    }
+
+    constructForm(){
+        this.form.first_name = this.regForm.value.first_name;
+        this.form.last_name = this.regForm.value.last_name;
+        this.form.email = this.regForm.value.email;
+        this.form.phone_number = this.regForm.value.phone_number;
+        this.form.password = this.regForm.value.password;
+    }
+
     sendService(){
         this.regForm.disable();
-        this.aSub = this.authService.registration(this.regForm.value).subscribe(
+        this.aSub = this.authService.registration(this.form).subscribe(
             () => {
                 this.router.navigate(['/login'], {
                     queryParams: {

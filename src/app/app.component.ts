@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
   }
 
   getEvents() {
-      return this.http.get(this.url + 'auth/users/me/')
+      return this.http.get(this.url + 'me/')
           .subscribe((res) => {
             this.myData.changeData(res);
       });

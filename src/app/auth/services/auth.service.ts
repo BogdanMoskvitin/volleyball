@@ -20,7 +20,7 @@ export class AuthService {
     }
 
     login(user: User): Observable<{access: string}> {
-        return this.http.post<{access: string}>(this.url + 'auth/jwt/create/', user)
+        return this.http.post<{access: string}>(this.url + 'token/jwt/create/', user)
             .pipe(
                 tap(
                     ({access}) => {

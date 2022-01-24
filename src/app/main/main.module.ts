@@ -20,6 +20,7 @@ import { PlayerComponent } from './components/player/player.component';
 import { LocationComponent } from './components/location/location.component';
 import { HistoryComponent } from './components/history/history.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { UserChangeComponent } from './components/user-change/user-change.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     UserComponent,
     PlayerComponent,
     HistoryComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    UserChangeComponent
   ],
   exports: [
     
@@ -103,6 +105,9 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
           },
           {
             path: 'about-us', component: AboutUsComponent
+          },
+          {
+            path: 'user-change', component: UserChangeComponent
           }
         ]
       },
