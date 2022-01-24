@@ -1,0 +1,43 @@
+<div class="container">
+    <p class="title">Изменить данные</p>
+    <form [formGroup]="changeForm" novalidate (ngSubmit)="sendService()">
+        <table>
+            <tr>
+                <td> <span class="subtitle">Имя:</span> </td>
+                <td> 
+                    <input class="input" formControlName="first_name"> 
+                    <span class="err" *ngIf="changeForm.controls['first_name'].invalid && changeForm.controls['first_name'].touched">Введите имя!</span>
+                </td>
+            </tr>
+            <tr>
+                <td> <span class="subtitle">Фамилия:</span> </td>
+                <td> 
+                    <input class="input" formControlName="last_name"> 
+                    <span class="err" *ngIf="changeForm.controls['last_name'].invalid && changeForm.controls['last_name'].touched">Придумайте фамилию!</span>
+                </td>
+            </tr>
+            <tr>
+                <td> <span class="subtitle">E-mail:</span> </td>
+                <td> 
+                    <input class="input" formControlName="username"> 
+                    <span class="err" *ngIf="changeForm.controls['username'].invalid && changeForm.controls['username'].touched">Введите e-mail!</span>
+                </td>
+            </tr>
+            <tr>
+                <td> <span class="subtitle">Телефон:</span> </td>
+                <td> 
+                    <input class="input" formControlName="phone_number"> 
+                    <span class="err" *ngIf="changeForm.controls['phone_number'].invalid && changeForm.controls['phone_number'].touched">Введите телефон!</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn" [routerLink]="['../user']" type="button">Отмена</button>
+                </td>
+                <td> 
+                    <button class="btn" [disabled]="changeForm.invalid || changeForm.disabled">Изменить</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute
     ) {
         this.authForm = new FormGroup({
-            username: new FormControl('', [Validators.required]),
+            phone_number: new FormControl('', [Validators.required]),
             password: new FormControl('', [Validators.required]),
         });
     }

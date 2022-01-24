@@ -4,7 +4,7 @@ $turquoise: #80CED7;
 $blue: #007EA7;
 $dark: #003249;
 .container {
-    width: 600px;
+    width: 450px;
     border: 1px solid $grey;
     border-radius: 5px;
     padding: 20px 30px;
@@ -17,7 +17,7 @@ $dark: #003249;
     color: $dark;
 }
 .btn {
-    width: 100%;
+    width: 228px;
     height: 29px;
     font-size: 16px;
     cursor: pointer;
@@ -29,14 +29,29 @@ $dark: #003249;
 .btn:hover {
     background: $turquoise;
 }
-.subtitle {
-    font-size: 16px;
-    text-align: right;
-    color: $dark;
-    padding-top: 20px;
-}
 .text {
     font-size: 18px;
     color: $dark;
     padding-bottom: 10px;
+}
+td {
+    position: relative;
+    text-align: end;
+    padding: 15px 0;
+}
+.subtitle {
+    font-size: 18px;
+    margin-right: 10px;
+    color: $dark;
+}
+.input {
+    height: 25px;
+    font-size: 18px;
+    padding-left: 5px;
+}
+.err {
+    position: absolute;
+    display: block;
+    font-size: 16px;
+    color: red;
 }
