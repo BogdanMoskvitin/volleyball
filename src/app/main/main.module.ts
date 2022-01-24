@@ -21,7 +21,8 @@ import { LocationComponent } from './components/location/location.component';
 import { HistoryComponent } from './components/history/history.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UserChangeComponent } from './components/user-change/user-change.component';
-
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { UserChangeComponent } from './components/user-change/user-change.compon
     PlayerComponent,
     HistoryComponent,
     AboutUsComponent,
-    UserChangeComponent
+    UserChangeComponent,
+    ChangePasswordComponent,
   ],
   exports: [
     
@@ -51,6 +53,7 @@ import { UserChangeComponent } from './components/user-change/user-change.compon
     MatSelectModule,
     MatDatepickerModule,
     MatInputModule,
+    MatIconModule,
     RouterModule.forChild([
       {
         path: '',
@@ -108,8 +111,11 @@ import { UserChangeComponent } from './components/user-change/user-change.compon
           },
           {
             path: 'user-change', component: UserChangeComponent
-          }
-        ]
+          },
+          { 
+            path: 'change-password', component: ChangePasswordComponent 
+          },
+        ],
       },
     ])
   ],
