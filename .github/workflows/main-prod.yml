@@ -1,4 +1,4 @@
-name: front workflow
+name: front workflow prod
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
         password: ${{ secrets.SSH_PASSWORD }}
         script: |
           # Выполняет деплой
-          cd /var/www/front-dev/
+          cd /var/www/front/
           git pull
           mpm i
           ng build
