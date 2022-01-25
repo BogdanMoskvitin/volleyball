@@ -1,21 +1,21 @@
 <button class="add-player__btn" (click)="back()">назад</button>
-<div class="add-player">
+<div class="container">
     <p class="title">Добавить игрока</p>
     <form [formGroup]="addPlayerForm" novalidate (ngSubmit)="sendService()">
         <table>
             <tr>
-                <td> <span class="add-player__subtitle">Команда:</span> </td>
+                <td class="td__title"> <span class="add-player__subtitle">Команда:</span> </td>
                 <td>{{team?.full_name}}</td>
             </tr>
             <tr>
-                <td> <span class="add-player__subtitle">Номер игрока:</span> </td>
+                <td class="td__title"> <span class="add-player__subtitle">Номер игрока:</span> </td>
                 <td> 
                     <input class="add-player__input" formControlName="number" placeholder="Номер игрока">
                     <span class="add-player__err" *ngIf="addPlayerForm.controls['number'].invalid && addPlayerForm.controls['number'].touched">Введите номер игрока от 1-24!</span>
                 </td>
             </tr>
             <tr>
-                <td></td>
+                <td class="td__title"></td>
                 <td> 
                     <button class="btn" [disabled]="addPlayerForm.invalid">Вступить в команду</button>
                 </td>

@@ -3,47 +3,51 @@
     <form [formGroup]="changeForm" novalidate (ngSubmit)="sendService()">
         <table>
             <tr>
-                <td> <span class="subtitle">Имя:</span> </td>
+                <td class="td__title"> <span class="subtitle">Имя:</span> </td>
                 <td> 
                     <input class="input" formControlName="first_name"> 
                     <span class="err" *ngIf="changeForm.controls['first_name'].invalid && changeForm.controls['first_name'].touched">Введите имя!</span>
                 </td>
             </tr>
             <tr>
-                <td> <span class="subtitle">Фамилия:</span> </td>
+                <td class="td__title"> <span class="subtitle">Фамилия:</span> </td>
                 <td> 
                     <input class="input" formControlName="last_name"> 
                     <span class="err" *ngIf="changeForm.controls['last_name'].invalid && changeForm.controls['last_name'].touched">Придумайте фамилию!</span>
                 </td>
             </tr>
             <tr>
-                <td> <span class="subtitle">E-mail:</span> </td>
+                <td class="td__title"> <span class="subtitle">E-mail:</span> </td>
                 <td> 
                     <input class="input" formControlName="email"> 
                     <span class="err" *ngIf="changeForm.controls['email'].invalid && changeForm.controls['email'].touched">Введите e-mail!</span>
                 </td>
             </tr>
             <tr>
-                <td> <span class="subtitle">Телефон:</span> </td>
+                <td class="td__title"> <span class="subtitle">Телефон:</span> </td>
                 <td> 
                     <input class="input" formControlName="phone_number"> 
                     <span class="err" *ngIf="changeForm.controls['phone_number'].invalid && changeForm.controls['phone_number'].touched">Введите телефон!</span>
                 </td>
             </tr>
             <tr>
-                <td> <span class="subtitle">Пароль:</span> </td>
+                <td class="td__title"> <span class="subtitle">Пароль:</span> </td>
                 <td> 
                     <button class="btn" [routerLink]="['../change-password']" type="button">Изменить пароль</button>
                 </td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td>
                     <button class="btn" [routerLink]="['../user']" type="button">Отмена</button>
                 </td>
                 <td> 
                     <button class="btn" [disabled]="changeForm.invalid || changeForm.disabled">Изменить</button>
                 </td>
-            </tr>
+            </tr> -->
         </table>
+        <div style="display: flex; flex-wrap: wrap;">
+            <button class="btn" [routerLink]="['../user']" type="button">Отмена</button>
+            <button class="btn" [disabled]="changeForm.invalid || changeForm.disabled">Изменить</button>
+        </div>
     </form>
 </div>

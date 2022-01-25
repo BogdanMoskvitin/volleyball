@@ -1,4 +1,4 @@
-.add-location {
+.container {
     width: 350px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -39,4 +39,17 @@ td {
 }
 .add-location__btn:hover {
     background: #E0E4E7;
+}
+@media(max-width: 700px) {
+    .container {
+        width: 280px;
+        padding: 20px 0;
+    }
+    td {
+        padding: 5px 5px;
+        font-size: 15px;
+    }
+    .td__title {
+        display: none;
+    }
 }

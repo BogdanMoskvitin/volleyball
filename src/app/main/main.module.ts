@@ -94,7 +94,7 @@ import { SidebarModule } from 'ng-sidebar';
             path: 'locations', component: LocationsComponent
           },
           {
-            path: 'locations/:id', component: LocationComponent
+            path: 'location/:id', component: LocationComponent
           },
           {
             path: 'teams', component: TeamsComponent

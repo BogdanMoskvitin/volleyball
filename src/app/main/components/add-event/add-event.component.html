@@ -1,10 +1,10 @@
 <button class="add-event__btn" [routerLink]="['../home']">назад</button>
-<div class="add-event">
+<div class="container">
     <p class="title">Добавить событие</p>
     <form [formGroup]="addEventForm" novalidate (ngSubmit)="sendService()">
         <table>
             <tr>
-                <td> <span class="add-event__subtitle">Дата:</span> </td>
+                <td class="td__title"> <span class="add-event__subtitle">Дата:</span> </td>
                 <td>
                     <mat-form-field color="accent" appearance="fill" style="width: 250px;">
                         <mat-label>Дата</mat-label>
@@ -15,7 +15,7 @@
                 </td>
             </tr>
             <tr>
-                <td> <span class="add-event__subtitle">Время:</span> </td>
+                <td class="td__title"> <span class="add-event__subtitle">Время:</span> </td>
                 <td>
                     <mat-form-field appearance="outline" style="width: 250px;">
                         <mat-label>Время</mat-label>
@@ -24,7 +24,7 @@
                 </td>
             </tr>
             <tr>
-                <td> <span class="add-event__subtitle">Место:</span> </td>
+                <td class="td__title"> <span class="add-event__subtitle">Место:</span> </td>
                 <td>
                     <mat-form-field appearance="fill" style="width: 250px;">
                         <mat-label>Место</mat-label>
@@ -38,14 +38,14 @@
             </tr>
             
             <tr>
-                <td> <span class="add-event__subtitle">Цена:</span> </td>
+                <td class="td__title"> <span class="add-event__subtitle">Цена:</span> </td>
                 <td> 
                     <input class="add-event__input" formControlName="price" style="width: 240px; height: 50px;" placeholder="Цена"> 
                     <span class="add-event__err" *ngIf="addEventForm.controls['price'].invalid && addEventForm.controls['price'].touched">Введите цену!</span>
                 </td>
             </tr>
             <tr>
-                <td></td>
+                <td class="td__title"></td>
                 <td> 
                     <button class="add-event__btn" [disabled]="addEventForm.invalid">Добавить событие</button>
                 </td>

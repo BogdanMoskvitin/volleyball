@@ -1,49 +1,49 @@
 <button class="event__btn" (click)="back()">назад</button>
-<div style="display: flex;">
-<div class="container">
-    <p class="title">Событие</p>
+<div style="display: flex; flex-wrap: wrap;">
+    <div class="container">
+        <p class="title">Событие</p>
 
-    <table>
-        <tr class="tr__head">
-            <td>Время</td>
-            <td>Место</td>
-            <td>Цена</td>
-        </tr>
-        <tr class="tr">
-            <td>{{event?.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
-            <td>{{event?.location.name}}</td>
-            <td>{{event?.price}}</td>
-        </tr>
-    </table>
-    
-    <form [formGroup]="addStatusForm" novalidate (ngSubmit)="sendStatus()">
-    <div class="event__box_btns">
-        <mat-form-field appearance="fill" style="width: 300px;">
-            <mat-label>Игроки</mat-label>
-            <mat-select formControlName="player">
-                <mat-option *ngFor="let player of players?.results" [value]="player.id">
-                    {{player.team.full_name}} ({{player.number}})
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <button class="event__btn" [disabled]="addStatusForm.invalid">{{btnTitle}}</button>
+        <table>
+            <tr class="tr__head">
+                <td>Время</td>
+                <td>Место</td>
+                <td>Цена</td>
+            </tr>
+            <tr class="tr">
+                <td>{{event?.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
+                <td>{{event?.location.name}}</td>
+                <td>{{event?.price}}</td>
+            </tr>
+        </table>
+        
+        <form [formGroup]="addStatusForm" novalidate (ngSubmit)="sendStatus()">
+        <div class="event__box_btns">
+            <mat-form-field appearance="fill" style="width: 300px;">
+                <mat-label>Игроки</mat-label>
+                <mat-select formControlName="player">
+                    <mat-option *ngFor="let player of players?.results" [value]="player.id">
+                        {{player.team.full_name}} ({{player.number}})
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button class="event__btn" [disabled]="addStatusForm.invalid">{{btnTitle}}</button>
+        </div>
+        </form>
     </div>
-    </form>
-</div>
 
-<div class="container">
-    <p class="title">Участники события</p>
-<table>
-    <tr class="tr__head">
-        <td>Имя</td>
-        <td>Команда</td>
-        <td>Номер</td>
-    </tr>
-    <tr class="tr" *ngFor="let pl of event?.players">
-        <td>{{pl.user.full_name}}</td>
-        <td>{{pl.team.full_name}}</td>
-        <td>{{pl.number}}</td>
-    </tr>
-</table>
-</div>
+    <div class="container">
+        <p class="title">Участники события</p>
+        <table>
+            <tr class="tr__head">
+                <td>Имя</td>
+                <td>Команда</td>
+                <td>Номер</td>
+            </tr>
+            <tr class="tr" *ngFor="let pl of event?.players">
+                <td>{{pl.user.full_name}}</td>
+                <td>{{pl.team.full_name}}</td>
+                <td>{{pl.number}}</td>
+            </tr>
+        </table>
+    </div>
 </div>

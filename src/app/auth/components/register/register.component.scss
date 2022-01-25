@@ -1,4 +1,4 @@
-.auth {
+.container {
     width: 470px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -31,7 +31,7 @@ td {
     color: red;
 }
 .auth__btn {
-    width: 228px;
+    width: 225px;
     height: 29px;
     font-size: 16px;
     cursor: pointer;
@@ -40,4 +40,17 @@ td {
     border: none;
     background: none;
     cursor: pointer;
+}
+@media(max-width: 700px) {
+    .container {
+        width: 280px;
+        padding: 20px 0;
+    }
+    td {
+        padding: 5px 5px;
+        font-size: 15px;
+    }
+    .td__title {
+        display: none;
+    }
 }

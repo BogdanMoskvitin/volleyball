@@ -37,3 +37,16 @@ td {
 .tr:hover {
     background-color: $light;
 }
+@media(max-width: 700px) {
+    .container {
+        width: 280px;
+        padding: 20px 0;
+    }
+    td {
+        padding: 5px 5px;
+        font-size: 15px;
+    }
+    .td__title {
+        display: none;
+    }
+}
