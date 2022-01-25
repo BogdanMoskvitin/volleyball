@@ -50,3 +50,13 @@ td {
 .btn:hover {
     background: $turquoise;
 }
+@media(max-width: 700px) {
+    .container {
+        width: 280px;
+        padding: 20px 0;
+    }
+    td {
+        padding: 5px 5px;
+        font-size: 15px;
+    }
+}
