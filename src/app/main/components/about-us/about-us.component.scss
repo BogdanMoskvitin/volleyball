@@ -61,12 +61,16 @@ td {
 .btn:hover {
     background: $turquoise;
 }
+.box__cell {
+    display: flex;
+    flex-wrap: wrap;
+}
 .cell {
     display: flex;
     align-items: center;
     padding: 10px;
     border: 1px solid $grey;
-    width: 300px;
+    width: 268px;
     margin: 5px;
     border-radius: 5px;
 }
@@ -96,4 +100,14 @@ td {
     font-size: 16px;
     color: $dark;
     text-decoration: none;
+}
+@media(max-width: 700px) {
+    .container {
+        width: 280px;
+        padding: 20px 0;
+    }
+    td {
+        padding: 5px 5px;
+        font-size: 15px;
+    }
 }
