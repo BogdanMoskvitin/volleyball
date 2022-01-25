@@ -17,7 +17,7 @@ $dark: #003249;
     color: $dark;
 }
 .btn {
-    width: 228px;
+    width: 225px;
     height: 29px;
     font-size: 16px;
     cursor: pointer;
@@ -54,4 +54,17 @@ td {
     display: block;
     font-size: 16px;
     color: red;
+}
+@media(max-width: 700px) {
+    .container {
+        width: 280px;
+        padding: 20px 0;
+    }
+    td {
+        padding: 5px 5px;
+        font-size: 15px;
+    }
+    .td__title {
+        display: none;
+    }
 }

@@ -6,8 +6,8 @@
             <td>Адрес</td>
         </tr>
         <tr class="tr" *ngFor="let location of locations?.results">
-            <td [routerLink]="['../locations', location.id]">{{location.name}}</td>
-            <td [routerLink]="['../locations', location.id]">{{location.address}}</td>
+            <td [routerLink]="['../location', location.id]">{{location.name}}</td>
+            <td [routerLink]="['../location', location.id]">{{location.address}}</td>
         </tr>
     </table>
     <button class="btn" [routerLink]="['../add-location']">Добавить место</button>

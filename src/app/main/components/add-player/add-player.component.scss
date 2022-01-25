@@ -3,7 +3,7 @@ $light: #f1f1f1;
 $turquoise: #80CED7;
 $blue: #007EA7;
 $dark: #003249;
-.add-player {
+.container {
     width: 400px;
     border: 1px solid $grey;
     border-radius: 5px;
@@ -61,4 +61,17 @@ td {
 }
 .btn:hover {
     background: $turquoise;
+}
+@media(max-width: 700px) {
+    .container {
+        width: 280px;
+        padding: 20px 0;
+    }
+    td {
+        padding: 5px 5px;
+        font-size: 15px;
+    }
+    .td__title {
+        display: none;
+    }
 }

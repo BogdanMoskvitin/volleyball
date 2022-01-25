@@ -1,31 +1,31 @@
 <button class="add-location__btn" [routerLink]="['../locations']">назад</button>
-<div class="add-location">
+<div class="container">
     <p class="add-location__title">Добавить место</p>
     <form [formGroup]="addLocationForm" novalidate (ngSubmit)="sendService()">
         <table>
             <tr>
-                <td> <span class="add-location__subtitle">Название:</span> </td>
+                <td class="td__title"> <span class="add-location__subtitle">Название:</span> </td>
                 <td> 
-                    <input class="add-location__input" formControlName="name">
+                    <input class="add-location__input" formControlName="name" placeholder="Название">
                     <span class="add-location__err" *ngIf="addLocationForm.controls['name'].invalid && addLocationForm.controls['name'].touched">Введите название места!</span>
                 </td>
             </tr>
             <tr>
-                <td> <span class="add-location__subtitle">Адрес:</span> </td>
+                <td class="td__title"> <span class="add-location__subtitle">Адрес:</span> </td>
                 <td> 
-                    <input class="add-location__input" formControlName="address">
+                    <input class="add-location__input" formControlName="address" placeholder="Адрес">
                     <span class="add-location__err" *ngIf="addLocationForm.controls['address'].invalid && addLocationForm.controls['address'].touched">Введите адрес места!</span>
                 </td>
             </tr>
             <tr>
-                <td> <span class="add-location__subtitle">Описание:</span> </td>
+                <td class="td__title"> <span class="add-location__subtitle">Описание:</span> </td>
                 <td> 
-                    <input class="add-location__input" formControlName="description">
+                    <input class="add-location__input" formControlName="description" placeholder="Описание">
                     <span class="add-location__err" *ngIf="addLocationForm.controls['description'].invalid && addLocationForm.controls['description'].touched">Введите описание места!</span>
                 </td>
             </tr>
             <tr>
-                <td></td>
+                <td class="td__title"></td>
                 <td> 
                     <button class="add-location__btn" [disabled]="addLocationForm.invalid">Добавить место</button>
                 </td>
