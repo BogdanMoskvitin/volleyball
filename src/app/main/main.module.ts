@@ -23,6 +23,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UserChangeComponent } from './components/user-change/user-change.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { MatIconModule } from '@angular/material/icon';
+import { SidebarModule } from 'ng-sidebar';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatDatepickerModule,
     MatInputModule,
     MatIconModule,
+    SidebarModule,
     RouterModule.forChild([
       {
         path: '',
