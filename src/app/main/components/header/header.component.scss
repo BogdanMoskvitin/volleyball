@@ -16,7 +16,7 @@ $dark: #003249;
 .logo {
     display: flex;
     align-items: center;
-    width: 400px;
+    width: 200px;
 }
 .link {
     text-decoration: none;
@@ -24,13 +24,24 @@ $dark: #003249;
     color: $light;
     padding: 36px 31px;
 }
+@media(max-width: 1150px) {
+    .link {
+        display: none;
+    }
+    .box {
+        display: none;
+    }
+    .avatar {
+        display: none;
+    }
+}
 .active {
     color: $blue;
     text-decoration: underline;
     background-color: $light;
 }
 .box {
-    width: 400px;
+    width: 200px;
     display: flex;
     justify-content: flex-end;
 }
@@ -42,4 +53,157 @@ $dark: #003249;
 }
 .router-outlet {
     padding: 20px;
+}
+
+
+
+
+
+ng-sidebar-container {
+    height: 100vh;
+}
+::ng-deep .ng-sidebar {
+    background-color: $grey;
+    width: 100%;
+    height: 100%;
+}
+.burger__ul {
+    margin: 100px 0 0 30px; 
+    list-style: none;
+}
+.burger__li {
+    padding: 0 0 15px 0;
+}
+.burger__a {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-size: 25px;
+    transition: all 0.4s ease-in-out;
+    color: $dark;
+    text-decoration-line: none;
+}
+.burger__a:hover {
+    color: $blue;
+    text-decoration-line: underline;
+}
+.burger {
+    z-index: 1010;
+    display: none;
+	width: 30px;
+    height: 30px;
+    top: 30px;
+    right: 30px;
+    position: fixed;
+    outline: none;
+    border: none;
+    background: none;
+}
+@media(max-width: 1150px) {
+    .burger {
+        display: block;
+    }
+}
+.burger__line1 {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    width: 30px;
+    height: 5px;
+    background-color: $blue;
+    border-radius: 25%;
+
+    opacity: 100;
+    transform: translateX(0);
+    transition: all 0.4s ease-in-out;
+}
+.burger__line1_active {
+	position: absolute;
+    left: 0;
+    top: 15px;
+    width: 30px;
+    height: 5px;
+    background-color: $blue;
+    border-radius: 25%;
+
+    opacity: 0;
+    transform: translateX(40px);
+    transition: all 0.4s ease-in-out;
+}
+.burger__line2 {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    width: 30px;
+    height: 5px;
+    background-color: $blue;
+    border-radius: 25%;
+
+    opacity: 100;
+    transform: translateX(0);
+    transition: all 0.4s ease-in-out;
+}
+.burger__line2_active {
+	position: absolute;
+    left: 0;
+    top: 15px;
+    width: 30px;
+    height: 5px;
+    background-color: $blue;
+    border-radius: 25%;
+
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: all 0.4s ease-in-out;
+}
+.burger__line3 {
+	position: absolute;
+	left: 0;
+	top: 5px;
+	width: 30px;
+	height: 5px;
+    background-color: $dark;
+    border-radius: 25%;
+
+    transform: rotate(0deg);
+    transform-origin: 5%;
+    transition: transform 0.5s;
+}
+.burger__line3_active {
+	position: absolute;
+	left: 0;
+	top: 5px;
+	width: 30px;
+	height: 5px;
+    background-color: $dark;
+    border-radius: 25%;
+
+    transform: rotate(45deg);
+    transform-origin: 5%;
+    transition: transform 0.5s;
+}
+.burger__line4 {
+	position: absolute;
+	left: 0;
+	top: 25px;
+	width: 30px;
+	height: 5px;
+    background-color: $dark;
+    border-radius: 25%;
+
+    transform: rotate(0deg);
+    transform-origin: 5%;
+    transition: transform 0.5s;
+}
+.burger__line4_active {
+	position: absolute;
+	left: 0;
+	top: 25px;
+	width: 30px;
+	height: 5px;
+    background-color: $dark;
+    border-radius: 25%;
+
+    transform: rotate(-45deg);
+    transform-origin: 5%;
+    transition: transform 0.5s;
 }
