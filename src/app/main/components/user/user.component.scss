@@ -10,11 +10,32 @@ $dark: #003249;
     padding: 20px 30px;
     margin: 100px auto 0 auto;
 }
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
 .title {
     font-size: 30px;
     text-align: center;
     padding-bottom: 10px;
     color: $dark;
+}
+.tr__head {
+    background-color: $blue;
+    td {
+        color: $light
+    }
+}
+td {
+    border-bottom: 1px solid $grey;
+    padding: 10px 30px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    color: $dark;
+}
+.tr:hover {
+    background-color: $light;
 }
 .btn {
     width: 100%;

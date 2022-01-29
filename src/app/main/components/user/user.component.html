@@ -2,6 +2,19 @@
     <p class="title">Привет {{mydata.first_name}} {{mydata.last_name}}!</p>
     <p class="text">Телефон: {{mydata.phone_number}}</p>
     <p class="text">Почта: {{mydata.email}}</p>
+    <p class="text">Всего участий в событиях: {{mydata.stats?.total_events}}</p>
+    <table>
+        <tr class="tr__head">
+            <td>Команда</td>
+            <td>Номер в команде</td>
+            <td>Кол-во игр</td>
+        </tr>
+        <tr class="tr" *ngFor="let team of mydata.teams">
+            <td>{{team.team.full_name}}</td>
+            <td>{{team.number}}</td>
+            <td>{{team.events_count}}</td>
+        </tr>
+    </table>
     <button class="btn" [routerLink]="['../user-change']">Изменить данные</button>
     <button class="btn" (click)="logout($event)">Выйти из системы</button>
     <p class="subtitle">Free Team Games 1.1</p>
