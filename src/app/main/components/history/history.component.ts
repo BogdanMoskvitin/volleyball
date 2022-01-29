@@ -11,27 +11,30 @@ import { environment } from 'src/environments/environment';
 export class HistoryComponent implements OnInit {
 
     events;
-    time_start;
     url:string = environment.apiUrl;
-    now;
-    currentEvents = [];
 
     constructor(private http: HttpClient) {}
     
     ngOnInit() {
-        this.now = new Date();
         this.getEvents();
     }
 
     getEvents() {
-        return this.http.get(this.url + 'events/')
+        return this.http.get(this.url + `events?multi_status=${encodeURIComponent('4,5')}`)
             .subscribe((res) => {
                 this.events = res;
-                this.events.results.forEach(key => {
-                    if(key.time_start < this.now.toISOString()){
-                        this.currentEvents.push(key);
-                    }
-                })
+        });
+    }
+    closeEvents() {
+        return this.http.get(this.url + `events?multi_status=4`)
+            .subscribe((res) => {
+                this.events = res;
+        });
+    }
+    cancelEvents() {
+        return this.http.get(this.url + `events?multi_status=5`)
+            .subscribe((res) => {
+                this.events = res;
         });
     }
 }

@@ -11,27 +11,18 @@ import { environment } from 'src/environments/environment';
 export class HomeComponent implements OnInit {
 
     events;
-    time_start;
     url:string = environment.apiUrl;
-    now;
-    currentEvents = [];
 
     constructor(private http: HttpClient) {}
     
     ngOnInit() {
-        this.now = new Date();
         this.getEvents();
     }
 
     getEvents() {
-        return this.http.get(this.url + 'events/')
+        return this.http.get(this.url + `events?multi_status=${encodeURIComponent('1,2,3')}`)
             .subscribe((res) => {
                 this.events = res;
-                this.events.results.forEach(key => {
-                    if(key.time_start > this.now.toISOString()){
-                        this.currentEvents.push(key);
-                    }
-                })
         });
     }
 }
