@@ -1,5 +1,9 @@
 <div class="container">
     <p class="title">История событий</p>
+    <div style="display: flex;">
+        <button class="btn" (click)="closeEvents()">Завершенные</button>
+        <button class="btn" (click)="cancelEvents()">Отмененные</button>
+    </div>
     <table>
         <tr class="tr__head">
             <td>Время</td>
@@ -7,7 +11,7 @@
             <td>Цена</td>
             <td>Кол-во игроков</td>
         </tr>
-        <tr class="tr" *ngFor="let event of currentEvents">
+        <tr class="tr" *ngFor="let event of events?.results">
             <!-- <td [routerLink]="['../event', event.id]">{{event.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
             <td [routerLink]="['../event', event.id]">{{event.location.name}}</td>
             <td [routerLink]="['../event', event.id]">{{event.price}}</td>
