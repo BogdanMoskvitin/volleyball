@@ -20,5 +20,5 @@ jobs:
           # Выполняет деплой
           cd /var/www/front/
           git pull
-          mpm i
+          npm i
           ng build
