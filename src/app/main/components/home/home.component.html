@@ -2,16 +2,22 @@
     <p class="title">Список событий</p>
     <table>
         <tr class="tr__head">
+            <td>Вид спорта</td>
+            <td>Тип события</td>
             <td>Время</td>
             <td>Место</td>
             <td>Цена</td>
             <td>Кол-во игроков</td>
+            <td>Статус</td>
         </tr>
         <tr class="tr" *ngFor="let event of events?.results">
+            <td [routerLink]="['../event', event.id]">{{event.kind}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.type}}</td>
             <td [routerLink]="['../event', event.id]">{{event.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
             <td [routerLink]="['../event', event.id]">{{event.location.name}}</td>
             <td [routerLink]="['../event', event.id]">{{event.price}}</td>
             <td [routerLink]="['../event', event.id]">{{event.players_count}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.status}}</td>
         </tr>
     </table>
     <button class="btn" [routerLink]="['../add-event']">Добавить событие</button>

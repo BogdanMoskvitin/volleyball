@@ -4,6 +4,32 @@
     <form [formGroup]="addEventForm" novalidate (ngSubmit)="sendService()">
         <table>
             <tr>
+                <td class="td__title"> <span class="add-event__subtitle">Вид спорта:</span> </td>
+                <td>
+                    <mat-form-field appearance="fill" style="width: 250px;">
+                        <mat-label>Вид спорта</mat-label>
+                        <mat-select formControlName="kind">
+                            <mat-option *ngFor="let kind of kinds?.results" [value]="kind.id">
+                                {{kind.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td class="td__title"> <span class="add-event__subtitle">Тип события:</span> </td>
+                <td>
+                    <mat-form-field appearance="fill" style="width: 250px;">
+                        <mat-label>Тип события</mat-label>
+                        <mat-select formControlName="type">
+                            <mat-option *ngFor="let type of types?.results" [value]="type.id">
+                                {{type.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
                 <td class="td__title"> <span class="add-event__subtitle">Дата:</span> </td>
                 <td>
                     <mat-form-field color="accent" appearance="fill" style="width: 250px;">
