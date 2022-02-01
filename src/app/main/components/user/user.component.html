@@ -15,7 +15,9 @@
             <td>{{team.events_count}}</td>
         </tr>
     </table>
-    <button class="btn" [routerLink]="['../user-change']">Изменить данные</button>
-    <button class="btn" (click)="logout($event)">Выйти из системы</button>
+    <div style="display: flex;">
+        <button class="btn" [routerLink]="['../user-change']">Изменить данные</button>
+        <button class="btn" (click)="logout($event)">Выйти из системы</button>
+    </div>
     <p class="subtitle">Free Team Games 1.1</p>
 </div>

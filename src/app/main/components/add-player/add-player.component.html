@@ -1,25 +1,18 @@
-<button class="add-player__btn" (click)="back()">назад</button>
 <div class="container">
     <p class="title">Добавить игрока</p>
     <form [formGroup]="addPlayerForm" novalidate (ngSubmit)="sendService()">
-        <table>
-            <tr>
-                <td class="td__title"> <span class="add-player__subtitle">Команда:</span> </td>
-                <td>{{team?.full_name}}</td>
-            </tr>
-            <tr>
-                <td class="td__title"> <span class="add-player__subtitle">Номер игрока:</span> </td>
-                <td> 
-                    <input class="add-player__input" formControlName="number" placeholder="Номер игрока">
-                    <span class="add-player__err" *ngIf="addPlayerForm.controls['number'].invalid && addPlayerForm.controls['number'].touched">Введите номер игрока от 1-24!</span>
-                </td>
-            </tr>
-            <tr>
-                <td class="td__title"></td>
-                <td> 
-                    <button class="btn" [disabled]="addPlayerForm.invalid">Вступить в команду</button>
-                </td>
-            </tr>
-        </table>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <p class="subtitle">Команда: {{team?.full_name}}</p>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>Номер игрока</mat-label>
+                <input matInput formControlName="number" style="color: #EEF5F8">
+            </mat-form-field>
+
+            <div>
+                <button mat-raised-button style="background: #788CA0; width: 250px;" 
+                [disabled]="addPlayerForm.invalid">Вступить в команду</button>
+            </div>
+        </div>
     </form>
 </div>

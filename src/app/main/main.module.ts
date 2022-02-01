@@ -24,6 +24,7 @@ import { UserChangeComponent } from './components/user-change/user-change.compon
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { MatIconModule } from '@angular/material/icon';
 import { SidebarModule } from 'ng-sidebar';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { SidebarModule } from 'ng-sidebar';
     MatInputModule,
     MatIconModule,
     SidebarModule,
+    MatButtonModule,
     RouterModule.forChild([
       {
         path: '',

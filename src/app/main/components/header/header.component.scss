@@ -1,25 +1,24 @@
-$grey: #CCDBDC;
-$light: #f1f1f1;
-$turquoise: #80CED7;
+$grey: #788CA0;
+$light: #EEF5F8;
 $blue: #007EA7;
-$dark: #003249;
+$dark: #121218;
+$lightdark: #1C1C24;
 .header {
     position: fixed;
     top: 0; right: 0; left: 0;
-    background-color: $turquoise;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,.8);
 }
 .logo {
     width: 200px;
     height: 70px;
-    background-image: url(../../../../assets/img/game1.png);
+    background-image: url(../../../../assets/img/logo.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+    cursor: pointer;
 }
 .link {
     text-decoration: none;

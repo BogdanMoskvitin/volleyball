@@ -1,39 +1,27 @@
 <div class="container">
-    <p class="auth__title">Авторизация</p>
+    <p class="title">Авторизация</p>
     <form [formGroup]="authForm" novalidate (ngSubmit)="sendService()">
-        <table>
-            <tr>
-                <td class="td__title"> <span class="auth__subtitle">Введите номер телефона:</span> </td>
-                <td> 
-                    <input class="auth__input" formControlName="phone_number" placeholder="Введите номер телефона"> 
-                    <span class="auth__err" *ngIf="authForm.controls['phone_number'].invalid && authForm.controls['phone_number'].touched">Введите номер телефона!</span>
-                </td>
-            </tr>
-            <tr>
-                <td class="td__title"> <span class="auth__subtitle">Введите пароль:</span> </td>
-                <td> 
-                    <mat-form-field appearance="fill">
-                        <mat-label>Введите пароль</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-                        <button class="btn__icon" type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        </button>
-                    </mat-form-field>
-                    <span class="auth__err" *ngIf="authForm.controls['password'].invalid && authForm.controls['password'].touched">Придумайте пароль!</span>
-                </td>
-            </tr>
-            <!-- <tr>
-                <td>
-                    <button class="auth__btn" [routerLink]="['../register']" type="button">Зарегестрироваться</button>
-                </td>
-                <td> 
-                    <button class="auth__btn" [disabled]="authForm.invalid || authForm.disabled">Войти</button>
-                </td>
-            </tr> -->
-        </table>
-        <div style="display: flex; flex-wrap: wrap;">
-            <button class="auth__btn" [routerLink]="['../register']" type="button">Зарегестрироваться</button>
-            <button class="auth__btn" [disabled]="authForm.invalid || authForm.disabled">Войти</button>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>Введите номер телефона</mat-label>
+                <input matInput formControlName="phone_number" style="color: #EEF5F8">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="width: 250px;">
+                <mat-label>Введите пароль</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" style="color: #EEF5F8">
+                <button class="btn__icon" type="button" mat-icon-button matSuffix 
+                    (click)="hide = !hide" [attr.aria-label]="'Hide password'" 
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <div>
+                <button mat-raised-button style="background: #788CA0; width: 250px;" 
+                    [disabled]="authForm.invalid || authForm.disabled">Войти</button>
+            </div>
+            <p [routerLink]="['../register']" class="subtitle">Еще не зарегистрированы?</p>
         </div>
     </form>
 </div>

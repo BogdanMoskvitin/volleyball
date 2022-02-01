@@ -1,14 +1,16 @@
-$grey: #CCDBDC;
-$light: #f1f1f1;
+$grey: #788CA0;
+$light: #EEF5F8;
 $turquoise: #80CED7;
 $blue: #007EA7;
-$dark: #003249;
+$dark: #121218;
+$lightdark: #1C1C24;
 .container {
     width: 600px;
     border: 1px solid $grey;
     border-radius: 5px;
     padding: 20px 30px;
     margin: 100px auto 0 auto;
+    background: $lightdark;
 }
 table {
     border-collapse: collapse;
@@ -18,12 +20,14 @@ table {
     font-size: 30px;
     text-align: center;
     padding-bottom: 10px;
-    color: $dark;
+    color: $light;
+    user-select: none;
 }
 .tr__head {
     background-color: $blue;
     td {
-        color: $light
+        color: $light;
+        cursor: default;
     }
 }
 td {
@@ -32,10 +36,10 @@ td {
     font-size: 18px;
     text-align: center;
     cursor: pointer;
-    color: $dark;
+    color: $light;
 }
 .tr:hover {
-    background-color: $light;
+    background-color: $grey;
 }
 .btn {
     width: 100%;
@@ -48,7 +52,7 @@ td {
     color: $light;
 }
 .btn:hover {
-    background: $turquoise;
+    background: $grey;
 }
 .event {
     width: 500px;
@@ -67,13 +71,12 @@ td {
     height: 60px;
     font-size: 16px;
     cursor: pointer;
-    background: $turquoise;
+    background: $blue;
     color: $light;
     border: none;
 }
 .event__btn:hover {
     background: $grey;
-    color: $dark;
 }
 @media(max-width: 700px) {
     .container {

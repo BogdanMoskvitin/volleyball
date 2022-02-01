@@ -1,28 +1,21 @@
-<button class="add-team__btn" [routerLink]="['../teams']">назад</button>
-<div class="add-team">
-    <p class="add-team__title">Добавить команду</p>
+<div class="container">
+    <p class="title">Добавить команду</p>
     <form [formGroup]="addTeamForm" novalidate (ngSubmit)="sendService()">
-        <table>
-            <tr>
-                <td> <span class="add-team__subtitle">Полное название:</span> </td>
-                <td> 
-                    <input class="add-team__input" formControlName="full_name">
-                    <span class="add-team__err" *ngIf="addTeamForm.controls['full_name'].invalid && addTeamForm.controls['full_name'].touched">Введите полное название команды!</span>
-                </td>
-            </tr>
-            <tr>
-                <td> <span class="add-team__subtitle">Сокращенное название:</span> </td>
-                <td> 
-                    <input class="add-team__input" formControlName="short_name">
-                    <span class="add-team__err" *ngIf="addTeamForm.controls['short_name'].invalid && addTeamForm.controls['short_name'].touched">Введите сокращенное название команды!</span>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td> 
-                    <button class="add-team__btn" [disabled]="addTeamForm.invalid">Добавить команду</button>
-                </td>
-            </tr>
-        </table>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>Полное название</mat-label>
+                <input matInput formControlName="full_name" style="color: #EEF5F8">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>Сокращенное название</mat-label>
+                <input matInput formControlName="short_name" style="color: #EEF5F8">
+            </mat-form-field>
+
+            <div>
+                <button mat-raised-button style="background: #788CA0; width: 250px;" 
+                [disabled]="addTeamForm.invalid">Добавить команду</button>
+            </div>
+        </div>
     </form>
 </div>
