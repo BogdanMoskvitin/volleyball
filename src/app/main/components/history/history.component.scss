@@ -4,7 +4,7 @@ $blue: #007EA7;
 $dark: #121218;
 $lightdark: #1C1C24;
 .container {
-    width: 1000px;
+    width: 1150px;
     border: 1px solid $grey;
     border-radius: 5px;
     padding: 20px 30px;
@@ -54,13 +54,32 @@ td {
 .btn:hover {
     background: $grey;
 }
-@media(max-width: 700px) {
+.cell {
+    border-top: 1px solid $grey;
+    border-bottom: 1px solid $grey;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background: $lightdark;
+    width: 260px;
+    height: 110px;
+    padding: 10px;
+}
+p {
+    color: $light;
+    padding: 3px 0;
+}
+.mobile {
+    display: none;
+}
+@media(max-width: 1250px) {
     .container {
         width: 280px;
         padding: 20px 0;
     }
-    td {
-        padding: 5px 5px;
-        font-size: 15px;
+    table {
+        display: none;
+    }
+    .mobile {
+        display: block;
     }
 }

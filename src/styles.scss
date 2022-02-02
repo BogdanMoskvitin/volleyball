@@ -12,6 +12,26 @@ $lightdark: #1C1C24;
     margin: 0;
     padding: 0;
 }
+html, body {
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+    ::-webkit-scrollbar {
+        height: 5px;
+        background-color: $dark;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: $grey;
+        border-radius: 4px;
+    }
+}
+@media(max-width: 500px) {
+    html, body {
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+    }
+}
 body {
     background-color: $dark;
 }
