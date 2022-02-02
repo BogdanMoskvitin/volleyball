@@ -3,6 +3,7 @@ import { MyData } from 'src/app/my-data.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'change-password-service-page',
@@ -22,7 +23,8 @@ export class ChangePasswordComponent implements OnInit {
 
     constructor(
         private myData: MyData,
-        private http: HttpClient
+        private http: HttpClient,
+        private toastr: ToastrService
     ) { }
     
     ngOnInit() {
@@ -51,9 +53,13 @@ export class ChangePasswordComponent implements OnInit {
 
     sendService(){
         let newPassword = {password: this.changeForm.value.password};
-        return this.http.patch(this.url + `auth/users/${this.id}`, newPassword)
-            .subscribe((res) => {
+        return this.http.patch(this.url + `auth/users/${this.id}`, newPassword).subscribe(
+            (res) => {
+                this.toastr.success('Пароль изменен!');
                 window.location.reload();
-        });
+            },
+            error => {
+                this.toastr.error('Ошибка изменения пароля');
+            });
     }
 }

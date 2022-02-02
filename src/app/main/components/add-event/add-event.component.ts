@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'add-event-service-page',
@@ -23,7 +24,8 @@ export class AddEventComponent implements OnInit {
     constructor(
         private http: HttpClient, 
         private datePipe: DatePipe, 
-        private router: Router) {
+        private router: Router,
+        private toastr: ToastrService) {
         this.addEventForm = new FormGroup({
             kind: new FormControl('', Validators.required),
             type: new FormControl('', Validators.required),
@@ -58,10 +60,14 @@ export class AddEventComponent implements OnInit {
             location: this.addEventForm.value.location,
             price: this.addEventForm.value.price,
         }
-        return this.http.post(this.url + 'events/', this.newEvent)
-            .subscribe((res) => {
+        return this.http.post(this.url + 'events/', this.newEvent).subscribe(
+            (res) => {
+                this.toastr.success('Событие создано!');
                 this.router.navigateByUrl('main/header/home');
-        });
+            },
+            error => {
+                this.toastr.error('Ошибка создания события');
+            });
     }
 
     getLocations() {

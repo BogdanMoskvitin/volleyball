@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'add-location-service-page',
@@ -15,7 +16,10 @@ export class AddLocationComponent implements OnInit {
     addLocationForm : FormGroup;
     url:string = environment.apiUrl;
 
-    constructor(private http: HttpClient, private router: Router) {
+    constructor(
+        private http: HttpClient, 
+        private router: Router,
+        private toastr: ToastrService) {
         this.addLocationForm = new FormGroup({
             name: new FormControl('', Validators.required),
             address: new FormControl('', Validators.required),
@@ -26,9 +30,13 @@ export class AddLocationComponent implements OnInit {
     ngOnInit() {}
 
     sendService(){
-        return this.http.post(this.url + 'locations/', this.addLocationForm.value)
-            .subscribe((res) => {
+        return this.http.post(this.url + 'locations/', this.addLocationForm.value).subscribe(
+            (res) => {
+                this.toastr.success('Место создано!');
                 this.router.navigateByUrl('main/header/locations');
-        });
+            },
+            error => {
+                this.toastr.error('Ошибка создания места');
+            });
     }
 }

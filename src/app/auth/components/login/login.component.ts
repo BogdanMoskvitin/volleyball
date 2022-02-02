@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MaterialService } from 'src/app/classes/material.service';
 import { AuthService } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'login-service-page',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     constructor(
         private authService: AuthService,
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private toastr: ToastrService
     ) {
         this.authForm = new FormGroup({
             phone_number: new FormControl('', [Validators.required]),
@@ -49,8 +51,9 @@ export class LoginComponent implements OnInit, OnDestroy {
                   });
             },
             error => {
-                MaterialService.toast(error.error.message)
-                this.authForm.enable()
+                this.toastr.error('Данные неверны');
+                this.authForm.enable();
+                window.location.reload();
             }
         )
     }

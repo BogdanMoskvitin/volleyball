@@ -5,6 +5,7 @@ import { MyData } from 'src/app/my-data.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'event-service-page',
@@ -28,7 +29,8 @@ export class EventComponent implements OnInit {
         private activateRoute: ActivatedRoute,
         private http: HttpClient, 
         private myData: MyData,
-        private router: Router
+        private router: Router,
+        private toastr: ToastrService
         ) {
             this.id = this.activateRoute.snapshot.params['id'];
             this.addStatusForm = new FormGroup({
@@ -71,11 +73,15 @@ export class EventComponent implements OnInit {
     sendStatus() {
         this.http.post(this.url + `events/${this.id}/participation/`, this.addStatusForm.value)
             .subscribe((res) => {
-                this.http.get(this.url + `events/${this.id}/`)
-                    .subscribe((res) => {
+                this.http.get(this.url + `events/${this.id}/`).subscribe(
+                    (res) => {
+                        this.toastr.success('Вы проголосовали!');
                         this.event = res;
                         this.checkPlayer();
-                });
+                    },
+                    error => {
+                        this.toastr.error('Ошибка голосования');
+                    });
         })
     }
 

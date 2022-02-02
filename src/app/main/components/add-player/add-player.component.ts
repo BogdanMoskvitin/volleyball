@@ -5,6 +5,7 @@ import { MyData } from 'src/app/my-data.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'add-player-service-page',
@@ -25,7 +26,8 @@ export class AddPlayerComponent implements OnInit {
         private http: HttpClient, 
         private myData: MyData,
         private location: Location,
-        private activateRoute: ActivatedRoute) {
+        private activateRoute: ActivatedRoute,
+        private toastr: ToastrService) {
         this.id = this.activateRoute.snapshot.params['id'];
         this.addPlayerForm = new FormGroup({
             number: new FormControl('', [Validators.required, Validators.min(1), Validators.max(24)]),
@@ -47,10 +49,14 @@ export class AddPlayerComponent implements OnInit {
             team: this.id,
             number: this.addPlayerForm.value.number
         };
-        return this.http.post(this.url + 'players/', this.newPlayer)
-            .subscribe((res) => {
+        return this.http.post(this.url + 'players/', this.newPlayer).subscribe(
+            (res) => {
+                this.toastr.success('Игрок создан!');
                 this.back();
-        });
+            },
+            error => {
+                this.toastr.error('Ошибка создания игрока');
+            });
     }
 
     getTeams() {

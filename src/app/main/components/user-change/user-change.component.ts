@@ -3,6 +3,7 @@ import { MyData } from 'src/app/my-data.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'user-change-service-page',
@@ -19,7 +20,8 @@ export class UserChangeComponent implements OnInit {
 
     constructor(
         private myData: MyData,
-        private http: HttpClient
+        private http: HttpClient,
+        private toastr: ToastrService
     ) { }
     
     ngOnInit() {
@@ -38,9 +40,13 @@ export class UserChangeComponent implements OnInit {
     }
 
     sendService(){
-        return this.http.patch(this.url + `auth/users/${this.id}`, this.changeForm.value)
-            .subscribe((res) => {
+        return this.http.patch(this.url + `auth/users/${this.id}`, this.changeForm.value).subscribe(
+            (res) => {
+                this.toastr.success('Данные изменены!');
                 window.location.reload();
-        });
+            },
+            error => {
+                this.toastr.error('Ошибка изменения данных');
+            });
     }
 }

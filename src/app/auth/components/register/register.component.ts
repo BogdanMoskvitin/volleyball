@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { MaterialService } from 'src/app/classes/material.service';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/auth.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'register-service-page',
@@ -24,6 +25,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     constructor(
         private authService: AuthService,
         private router: Router,
+        private toastr: ToastrService
     ) {
         this.regForm = new FormGroup({
             first_name: new FormControl('', [Validators.required]),
@@ -61,6 +63,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         this.regForm.disable();
         this.aSub = this.authService.registration(this.form).subscribe(
             () => {
+                this.toastr.success('Вы зарегестрированы!');
                 this.router.navigate(['/login'], {
                     queryParams: {
                         registered: true
@@ -68,7 +71,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
                 })
             },
             error => {
-                MaterialService.toast(error.error.message);
+                this.toastr.error('Ошибка регистрации');
                 this.regForm.enable();
             }
         )
