@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MyData } from 'src/app/my-data.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'change-password-service-page',
@@ -11,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./change-password.component.scss'],
 })
 
-export class ChangePasswordComponent implements OnInit {
+export class ChangePasswordComponent implements OnInit, OnDestroy {
 
     changeForm : FormGroup;
     mydata;
@@ -20,6 +21,8 @@ export class ChangePasswordComponent implements OnInit {
     hide2 = true;
     url:string = environment.apiUrl;
     id: number;
+    aSub1: Subscription;
+    aSub2: Subscription;
 
     constructor(
         private myData: MyData,
@@ -28,7 +31,7 @@ export class ChangePasswordComponent implements OnInit {
     ) { }
     
     ngOnInit() {
-        this.myData.currentData.subscribe(
+        this.aSub1 = this.myData.currentData.subscribe(
             (res) => {
                 this.mydata = res;
                 this.id = this.mydata.id;
@@ -53,7 +56,7 @@ export class ChangePasswordComponent implements OnInit {
 
     sendService(){
         let newPassword = {password: this.changeForm.value.password};
-        return this.http.patch(this.url + `auth/users/${this.id}`, newPassword).subscribe(
+        this.aSub2 = this.http.patch(this.url + `auth/users/${this.id}`, newPassword).subscribe(
             (res) => {
                 this.toastr.success('Пароль изменен!');
                 window.location.reload();
@@ -61,5 +64,12 @@ export class ChangePasswordComponent implements OnInit {
             error => {
                 this.toastr.error('Ошибка изменения пароля');
             });
+    }
+
+    ngOnDestroy(){
+        this.aSub1.unsubscribe();
+        if(this.aSub2){
+            this.aSub2.unsubscribe();
+        }
     }
 }

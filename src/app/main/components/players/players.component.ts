@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'players-service-page',
@@ -9,13 +10,14 @@ import { environment } from 'src/environments/environment';
     styleUrls: ['./players.component.scss'],
 })
 
-export class PlayersComponent implements OnInit {
+export class PlayersComponent implements OnInit, OnDestroy {
 
     id: number;
     url: string = environment.apiUrl;
     players;
     team;
     count;
+    aSub: Subscription;
 
     constructor(
         private http: HttpClient, 
@@ -25,7 +27,7 @@ export class PlayersComponent implements OnInit {
     }
     
     ngOnInit() {
-        this.http.get(this.url + `teams/${this.id}/`)
+        this.aSub = this.http.get(this.url + `teams/${this.id}/`)
             .subscribe((res) => {
                 this.team = res;
                 if(this.team.players_count == 0) {
@@ -38,5 +40,9 @@ export class PlayersComponent implements OnInit {
 
     back(){
         this.router.navigateByUrl('main/header/teams');
+    }
+
+    ngOnDestroy(){
+        this.aSub.unsubscribe();
     }
 }

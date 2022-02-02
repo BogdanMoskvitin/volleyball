@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'locations-service-page',
@@ -8,10 +9,11 @@ import { environment } from 'src/environments/environment';
     styleUrls: ['./locations.component.scss'],
 })
 
-export class LocationsComponent implements OnInit {
+export class LocationsComponent implements OnInit, OnDestroy {
 
     url:string = environment.apiUrl;
     locations;
+    aSub: Subscription;
 
     constructor(private http: HttpClient) {}
     
@@ -20,9 +22,13 @@ export class LocationsComponent implements OnInit {
     }
 
     getLocations() {
-        return this.http.get(this.url + 'locations/')
+        this.aSub = this.http.get(this.url + 'locations/')
             .subscribe((res) => {
                 this.locations = res;
         });
+    }
+
+    ngOnDestroy(){
+        this.aSub.unsubscribe();
     }
 }

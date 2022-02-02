@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'home-service-page',
@@ -8,10 +9,11 @@ import { environment } from 'src/environments/environment';
     styleUrls: ['./home.component.scss'],
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
     events;
     url:string = environment.apiUrl;
+    aSub: Subscription;
 
     constructor(private http: HttpClient) {}
     
@@ -20,9 +22,13 @@ export class HomeComponent implements OnInit {
     }
 
     getEvents() {
-        return this.http.get(this.url + `events?multi_status=${encodeURIComponent('1,2,3')}`)
+        this.aSub = this.http.get(this.url + `events?multi_status=${encodeURIComponent('1,2,3')}`)
             .subscribe((res) => {
                 this.events = res;
         });
+    }
+
+    ngOnDestroy(){
+        this.aSub.unsubscribe();
     }
 }

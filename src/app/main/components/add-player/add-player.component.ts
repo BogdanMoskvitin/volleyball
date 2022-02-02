@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MyData } from 'src/app/my-data.service';
@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'add-player-service-page',
@@ -13,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./add-player.component.scss'],
 })
 
-export class AddPlayerComponent implements OnInit {
+export class AddPlayerComponent implements OnInit, OnDestroy {
 
     id: number;
     addPlayerForm : FormGroup;
@@ -21,6 +22,9 @@ export class AddPlayerComponent implements OnInit {
     url:string = environment.apiUrl;
     team;
     mydata;
+    aSub1: Subscription;
+    aSub2: Subscription;
+    aSub3: Subscription;
 
     constructor(
         private http: HttpClient, 
@@ -36,11 +40,18 @@ export class AddPlayerComponent implements OnInit {
 
     ngOnInit() {
         this.getTeams();
-        this.myData.currentData.subscribe(
+        this.aSub2 = this.myData.currentData.subscribe(
             (res) => {
                 this.mydata = res;
             }
         );
+    }
+
+    getTeams() {
+        this.aSub1 = this.http.get(this.url + `teams/${this.id}/`)
+            .subscribe((res) => {
+                this.team = res;
+        });
     }
 
     sendService(){
@@ -49,7 +60,7 @@ export class AddPlayerComponent implements OnInit {
             team: this.id,
             number: this.addPlayerForm.value.number
         };
-        return this.http.post(this.url + 'players/', this.newPlayer).subscribe(
+        this.aSub3 = this.http.post(this.url + 'players/', this.newPlayer).subscribe(
             (res) => {
                 this.toastr.success('Игрок создан!');
                 this.back();
@@ -59,14 +70,15 @@ export class AddPlayerComponent implements OnInit {
             });
     }
 
-    getTeams() {
-        return this.http.get(this.url + `teams/${this.id}/`)
-            .subscribe((res) => {
-                this.team = res;
-        });
-    }
-
     back(){
         this.location.back();
+    }
+
+    ngOnDestroy() {
+        this.aSub1.unsubscribe();
+        this.aSub2.unsubscribe();
+        if(this.aSub3){
+            this.aSub3.unsubscribe();
+        }
     }
 }

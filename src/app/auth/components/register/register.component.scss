@@ -29,3 +29,8 @@ $lightdark: #1C1C24;
     background: none;
     cursor: pointer;
 }
+@media(max-width: 1024px) {
+    .container {
+        margin: 50px auto;
+    }
+}

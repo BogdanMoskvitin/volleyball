@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'add-team-service-page',
@@ -11,11 +12,12 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./add-team.component.scss'],
 })
 
-export class AddTeamComponent implements OnInit {
+export class AddTeamComponent implements OnInit, OnDestroy {
 
     addTeamForm : FormGroup;
     url:string = environment.apiUrl;
     events;
+    aSub: Subscription;
 
     constructor(
         private http: HttpClient, 
@@ -30,7 +32,7 @@ export class AddTeamComponent implements OnInit {
     ngOnInit() {}
 
     sendService(){
-        return this.http.post(this.url + 'teams/', this.addTeamForm.value).subscribe(
+        this.aSub = this.http.post(this.url + 'teams/', this.addTeamForm.value).subscribe(
             (res) => {
                 this.toastr.success('Команда создана!');
                 this.router.navigateByUrl('main/header/teams');
@@ -38,5 +40,11 @@ export class AddTeamComponent implements OnInit {
             error => {
                 this.toastr.error('Ошибка создания команды');
             });
+    }
+
+    ngOnDestroy(){
+        if(this.aSub){
+            this.aSub.unsubscribe();
+        }
     }
 }
