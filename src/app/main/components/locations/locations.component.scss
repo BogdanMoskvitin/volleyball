@@ -11,6 +11,15 @@ $lightdark: #1C1C24;
     margin: 100px auto 0 auto;
     background: $lightdark;
 }
+.head {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 10px;
+}
+.empty {
+    width: 150px;
+}
 table {
     border-collapse: collapse;
     width: 100%;
@@ -18,7 +27,6 @@ table {
 .title {
     font-size: 30px;
     text-align: center;
-    padding-bottom: 10px;
     color: $light;
     user-select: none;
 }
@@ -41,22 +49,24 @@ td {
     background-color: $grey;
 }
 .btn {
-    width: 100%;
-    height: 29px;
-    font-size: 16px;
-    cursor: pointer;
-    border: 1px solid $grey;
-    background: $blue;
-    margin-top: 20px;
-    color: $light;
+    background: $blue; 
+    width: 150px; 
+    height: 30px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
 }
-.btn:hover {
-    background: $grey;
-}
+
 @media(max-width: 700px) {
     .container {
-        width: 280px;
+        width: 300px;
         padding: 20px 0;
+    }
+    .empty {
+        display: none;
+    }
+    .title {
+        font-size: 20px;
     }
     td {
         padding: 5px 5px;

@@ -1,23 +1,33 @@
 <div class="container">
-    <p class="title">Привет {{mydata.first_name}} {{mydata.last_name}}!</p>
-    <p class="text">Телефон: {{mydata.phone_number}}</p>
-    <p class="text">Почта: {{mydata.email}}</p>
-    <p class="text">Всего участий в событиях: {{mydata.stats?.total_events}}</p>
-    <table>
-        <tr class="tr__head">
-            <td>Команда</td>
-            <td>Номер в команде</td>
-            <td>Кол-во игр</td>
-        </tr>
-        <tr class="tr" *ngFor="let team of mydata.teams">
-            <td>{{team.team.full_name}}</td>
-            <td>{{team.number}}</td>
-            <td>{{team.events_count}}</td>
-        </tr>
-    </table>
-    <div style="display: flex;">
-        <button class="btn" [routerLink]="['../user-change']">Изменить данные</button>
-        <button class="btn" (click)="logout($event)">Выйти из системы</button>
+    <div class="head">
+        <p class="title">Привет {{mydata.first_name}} {{mydata.last_name}}!</p>
+        <button mat-raised-button class="btn" [routerLink]="['../user-change']">Изменить данные</button>
     </div>
+    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+        <div class="avatar"></div>
+        <div style="width: 480px;">
+            <div style="display: flex; justify-content: space-between;">
+                <p class="text">Почта: </p>
+                <p class="text">{{mydata.email}}</p>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <p class="text">Номер телефона: </p>
+                <p class="text">{{mydata.phone_number}}</p>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <p class="text">Всего участий в событиях: </p>
+                <p class="text">{{mydata.stats?.total_events}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="box" *ngFor="let team of mydata.teams" [routerLink]="['../players', team.id]">
+        <p style="font-size: 24px; padding-bottom: 10px; text-align: center;">{{team.team.full_name}}</p>
+        <div style="display: flex; justify-content: space-between;">
+            <p>{{team.number}} номер</p>
+            <p style="text-align: center;">Кол-во игр: {{team.events_count}}</p>
+        </div>
+    </div>
+
     <p class="subtitle">Free Team Games 1.1</p>
 </div>

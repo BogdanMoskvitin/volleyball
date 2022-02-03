@@ -1,5 +1,9 @@
 <div class="container">
-    <p class="title">Список мест</p>
+    <div class="head">
+        <div class="empty"></div>
+        <p class="title">Список мест</p>
+        <button mat-raised-button class="btn" [routerLink]="['../add-location']">Добавить место</button>
+    </div>
     <table>
         <tr class="tr__head">
             <td>Название</td>
@@ -10,5 +14,4 @@
             <td [routerLink]="['../location', location.id]">{{location.address}}</td>
         </tr>
     </table>
-    <button class="btn" [routerLink]="['../add-location']">Добавить место</button>
 </div>

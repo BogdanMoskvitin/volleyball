@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { MyData } from 'src/app/my-data.service';
 
 @Component({
     selector: 'header-service-page',
@@ -6,15 +10,37 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./header.component.scss'],
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
-    constructor() {}
+    mydata;
+    aSub: Subscription;
+
+    constructor(
+        private myData: MyData,
+        private auth: AuthService, 
+        private router: Router) {}
     
-    ngOnInit() {}
+    ngOnInit() {
+        this.aSub = this.myData.currentData.subscribe(
+            (res) => {
+                this.mydata = res;
+            }
+        );
+    }
 
     opened = false;
 
     toggleSidebar() {
         this.opened = !this.opened;
+    }
+
+    logout(event: Event){
+        event.preventDefault();
+        this.auth.logout();
+        this.router.navigate(['/auth'])
+    }
+
+    ngOnDestroy(){
+        this.aSub.unsubscribe();
     }
 }

@@ -1,5 +1,9 @@
 <div class="container">
-    <p class="title">Список команд</p>
+    <div class="head">
+        <div class="empty"></div>
+        <p class="title" style="margin-left: 10px;">Список команд</p>
+        <button mat-raised-button class="btn" [routerLink]="['../add-team']">Добавить команду</button>
+    </div>
     <table>
         <tr class="tr__head">
             <td>Полное название</td>
@@ -12,5 +16,4 @@
             <td [routerLink]="['../players', team.id]">{{team.players_count}}</td>
         </tr>
     </table>
-    <button class="btn" [routerLink]="['../add-team']">Добавить команду</button>
 </div>

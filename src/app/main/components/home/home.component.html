@@ -1,5 +1,9 @@
 <div class="container">
-    <p class="title">Список событий</p>
+    <div class="head">
+        <div class="empty"></div>
+        <p class="title">Список событий</p>
+        <button mat-raised-button class="btn" [routerLink]="['../add-event']">Добавить событие</button>
+    </div>
     <table>
         <tr class="tr__head">
             <td>Вид спорта</td>
@@ -37,5 +41,4 @@
             </div>
         </div>
     </div>
-    <button class="btn" [routerLink]="['../add-event']">Добавить событие</button>
 </div>

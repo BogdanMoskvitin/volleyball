@@ -1,12 +1,31 @@
 <ng-sidebar-container style="overflow: hidden;">
     <ng-sidebar [opened]="opened" position="top">
         <ul class="burger__ul">
-            <li (click)='toggleSidebar()' class="burger__li"><a [routerLink]="['./home']" class="burger__a">Главная</a></li>
-            <li (click)='toggleSidebar()' class="burger__li"><a [routerLink]="['./teams']" class="burger__a">Команды</a></li>
-            <li (click)='toggleSidebar()' class="burger__li"><a [routerLink]="['./locations']" class="burger__a">Места</a></li>
-            <li (click)='toggleSidebar()' class="burger__li"><a [routerLink]="['./history']" class="burger__a">История</a></li>
-            <li (click)='toggleSidebar()' class="burger__li"><a [routerLink]="['./about-us']" class="burger__a">О нас</a></li>
-            <li (click)='toggleSidebar()' class="burger__li"><a [routerLink]="['./user']" class="burger__a">Профиль</a></li>
+            <div class="burger__user" (click)='toggleSidebar()' [routerLink]="['./user']">
+                <div class="burger__avatar"></div>
+                <p>{{mydata.first_name}} {{mydata.last_name}}</p>
+            </div>
+            <div class="line"></div>
+            <li (click)='toggleSidebar()' class="burger__li">
+                <mat-icon style="color: white;" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+                <a [routerLink]="['./home']" class="burger__a">Главная</a>
+            </li>
+            <li (click)='toggleSidebar()' class="burger__li">
+                <mat-icon style="color: white;" aria-hidden="false" aria-label="Example home icon">groups</mat-icon>
+                <a [routerLink]="['./teams']" class="burger__a">Команды</a>
+            </li>
+            <li (click)='toggleSidebar()' class="burger__li">
+                <mat-icon style="color: white;" aria-hidden="false" aria-label="Example home icon">place</mat-icon>
+                <a [routerLink]="['./locations']" class="burger__a">Места</a>
+            </li>
+            <li (click)='toggleSidebar()' class="burger__li">
+                <mat-icon style="color: white;" aria-hidden="false" aria-label="Example home icon">history</mat-icon>
+                <a [routerLink]="['./history']" class="burger__a">История</a>
+            </li>
+            <li (click)='toggleSidebar()' class="burger__li">
+                <mat-icon style="color: white;" aria-hidden="false" aria-label="Example home icon">sentiment_very_satisfied</mat-icon>
+                <a [routerLink]="['./about-us']" class="burger__a">О нас</a>
+            </li>
         </ul>
         </ng-sidebar>
 
@@ -29,15 +48,14 @@
                 <a routerLinkActive="active" class="link" [routerLink]="['./about-us']">О нас</a>
             </div>
         
-            <div class="box">
+            <div class="box" style="display: flex; align-items: center;">
+                <button class="btn" mat-raised-button (click)="logout($event)">Выйти из системы</button>
                 <a [routerLink]="['./user']"><div class="avatar"></div></a>
             </div>
         </div>
-
       
         <div class="router-outlet">
             <router-outlet></router-outlet>
         </div>
-
     </div>
 </ng-sidebar-container>
