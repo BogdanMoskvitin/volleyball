@@ -1,9 +1,13 @@
 <div class="container">
-    <p class="title">История событий</p>
-    <div style="display: flex;">
-        <button class="btn" (click)="closeEvents()">Завершенные</button>
-        <button class="btn" (click)="cancelEvents()">Отмененные</button>
+    <div class="head">
+        <div class="empty"></div>
+        <p class="title">История событий</p>
+        <div style="display: flex;">
+            <button mat-raised-button class="btn" (click)="closeEvents()">Завершенные</button>
+            <button mat-raised-button class="btn" (click)="cancelEvents()">Отмененные</button>
+        </div>
     </div>
+
     <table>
         <tr class="tr__head">
             <td>Вид спорта</td>

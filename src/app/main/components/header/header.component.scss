@@ -19,12 +19,12 @@ $lightdark: #1C1C24;
     }
 }
 .logo {
-    width: 200px;
+    width: 350px;
     height: 70px;
     background-image: url(../../../../assets/img/logo.png);
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center left;
     cursor: pointer;
 }
 .link {
@@ -39,15 +39,30 @@ $lightdark: #1C1C24;
     background-color: $light;
 }
 .box {
-    width: 200px;
+    width: 350px;
     display: flex;
     justify-content: flex-end;
+}
+.version {
+    font-size: 14px;
+    color: $grey;
+    margin-right: 10px;
 }
 .avatar {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background-color: $blue;
+}
+.phone {
+    font-size: 16px;
+    color: $light;
+    margin-left: 10px;
+}
+.logout {
+    color: #788CA0; 
+    cursor: pointer; 
+    margin-left: 10px;
 }
 .router-outlet {
     padding: 10px;
@@ -139,6 +154,9 @@ ng-sidebar-container {
 @media(max-width: 1150px) {
     .burger {
         display: block;
+    }
+    .logout {
+        display: none;
     }
 }
 .burger__line1 {
@@ -257,5 +275,27 @@ p {
     .burger {
         top: 20px;
         right: 20px;
+    }
+}
+@media(max-width: 1400px) {
+    .version {
+        display: none;
+    }
+    .logo {
+        width: 250px;
+    }
+    .box {
+        width: 250px;
+    }
+}
+@media(max-width: 1200px) {
+    .phone {
+        display: none;
+    }
+    .logo {
+        width: 150px;
+    }
+    .box {
+        width: 150px;
     }
 }

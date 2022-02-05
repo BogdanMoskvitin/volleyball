@@ -7,23 +7,23 @@
             </div>
             <div class="line"></div>
             <li (click)='toggleSidebar()' class="burger__li">
-                <mat-icon style="color: white;" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+                <mat-icon style="color: #EEF5F8;" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
                 <a [routerLink]="['./home']" class="burger__a">Главная</a>
             </li>
             <li (click)='toggleSidebar()' class="burger__li">
-                <mat-icon style="color: white;" aria-hidden="false" aria-label="Example home icon">groups</mat-icon>
+                <mat-icon style="color: #EEF5F8;" aria-hidden="false" aria-label="Example home icon">groups</mat-icon>
                 <a [routerLink]="['./teams']" class="burger__a">Команды</a>
             </li>
             <li (click)='toggleSidebar()' class="burger__li">
-                <mat-icon style="color: white;" aria-hidden="false" aria-label="Example home icon">place</mat-icon>
+                <mat-icon style="color: #EEF5F8;" aria-hidden="false" aria-label="Example home icon">place</mat-icon>
                 <a [routerLink]="['./locations']" class="burger__a">Места</a>
             </li>
             <li (click)='toggleSidebar()' class="burger__li">
-                <mat-icon style="color: white;" aria-hidden="false" aria-label="Example home icon">history</mat-icon>
+                <mat-icon style="color: #EEF5F8;" aria-hidden="false" aria-label="Example home icon">history</mat-icon>
                 <a [routerLink]="['./history']" class="burger__a">История</a>
             </li>
             <li (click)='toggleSidebar()' class="burger__li">
-                <mat-icon style="color: white;" aria-hidden="false" aria-label="Example home icon">sentiment_very_satisfied</mat-icon>
+                <mat-icon style="color: #EEF5F8;" aria-hidden="false" aria-label="Example home icon">sentiment_very_satisfied</mat-icon>
                 <a [routerLink]="['./about-us']" class="burger__a">О нас</a>
             </li>
         </ul>
@@ -49,8 +49,10 @@
             </div>
         
             <div class="box" style="display: flex; align-items: center;">
-                <button class="btn" mat-raised-button (click)="logout($event)">Выйти из системы</button>
+                <p class="version">Free Team Games 1.1</p>
                 <a [routerLink]="['./user']"><div class="avatar"></div></a>
+                <p class="phone">{{mydata.phone_number}}</p>
+                <mat-icon class="logout" aria-hidden="false" aria-label="Example logout icon" (click)="logout($event)">logout</mat-icon>
             </div>
         </div>
       
