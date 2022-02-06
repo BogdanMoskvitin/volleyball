@@ -5,9 +5,8 @@ $dark: #121218;
 $lightdark: #1C1C24;
 .container {
     width: 300px;
-    border: 1px solid $grey;
     border-radius: 5px;
-    padding: 20px 30px;
+    padding: 20px 0;
     margin: 100px auto 0 auto;
     background: $lightdark;
 }

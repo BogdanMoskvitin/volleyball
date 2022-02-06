@@ -1,9 +1,6 @@
 <div class="container">
     <div class="head">
-        <div style="display: flex; align-items: center;">
-            <p class="title">{{mydata.first_name}} {{mydata.last_name}}</p>
-            <mat-icon class="logout" aria-hidden="false" aria-label="Example logout icon" (click)="logout($event)">logout</mat-icon>
-        </div>
+        <p class="title">{{mydata.first_name}} {{mydata.last_name}}</p>
         <button mat-raised-button class="btn" [routerLink]="['../user-change']">Изменить данные</button>
     </div>
     <div style="display: flex; align-items: center; margin-bottom: 20px;">
