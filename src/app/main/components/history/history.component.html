@@ -19,7 +19,7 @@
             <td>Кол-во игроков</td>
             <td>Статус</td>
         </tr>
-        <tr class="tr" *ngFor="let event of events?.results">
+        <tr class="tr" *ngFor="let event of events?.results" [ngClass]="{red: event.status == 'Отменено', green: event.status == 'Завершилось'}">
             <td>{{event.kind}}</td>
             <td>{{event.type}}</td>
             <td>{{event.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>

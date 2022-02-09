@@ -28,8 +28,13 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline" style="width: 250px;">
-                <mat-label>Время</mat-label>
-                <input formControlName="time" type="time" matInput name="week" min="09:00" max="18:00" style="color: #EEF5F8">
+                <mat-label>Время начала события</mat-label>
+                <input formControlName="time_start" type="time" matInput name="week" min="09:00" max="18:00" style="color: #EEF5F8">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="width: 250px;">
+                <mat-label>Время конца события</mat-label>
+                <input formControlName="time_end" type="time" matInput name="week" min="09:00" max="18:00" style="color: #EEF5F8">
             </mat-form-field>
 
             <mat-form-field appearance="fill" style="width: 250px;">

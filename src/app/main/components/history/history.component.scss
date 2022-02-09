@@ -4,11 +4,10 @@ $blue: #007EA7;
 $dark: #121218;
 $lightdark: #1C1C24;
 .container {
-    width: 1160px;
+    width: 1200px;
     border-radius: 5px;
     padding: 20px 30px;
     margin: 100px auto 0 auto;
-    background: $lightdark;
 }
 .head {
     display: flex; 
@@ -61,6 +60,9 @@ td {
     cursor: pointer;
     color: $light;
 }
+.tr {
+    background: $lightdark;
+}
 .tr:hover {
     background-color: $grey;
 }
@@ -100,4 +102,10 @@ p {
         justify-content: center;
         margin-left: 0;
     }
+}
+.red {
+    background-color: #9f0808;
+}
+.green {
+    background-color: #089F5F;
 }

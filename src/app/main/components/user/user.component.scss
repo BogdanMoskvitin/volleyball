@@ -65,17 +65,20 @@ td {
     text-align: right;
     color: $light;
     padding-top: 20px;
+    user-select: none;
 }
 .text__title {
     font-size: 16px;
     color: $grey;
     padding: 5px 0;
+    user-select: none;
 }
 .text__data {
     font-size: 16px;
     color: $light;
     padding: 5px 0;
     font-weight: 500;
+    user-select: none;
 }
 .teams__box {
     background-color: $lightdark;
@@ -88,11 +91,16 @@ td {
 }
 p {
     color: $light;
+    user-select: none;
 }
 .box {
     width: 100%;
     height: 80px; 
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.box:hover {
+    background-color: $grey;
 }
 @media(max-width: 700px) {
     .container {

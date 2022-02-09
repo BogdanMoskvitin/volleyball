@@ -37,7 +37,8 @@ export class AddEventComponent implements OnInit, OnDestroy {
             kind: new FormControl('', Validators.required),
             type: new FormControl('', Validators.required),
             date: new FormControl('', Validators.required),
-            time: new FormControl('', Validators.required),
+            time_start: new FormControl('', Validators.required),
+            time_end: new FormControl('', Validators.required),
             location: new FormControl('', Validators.required),
             price: new FormControl('', [Validators.required, Validators.pattern("^[0-9]+$")])
         });
@@ -81,7 +82,8 @@ export class AddEventComponent implements OnInit, OnDestroy {
         this.newEvent = {
             kind: this.addEventForm.value.kind,
             type: this.addEventForm.value.type,
-            time_start: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time),
+            time_start: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time_start),
+            time_end: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time_end),
             location: this.addEventForm.value.location,
             price: this.addEventForm.value.price,
         }
