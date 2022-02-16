@@ -54,9 +54,10 @@
         
             <div class="box" style="display: flex; align-items: center;">
                 <p class="version">Free Team Games 1.1</p>
-                <a [routerLink]="['./user']"><div class="avatar"></div></a>
-                <p class="phone">{{mydata.phone_number}}</p>
-                <mat-icon class="logout" aria-hidden="false" aria-label="Example logout icon" (click)="logout($event)">logout</mat-icon>
+                <a [routerLink]="['./user']" *ngIf="aAuth"><div class="avatar"></div></a>
+                <p class="phone" *ngIf="aAuth">{{mydata.phone_number}}</p>
+                <button style="color: #EEF5F8" mat-stroked-button *ngIf="!aAuth" [routerLink]="['../../auth']">Войти</button>
+                <mat-icon class="logout" aria-hidden="false" aria-label="Example logout icon" (click)="logout($event)" *ngIf="aAuth">logout</mat-icon>
             </div>
         </div>
       

@@ -26,7 +26,7 @@ export class LocationComponent implements OnInit, OnDestroy {
     }
 
     getLocation() {
-        this.aSub = this.http.get(this.url + `locations/${this.id}/`)
+        this.aSub = this.http.get(this.url + `locations/all/${this.id}/`)
             .subscribe((res) => {
                 this.location = res;
         });

@@ -1,9 +1,9 @@
 <div class="container">
     <div class="head">
-        <div class="empty"></div>
+        <div class="empty" *ngIf="aAuth"></div>
         <p class="title">Список событий</p>
-        <button mat-raised-button class="btn" [routerLink]="['../add-event']">Добавить событие</button>
-        <mat-icon class="add" aria-hidden="false" aria-label="Example add icon" [routerLink]="['../add-event']">add</mat-icon>
+        <button mat-raised-button class="btn" [routerLink]="['../add-event']" *ngIf="aAuth">Добавить событие</button>
+        <mat-icon class="add" aria-hidden="false" aria-label="Example add icon" [routerLink]="['../add-event']" *ngIf="aAuth">add</mat-icon>
     </div>
     <table>
         <tr class="tr__head">
@@ -17,14 +17,23 @@
             <td>Статус</td>
         </tr>
         <tr class="tr" *ngFor="let event of events?.results">
-            <td [routerLink]="['../event', event.id]">{{event.kind}}</td>
-            <td [routerLink]="['../event', event.id]">{{event.type}}</td>
-            <td [routerLink]="['../event', event.id]">{{event.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
-            <td [routerLink]="['../event', event.id]">{{event.time_end | date: 'dd.MM.YYYY HH:mm'}}</td>
-            <td [routerLink]="['../event', event.id]">{{event.location.name}}</td>
-            <td [routerLink]="['../event', event.id]">{{event.price}}</td>
-            <td [routerLink]="['../event', event.id]">{{event.players_count}}</td>
-            <td [routerLink]="['../event', event.id]">{{event.status}}</td>
+            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.kind}}</td>
+            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.type}}</td>
+            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
+            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.time_end | date: 'dd.MM.YYYY HH:mm'}}</td>
+            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.location.name}}</td>
+            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.price}}</td>
+            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.players_count}}</td>
+            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.status}}</td>
+
+            <td *ngIf="!aAuth">{{event.kind}}</td>
+            <td *ngIf="!aAuth">{{event.type}}</td>
+            <td *ngIf="!aAuth">{{event.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
+            <td *ngIf="!aAuth">{{event.time_end | date: 'dd.MM.YYYY HH:mm'}}</td>
+            <td *ngIf="!aAuth">{{event.location.name}}</td>
+            <td *ngIf="!aAuth">{{event.price}}</td>
+            <td *ngIf="!aAuth">{{event.players_count}}</td>
+            <td *ngIf="!aAuth">{{event.status}}</td>
         </tr>
     </table>
     <div class="mobile">

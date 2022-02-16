@@ -14,13 +14,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     mydata;
     aSub: Subscription;
+    aAuth: Boolean;
 
     constructor(
         private myData: MyData,
-        private auth: AuthService, 
+        private authService: AuthService, 
         private router: Router) {}
     
     ngOnInit() {
+        if(this.authService.getToken() == null) {
+            this.aAuth = false;
+        } else {
+            this.aAuth = true;
+        }
         this.aSub = this.myData.currentData.subscribe(
             (res) => {
                 this.mydata = res;
@@ -36,7 +42,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     logout(event: Event){
         event.preventDefault();
-        this.auth.logout();
+        this.authService.logout();
         this.router.navigate(['/auth'])
     }
 

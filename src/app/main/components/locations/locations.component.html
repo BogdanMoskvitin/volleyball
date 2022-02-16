@@ -2,8 +2,9 @@
     <div class="head">
         <div class="empty"></div>
         <p class="title">Список мест</p>
-        <button mat-raised-button class="btn" [routerLink]="['../add-location']">Добавить место</button>
-        <mat-icon class="add" aria-hidden="false" aria-label="Example add icon" [routerLink]="['../add-location']">add</mat-icon>
+        <button *ngIf="aAuth" mat-raised-button class="btn" [routerLink]="['../add-location']">Добавить место</button>
+        <mat-icon *ngIf="aAuth" class="add" aria-hidden="false" aria-label="Example add icon" [routerLink]="['../add-location']">add</mat-icon>
+        <div *ngIf="!aAuth" class="empty"></div>
     </div>
     <table>
         <tr class="tr__head">
