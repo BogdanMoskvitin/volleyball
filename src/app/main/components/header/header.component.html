@@ -15,6 +15,10 @@
                 <a [routerLink]="['./home']" class="burger__a">Главная</a>
             </li>
             <li (click)='toggleSidebar()' class="burger__li">
+                <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">events</mat-icon>
+                <a [routerLink]="['./events']" class="burger__a">События</a>
+            </li>
+            <li (click)='toggleSidebar()' class="burger__li">
                 <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">groups</mat-icon>
                 <a [routerLink]="['./teams']" class="burger__a">Команды</a>
             </li>
@@ -46,6 +50,7 @@
         
             <div>
                 <a routerLinkActive="active" class="link" [routerLink]="['./home']">Главная</a>
+                <a routerLinkActive="active" class="link" [routerLink]="['./events']">События</a>
                 <a routerLinkActive="active" class="link" [routerLink]="['./teams']">Команды</a>
                 <a routerLinkActive="active" class="link" [routerLink]="['./locations']">Места</a>
                 <a routerLinkActive="active" class="link" [routerLink]="['./history']">История</a>

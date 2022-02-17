@@ -5,12 +5,12 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
-    selector: 'home-service-page',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
+    selector: 'events-service-page',
+    templateUrl: './events.component.html',
+    styleUrls: ['./events.component.scss'],
 })
 
-export class HomeComponent implements OnInit, OnDestroy {
+export class EventsComponent implements OnInit, OnDestroy {
 
     events;
     url:string = environment.apiUrl;
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     getEvents() {
-        this.aSub = this.http.get(this.url + 'main/')
+        this.aSub = this.http.get(this.url + `events/all?multi_status=${encodeURIComponent('1,2,3')}`)
             .subscribe((res) => {
                 this.events = res;
         });

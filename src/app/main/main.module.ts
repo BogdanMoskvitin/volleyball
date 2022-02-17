@@ -25,6 +25,7 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { MatIconModule } from '@angular/material/icon';
 import { SidebarModule } from 'ng-sidebar';
 import { MatButtonModule } from '@angular/material/button';
+import { EventsComponent } from './components/events/events.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MatButtonModule } from '@angular/material/button';
     AboutUsComponent,
     UserChangeComponent,
     ChangePasswordComponent,
+    EventsComponent
   ],
   exports: [
     
@@ -119,6 +121,9 @@ import { MatButtonModule } from '@angular/material/button';
           { 
             path: 'change-password', component: ChangePasswordComponent 
           },
+          {
+            path: 'events', component: EventsComponent
+          }
         ],
       },
     ])

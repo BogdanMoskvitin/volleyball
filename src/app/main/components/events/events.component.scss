@@ -4,13 +4,10 @@ $blue: #007EA7;
 $dark: #121218;
 $lightdark: #1C1C24;
 .container {
-    // width: 1200px;
-    // border-radius: 5px;
-    // padding: 20px 30px;
+    width: 1200px;
+    border-radius: 5px;
+    padding: 20px 30px;
     margin: 100px auto 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 .head {
     display: flex; 
@@ -61,7 +58,8 @@ td {
     justify-content: center;
 }
 .cell {
-    border: 1px solid $grey;
+    border-top: 1px solid $grey;
+    border-bottom: 1px solid $grey;
     margin-bottom: 5px;
     border-radius: 5px;
     background: $lightdark;
