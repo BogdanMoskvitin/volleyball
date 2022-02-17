@@ -10,10 +10,15 @@
         <tr class="tr__head">
             <td>Название</td>
             <td>Адрес</td>
+            <td>Подтверждено</td>
         </tr>
         <tr class="tr" *ngFor="let location of locations?.results">
             <td [routerLink]="['../location', location.id]">{{location.name}}</td>
             <td [routerLink]="['../location', location.id]">{{location.address}}</td>
+            <td [routerLink]="['../location', location.id]">
+                <mat-icon style="color: #089F5F;" aria-hidden="false" aria-label="Example logout icon" *ngIf="location?.confirmed">done</mat-icon>
+                <mat-icon style="color: #9f0808;" aria-hidden="false" aria-label="Example logout icon" *ngIf="!location?.confirmed">close</mat-icon>
+            </td>
         </tr>
     </table>
 </div>

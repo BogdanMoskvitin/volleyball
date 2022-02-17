@@ -1,17 +1,23 @@
 <div class="container">
     <p class="subtitle">Полное название команды: {{team?.full_name}}</p>
     <p class="subtitle">Сокращенное название команды: {{team?.short_name}}</p>
-    <p class="subtitle" style="margin-bottom: 10px;">Количество игроков: {{count}}</p>
-    <p class="title">Список игроков</p>
+    <p class="subtitle">Количество игроков: {{count}}</p>
+    <p class="subtitle" style="margin-bottom: 10px;">Описание команды: {{team?.description}}</p>
+    <p class="title">Состав команды</p>
     <table>
         <tr class="tr__head">
             <td>Номер</td>
             <td>Имя</td>
+            <td>Подтвержден</td>
         </tr>
         <tr class="tr" *ngFor="let player of team?.players">
             <td [routerLink]="['./player', player.id]">{{player?.number}}</td>
             <td [routerLink]="['./player', player.id]">{{player?.user.full_name}}</td>
+            <td [routerLink]="['./player', player.id]">
+                <mat-icon style="color: #089F5F;" aria-hidden="false" aria-label="Example logout icon" *ngIf="player?.confirmed">done</mat-icon>
+                <mat-icon style="color: #9f0808;" aria-hidden="false" aria-label="Example logout icon" *ngIf="!player?.confirmed">close</mat-icon>
+            </td>
         </tr>
     </table>
-    <button *ngIf="aAuth" class="btn" [routerLink]="['./add-player', id]">Вступить в команду</button>
+    <button *ngIf="aAuth" class="btn" [routerLink]="['./add-player', id]">Заявка на вступление в команду</button>
 </div>

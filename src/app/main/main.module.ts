@@ -45,7 +45,8 @@ import { EventsComponent } from './components/events/events.component';
     AboutUsComponent,
     UserChangeComponent,
     ChangePasswordComponent,
-    EventsComponent
+    EventsComponent,
+    LocationComponent
   ],
   exports: [
     
@@ -73,57 +74,23 @@ import { EventsComponent } from './components/events/events.component';
             redirectTo: 'home',
             pathMatch: 'full'
           },
-          {
-            path: 'home', component: HomeComponent
-          },
-          {
-            path: 'event/:id', component: EventComponent
-          },
-          {
-            path: 'add-event', component: AddEventComponent
-          },
-          {
-            path: 'add-team', component: AddTeamComponent
-          },
-          {
-            path: 'players/:id/add-player/:id', component: AddPlayerComponent
-          },
-          {
-            path: 'add-location', component: AddLocationComponent
-          },
-          {
-            path: 'players/:id', component: PlayersComponent
-          },
-          {
-            path: 'locations', component: LocationsComponent
-          },
-          {
-            path: 'location/:id', component: LocationComponent
-          },
-          {
-            path: 'teams', component: TeamsComponent
-          },
-          {
-            path: 'user', component: UserComponent
-          },
-          {
-            path: 'players/:id/player/:id', component: PlayerComponent
-          },
-          {
-            path: 'history', component: HistoryComponent
-          },
-          {
-            path: 'about-us', component: AboutUsComponent
-          },
-          {
-            path: 'user-change', component: UserChangeComponent
-          },
-          { 
-            path: 'change-password', component: ChangePasswordComponent 
-          },
-          {
-            path: 'events', component: EventsComponent
-          }
+          { path: 'home', component: HomeComponent },
+          { path: 'event/:id', component: EventComponent },
+          { path: 'add-event', component: AddEventComponent },
+          { path: 'add-team', component: AddTeamComponent },
+          { path: 'players/:id/add-player/:id', component: AddPlayerComponent },
+          { path: 'add-location', component: AddLocationComponent },
+          { path: 'players/:id', component: PlayersComponent },
+          { path: 'locations', component: LocationsComponent },
+          { path: 'location/:id', component: LocationComponent },
+          { path: 'teams', component: TeamsComponent },
+          { path: 'user', component: UserComponent },
+          { path: 'players/:id/player/:id', component: PlayerComponent },
+          { path: 'history', component: HistoryComponent },
+          { path: 'about-us', component: AboutUsComponent },
+          { path: 'user-change', component: UserChangeComponent },
+          { path: 'change-password', component: ChangePasswordComponent },
+          { path: 'events', component: EventsComponent }
         ],
       },
     ])

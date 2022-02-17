@@ -4,7 +4,8 @@
     <div *ngFor="let event of events" [routerLink]="['../event', event.id]" class="cell">
         <div style="display: flex; justify-content: space-between;">
             <div>
-                <mat-icon style="color: white; margin-right: 10px;" class="burger__logout" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Открытая игра'">lock</mat-icon>
+                <mat-icon style="color: #EEF5F8; margin-right: 10px;" class="burger__logout" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Закрытая игра'">lock</mat-icon>
+                <mat-icon style="color: #EEF5F8; margin-right: 10px;" class="burger__logout" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Открытая игра'">lock_open</mat-icon>
                 <img src="../../../../assets/img/volleyball.png" alt="volleyball" width="24px" height="22px" *ngIf="event.sport == 'Волейбол'">
             </div>
             <p style="font-size: 16px;">{{event.status}}</p>

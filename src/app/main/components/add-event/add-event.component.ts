@@ -22,7 +22,6 @@ export class AddEventComponent implements OnInit, OnDestroy {
     kinds;
     types;
     newEvent = {};
-    aSub1: Subscription;
     aSub2: Subscription;
     aSub3: Subscription;
     aSub4: Subscription;
@@ -45,34 +44,26 @@ export class AddEventComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.getEvents();
         this.getLocations();
         this.getKinds();
         this.getTypes();
     }
 
-    getEvents() {
-        this.aSub1 = this.http.get(this.url + 'events/')
-            .subscribe((res) => {
-                this.events = res;
-        });
-    }
-
     getLocations() {
-        this.aSub2 = this.http.get(this.url + 'locations/')
+        this.aSub2 = this.http.get(this.url + 'locations/all/')
             .subscribe((res) => {
                 this.locations = res;
         });
     }
 
     getKinds() {
-        this.aSub3 = this.http.get(this.url + 'kinds/')
+        this.aSub3 = this.http.get(this.url + 'sports/all/')
             .subscribe((res) => {
                 this.kinds = res;
         });
     }
     getTypes() {
-        this.aSub4 = this.http.get(this.url + 'types/')
+        this.aSub4 = this.http.get(this.url + 'events/types/')
             .subscribe((res) => {
                 this.types = res;
         });
@@ -87,7 +78,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
             location: this.addEventForm.value.location,
             price: this.addEventForm.value.price,
         }
-        this.aSub5 = this.http.post(this.url + 'events/', this.newEvent).subscribe(
+        this.aSub5 = this.http.post(this.url + 'events/all/', this.newEvent).subscribe(
             (res) => {
                 this.toastr.success('Событие создано!');
                 this.router.navigateByUrl('main/header/home');
@@ -98,7 +89,6 @@ export class AddEventComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(){
-        this.aSub1.unsubscribe();
         this.aSub2.unsubscribe();
         this.aSub3.unsubscribe();
         this.aSub4.unsubscribe();

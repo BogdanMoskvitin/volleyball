@@ -1,4 +1,4 @@
-<div style="display: flex; flex-wrap: wrap;">
+<!-- <div style="display: flex; flex-wrap: wrap;">
     <div class="container">
         <p class="title">Событие</p>
 
@@ -44,5 +44,54 @@
                 <td>{{pl.number}}</td>
             </tr>
         </table>
+    </div>
+</div> -->
+
+<div class="container">
+    <div style="display: flex;">
+        <div>
+            <div style="border: 1px solid #EEF5F8; margin: 5px; padding: 5px;">
+                <p style="color: #EEF5F8;">Данные о событии</p>
+                <p style="color: #EEF5F8;">Время {{event?.time_start | date: 'dd.MM.YYYY HH:mm'}}</p>
+                <p style="color: #EEF5F8;">Место {{event?.location.name}}</p>
+                <p style="color: #EEF5F8;">Цена {{event?.price}}</p>
+            </div>
+            <div style="display: flex;">
+                <div style="border: 1px solid #EEF5F8; margin: 5px; padding: 5px;">
+                    <p style="color: #EEF5F8;">Подтвержденные участники</p>
+                    <div *ngFor="let ev of event?.surveys.true">
+                        <p style="color: #EEF5F8;">{{ev.player.number}} {{ev.player.user.full_name}}</p>
+                    </div>
+                </div>
+                <div style="border: 1px solid #EEF5F8; margin: 5px; padding: 5px;">
+                    <p style="color: #EEF5F8;">Ждут подтверждения</p>
+                    <div *ngFor="let ev of event?.surveys.unknown">
+                        <p style="color: #EEF5F8;">{{ev.player.number}} {{ev.player.user.full_name}}</p>
+                    </div>
+                </div>
+            </div>
+            <div style="border: 1px solid #EEF5F8; margin: 5px; padding: 5px;">
+                <p style="color: #EEF5F8;">Чат</p>
+                <div *ngFor="let c of event?.comments">
+                    <p style="color: #EEF5F8;">{{c.player.user.full_name}} {{c.comment}}</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div style="border: 1px solid #EEF5F8; margin: 5px; padding: 5px;">
+                <p style="color: #EEF5F8;">Проголосовать</p>
+                <button mat-raised-button>+</button>
+                <button mat-raised-button>-</button>
+            </div>
+            <div style="border: 1px solid #EEF5F8; margin: 5px; padding: 5px;">
+                <p style="color: #EEF5F8;">Список проголосовавших</p>
+                <div *ngFor="let ev of event?.surveys.true">
+                    <p style="color: #EEF5F8;">{{ev.player.number}} {{ev.player.user.full_name}}</p>
+                </div>
+                <div *ngFor="let ev of event?.surveys.unknown">
+                    <p style="color: #EEF5F8;">{{ev.player.number}} {{ev.player.user.full_name}}</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

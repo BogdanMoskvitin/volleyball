@@ -20,14 +20,12 @@ export class EventComponent implements OnInit, OnDestroy {
     event;
     id: number;
     url: string = environment.apiUrl;
-    data;
     idUser;
     players;
     addStatusForm: FormGroup;
     btnTitle: string = '';
     aSub1: Subscription;
     aSub2: Subscription;
-    aSub3: Subscription;
     aSub4: Subscription;
     aSub5: Subscription;
     aSub6: Subscription;
@@ -51,15 +49,10 @@ export class EventComponent implements OnInit, OnDestroy {
             this.getPlayers();
         });
         
-        this.aSub2 = this.http.get(this.url + `events/${this.id}/`)
+        this.aSub2 = this.http.get(this.url + `events/all/${this.id}/`)
             .subscribe((res) => {
                 this.event = res;
                 this.checkPlayer();
-        });
-
-        this.aSub3 = this.http.get(this.url + `events/${this.id}/participation/`)
-            .subscribe((res) => {
-                this.data = res;
         });
     }
 
@@ -106,7 +99,6 @@ export class EventComponent implements OnInit, OnDestroy {
     ngOnDestroy(){
         this.aSub1.unsubscribe();
         this.aSub2.unsubscribe();
-        this.aSub3.unsubscribe();
         if(this.aSub4){
             this.aSub4.unsubscribe();
         }

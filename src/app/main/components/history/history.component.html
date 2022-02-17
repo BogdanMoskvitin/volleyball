@@ -20,20 +20,20 @@
             <td>Статус</td>
         </tr>
         <tr class="tr" *ngFor="let event of events?.results" [ngClass]="{red: event.status == 'Отменено', green: event.status == 'Завершилось'}">
-            <td>{{event.kind}}</td>
+            <td>{{event.sport}}</td>
             <td>{{event.type}}</td>
             <td>{{event.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
             <td>{{event.time_end | date: 'dd.MM.YYYY HH:mm'}}</td>
             <td>{{event.location.name}}</td>
             <td>{{event.price}}</td>
-            <td>{{event.players_count}}</td>
+            <td>{{event.participants_count}}</td>
             <td>{{event.status}}</td>
         </tr>
     </table>
     <div class="mobile">
         <div *ngFor="let event of events?.results" class="cell">
             <div style="display: flex; justify-content: space-between;">
-                <p style="font-size: 16px;">{{event.kind}}</p>
+                <p style="font-size: 16px;">{{event.sport}}</p>
                 <p style="font-size: 16px;">{{event.type}}</p>
             </div>
             <p style="text-align: center; font-size: 16px;">{{event.time_start | date: 'dd.MM.YYYY'}}</p>
@@ -41,7 +41,7 @@
             <div style="display: flex; justify-content: space-between;">
                 <p style="font-size: 18px;">{{event.location.name}}</p>
                 <p style="font-size: 18px;">{{event.price}}&#8381;</p>
-                <p style="font-size: 18px;">{{event.players_count}}чел.</p>
+                <p style="font-size: 18px;">{{event.participants_count}}чел.</p>
             </div>
         </div>
     </div>

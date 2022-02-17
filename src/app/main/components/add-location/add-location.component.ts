@@ -32,7 +32,7 @@ export class AddLocationComponent implements OnInit, OnDestroy {
     ngOnInit() {}
 
     sendService(){
-        this.aSub = this.http.post(this.url + 'locations/', this.addLocationForm.value).subscribe(
+        this.aSub = this.http.post(this.url + 'locations/all/', this.addLocationForm.value).subscribe(
             (res) => {
                 this.toastr.success('Место создано!');
                 this.router.navigateByUrl('main/header/locations');

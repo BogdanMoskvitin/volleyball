@@ -32,7 +32,7 @@ export class AddTeamComponent implements OnInit, OnDestroy {
     ngOnInit() {}
 
     sendService(){
-        this.aSub = this.http.post(this.url + 'teams/', this.addTeamForm.value).subscribe(
+        this.aSub = this.http.post(this.url + 'teams/all/', this.addTeamForm.value).subscribe(
             (res) => {
                 this.toastr.success('Команда создана!');
                 this.router.navigateByUrl('main/header/teams');
