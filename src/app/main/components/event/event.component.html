@@ -47,6 +47,8 @@
     </div>
 </div> -->
 
+
+
 <div class="container">
     <div style="display: flex;">
         <div>
@@ -60,36 +62,40 @@
                 <div style="border: 1px solid #EEF5F8; margin: 5px; padding: 5px;">
                     <p style="color: #EEF5F8;">Подтвержденные участники</p>
                     <div *ngFor="let ev of event?.surveys.true">
-                        <p style="color: #EEF5F8;">{{ev.player.number}} {{ev.player.user.full_name}}</p>
+                        <p style="color: #EEF5F8;">{{ev.user.full_name}}</p>
                     </div>
                 </div>
                 <div style="border: 1px solid #EEF5F8; margin: 5px; padding: 5px;">
                     <p style="color: #EEF5F8;">Ждут подтверждения</p>
                     <div *ngFor="let ev of event?.surveys.unknown">
-                        <p style="color: #EEF5F8;">{{ev.player.number}} {{ev.player.user.full_name}}</p>
+                        <p style="color: #EEF5F8;">{{ev.user.full_name}}</p>
                     </div>
                 </div>
             </div>
             <div style="border: 1px solid #EEF5F8; margin: 5px; padding: 5px;">
                 <p style="color: #EEF5F8;">Чат</p>
+                <form [formGroup]="addCommentForm" (ngSubmit)="sendComment()">
+                    <input formControlName="comment">
+                    <button mat-raised-button [disabled]="addCommentForm.invalid">Отправить</button>
+                </form>
                 <div *ngFor="let c of event?.comments">
-                    <p style="color: #EEF5F8;">{{c.player.user.full_name}} {{c.comment}}</p>
+                    <p style="color: #EEF5F8;">{{c.user.full_name}} {{c.comment}}</p>
                 </div>
             </div>
         </div>
         <div>
             <div style="border: 1px solid #EEF5F8; margin: 5px; padding: 5px;">
                 <p style="color: #EEF5F8;">Проголосовать</p>
-                <button mat-raised-button>+</button>
-                <button mat-raised-button>-</button>
+                <button mat-raised-button (click)="sendTrue()">+</button>
+                <button mat-raised-button (click)="sendFalse()">-</button>
             </div>
             <div style="border: 1px solid #EEF5F8; margin: 5px; padding: 5px;">
                 <p style="color: #EEF5F8;">Список проголосовавших</p>
                 <div *ngFor="let ev of event?.surveys.true">
-                    <p style="color: #EEF5F8;">{{ev.player.number}} {{ev.player.user.full_name}}</p>
+                    <p style="color: #EEF5F8;">{{ev.user.full_name}}</p>
                 </div>
                 <div *ngFor="let ev of event?.surveys.unknown">
-                    <p style="color: #EEF5F8;">{{ev.player.number}} {{ev.player.user.full_name}}</p>
+                    <p style="color: #EEF5F8;">{{ev.user.full_name}}</p>
                 </div>
             </div>
         </div>
