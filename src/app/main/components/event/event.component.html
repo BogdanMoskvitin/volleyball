@@ -86,16 +86,22 @@
         <div>
             <div style="border: 1px solid #EEF5F8; margin: 5px; padding: 5px;">
                 <p style="color: #EEF5F8;">Проголосовать</p>
-                <button mat-raised-button (click)="sendTrue()">+</button>
-                <button mat-raised-button (click)="sendFalse()">-</button>
+                <button *ngIf="answer == null" mat-raised-button (click)="sendTruePost()">+</button>
+                <button *ngIf="answer == null" mat-raised-button (click)="sendFalsePost()">-</button>
+
+                <button *ngIf="answer == false" mat-raised-button (click)="sendTruePut()">+</button>
+                <button *ngIf="answer == true" mat-raised-button (click)="sendFalsePut()">-</button>
             </div>
             <div style="border: 1px solid #EEF5F8; margin: 5px; padding: 5px;">
                 <p style="color: #EEF5F8;">Список проголосовавших</p>
                 <div *ngFor="let ev of event?.surveys.true">
-                    <p style="color: #EEF5F8;">{{ev.user.full_name}}</p>
+                    <p style="color: #EEF5F8;">{{ev.user.full_name}} придет!</p>
                 </div>
                 <div *ngFor="let ev of event?.surveys.unknown">
-                    <p style="color: #EEF5F8;">{{ev.user.full_name}}</p>
+                    <p style="color: #EEF5F8;">{{ev.user.full_name}} не знает!</p>
+                </div>
+                <div *ngFor="let ev of event?.surveys.false">
+                    <p style="color: #EEF5F8;">{{ev.user.full_name}} не придет!</p>
                 </div>
             </div>
         </div>

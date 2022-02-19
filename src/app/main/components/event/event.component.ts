@@ -162,6 +162,10 @@ export class EventComponent implements OnInit {
     players;
     addCommentForm: FormGroup;
     addStatusForm: FormGroup;
+    surveys;
+    answer;
+    idObject;
+    object
 
     constructor(
         private http: HttpClient, 
@@ -180,11 +184,16 @@ export class EventComponent implements OnInit {
     ngOnInit(): void {
         this.getUser();
         this.getEvent();
+        this.http.get(this.url + `events/all/5/surveys/`).subscribe(res => {
+            this.object = res;
+            this.idObject = this.object.results[0].id;
+        })
     }
 
     getUser(){
         this.myData.currentData.subscribe(res => {
             this.user = res;
+            this.getSurveus();
         })
     }
 
@@ -202,17 +211,43 @@ export class EventComponent implements OnInit {
         })
     }
 
-    sendTrue(){
+    sendTruePost(){
         this.http.post(this.url + `events/all/${this.idEvent}/surveys/`, {answer: true})
         .subscribe(res => {
             this.getEvent();
+            this.getSurveus();
         });
     }
 
-    sendFalse(){
+    sendFalsePost(){
         this.http.post(this.url + `events/all/${this.idEvent}/surveys/`, {answer: false})
         .subscribe(res => {
             this.getEvent();
+            this.getSurveus();
+        })
+    }
+
+    sendTruePut(){
+        this.http.put(this.url + `events/all/${this.idEvent}/surveys/${this.idObject}/`, {answer: true})
+        .subscribe(res => {
+            this.getEvent();
+            this.getSurveus();
+        });
+    }
+
+    sendFalsePut(){
+        this.http.put(this.url + `events/all/${this.idEvent}/surveys/${this.idObject}/`, {answer: false})
+        .subscribe(res => {
+            this.getEvent();
+            this.getSurveus();
+        })
+    }
+
+    getSurveus(){
+        this.http.get(this.url + `events/all/${this.idEvent}/surveys/?user=${this.user.id}`)
+        .subscribe(res => {
+            this.surveys = res;
+            this.answer = this.surveys.results[0].answer;
         })
     }
 
