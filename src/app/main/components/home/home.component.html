@@ -1,21 +1,43 @@
 <div class="container">
     <p class="title">Список событий</p>
 
-    <div *ngFor="let event of events" [routerLink]="['../event', event.id]" class="cell">
-        <div style="display: flex; justify-content: space-between;">
-            <div>
-                <mat-icon style="color: #EEF5F8; margin-right: 10px;" class="burger__logout" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Закрытая игра'">lock</mat-icon>
-                <mat-icon style="color: #EEF5F8; margin-right: 10px;" class="burger__logout" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Открытая игра'">lock_open</mat-icon>
-                <img src="../../../../assets/img/volleyball.png" alt="volleyball" width="24px" height="22px" *ngIf="event.sport == 'Волейбол'">
+    <div *ngIf="aAuth">
+        <div *ngFor="let event of events" [routerLink]="['../event', event.id]" class="cell">
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                    <mat-icon style="color: #EEF5F8; margin-right: 10px;" class="burger__logout" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Закрытая игра'">lock</mat-icon>
+                    <mat-icon style="color: #EEF5F8; margin-right: 10px;" class="burger__logout" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Открытая игра'">lock_open</mat-icon>
+                    <img src="../../../../assets/img/volleyball.png" alt="volleyball" width="24px" height="22px" *ngIf="event.sport == 'Волейбол'">
+                </div>
+                <p style="font-size: 16px;">{{event.status}}</p>
             </div>
-            <p style="font-size: 16px;">{{event.status}}</p>
+            <p style="text-align: center; font-size: 24px; font-weight: bold;">{{event.date.date_short}}</p>
+            <p style="text-align: center; font-size: 16px;">{{event.date.time_short}}</p>
+            <div style="display: flex; justify-content: space-between;">
+                <p style="font-size: 18px;">{{event.location.name}}</p>
+                <p style="font-size: 18px; color: #089F5F;">{{event.price}}&#8381;</p>
+                <p style="font-size: 18px;">{{event.players_count}}чел.</p>
+            </div>
         </div>
-        <p style="text-align: center; font-size: 24px; font-weight: bold;">{{event.date.date_short}}</p>
-        <p style="text-align: center; font-size: 16px;">{{event.date.time_short}}</p>
-        <div style="display: flex; justify-content: space-between;">
-            <p style="font-size: 18px;">{{event.location.name}}</p>
-            <p style="font-size: 18px; color: #089F5F;">{{event.price}}&#8381;</p>
-            <p style="font-size: 18px;">{{event.players_count}}чел.</p>
+    </div>
+
+    <div *ngIf="!aAuth">
+        <div *ngFor="let event of events" class="cell">
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                    <mat-icon style="color: #EEF5F8; margin-right: 10px;" class="burger__logout" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Закрытая игра'">lock</mat-icon>
+                    <mat-icon style="color: #EEF5F8; margin-right: 10px;" class="burger__logout" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Открытая игра'">lock_open</mat-icon>
+                    <img src="../../../../assets/img/volleyball.png" alt="volleyball" width="24px" height="22px" *ngIf="event.sport == 'Волейбол'">
+                </div>
+                <p style="font-size: 16px;">{{event.status}}</p>
+            </div>
+            <p style="text-align: center; font-size: 24px; font-weight: bold;">{{event.date.date_short}}</p>
+            <p style="text-align: center; font-size: 16px;">{{event.date.time_short}}</p>
+            <div style="display: flex; justify-content: space-between;">
+                <p style="font-size: 18px;">{{event.location.name}}</p>
+                <p style="font-size: 18px; color: #089F5F;">{{event.price}}&#8381;</p>
+                <p style="font-size: 18px;">{{event.players_count}}чел.</p>
+            </div>
         </div>
     </div>
 </div>

@@ -4,9 +4,9 @@
         <div style="display: flex; flex-direction: column; align-items: center;">
             <mat-form-field appearance="fill" style="width: 250px;">
                 <mat-label>Вид спорта</mat-label>
-                <mat-select formControlName="kind">
-                    <mat-option *ngFor="let kind of kinds?.results" [value]="kind.id">
-                        {{kind.name}}
+                <mat-select formControlName="sport">
+                    <mat-option *ngFor="let sport of sports?.results" [value]="sport.id">
+                        {{sport.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>

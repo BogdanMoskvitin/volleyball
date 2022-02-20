@@ -19,7 +19,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
     events;
     locations;
     url:string = environment.apiUrl;
-    kinds;
+    sports;
     types;
     newEvent = {};
     aSub2: Subscription;
@@ -33,7 +33,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
         private router: Router,
         private toastr: ToastrService) {
         this.addEventForm = new FormGroup({
-            kind: new FormControl('', Validators.required),
+            sport: new FormControl('', Validators.required),
             type: new FormControl('', Validators.required),
             date: new FormControl('', Validators.required),
             time_start: new FormControl('', Validators.required),
@@ -45,7 +45,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.getLocations();
-        this.getKinds();
+        this.getSports();
         this.getTypes();
     }
 
@@ -56,10 +56,10 @@ export class AddEventComponent implements OnInit, OnDestroy {
         });
     }
 
-    getKinds() {
+    getSports() {
         this.aSub3 = this.http.get(this.url + 'sports/all/')
             .subscribe((res) => {
-                this.kinds = res;
+                this.sports = res;
         });
     }
     getTypes() {
@@ -71,7 +71,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
 
     sendService(){
         this.newEvent = {
-            kind: this.addEventForm.value.kind,
+            sport: this.addEventForm.value.sport,
             type: this.addEventForm.value.type,
             time_start: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time_start),
             time_end: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time_end),
