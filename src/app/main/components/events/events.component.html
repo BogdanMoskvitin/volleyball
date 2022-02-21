@@ -22,7 +22,7 @@
             <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
             <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.time_end | date: 'dd.MM.YYYY HH:mm'}}</td>
             <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.location.name}}</td>
-            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.price}}</td>
+            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.price}}&#8381;</td>
             <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.participants_count}}</td>
             <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.status}}</td>
 
@@ -31,7 +31,7 @@
             <td *ngIf="!aAuth">{{event.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
             <td *ngIf="!aAuth">{{event.time_end | date: 'dd.MM.YYYY HH:mm'}}</td>
             <td *ngIf="!aAuth">{{event.location.name}}</td>
-            <td *ngIf="!aAuth">{{event.price}}</td>
+            <td *ngIf="!aAuth">{{event.price}}&#8381;</td>
             <td *ngIf="!aAuth">{{event.participants_count}}</td>
             <td *ngIf="!aAuth">{{event.status}}</td>
         </tr>
