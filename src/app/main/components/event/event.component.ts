@@ -221,6 +221,7 @@ export class EventComponent implements OnInit {
         .subscribe(res => {
             this.getEvent();
             this.getSurveys();
+            this.getObject();
         });
     }
 
@@ -229,6 +230,7 @@ export class EventComponent implements OnInit {
         .subscribe(res => {
             this.getEvent();
             this.getSurveys();
+            this.getObject();
         })
     }
 
