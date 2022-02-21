@@ -184,16 +184,21 @@ export class EventComponent implements OnInit {
     ngOnInit(): void {
         this.getUser();
         this.getEvent();
-        this.http.get(this.url + `events/all/5/surveys/`).subscribe(res => {
-            this.object = res;
-            this.idObject = this.object.results[0].id;
-        })
+        
     }
 
     getUser(){
         this.myData.currentData.subscribe(res => {
             this.user = res;
-            this.getSurveus();
+            this.getSurveys();
+            this.getObject();
+        })
+    }
+
+    getObject(){
+        this.http.get(this.url + `events/all/${this.idEvent}/surveys/?user=${this.user.id}`).subscribe(res => {
+            this.object = res;
+            this.idObject = this.object.results[0].id;
         })
     }
 
@@ -215,7 +220,7 @@ export class EventComponent implements OnInit {
         this.http.post(this.url + `events/all/${this.idEvent}/surveys/`, {answer: true})
         .subscribe(res => {
             this.getEvent();
-            this.getSurveus();
+            this.getSurveys();
         });
     }
 
@@ -223,7 +228,7 @@ export class EventComponent implements OnInit {
         this.http.post(this.url + `events/all/${this.idEvent}/surveys/`, {answer: false})
         .subscribe(res => {
             this.getEvent();
-            this.getSurveus();
+            this.getSurveys();
         })
     }
 
@@ -231,7 +236,7 @@ export class EventComponent implements OnInit {
         this.http.put(this.url + `events/all/${this.idEvent}/surveys/${this.idObject}/`, {answer: true})
         .subscribe(res => {
             this.getEvent();
-            this.getSurveus();
+            this.getSurveys();
         });
     }
 
@@ -239,11 +244,11 @@ export class EventComponent implements OnInit {
         this.http.put(this.url + `events/all/${this.idEvent}/surveys/${this.idObject}/`, {answer: false})
         .subscribe(res => {
             this.getEvent();
-            this.getSurveus();
+            this.getSurveys();
         })
     }
 
-    getSurveus(){
+    getSurveys(){
         this.http.get(this.url + `events/all/${this.idEvent}/surveys/?user=${this.user.id}`)
         .subscribe(res => {
             this.surveys = res;
