@@ -26,14 +26,14 @@
             <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.participants_count}}</td>
             <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.status}}</td>
 
-            <td *ngIf="!aAuth">{{event.sport}}</td>
-            <td *ngIf="!aAuth">{{event.type}}</td>
-            <td *ngIf="!aAuth">{{event.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
-            <td *ngIf="!aAuth">{{event.time_end | date: 'dd.MM.YYYY HH:mm'}}</td>
-            <td *ngIf="!aAuth">{{event.location.name}}</td>
-            <td *ngIf="!aAuth">{{event.price}}&#8381;</td>
-            <td *ngIf="!aAuth">{{event.participants_count}}</td>
-            <td *ngIf="!aAuth">{{event.status}}</td>
+            <td *ngIf="!aAuth" (click)="notAuth()">{{event.sport}}</td>
+            <td *ngIf="!aAuth" (click)="notAuth()">{{event.type}}</td>
+            <td *ngIf="!aAuth" (click)="notAuth()">{{event.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
+            <td *ngIf="!aAuth" (click)="notAuth()">{{event.time_end | date: 'dd.MM.YYYY HH:mm'}}</td>
+            <td *ngIf="!aAuth" (click)="notAuth()">{{event.location.name}}</td>
+            <td *ngIf="!aAuth" (click)="notAuth()">{{event.price}}&#8381;</td>
+            <td *ngIf="!aAuth" (click)="notAuth()">{{event.participants_count}}</td>
+            <td *ngIf="!aAuth" (click)="notAuth()">{{event.status}}</td>
         </tr>
     </table>
     <div class="mobile">

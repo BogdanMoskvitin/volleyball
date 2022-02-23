@@ -71,6 +71,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
                 })
             },
             error => {
+                this.router.navigate(['/auth'])
                 this.toastr.error('Ошибка регистрации');
                 this.regForm.enable();
             }

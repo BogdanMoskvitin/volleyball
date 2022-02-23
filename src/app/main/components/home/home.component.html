@@ -22,7 +22,7 @@
     </div>
 
     <div *ngIf="!aAuth">
-        <div *ngFor="let event of events" class="cell">
+        <div *ngFor="let event of events" class="cell" (click)="notAuth()">
             <div style="display: flex; justify-content: space-between;">
                 <div>
                     <mat-icon style="color: #EEF5F8; margin-right: 10px;" class="burger__logout" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Закрытая игра'">lock</mat-icon>

@@ -1,103 +1,109 @@
 <div class="container">
-    <div>
-        <div style="width: 400px;">
-            <p class="text" style="font-size: 20px;">Данные о событии</p>
-            <div style="display: flex; justify-content: space-between;">
-                <p class="text__title">Статус события: </p>
-                <p class="text__data">{{event?.status}}</p>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <p class="text__title">Тип события: </p>
-                <p class="text__data">{{event?.type}}</p>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <p class="text__title">Вид спорта: </p>
-                <p class="text__data">{{event?.sport}}</p>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <p class="text__title">Место проведения: </p>
-                <p class="text__data" style="text-align: end;">{{event?.location.name}}, {{event?.location.address}}</p>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <p class="text__title">Время начала: </p>
-                <p class="text__data">{{event?.time_start | date: 'dd.MM.YYYY HH:mm'}}</p>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <p class="text__title">Время окончания: </p>
-                <p class="text__data">{{event?.time_end | date: 'dd.MM.YYYY HH:mm'}}</p>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <p class="text__title">Цена: </p>
-                <p class="text__data" style="color: #089F5F;">{{event?.price}}&#8381;</p>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <p class="text__title">Цена за человека: </p>
-                <p class="text__data" style="color: #089F5F;">{{event?.stats.price_per_player}}&#8381;</p>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <p class="text__title">Комментарий к событию: </p>
+    <div style="display: flex;">
+        <div>
+            <div style="width: 500px;">
+                <p class="text" style="font-size: 20px; color: #EEF5F8;">Данные о событии</p>
+                <div style="display: flex; justify-content: space-between;">
+                    <p class="text__title">Статус события: </p>
+                    <p class="text__data">{{event?.status}}</p>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <p class="text__title">Тип события: </p>
+                    <p class="text__data">{{event?.type}}</p>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <p class="text__title">Вид спорта: </p>
+                    <p class="text__data">{{event?.sport}}</p>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <p class="text__title">Место проведения: </p>
+                    <p class="text__data" style="text-align: end;">{{event?.location.name}}, {{event?.location.address}}</p>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <p class="text__title">Время начала: </p>
+                    <p class="text__data">{{event?.time_start | date: 'dd.MM.YYYY HH:mm'}}</p>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <p class="text__title">Время окончания: </p>
+                    <p class="text__data">{{event?.time_end | date: 'dd.MM.YYYY HH:mm'}}</p>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <p class="text__title">Цена: </p>
+                    <p class="text__data" style="color: #089F5F;">{{event?.price}}&#8381;</p>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <p class="text__title">Цена за человека: </p>
+                    <p class="text__data" style="color: #089F5F;">{{event?.stats.price_per_player}}&#8381;</p>
+                </div>
+                <p class="text__data" style="text-align: center;">Комментарий к событию: </p>
                 <p class="text__data">{{event?.comment}}</p>
             </div>
-        </div>
-
-        <div style="margin: 20px 0 10px 0;">
-            <button style="width: 200px; background: #089F5F;" *ngIf="answer == null" mat-raised-button (click)="sendTruePost()">Приду</button>
-            <button style="width:  200px; background: #9f0808;" *ngIf="answer == null" mat-raised-button (click)="sendFalsePost()">Не приду</button>
-
-            <button style="width: 200px; background: #089F5F;" *ngIf="answer == false" mat-raised-button (click)="sendTruePut()">Приду</button>
-            <button style="width:  200px; background: #9f0808;" *ngIf="answer == true" mat-raised-button (click)="sendFalsePut()">Не приду</button>
-        </div>
-        <div>
-            <p style="color: #EEF5F8; font-size: 20px;">Список проголосовавших</p>
-            <div *ngFor="let ev of event?.surveys.true">
-                <p style="color: #EEF5F8; display: flex; align-items: center;">
-                    <mat-icon style="color: #089F5F;" aria-hidden="false" aria-label="Example logout icon">done</mat-icon>
-                    {{ev.user.full_name}}
+    
+            <div>
+                <p style="color: #EEF5F8; font-size: 20px; margin: 20px 0 10px 0;">Комментарии</p>
+                <form [formGroup]="addCommentForm" (ngSubmit)="sendComment()">
+                    <mat-form-field appearance="fill" style="width: 350px;">
+                        <mat-label>Введите текст</mat-label>
+                        <textarea matInput
+                                    cdkTextareaAutosize
+                                    #autosize="cdkTextareaAutosize"
+                                    cdkAutosizeMinRows="1"
+                                    cdkAutosizeMaxRows="5"
+                                    formControlName="comment"
+                                    style="color: #EEF5F8;"
+                                    ></textarea>
+                    </mat-form-field>
+                    <button style="background-color: #121218; border: none; cursor: pointer;" [disabled]="addCommentForm.invalid">
+                        <mat-icon style="color: #EEF5F8; margin-left: 20px;" aria-hidden="false" aria-label="Example send icon">send</mat-icon>
+                    </button>
+                </form>
+                <p style="color: #EEF5F8; display: flex; align-items: center; cursor: pointer; justify-content: center; margin-bottom: 10px;" (click)="openComment()">
+                    <span *ngIf="!commentWindow">Открыть комментарии </span>
+                    <span *ngIf="commentWindow">Закрыть комментарии </span>
+                    <mat-icon *ngIf="!commentWindow" style="color: #EEF5F8; margin-left: 10px;" aria-hidden="false" aria-label="Example send icon">expand_more</mat-icon>
+                    <mat-icon *ngIf="commentWindow" style="color: #EEF5F8; margin-left: 10px;" aria-hidden="false" aria-label="Example send icon">expand_less</mat-icon>
                 </p>
-            </div>
-            <div *ngFor="let ev of event?.surveys.unknown">
-                <p style="color: #EEF5F8; display: flex; align-items: center;">
-                    <mat-icon style="color: #9f9508;" aria-hidden="false" aria-label="Example logout icon">pending</mat-icon>
-                    {{ev.user.full_name}}
-                </p>
-            </div>
-            <div *ngFor="let ev of event?.surveys.false">
-                <p style="color: #EEF5F8; display: flex; align-items: center;">
-                    <mat-icon style="color: #9f0808;" aria-hidden="false" aria-label="Example logout icon">close</mat-icon>
-                    {{ev.user.full_name}}
-                </p>
-            </div>
-        </div>
-
-        <div>
-            <p style="color: #EEF5F8; font-size: 20px; margin: 20px 0 10px 0;">Комментарии</p>
-            <form [formGroup]="addCommentForm" (ngSubmit)="sendComment()">
-                <mat-form-field appearance="fill" style="width: 350px;">
-                    <mat-label>Введите текст</mat-label>
-                    <textarea matInput
-                                cdkTextareaAutosize
-                                #autosize="cdkTextareaAutosize"
-                                cdkAutosizeMinRows="1"
-                                cdkAutosizeMaxRows="5"
-                                formControlName="comment"
-                                style="color: #EEF5F8;"></textarea>
-                </mat-form-field>
-                <button style="background-color: #121218; border: none; cursor: pointer;" [disabled]="addCommentForm.invalid">
-                    <mat-icon style="color: #EEF5F8; margin-left: 20px;" aria-hidden="false" aria-label="Example send icon">send</mat-icon>
-                </button>
-            </form>
-            <p style="color: #EEF5F8; display: flex; align-items: center; cursor: pointer; justify-content: center; margin-bottom: 10px;" (click)="openComment()">
-                <span *ngIf="!commentWindow">Открыть комментарии </span>
-                <span *ngIf="commentWindow">Закрыть комментарии </span>
-                <mat-icon *ngIf="!commentWindow" style="color: #EEF5F8; margin-left: 10px;" aria-hidden="false" aria-label="Example send icon">expand_more</mat-icon>
-                <mat-icon *ngIf="commentWindow" style="color: #EEF5F8; margin-left: 10px;" aria-hidden="false" aria-label="Example send icon">expand_less</mat-icon>
-            </p>
-            <div *ngIf="commentWindow">
-                <div *ngFor="let c of event?.comments">
-                    <div style="background-color: #788CA0; margin: 5px 0; border-radius: 5px 5px 5px 0px; display: inline-block; padding: 5px 10px;">
-                        <span style="font-size: 12px; color: #121218;">{{c.user.full_name}}</span>
-                        <p style="padding: 5px 0px; color: #EEF5F8;">{{c.comment}} <span style="text-align: end; font-size: 12px; color: #121218;">{{c.time | date: 'HH:mm'}}</span></p>
+                <div *ngIf="commentWindow">
+                    <div *ngFor="let c of event?.comments">
+                        <div style="background-color: #788CA0; margin: 5px 0; border-radius: 5px 5px 5px 0px; display: inline-block; padding: 5px 10px;">
+                            <span style="font-size: 12px; color: #121218;">{{c.user.full_name}}</span>
+                            <p style="padding: 5px 0px; color: #EEF5F8;">{{c.comment}} <span style="text-align: end; font-size: 12px; color: #121218;">{{c.time | date: 'HH:mm'}}</span></p>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-left: 40px;">
+            <div style="margin: 20px 0 10px 0;">
+                <button style="width: 120px; background: #089F5F; margin-right: 10px;" *ngIf="answer == null" mat-raised-button (click)="sendTruePost()">Приду</button>
+                <button style="width:  120px; background: #9f0808;" *ngIf="answer == null" mat-raised-button (click)="sendFalsePost()">Не приду</button>
+
+                <button style="width: 120px; background: #089F5F;" *ngIf="answer == false" mat-raised-button (click)="sendTruePut()">Приду</button>
+                <button style="width:  120px; background: #9f0808;" *ngIf="answer == true" mat-raised-button (click)="sendFalsePut()">Не приду</button>
+            </div>
+            <div>
+                <p style="color: #EEF5F8; font-size: 20px;">Опрос к событию</p>
+                <div *ngFor="let ev of event?.surveys.unknown">
+                    <p style="color: #EEF5F8; display: flex; align-items: center;">
+                        <mat-icon style="color: #9f9508;" aria-hidden="false" aria-label="Example logout icon">pending</mat-icon>
+                        {{ev.user.full_name}}
+                    </p>
+                </div>
+                <div *ngFor="let ev of event?.surveys.false">
+                    <p style="color: #EEF5F8; display: flex; align-items: center;">
+                        <mat-icon style="color: #9f0808;" aria-hidden="false" aria-label="Example logout icon">close</mat-icon>
+                        {{ev.user.full_name}}
+                    </p>
+                </div>
+            </div>
+            <br>
+            <div>
+                <p style="color: #EEF5F8; font-size: 20px;">Участники события</p>
+                <div *ngFor="let ev of event?.surveys.true">
+                    <p style="color: #EEF5F8; display: flex; align-items: center;">
+                        <mat-icon style="color: #089F5F;" aria-hidden="false" aria-label="Example logout icon">done</mat-icon>
+                        {{ev.user.full_name}}
+                    </p>
                 </div>
             </div>
         </div>

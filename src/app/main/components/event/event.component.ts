@@ -33,7 +33,7 @@ export class EventComponent implements OnInit {
     ) {
         this.idEvent = this.activatedRoute.snapshot.params['id'];
         this.addCommentForm = new FormGroup({
-            comment: new FormControl('', Validators.required)
+            comment: new FormControl('')
         })
         this.addStatusForm = new FormGroup({
             player: new FormControl('', Validators.required)
@@ -73,6 +73,7 @@ export class EventComponent implements OnInit {
         .subscribe(res => {
             this.getEvent();
         })
+        this.addCommentForm.reset();
     }
 
     sendTruePost(){

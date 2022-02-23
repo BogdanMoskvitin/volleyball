@@ -45,9 +45,10 @@ export class LoginComponent implements OnInit, OnDestroy {
             (res) => {
                 this.router.navigate(['/main']).then(() => {
                     window.location.reload();
-                  });
+                });
             },
             error => {
+                this.router.navigate(['/auth'])
                 this.toastr.error(error.error.detail);
                 this.authForm.enable();
             }

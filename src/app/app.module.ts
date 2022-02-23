@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { ToastrModule } from 'ngx-toastr';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
     provide: HTTP_INTERCEPTORS,
     multi: true,
     useClass: TokenInterceptor
-  }],
+  }, { provide: MAT_DATE_LOCALE, useValue: 'ru-RU' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
