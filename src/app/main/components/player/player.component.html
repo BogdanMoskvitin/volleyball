@@ -1,7 +1,19 @@
-<div class="players">
-    <p class="subtitle">Имя: {{player?.user.full_name}}</p>
-    <p class="subtitle">Телефон: {{player?.user.phone_number}}</p>
-    <p class="subtitle">Почта: {{player?.user.email}}</p>
-    <p class="subtitle">Команда: {{player?.team.full_name}}</p>
-    <p class="subtitle">Номер: {{player?.number}}</p>
+<div class="container">
+    <p class="title">{{player?.user.full_name}}</p>
+    <div class="flex">
+        <p class="text__title">Почта e-mail: </p>
+        <p class="text__data">{{player?.user.email}}</p>
+    </div>
+    <div class="flex">
+        <p class="text__title">Номер телефона: </p>
+        <p class="text__data">{{player?.user.phone_number}}</p>
+    </div>
+    <div class="flex">
+        <p class="text__title">Команда: </p>
+        <p class="text__data">{{player?.team.full_name}}</p>
+    </div>
+    <div class="flex">
+        <p class="text__title">Номер: </p>
+        <p class="text__data" style="color: #089F5F;">{{player?.number}}</p>
+    </div>
 </div>

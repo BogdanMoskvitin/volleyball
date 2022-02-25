@@ -1,8 +1,8 @@
 <div class="container">
     <p class="title">Добавить событие</p>
     <form [formGroup]="addEventForm" novalidate (ngSubmit)="sendService()">
-        <div style="display: flex; flex-direction: column; align-items: center;">
-            <mat-form-field appearance="fill" style="width: 250px;">
+        <div class="box">
+            <mat-form-field appearance="fill" style="width: 280px;">
                 <mat-label>Вид спорта</mat-label>
                 <mat-select formControlName="sport">
                     <mat-option *ngFor="let sport of sports?.results" [value]="sport.id">
@@ -11,7 +11,7 @@
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" style="width: 250px;">
+            <mat-form-field appearance="fill" style="width: 280px;">
                 <mat-label>Тип события</mat-label>
                 <mat-select formControlName="type">
                     <mat-option *ngFor="let type of types?.results" [value]="type.id">
@@ -20,24 +20,24 @@
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field color="accent" appearance="fill" style="width: 250px;">
+            <mat-form-field color="accent" appearance="fill" style="width: 280px;">
                 <mat-label>Дата</mat-label>
-                <input formControlName="date" matInput [matDatepicker]="picker2" style="color: #EEF5F8">
+                <input formControlName="date" matInput [matDatepicker]="picker2">
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2 color="primary"></mat-datepicker>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" style="width: 250px;">
+            <mat-form-field appearance="outline" style="width: 280px;">
                 <mat-label>Время начала события</mat-label>
-                <input formControlName="time_start" type="time" matInput name="week" min="09:00" max="18:00" style="color: #EEF5F8">
+                <input formControlName="time_start" type="time" matInput name="week" min="09:00" max="18:00">
             </mat-form-field>
 
-            <mat-form-field appearance="outline" style="width: 250px;">
+            <mat-form-field appearance="outline" style="width: 280px;">
                 <mat-label>Время конца события</mat-label>
-                <input formControlName="time_end" type="time" matInput name="week" min="09:00" max="18:00" style="color: #EEF5F8">
+                <input formControlName="time_end" type="time" matInput name="week" min="09:00" max="18:00">
             </mat-form-field>
 
-            <mat-form-field appearance="fill" style="width: 250px;">
+            <mat-form-field appearance="fill" style="width: 280px;">
                 <mat-label>Место</mat-label>
                 <mat-select formControlName="location">
                     <mat-option *ngFor="let location of locations?.results" [value]="location.id">
@@ -46,14 +46,13 @@
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                 <mat-label>Цена</mat-label>
-                <input matInput formControlName="price" style="color: #EEF5F8">
+                <input matInput formControlName="price">
             </mat-form-field>
 
             <div>
-                <button mat-raised-button style="background: #788CA0; width: 250px;" 
-                    [disabled]="addEventForm.invalid">Добавить событие</button>
+                <button mat-raised-button class="btn" [disabled]="addEventForm.invalid">Добавить событие</button>
             </div>
         </div>
     </form>

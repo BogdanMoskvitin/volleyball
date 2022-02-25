@@ -21,4 +21,13 @@
             </td>
         </tr>
     </table>
+    <div class="mobile">
+        <div *ngFor="let location of locations?.results" [routerLink]="['../location', location.id]" class="cell">
+            <p class="text" style="display: flex; align-items: center;">{{location?.name}} 
+                <mat-icon style="color: #089F5F;" aria-hidden="false" aria-label="Example logout icon" *ngIf="location?.confirmed">done</mat-icon>
+                <mat-icon style="color: #9f0808;" aria-hidden="false" aria-label="Example logout icon" *ngIf="!location?.confirmed">close</mat-icon>
+            </p>
+            <p class="text">{{location?.address}}</p>
+        </div>
+    </div>
 </div>

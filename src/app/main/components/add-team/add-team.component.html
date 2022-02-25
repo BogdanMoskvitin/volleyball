@@ -1,20 +1,19 @@
 <div class="container">
     <p class="title">Добавить команду</p>
     <form [formGroup]="addTeamForm" novalidate (ngSubmit)="sendService()">
-        <div style="display: flex; flex-direction: column; align-items: center;">
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+        <div class="box">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                 <mat-label>Полное название</mat-label>
-                <input matInput formControlName="full_name" style="color: #EEF5F8">
+                <input matInput formControlName="full_name">
             </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                 <mat-label>Сокращенное название</mat-label>
-                <input matInput formControlName="short_name" style="color: #EEF5F8">
+                <input matInput formControlName="short_name">
             </mat-form-field>
 
             <div>
-                <button mat-raised-button style="background: #788CA0; width: 250px;" 
-                [disabled]="addTeamForm.invalid">Добавить команду</button>
+                <button mat-raised-button class="btn" [disabled]="addTeamForm.invalid">Добавить команду</button>
             </div>
         </div>
     </form>

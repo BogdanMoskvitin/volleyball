@@ -3,27 +3,27 @@
         <p class="title">{{mydata.first_name}} {{mydata.last_name}}</p>
         <button mat-raised-button class="btn" [routerLink]="['../user-change']">Изменить данные</button>
     </div>
-    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <div class="flex">
         <div class="avatar"></div>
         <div style="width: 400px;">
-            <p class="text" style="font-size: 20px;">Основная информация</p>
-            <div style="display: flex; justify-content: space-between;">
+            <p class="text">Основная информация</p>
+            <div class="flex">
                 <p class="text__title">Почта e-mail: </p>
                 <p class="text__data">{{mydata.email}}</p>
             </div>
-            <div style="display: flex; justify-content: space-between;">
+            <div class="flex">
                 <p class="text__title">Номер телефона: </p>
                 <p class="text__data">{{mydata.phone_number}}</p>
             </div>
-            <div style="display: flex; justify-content: space-between;">
+            <div class="flex">
                 <p class="text__title">Дата рождения: </p>
                 <p class="text__data">данных нет</p>
             </div>
-            <div style="display: flex; justify-content: space-between;">
+            <div class="flex">
                 <p class="text__title">Всего участий в событиях: </p>
                 <p class="text__data" style="color: #089F5F;">{{mydata.stats?.total_events}}</p>
             </div>
-            <div style="display: flex; justify-content: space-between;">
+            <div class="flex">
                 <p class="text__title">Дата регистрации: </p>
                 <p class="text__data">данных нет</p>
             </div>
@@ -34,8 +34,8 @@
         <p class="text__data">Команды</p>
         <div class="box" *ngFor="let team of mydata.teams" [routerLink]="['../players', team.team.id]">
             <div class="line"></div>
-            <p style="font-size: 24px; padding-bottom: 10px;">{{team.team.full_name}}</p>
-            <div style="display: flex;">
+            <p class="subtitle">{{team.team.full_name}}</p>
+            <div class="flex">
                 <p class="text__title">Кол-во игр: <span class="text__data" style="color: #089F5F;">{{team.events_count}}</span></p>
                 <p class="text__title" style="margin-left: 20px;">Дата вступления: <span class="text__data">данных нет</span></p>
             </div>

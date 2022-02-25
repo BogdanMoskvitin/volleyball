@@ -4,26 +4,10 @@ $blue: #007EA7;
 $dark: #121218;
 $lightdark: #1C1C24;
 .container {
-    // width: 1200px;
-    // border-radius: 5px;
-    // padding: 20px 30px;
     margin: 100px auto 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.head {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    margin-bottom: 10px;
-}
-.empty {
-    width: 150px;
-}
-table {
-    border-collapse: collapse;
-    width: 100%;
 }
 .title {
     font-size: 30px;
@@ -31,79 +15,25 @@ table {
     color: $light;
     user-select: none;
 }
-.tr__head {
-    background-color: $blue;
-    td {
-        color: $light;
-        cursor: default;
-    }
-}
-td {
-    border-bottom: 1px solid $grey;
-    padding: 10px 30px;
-    font-size: 18px;
-    text-align: center;
-    cursor: pointer;
-    color: $light;
-}
-.tr {
-    background: $lightdark;
-}
-.tr:hover {
-    background-color: $grey;
-}
-.btn {
-    background: $blue; 
-    width: 150px; 
-    height: 30px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-}
 .cell {
     border: 1px solid $grey;
     margin-bottom: 5px;
     border-radius: 5px;
     background: $lightdark;
     width: 280px;
-    height: 110px;
+    min-height: 110px;
     padding: 10px;
+    cursor: pointer;
 }
-p {
+.cell:hover {
+    background: $grey;
+}
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+.text {
+    font-size: 16px;
     color: $light;
     padding: 3px 0;
-}
-.mobile {
-    display: none;
-}
-.add {
-    display: none;
-    color: $light;
-    font-size: 30px;
-    padding-bottom: 10px;
-}
-@media(max-width: 1250px) {
-    .container {
-        width: 300px;
-        padding: 20px 0;
-        margin: 50px auto 0 auto;
-    }
-    .empty {
-        display: none;
-    }
-    .title {
-        font-size: 20px;
-    }
-    table {
-        display: none;
-    }
-    .mobile {
-        display: block;
-    }
-    .btn {
-        display: none;
-    }
-    .add {
-        display: block;
-    }
 }

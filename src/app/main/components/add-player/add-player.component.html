@@ -1,17 +1,16 @@
 <div class="container">
     <p class="title">Добавить игрока</p>
     <form [formGroup]="addPlayerForm" novalidate (ngSubmit)="sendService()">
-        <div style="display: flex; flex-direction: column; align-items: center;">
+        <div class="box">
             <p class="subtitle">Под каким номером хотите вступить в команду?</p>
 
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                 <mat-label>Номер игрока</mat-label>
-                <input matInput formControlName="number" style="color: #EEF5F8">
+                <input matInput formControlName="number">
             </mat-form-field>
 
             <div>
-                <button mat-raised-button style="background: #788CA0; width: 250px;" 
-                [disabled]="addPlayerForm.invalid">Вступить в команду</button>
+                <button mat-raised-button class="btn" [disabled]="addPlayerForm.invalid">Вступить в команду</button>
             </div>
         </div>
     </form>

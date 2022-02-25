@@ -2,7 +2,7 @@
     <div class="head">
         <div class="empty"></div>
         <p class="title">История событий</p>
-        <div style="display: flex;">
+        <div class="flex">
             <button mat-raised-button class="btn" (click)="closeEvents()">Завершенные</button>
             <button mat-raised-button class="btn" (click)="cancelEvents()">Отмененные</button>
         </div>
@@ -32,16 +32,16 @@
     </table>
     <div class="mobile">
         <div *ngFor="let event of events?.results" class="cell">
-            <div style="display: flex; justify-content: space-between;">
-                <p style="font-size: 16px;">{{event.sport}}</p>
-                <p style="font-size: 16px;">{{event.type}}</p>
+            <div class="flex">
+                <p class="text">{{event.sport}}</p>
+                <p class="text">{{event.type}}</p>
             </div>
-            <p style="text-align: center; font-size: 16px;">{{event.time_start | date: 'dd.MM.YYYY'}}</p>
-            <p style="text-align: center; font-size: 24px; font-weight: bold;">{{event.time_start | date: 'HH:mm'}} - {{event.time_end | date: 'HH:mm'}}</p>
-            <div style="display: flex; justify-content: space-between;">
-                <p style="font-size: 18px;">{{event.location.name}}</p>
-                <p style="font-size: 18px;">{{event.price}}&#8381;</p>
-                <p style="font-size: 18px;">{{event.participants_count}}чел.</p>
+            <p class="text" style="text-align: center;">{{event.time_start | date: 'dd.MM.YYYY'}}</p>
+            <p class="text" style="text-align: center; font-size: 24px; font-weight: bold;">{{event.time_start | date: 'HH:mm'}} - {{event.time_end | date: 'HH:mm'}}</p>
+            <div class="flex">
+                <p class="text" style="font-size: 18px;">{{event.location.name}}</p>
+                <p class="text" style="font-size: 18px;">{{event.price}}&#8381;</p>
+                <p class="text" style="font-size: 18px;">{{event.participants_count}}чел.</p>
             </div>
         </div>
     </div>

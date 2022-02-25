@@ -4,14 +4,10 @@ $blue: #007EA7;
 $dark: #121218;
 $lightdark: #1C1C24;
 .container {
-    width: 670px;
+    width: 610px;
     border-radius: 5px;
     padding: 20px 30px;
     margin: 100px auto 0 auto;
-}
-table {
-    border-collapse: collapse;
-    width: 100%;
 }
 .title {
     font-size: 30px;
@@ -27,40 +23,6 @@ table {
     color: $light;
     font-style: italic;
     user-select: none;
-}
-.text {
-    font-size: 20px;
-    color: $light;
-}
-.tr__head {
-    background-color: $blue;
-    td {
-        color: $light
-    }
-}
-td {
-    border-bottom: 1px solid $grey;
-    padding: 10px 30px;
-    font-size: 18px;
-    text-align: center;
-    cursor: pointer;
-    color: $dark;
-}
-.tr:hover {
-    background-color: $light;
-}
-.btn {
-    width: 100%;
-    height: 29px;
-    font-size: 16px;
-    cursor: pointer;
-    border: 1px solid $grey;
-    background: $blue;
-    margin-top: 20px;
-    color: $light;
-}
-.btn:hover {
-    background: $grey;
 }
 .box__cell {
     display: flex;
@@ -80,14 +42,6 @@ td {
 .cell:hover {
     background: $grey;
 }
-.avatar__bg {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-    background-image: url(../../../../assets/img/bg.moskvitin.jpg);
-    background-size: contain;
-}
 .avatar__mr {
     width: 50px;
     height: 50px;
@@ -96,25 +50,26 @@ td {
     background-image: url(../../../../assets/img/mr.marshanskiy.jpg);
     background-size: contain;
 }
-.footer {
-    font-size: 16px;
-    text-align: right;
+.text {
+    font-size: 20px;
     color: $light;
-    padding-top: 20px;
-    user-select: none;
 }
 .link {
     font-size: 16px;
     color: $light;
     text-decoration: none;
 }
+.avatar__bg {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-image: url(../../../../assets/img/bg.moskvitin.jpg);
+    background-size: contain;
+}
 @media(max-width: 700px) {
     .container {
         width: 300px;
         padding: 20px 0;
-    }
-    td {
-        padding: 5px 5px;
-        font-size: 15px;
     }
 }

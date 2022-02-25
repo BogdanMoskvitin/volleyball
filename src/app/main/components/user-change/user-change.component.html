@@ -1,34 +1,32 @@
 <div class="container">
     <p class="title">Изменить данные</p>
     <form [formGroup]="changeForm" novalidate (ngSubmit)="sendService()">
-        <div style="display: flex; flex-direction: column; align-items: center;">
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+        <div class="flex">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                 <mat-label>Имя</mat-label>
-                <input matInput formControlName="first_name" style="color: #EEF5F8">
+                <input matInput formControlName="first_name">
             </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                 <mat-label>Фамилия</mat-label>
-                <input matInput formControlName="last_name" style="color: #EEF5F8">
+                <input matInput formControlName="last_name">
             </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                 <mat-label>E-mail</mat-label>
-                <input matInput formControlName="email" style="color: #EEF5F8">
+                <input matInput formControlName="email">
             </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                 <mat-label>Телефон</mat-label>
-                <input matInput formControlName="phone_number" style="color: #EEF5F8">
+                <input matInput formControlName="phone_number">
             </mat-form-field>
 
             <div>
-                <button mat-raised-button style="background: #788CA0; width: 250px;" 
-                [routerLink]="['../change-password']" type="button">Изменить пароль</button>
+                <button mat-raised-button class="btn" [routerLink]="['../change-password']" type="button">Изменить пароль</button>
             </div>
             <div style="margin-top: 10px;">
-                <button mat-raised-button style="background: #788CA0; width: 250px;" 
-                [disabled]="changeForm.invalid || changeForm.disabled">Изменить</button>
+                <button mat-raised-button class="btn" [disabled]="changeForm.invalid || changeForm.disabled">Изменить</button>
             </div>
         </div>
     </form>

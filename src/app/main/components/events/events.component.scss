@@ -18,15 +18,29 @@ $lightdark: #1C1C24;
 .empty {
     width: 150px;
 }
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
 .title {
     font-size: 30px;
     text-align: center;
     color: $light;
     user-select: none;
+}
+.btn {
+    background: $blue; 
+    width: 150px; 
+    height: 30px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+.add {
+    display: none;
+    color: $light;
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
 }
 .tr__head {
     background-color: $blue;
@@ -49,13 +63,8 @@ td {
 .tr:hover {
     background-color: $grey;
 }
-.btn {
-    background: $blue; 
-    width: 150px; 
-    height: 30px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
+.mobile {
+    display: none;
 }
 .cell {
     border-top: 1px solid $grey;
@@ -64,27 +73,22 @@ td {
     border-radius: 5px;
     background: $lightdark;
     width: 280px;
-    height: 110px;
+    min-height: 110px;
     padding: 10px;
 }
-p {
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+.text {
+    font-size: 16px;
     color: $light;
     padding: 3px 0;
 }
-.mobile {
-    display: none;
-}
-.add {
-    display: none;
-    color: $light;
-    font-size: 30px;
-    padding-bottom: 10px;
-}
-@media(max-width: 1250px) {
+@media(max-width: 1350px) {
     .container {
         width: 300px;
         padding: 20px 0;
-        margin: 50px auto 0 auto;
     }
     .empty {
         display: none;
@@ -92,16 +96,16 @@ p {
     .title {
         font-size: 20px;
     }
-    table {
-        display: none;
-    }
-    .mobile {
-        display: block;
-    }
     .btn {
         display: none;
     }
     .add {
+        display: block;
+    }
+    table {
+        display: none;
+    }
+    .mobile {
         display: block;
     }
 }

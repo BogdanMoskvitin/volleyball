@@ -21,3 +21,15 @@ $lightdark: #1C1C24;
     font-size: 18px;
     margin-right: 10px;
 }
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+input {
+    color: $light;
+}
+.btn {
+    background: $grey;
+    width: 280px;
+}

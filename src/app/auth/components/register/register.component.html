@@ -1,30 +1,30 @@
 <div class="container">
     <p class="title">Регистрация</p>
     <form [formGroup]="regForm" novalidate (ngSubmit)="checkForm()">
-        <div style="display: flex; flex-direction: column; align-items: center;">
+        <div class="box">
             <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
                 <mat-label>Имя</mat-label>
-                <input matInput formControlName="first_name" style="color: #EEF5F8">
+                <input matInput formControlName="first_name">
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
                 <mat-label>Фамилия</mat-label>
-                <input matInput formControlName="last_name" style="color: #EEF5F8">
+                <input matInput formControlName="last_name">
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
                 <mat-label>E-mail</mat-label>
-                <input matInput formControlName="email" style="color: #EEF5F8">
+                <input matInput formControlName="email">
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
                 <mat-label>Телефон</mat-label>
-                <input matInput formControlName="phone_number" style="color: #EEF5F8">
+                <input matInput formControlName="phone_number">
             </mat-form-field>
 
             <mat-form-field appearance="fill" style="width: 250px;">
                 <mat-label>Придумайте пароль</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" style="color: #EEF5F8">
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
                 <button class="btn__icon" type="button" mat-icon-button matSuffix 
                     (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -33,7 +33,7 @@
 
             <mat-form-field appearance="fill" style="width: 250px;">
                 <mat-label>Повторите пароль</mat-label>
-                <input matInput [type]="hide2 ? 'password' : 'text'" formControlName="password2" style="color: #EEF5F8">
+                <input matInput [type]="hide2 ? 'password' : 'text'" formControlName="password2">
                 <button class="btn__icon" type="button" mat-icon-button matSuffix 
                     (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -41,8 +41,7 @@
             </mat-form-field>
 
             <div>
-                <button mat-raised-button style="background: #788CA0; width: 250px;" 
-                    [disabled]="regForm.invalid || regForm.disabled">Зарегестрироваться</button>
+                <button mat-raised-button [disabled]="regForm.invalid || regForm.disabled" class="btn">Зарегестрироваться</button>
             </div>
             <p [routerLink]="['../login']" class="subtitle">Уже зарегистрированы?</p>
         </div>

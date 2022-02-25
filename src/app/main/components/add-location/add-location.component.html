@@ -1,25 +1,24 @@
 <div class="container">
     <p class="title">Добавить место</p>
     <form [formGroup]="addLocationForm" novalidate (ngSubmit)="sendService()">
-        <div style="display: flex; flex-direction: column; align-items: center;">
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+        <div class="box">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                 <mat-label>Название</mat-label>
-                <input matInput formControlName="name" style="color: #EEF5F8">
+                <input matInput formControlName="name">
             </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                 <mat-label>Адрес</mat-label>
-                <input matInput formControlName="address" style="color: #EEF5F8">
+                <input matInput formControlName="address">
             </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                 <mat-label>Описание</mat-label>
-                <input matInput formControlName="description" style="color: #EEF5F8">
+                <input matInput formControlName="description">
             </mat-form-field>
 
             <div>
-                <button mat-raised-button style="background: #788CA0; width: 250px;" 
-                [disabled]="addLocationForm.invalid">Добавить место</button>
+                <button mat-raised-button class="btn" [disabled]="addLocationForm.invalid">Добавить место</button>
             </div>
         </div>
     </form>

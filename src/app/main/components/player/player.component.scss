@@ -3,15 +3,32 @@ $light: #EEF5F8;
 $blue: #007EA7;
 $dark: #121218;
 $lightdark: #1C1C24;
-.players {
+.container {
     width: 300px;
-    border: 1px solid $grey;
     border-radius: 5px;
-    padding: 20px 30px;
+    padding: 20px 0;
     margin: 100px auto 0 auto;
-    background: $lightdark;
 }
-.subtitle {
+.title {
+    font-size: 30px;
     color: $light;
-    font-size: 20px;
+    user-select: none;
+}
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+.text__title {
+    font-size: 16px;
+    color: $grey;
+    padding: 5px 0;
+    user-select: none;
+}
+.text__data {
+    font-size: 16px;
+    color: $light;
+    padding: 5px 0;
+    font-weight: 500;
+    user-select: none;
+    text-align: end;
 }

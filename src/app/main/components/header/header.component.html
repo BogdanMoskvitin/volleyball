@@ -1,8 +1,12 @@
 <ng-sidebar-container style="overflow: hidden;">
     <ng-sidebar [opened]="opened" position="top">
         <ul class="burger__ul">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div class="burger__user" (click)='toggleSidebar()' [routerLink]="['./user']">
+            <div class="flex">
+                <div *ngIf="aAuth" class="burger__user" (click)='toggleSidebar()' [routerLink]="['./user']">
+                    <div class="burger__avatar"></div>
+                    <p>{{mydata.first_name}} {{mydata.last_name}}</p>
+                </div>
+                <div *ngIf="!aAuth" class="burger__user">
                     <div class="burger__avatar"></div>
                     <p>{{mydata.first_name}} {{mydata.last_name}}</p>
                 </div>
@@ -57,11 +61,11 @@
                 <a routerLinkActive="active" class="link" [routerLink]="['./about-us']">О нас</a>
             </div>
         
-            <div class="box" style="display: flex; align-items: center;">
+            <div class="box">
                 <p class="version">Free Team Games 1.1</p>
                 <a [routerLink]="['./user']" *ngIf="aAuth"><div class="avatar"></div></a>
-                <p class="phone" *ngIf="aAuth">{{mydata.phone_number}}</p>
-                <button style="color: #EEF5F8" mat-stroked-button *ngIf="!aAuth" [routerLink]="['../../auth']">Войти</button>
+                <p class="phone" *ngIf="aAuth" [routerLink]="['./user']">{{mydata.phone_number}}</p>
+                <button class="login" mat-stroked-button *ngIf="!aAuth" [routerLink]="['../../auth']">Войти</button>
                 <mat-icon class="logout" aria-hidden="false" aria-label="Example logout icon" (click)="logout($event)" *ngIf="aAuth">logout</mat-icon>
             </div>
         </div>

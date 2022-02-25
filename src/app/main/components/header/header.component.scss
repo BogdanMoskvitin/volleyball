@@ -3,94 +3,6 @@ $light: #EEF5F8;
 $blue: #007EA7;
 $dark: #121218;
 $lightdark: #1C1C24;
-.header {
-    position: fixed;
-    top: 0; right: 0; left: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    background: $dark;
-    margin: 0 20px;
-}
-.logo {
-    margin-top: 10px;
-    width: 350px;
-    height: 70px;
-    background-image: url(../../../../assets/img/logoFTC.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center left;
-    cursor: pointer;
-}
-.link {
-    text-decoration: none;
-    font-size: 20px;
-    color: $light;
-    padding: 36px 31px;
-}
-.active {
-    color: $blue;
-    text-decoration: underline;
-    background-color: $light;
-}
-.box {
-    width: 350px;
-    display: flex;
-    justify-content: flex-end;
-}
-.version {
-    font-size: 14px;
-    color: $grey;
-    margin-right: 10px;
-    user-select: none;
-}
-.avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: $blue;
-}
-.phone {
-    font-size: 16px;
-    color: $light;
-    margin-left: 10px;
-    user-select: none;
-}
-.logout {
-    color: #788CA0; 
-    cursor: pointer; 
-    margin-left: 10px;
-}
-.router-outlet {
-    padding: 10px;
-}
-.btn {
-    background: $blue; 
-    width: 150px; 
-    height: 30px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    margin-right: 10px;
-}
-@media(max-width: 1150px) {
-    .link {
-        display: none;
-    }
-    .box {
-        display: none;
-    }
-    .avatar {
-        display: none;
-    }
-    .btn {
-        display: none;
-    }
-}
-
-
-
 ng-sidebar-container {
     height: 100vh;
 }
@@ -102,6 +14,11 @@ ng-sidebar-container {
 .burger__ul {
     margin: 80px 30px 0 30px; 
     list-style: none;
+}
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .burger__user {
     display: flex; 
@@ -152,14 +69,6 @@ ng-sidebar-container {
     border: none;
     background: none;
 }
-@media(max-width: 1150px) {
-    .burger {
-        display: block;
-    }
-    .logout {
-        display: none;
-    }
-}
 .burger__line1 {
     position: absolute;
     left: 0;
@@ -168,7 +77,6 @@ ng-sidebar-container {
     height: 5px;
     background-color: $blue;
     border-radius: 25%;
-
     opacity: 100;
     transform: translateX(0);
     transition: all 0.4s ease-in-out;
@@ -181,7 +89,6 @@ ng-sidebar-container {
     height: 5px;
     background-color: $blue;
     border-radius: 25%;
-
     opacity: 0;
     transform: translateX(40px);
     transition: all 0.4s ease-in-out;
@@ -194,7 +101,6 @@ ng-sidebar-container {
     height: 5px;
     background-color: $blue;
     border-radius: 25%;
-
     opacity: 100;
     transform: translateX(0);
     transition: all 0.4s ease-in-out;
@@ -207,7 +113,6 @@ ng-sidebar-container {
     height: 5px;
     background-color: $blue;
     border-radius: 25%;
-
     opacity: 0;
     transform: translateX(-40px);
     transition: all 0.4s ease-in-out;
@@ -220,7 +125,6 @@ ng-sidebar-container {
 	height: 5px;
     background-color: $light;
     border-radius: 25%;
-
     transform: rotate(0deg);
     transform-origin: 5%;
     transition: transform 0.5s;
@@ -233,7 +137,6 @@ ng-sidebar-container {
 	height: 5px;
     background-color: $light;
     border-radius: 25%;
-
     transform: rotate(45deg);
     transform-origin: 5%;
     transition: transform 0.5s;
@@ -246,7 +149,6 @@ ng-sidebar-container {
 	height: 5px;
     background-color: $light;
     border-radius: 25%;
-
     transform: rotate(0deg);
     transform-origin: 5%;
     transition: transform 0.5s;
@@ -259,47 +161,124 @@ ng-sidebar-container {
 	height: 5px;
     background-color: $light;
     border-radius: 25%;
-
     transform: rotate(-45deg);
     transform-origin: 5%;
     transition: transform 0.5s;
 }
-p {
-    color: $light;
-    font-size: 20px;
+.header {
+    position: fixed;
+    top: 0; right: 0; left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    background: $dark;
+    margin: 0 20px;
 }
-@media(max-width: 1400px) {
+.logo {
+    margin-top: 10px;
+    width: 350px;
+    height: 70px;
+    background-image: url(../../../../assets/img/logoFTC.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center left;
+    cursor: pointer;
+}
+.link {
+    text-decoration: none;
+    font-size: 20px;
+    color: $light;
+    padding: 36px 31px;
+    white-space: nowrap;
+}
+.active {
+    color: $blue;
+    text-decoration: underline;
+    background-color: $light;
+}
+.box {
+    width: 350px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.version {
+    font-size: 14px;
+    color: $grey;
+    margin-right: 10px;
+    user-select: none;
+}
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $blue;
+}
+.phone {
+    font-size: 16px;
+    color: $light;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.login {
+    color: $light;
+}
+.logout {
+    color: #788CA0; 
+    cursor: pointer; 
+    margin-left: 10px;
+}
+.router-outlet {
+    padding: 10px;
+}
+@media(max-width: 1550px) {
+    .logo {
+        width: 250px;
+    }
+    .box {
+        width: 250px;
+    }
     .version {
         display: none;
     }
-    .logo {
-        width: 250px;
-    }
-    .box {
-        width: 250px;
-    }
 }
 @media(max-width: 1200px) {
+    .burger {
+        display: block;
+    }
+    .logo {
+        width: 150px;
+    }
+    .link {
+        display: none;
+    }
+    .box {
+        display: none;
+    }
+    .avatar {
+        display: none;
+    }
     .phone {
         display: none;
     }
-    .logo {
-        width: 150px;
+    .login {
+        margin-right: 50px;
     }
-    .box {
-        width: 150px;
+    .logout {
+        display: none;
     }
 }
 @media(max-width: 500px) {
+    .burger {
+        top: 20px;
+        right: 20px;
+    }
     .header {
         margin: 0 10px;
     }
     .logo {
         width: 100px;
         height: 50px;
-    }
-    .burger {
-        top: 20px;
-        right: 20px;
     }
 }
