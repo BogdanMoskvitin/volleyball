@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://api.dev.freeteamcollaboration.ru/'
+  apiUrl: 'https://api.dev.freeteamclub.ru/'
 };
