@@ -1,73 +1,49 @@
 <div class="container">
-    <p class="auth__title">Регистрация</p>
+    <p class="title">Регистрация</p>
     <form [formGroup]="regForm" novalidate (ngSubmit)="checkForm()">
-        <table>
-            <tr>
-                <td class="td__title"> <span class="auth__subtitle">Имя:</span> </td>
-                <td> 
-                    <input class="auth__input" formControlName="first_name" placeholder="Имя"> 
-                    <span class="auth__err" *ngIf="regForm.controls['first_name'].invalid && regForm.controls['first_name'].touched">Введите имя!</span>
-                </td>
-            </tr>
-            <tr>
-                <td class="td__title"> <span class="auth__subtitle">Фамилия:</span> </td>
-                <td> 
-                    <input class="auth__input" formControlName="last_name" placeholder="Фамилия"> 
-                    <span class="auth__err" *ngIf="regForm.controls['last_name'].invalid && regForm.controls['last_name'].touched">Введите фамилию!</span>
-                </td>
-            </tr>
-            <tr>
-                <td class="td__title"> <span class="auth__subtitle">E-mail:</span> </td>
-                <td> 
-                    <input class="auth__input" formControlName="email" placeholder="E-mail"> 
-                    <span class="auth__err" *ngIf="regForm.controls['email'].invalid && regForm.controls['email'].touched">Введите e-mail!</span>
-                </td>
-            </tr>
-            <tr>
-                <td class="td__title"> <span class="auth__subtitle">Телефон:</span> </td>
-                <td> 
-                    <input class="auth__input" formControlName="phone_number" placeholder="Телефон"> 
-                    <span class="auth__err" *ngIf="regForm.controls['phone_number'].invalid && regForm.controls['phone_number'].touched">Введите телефон!</span>
-                </td>
-            </tr>
-            <tr>
-                <td class="td__title"> <span class="auth__subtitle">Придумайте пароль:</span> </td>
-                <td> 
-                    <mat-form-field appearance="fill">
-                        <mat-label>Придумайте пароль</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-                        <button class="btn__icon" type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        </button>
-                    </mat-form-field>
-                    <span class="auth__err" *ngIf="regForm.controls['password'].invalid && regForm.controls['password'].touched">Придумайте пароль!</span>
-                </td>
-            </tr>
-            <tr>
-                <td class="td__title"> <span class="auth__subtitle">Повторите пароль:</span> </td>
-                <td> 
-                    <mat-form-field appearance="fill">
-                        <mat-label>Повторите пароль</mat-label>
-                        <input matInput [type]="hide2 ? 'password' : 'text'" formControlName="password2">
-                        <button class="btn__icon" type="button" mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                            <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        </button>
-                    </mat-form-field>
-                    <span class="auth__err" *ngIf="regForm.controls['password2'].invalid && regForm.controls['password2'].touched || checkPassword == true">Повторите пароль!</span>
-                </td>
-            </tr>
-            <!-- <tr>
-                <td>
-                    <button class="auth__btn" [routerLink]="['../login']" type="button">Войти</button>
-                </td>
-                <td> 
-                    <button class="auth__btn" [disabled]="regForm.invalid || regForm.disabled">Зарегестрироваться</button>
-                </td>
-            </tr> -->
-        </table>
-        <div style="display: flex; flex-wrap: wrap;">
-            <button class="auth__btn" [routerLink]="['../login']" type="button">Войти</button> 
-            <button class="auth__btn" [disabled]="regForm.invalid || regForm.disabled">Зарегестрироваться</button>
+        <div class="box">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>Имя</mat-label>
+                <input matInput formControlName="first_name">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>Фамилия</mat-label>
+                <input matInput formControlName="last_name">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>E-mail</mat-label>
+                <input matInput formControlName="email">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>Телефон</mat-label>
+                <input matInput formControlName="phone_number">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="width: 250px;">
+                <mat-label>Придумайте пароль</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button class="btn__icon" type="button" mat-icon-button matSuffix 
+                    (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="width: 250px;">
+                <mat-label>Повторите пароль</mat-label>
+                <input matInput [type]="hide2 ? 'password' : 'text'" formControlName="password2">
+                <button class="btn__icon" type="button" mat-icon-button matSuffix 
+                    (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <div>
+                <button mat-raised-button [disabled]="regForm.invalid || regForm.disabled" class="btn">Зарегестрироваться</button>
+            </div>
+            <p [routerLink]="['../login']" class="subtitle">Уже зарегистрированы?</p>
         </div>
     </form>
 </div>

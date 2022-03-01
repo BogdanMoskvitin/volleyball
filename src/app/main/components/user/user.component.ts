@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { MyData } from 'src/app/my-data.service';
 
@@ -9,9 +10,10 @@ import { MyData } from 'src/app/my-data.service';
     styleUrls: ['./user.component.scss'],
 })
 
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnDestroy {
 
     mydata;
+    aSub: Subscription;
 
     constructor(
         private myData: MyData,
@@ -19,7 +21,7 @@ export class UserComponent implements OnInit {
         private router: Router) {}
     
     ngOnInit() {
-        this.myData.currentData.subscribe(
+        this.aSub = this.myData.currentData.subscribe(
             (res) => {
                 this.mydata = res;
             }
@@ -30,5 +32,9 @@ export class UserComponent implements OnInit {
         event.preventDefault();
         this.auth.logout();
         this.router.navigate(['/auth'])
-      }
+    }
+
+    ngOnDestroy(){
+        this.aSub.unsubscribe();
+    }
 }

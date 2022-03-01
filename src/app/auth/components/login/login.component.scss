@@ -1,56 +1,49 @@
+$grey: #788CA0;
+$light: #EEF5F8;
+$blue: #007EA7;
+$dark: #121218;
+$lightdark: #1C1C24;
 .container {
-    width: 470px;
-    border: 1px solid #ccc;
+    width: 280px;
+    height: 360px;
+    border: 1px solid $grey;
     border-radius: 5px;
-    padding: 20px 30px;
+    padding: 70px 30px 0;
     margin: 200px auto 0 auto;
+    background: $lightdark;
 }
-.auth__title {
+.title {
+    color: $light;
     font-size: 30px;
     text-align: center;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
+    user-select: none;
 }
-td {
-    position: relative;
-    text-align: end;
-    padding: 15px 0;
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.auth__subtitle {
-    font-size: 18px;
-    margin-right: 10px;
-}
-.auth__input {
-    height: 25px;
-    font-size: 18px;
-    padding-left: 5px;
-}
-.auth__err {
-    position: absolute;
-    display: block;
-    font-size: 16px;
-    color: red;
-}
-.auth__btn {
-    width: 225px;
-    height: 29px;
-    font-size: 16px;
-    cursor: pointer;
+input {
+    color: $light;
 }
 .btn__icon {
     border: none;
     background: none;
     cursor: pointer;
 }
-@media(max-width: 700px) {
+.btn {
+    background: $grey;
+    width: 250px;
+}
+.subtitle {
+    color: $light;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+@media(max-width: 1024px) {
     .container {
-        width: 280px;
-        padding: 20px 0;
-    }
-    td {
-        padding: 5px 5px;
-        font-size: 15px;
-    }
-    .td__title {
-        display: none;
+        margin: 50px auto;
     }
 }

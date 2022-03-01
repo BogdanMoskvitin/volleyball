@@ -1,87 +1,118 @@
-$grey: #CCDBDC;
-$light: #f1f1f1;
-$turquoise: #80CED7;
+$grey: #788CA0;
+$light: #EEF5F8;
 $blue: #007EA7;
-$dark: #003249;
+$dark: #121218;
+$lightdark: #1C1C24;
 .container {
-    width: 600px;
+    max-width: 800px;
     border: 1px solid $grey;
     border-radius: 5px;
     padding: 20px 30px;
     margin: 100px auto 0 auto;
-}
-table {
-    border-collapse: collapse;
-    width: 100%;
+    background: $lightdark;
 }
 .title {
     font-size: 30px;
-    text-align: center;
     padding-bottom: 10px;
-    color: $dark;
-}
-.tr__head {
-    background-color: $blue;
-    td {
-        color: $light
-    }
-}
-td {
-    border-bottom: 1px solid $grey;
-    padding: 10px 30px;
-    font-size: 18px;
-    text-align: center;
-    cursor: pointer;
-    color: $dark;
-}
-.tr:hover {
-    background-color: $light;
-}
-.btn {
-    width: 100%;
-    height: 29px;
-    font-size: 16px;
-    cursor: pointer;
-    border: 1px solid $grey;
-    background: $blue;
-    margin-top: 20px;
     color: $light;
+    margin-left: 10px;
+    user-select: none;
 }
-.btn:hover {
-    background: $turquoise;
+.box {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    padding: 0 5px;
 }
-.event {
-    width: 500px;
-    border: 1px solid $grey;
-    border-radius: 5px;
-    padding: 20px 30px;
-    margin: 200px auto 0 auto;
-}
-.event__box_btns {
+.flex {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
 }
-.event__btn {
-    width: 300px;
-    height: 60px;
+.text__title {
     font-size: 16px;
-    cursor: pointer;
-    background: $turquoise;
-    color: $light;
-    border: none;
+    color: $grey;
+    padding: 5px 5px 5px 0;
+    user-select: none;
 }
-.event__btn:hover {
-    background: $grey;
+.text__data {
+    font-size: 16px;
+    color: $light;
+    padding: 5px 0;
+    font-weight: 500;
+    user-select: none;
+    text-align: end;
+}
+.subtitle {
+    color: $light;
+    font-size: 20px;
+    margin: 20px 0 10px 0;
+    user-select: none;
+}
+.icon__send {
+    display: inline-block;
+    background-color: $lightdark;
+    border: none;
+    cursor: pointer;
+}
+.btn__send {
+    display: none;
+    width: 290px;
+    margin: 0 0 10px 0;
+}
+.title__comment {
+    color: $light;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.box__comment {
+    background-color: $grey;
+    margin: 5px 0;
+    border-radius: 5px 5px 5px 0px;
+    display: inline-block;
+    padding: 5px 10px;
+}
+.user__comment {
+    font-size: 12px;
     color: $dark;
+}
+.text__comment {
+    padding: 5px 0px;
+    color: $light;
+}
+.time__comment {
+    text-align: end;
+    font-size: 12px;
+    color: $dark;
+}
+.box__surveys {
+    margin-left: 40px;
+}
+.box__btns {
+    margin: 20px 0 10px 0;
+}
+.btn {
+    width: 120px; 
+}
+.surveys__title {
+    color: $light;
+    display: flex;
+    align-items: center;
+    user-select: none;
 }
 @media(max-width: 700px) {
     .container {
-        width: 280px;
+        width: 300px;
         padding: 20px 0;
     }
-    td {
-        padding: 5px 5px;
-        font-size: 15px;
+    .icon__send {
+        display: none;
+    }
+    .btn__send {
+        display: block;
+    }
+    .box__surveys {
+        margin: 0;
     }
 }

@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MaterialService } from 'src/app/classes/material.service';
 import { AuthService } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'login-service-page',
@@ -14,12 +14,14 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit, OnDestroy {
     hide = true;
     authForm : FormGroup;
-    aSub: Subscription;
+    aSub1: Subscription;
+    aSub2: Subscription;
 
     constructor(
         private authService: AuthService,
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private toastr: ToastrService
     ) {
         this.authForm = new FormGroup({
             phone_number: new FormControl('', [Validators.required]),
@@ -28,13 +30,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.route.queryParams.subscribe((params: Params) => {
+        this.aSub1 = this.route.queryParams.subscribe((params: Params) => {
             if (params['registered']) {
-                MaterialService.toast('Теперь вы можете зайт и в систему используя свои данные!')
             } else if (params['accessDenied']) {
-                MaterialService.toast('Для начала авторизуйтесь в системе!')
             } else if (params['sessionFailed']) {
-                MaterialService.toast('Пожалуйста войдите в систему заного!')
             }
         })
     }
@@ -42,22 +41,26 @@ export class LoginComponent implements OnInit, OnDestroy {
     sendService(){
         this.authForm.disable()
 
-        this.aSub = this.authService.login(this.authForm.value).subscribe(
+        this.aSub2 = this.authService.login(this.authForm.value).subscribe(
             (res) => {
                 this.router.navigate(['/main']).then(() => {
                     window.location.reload();
-                  });
+                });
             },
             error => {
-                MaterialService.toast(error.error.message)
-                this.authForm.enable()
+                this.router.navigate(['/auth'])
+                this.toastr.error(error.error.detail);
+                this.authForm.enable();
             }
         )
     }
     
     ngOnDestroy(){
-        if(this.aSub) {
-            this.aSub.unsubscribe();
+        if(this.aSub1) {
+            this.aSub1.unsubscribe();
+        }
+        if(this.aSub2) {
+            this.aSub2.unsubscribe();
         }
     }
 }

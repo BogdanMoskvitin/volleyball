@@ -1,29 +1,55 @@
-$grey: #CCDBDC;
-$light: #f1f1f1;
-$turquoise: #80CED7;
+$grey: #788CA0;
+$light: #EEF5F8;
 $blue: #007EA7;
-$dark: #003249;
+$dark: #121218;
+$lightdark: #1C1C24;
 .container {
     width: 600px;
     border: 1px solid $grey;
     border-radius: 5px;
     padding: 20px 30px;
     margin: 100px auto 0 auto;
+    background: $lightdark;
 }
-table {
-    border-collapse: collapse;
-    width: 100%;
+.subtitle {
+    display: none;
+    color: $light;
+    font-size: 20px;
+}
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+.text__title {
+    font-size: 16px;
+    color: $grey;
+    padding: 5px 0;
+    user-select: none;
+}
+.text__data {
+    font-size: 16px;
+    color: $light;
+    padding: 5px 0;
+    font-weight: 500;
+    user-select: none;
+    text-align: end;
 }
 .title {
     font-size: 30px;
     text-align: center;
     padding-bottom: 10px;
-    color: $dark;
+    color: $light;
+    user-select: none;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
 }
 .tr__head {
     background-color: $blue;
     td {
-        color: $light
+        color: $light;
+        cursor: default;
     }
 }
 td {
@@ -32,10 +58,29 @@ td {
     font-size: 18px;
     text-align: center;
     cursor: pointer;
-    color: $dark;
+    color: $light;
 }
 .tr:hover {
-    background-color: $light;
+    background-color: $grey;
+}
+.mobile {
+    display: none;
+}
+.cell {
+    border-top: 1px solid $grey;
+    border-bottom: 1px solid $grey;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background: $lightdark;
+    width: 270px;
+    padding: 10px;
+}
+.text {
+    font-size: 16px;
+    color: $light;
+    padding: 3px 0;
+    display: flex;
+    align-items: center;
 }
 .btn {
     width: 100%;
@@ -48,22 +93,24 @@ td {
     color: $light;
 }
 .btn:hover {
-    background: $turquoise;
-}
-.subtitle {
-    color: $dark;
-    font-size: 20px;
+    background: $grey;
 }
 @media(max-width: 700px) {
     .container {
-        width: 280px;
-        padding: 20px 0;
-    }
-    td {
-        padding: 5px 5px;
-        font-size: 15px;
+        width: 290px;
+        padding: 20px 5px;
+        border: none;
     }
     .subtitle {
-        font-size: 15px;
+        display: block;
+    }
+    .name {
+        display: none;
+    }
+    table {
+        display: none;
+    }
+    .mobile {
+        display: block;
     }
 }

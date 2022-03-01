@@ -1,46 +1,34 @@
-$grey: #CCDBDC;
-$light: #f1f1f1;
-$turquoise: #80CED7;
+$grey: #788CA0;
+$light: #EEF5F8;
 $blue: #007EA7;
-$dark: #003249;
-.players {
-    width: 550px;
-    border: 1px solid $grey;
+$dark: #121218;
+$lightdark: #1C1C24;
+.container {
+    width: 300px;
     border-radius: 5px;
-    padding: 20px 30px;
+    padding: 20px 0;
     margin: 100px auto 0 auto;
 }
-.players__title {
+.title {
     font-size: 30px;
-    text-align: center;
-    padding-bottom: 10px;
+    color: $light;
+    user-select: none;
 }
-table {
-    border-collapse: collapse;
-    width: 100%;
+.flex {
+    display: flex;
+    justify-content: space-between;
 }
-td {
-    border-bottom: 1px solid $grey;
-    padding: 10px 30px;
-    font-size: 18px;
-    text-align: center;
-    cursor: pointer;
-}
-.tr:hover {
-    background-color: $grey;
-}
-.players__btn {
-    width: 100%;
-    height: 29px;
+.text__title {
     font-size: 16px;
-    cursor: pointer;
-    border: 1px solid $grey;
-    margin-top: 20px;
+    color: $grey;
+    padding: 5px 0;
+    user-select: none;
 }
-.players__btn:hover {
-    background: $grey;
-}
-.subtitle {
-    color: $dark;
-    font-size: 20px;
+.text__data {
+    font-size: 16px;
+    color: $light;
+    padding: 5px 0;
+    font-weight: 500;
+    user-select: none;
+    text-align: end;
 }

@@ -1,49 +1,112 @@
-<button class="event__btn" (click)="back()">назад</button>
-<div style="display: flex; flex-wrap: wrap;">
-    <div class="container">
-        <p class="title">Событие</p>
-
-        <table>
-            <tr class="tr__head">
-                <td>Время</td>
-                <td>Место</td>
-                <td>Цена</td>
-            </tr>
-            <tr class="tr">
-                <td>{{event?.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
-                <td>{{event?.location.name}}</td>
-                <td>{{event?.price}}</td>
-            </tr>
-        </table>
-        
-        <form [formGroup]="addStatusForm" novalidate (ngSubmit)="sendStatus()">
-        <div class="event__box_btns">
-            <mat-form-field appearance="fill" style="width: 300px;">
-                <mat-label>Игроки</mat-label>
-                <mat-select formControlName="player">
-                    <mat-option *ngFor="let player of players?.results" [value]="player.id">
-                        {{player.team.full_name}} ({{player.number}})
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-            <button class="event__btn" [disabled]="addStatusForm.invalid">{{btnTitle}}</button>
+<div class="container">
+    <p class="title">Данные о событии</p>
+    <div class="box">
+        <div>
+            <div>  
+                <div class="flex">
+                    <p class="text__title">Статус события: </p>
+                    <p class="text__data">{{event?.status}}</p>
+                </div>
+                <div class="flex">
+                    <p class="text__title">Тип события: </p>
+                    <p class="text__data">{{event?.type}}</p>
+                </div>
+                <div class="flex">
+                    <p class="text__title">Вид спорта: </p>
+                    <p class="text__data">{{event?.sport}}</p>
+                </div>
+                <div class="flex">
+                    <p class="text__title">Место проведения: </p>
+                    <p class="text__data">{{event?.location.name}}, {{event?.location.address}}</p>
+                </div>
+                <div class="flex">
+                    <p class="text__title">Время начала: </p>
+                    <p class="text__data">{{event?.time_start | date: 'dd.MM.YYYY HH:mm'}}</p>
+                </div>
+                <div class="flex">
+                    <p class="text__title">Время окончания: </p>
+                    <p class="text__data">{{event?.time_end | date: 'dd.MM.YYYY HH:mm'}}</p>
+                </div>
+                <div class="flex">
+                    <p class="text__title">Цена: </p>
+                    <p class="text__data" style="color: #089F5F;">{{event?.price}}&#8381;</p>
+                </div>
+                <div class="flex">
+                    <p class="text__title">Цена за человека: </p>
+                    <p class="text__data" style="color: #089F5F;">{{event?.stats.price_per_player}}&#8381;</p>
+                </div>
+                <p class="text__data">Комментарий к событию: </p>
+                <p class="text__data">{{event?.comment}}</p>
+            </div>
+    
+            <div>
+                <p class="subtitle">Комментарии</p>
+                <form [formGroup]="addCommentForm" (ngSubmit)="sendComment()">
+                    <mat-form-field appearance="fill" style="width: 290px;">
+                        <mat-label>Введите текст</mat-label>
+                        <textarea matInput
+                                    cdkTextareaAutosize
+                                    #autosize="cdkTextareaAutosize"
+                                    cdkAutosizeMinRows="1"
+                                    cdkAutosizeMaxRows="5"
+                                    formControlName="comment"
+                                    style="color: #EEF5F8;"
+                                    ></textarea>
+                    </mat-form-field>
+                    <button class="icon__send" [disabled]="addCommentForm.invalid">
+                        <mat-icon style="color: #EEF5F8; margin-left: 20px;" aria-hidden="false" aria-label="Example send icon">send</mat-icon>
+                    </button>
+                    <button class="btn__send" mat-raised-button>Отправить</button>
+                </form>
+                <p class="title__comment" (click)="openComment()">
+                    <span *ngIf="!commentWindow">Открыть комментарии </span>
+                    <span *ngIf="commentWindow">Закрыть комментарии </span>
+                    <mat-icon *ngIf="!commentWindow" style="color: #EEF5F8; margin-left: 10px;" aria-hidden="false" aria-label="Example send icon">expand_more</mat-icon>
+                    <mat-icon *ngIf="commentWindow" style="color: #EEF5F8; margin-left: 10px;" aria-hidden="false" aria-label="Example send icon">expand_less</mat-icon>
+                </p>
+                <div *ngIf="commentWindow">
+                    <div *ngFor="let c of event?.comments">
+                        <div class="box__comment">
+                            <span class="user__comment" style="user-select: none;">{{c.user.full_name}}</span>
+                            <p class="text__comment">{{c.comment}} <span style="user-select: none;" class="time__comment">{{c.time | date: 'HH:mm'}}</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        </form>
-    </div>
+        <div class="box__surveys">
+            <div class="box__btns">
+                <button class="btn" style="background: #089F5F; margin-right: 10px;" *ngIf="answer == null" mat-raised-button (click)="sendTruePost()">Приду</button>
+                <button class="btn" style="background: #9f0808;" *ngIf="answer == null" mat-raised-button (click)="sendFalsePost()">Не приду</button>
 
-    <div class="container">
-        <p class="title">Участники события</p>
-        <table>
-            <tr class="tr__head">
-                <td>Имя</td>
-                <td>Команда</td>
-                <td>Номер</td>
-            </tr>
-            <tr class="tr" *ngFor="let pl of event?.players">
-                <td>{{pl.user.full_name}}</td>
-                <td>{{pl.team.full_name}}</td>
-                <td>{{pl.number}}</td>
-            </tr>
-        </table>
+                <button class="btn" style="background: #089F5F;" *ngIf="answer == false" mat-raised-button (click)="sendTruePut()">Приду</button>
+                <button class="btn" style="background: #9f0808;" *ngIf="answer == true" mat-raised-button (click)="sendFalsePut()">Не приду</button>
+            </div>
+            <div>
+                <p class="subtitle">Опрос к событию</p>
+                <div *ngFor="let ev of event?.surveys.unknown">
+                    <p class="surveys__title">
+                        <mat-icon style="color: #9f9508;" aria-hidden="false" aria-label="Example logout icon">pending</mat-icon>
+                        {{ev.user.full_name}}
+                    </p>
+                </div>
+                <div *ngFor="let ev of event?.surveys.false">
+                    <p class="surveys__title">
+                        <mat-icon style="color: #9f0808;" aria-hidden="false" aria-label="Example logout icon">close</mat-icon>
+                        {{ev.user.full_name}}
+                    </p>
+                </div>
+            </div>
+            <br>
+            <div>
+                <p class="subtitle">Участники события</p>
+                <div *ngFor="let ev of event?.surveys.true">
+                    <p class="surveys__title">
+                        <mat-icon style="color: #089F5F;" aria-hidden="false" aria-label="Example logout icon">done</mat-icon>
+                        {{ev.user.full_name}}
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

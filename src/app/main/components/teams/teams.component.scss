@@ -1,29 +1,54 @@
-$grey: #CCDBDC;
-$light: #f1f1f1;
-$turquoise: #80CED7;
+$grey: #788CA0;
+$light: #EEF5F8;
 $blue: #007EA7;
-$dark: #003249;
+$dark: #121218;
+$lightdark: #1C1C24;
 .container {
     width: 600px;
-    border: 1px solid $grey;
     border-radius: 5px;
     padding: 20px 30px;
     margin: 100px auto 0 auto;
+}
+.head {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 10px;
+}
+.empty {
+    width: 150px;
+}
+.title {
+    font-size: 30px;
+    text-align: center;
+    color: $light;
+    user-select: none;
+    margin-left: 10px;
+}
+.btn {
+    background: $blue; 
+    width: 150px; 
+    height: 30px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-right: 10px;
+}
+.add {
+    display: none;
+    color: $light;
+    font-size: 30px;
+    padding-bottom: 10px;
 }
 table {
     border-collapse: collapse;
     width: 100%;
 }
-.title {
-    font-size: 30px;
-    text-align: center;
-    padding-bottom: 10px;
-    color: $dark;
-}
 .tr__head {
     background-color: $blue;
     td {
-        color: $light
+        color: $light;
+        cursor: default;
     }
 }
 td {
@@ -32,31 +57,51 @@ td {
     font-size: 18px;
     text-align: center;
     cursor: pointer;
-    color: $dark;
-}
-.tr:hover {
-    background-color: $light;
-}
-.btn {
-    width: 100%;
-    height: 29px;
-    font-size: 16px;
-    cursor: pointer;
-    border: 1px solid $grey;
-    background: $blue;
-    margin-top: 20px;
     color: $light;
 }
-.btn:hover {
-    background: $turquoise;
+.tr {
+    background: $lightdark;
+}
+.tr:hover {
+    background-color: $grey;
+}
+.mobile {
+    display: none;
+}
+.cell {
+    border-top: 1px solid $grey;
+    border-bottom: 1px solid $grey;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background: $lightdark;
+    width: 280px;
+    padding: 10px;
+}
+.text {
+    font-size: 16px;
+    color: $light;
+    padding: 3px 0;
+    display: flex;
+    align-items: center;
 }
 @media(max-width: 700px) {
     .container {
-        width: 280px;
+        width: 290px;
         padding: 20px 0;
     }
-    td {
-        padding: 5px 5px;
-        font-size: 15px;
+    .empty {
+        display: none;
+    }
+    .btn {
+        display: none;
+    }
+    .add {
+        display: block;
+    }
+    table {
+        display: none;
+    }
+    .mobile {
+        display: block;
     }
 }

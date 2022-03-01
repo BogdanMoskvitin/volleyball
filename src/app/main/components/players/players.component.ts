@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
     selector: 'players-service-page',
@@ -9,23 +11,31 @@ import { environment } from 'src/environments/environment';
     styleUrls: ['./players.component.scss'],
 })
 
-export class PlayersComponent implements OnInit {
+export class PlayersComponent implements OnInit, OnDestroy {
 
     id: number;
     url: string = environment.apiUrl;
     players;
     team;
     count;
+    aSub: Subscription;
+    aAuth: boolean;
 
     constructor(
         private http: HttpClient, 
         private activateRoute: ActivatedRoute,
-        private router: Router) {
+        private router: Router,
+        private authService: AuthService) {
         this.id = this.activateRoute.snapshot.params['id'];
     }
     
     ngOnInit() {
-        this.http.get(this.url + `teams/${this.id}/`)
+        if(this.authService.getToken() == null) {
+            this.aAuth = false;
+        } else {
+            this.aAuth = true;
+        }
+        this.aSub = this.http.get(this.url + `teams/all/${this.id}/`)
             .subscribe((res) => {
                 this.team = res;
                 if(this.team.players_count == 0) {
@@ -38,5 +48,9 @@ export class PlayersComponent implements OnInit {
 
     back(){
         this.router.navigateByUrl('main/header/teams');
+    }
+
+    ngOnDestroy(){
+        this.aSub.unsubscribe();
     }
 }

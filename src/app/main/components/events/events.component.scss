@@ -4,7 +4,7 @@ $blue: #007EA7;
 $dark: #121218;
 $lightdark: #1C1C24;
 .container {
-    width: 600px;
+    width: 1200px;
     border-radius: 5px;
     padding: 20px 30px;
     margin: 100px auto 0 auto;
@@ -76,18 +76,25 @@ td {
     min-height: 110px;
     padding: 10px;
 }
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
 .text {
     font-size: 16px;
     color: $light;
     padding: 3px 0;
 }
-@media(max-width: 700px) {
+@media(max-width: 1350px) {
     .container {
-        width: 290px;
+        width: 300px;
         padding: 20px 0;
     }
     .empty {
         display: none;
+    }
+    .title {
+        font-size: 20px;
     }
     .btn {
         display: none;

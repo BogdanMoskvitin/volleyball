@@ -1,5 +1,11 @@
 <div class="container">
-    <p class="title">Список команд</p>
+    <div class="head">
+        <div class="empty"></div>
+        <p class="title">Список команд</p>
+        <button *ngIf="aAuth" mat-raised-button class="btn" [routerLink]="['../add-team']">Добавить команду</button>
+        <mat-icon *ngIf="aAuth" class="add" aria-hidden="false" aria-label="Example add icon" [routerLink]="['../add-team']">add</mat-icon>
+        <div *ngIf="!aAuth" class="empty"></div>
+    </div>
     <table>
         <tr class="tr__head">
             <td>Полное название</td>
@@ -12,5 +18,10 @@
             <td [routerLink]="['../players', team.id]">{{team.players_count}}</td>
         </tr>
     </table>
-    <button class="btn" [routerLink]="['../add-team']">Добавить команду</button>
+    <div class="mobile">
+        <div *ngFor="let team of teams?.results" [routerLink]="['../players', team.id]" class="cell">
+            <p class="text">{{team.full_name}}</p>
+            <p class="text">Кол-во игроков: {{team.players_count}}</p>
+        </div>
+    </div>
 </div>

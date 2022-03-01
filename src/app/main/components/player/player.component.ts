@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'player-service-page',
@@ -10,11 +11,12 @@ import { environment } from 'src/environments/environment';
     styleUrls: ['./player.component.scss'],
 })
 
-export class PlayerComponent implements OnInit {
+export class PlayerComponent implements OnInit, OnDestroy {
 
     id: number;
     url: string = environment.apiUrl;
     player;
+    aSub: Subscription;
 
     constructor(
         private http: HttpClient, 
@@ -24,7 +26,7 @@ export class PlayerComponent implements OnInit {
     }
     
     ngOnInit() {
-        this.http.get(this.url + `players/${this.id}/`)
+        this.aSub = this.http.get(this.url + `players/all/${this.id}/`)
             .subscribe((res) => {
                 this.player = res;
         });
@@ -32,5 +34,9 @@ export class PlayerComponent implements OnInit {
 
     back(){
         this.location.back();
+    }
+
+    ngOnDestroy(){
+        this.aSub.unsubscribe();
     }
 }

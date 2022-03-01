@@ -1,12 +1,43 @@
 <ng-sidebar-container style="overflow: hidden;">
     <ng-sidebar [opened]="opened" position="top">
         <ul class="burger__ul">
-            <li (click)='toggleSidebar()' class="burger__li"><a [routerLink]="['./home']" class="burger__a">Главная</a></li>
-            <li (click)='toggleSidebar()' class="burger__li"><a [routerLink]="['./teams']" class="burger__a">Команды</a></li>
-            <li (click)='toggleSidebar()' class="burger__li"><a [routerLink]="['./locations']" class="burger__a">Места</a></li>
-            <li (click)='toggleSidebar()' class="burger__li"><a [routerLink]="['./history']" class="burger__a">История</a></li>
-            <li (click)='toggleSidebar()' class="burger__li"><a [routerLink]="['./about-us']" class="burger__a">О нас</a></li>
-            <li (click)='toggleSidebar()' class="burger__li"><a [routerLink]="['./user']" class="burger__a">Профиль</a></li>
+            <div class="flex">
+                <div *ngIf="aAuth" class="burger__user" (click)='toggleSidebar()' [routerLink]="['./user']">
+                    <div class="burger__avatar"></div>
+                    <p>{{mydata.first_name}} {{mydata.last_name}}</p>
+                </div>
+                <div *ngIf="!aAuth" class="burger__user">
+                    <div class="burger__avatar"></div>
+                    <p>{{mydata.first_name}} {{mydata.last_name}}</p>
+                </div>
+                <mat-icon class="burger__logout" aria-hidden="false" aria-label="Example logout icon" (click)="logout($event)">logout</mat-icon>
+            </div>
+    
+            <div class="line"></div>
+            <li (click)='toggleSidebar()' class="burger__li">
+                <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+                <a [routerLink]="['./home']" class="burger__a">Главная</a>
+            </li>
+            <li (click)='toggleSidebar()' class="burger__li">
+                <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">events</mat-icon>
+                <a [routerLink]="['./events']" class="burger__a">События</a>
+            </li>
+            <li (click)='toggleSidebar()' class="burger__li">
+                <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">groups</mat-icon>
+                <a [routerLink]="['./teams']" class="burger__a">Команды</a>
+            </li>
+            <li (click)='toggleSidebar()' class="burger__li">
+                <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">place</mat-icon>
+                <a [routerLink]="['./locations']" class="burger__a">Места</a>
+            </li>
+            <li (click)='toggleSidebar()' class="burger__li">
+                <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">history</mat-icon>
+                <a [routerLink]="['./history']" class="burger__a">История</a>
+            </li>
+            <li (click)='toggleSidebar()' class="burger__li">
+                <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">sentiment_very_satisfied</mat-icon>
+                <a [routerLink]="['./about-us']" class="burger__a">О нас</a>
+            </li>
         </ul>
         </ng-sidebar>
 
@@ -19,10 +50,11 @@
         </button>
 
         <div class="header">
-            <div class="logo"></div>
+            <div [routerLink]="['./home']" class="logo"></div>
         
             <div>
                 <a routerLinkActive="active" class="link" [routerLink]="['./home']">Главная</a>
+                <a routerLinkActive="active" class="link" [routerLink]="['./events']">События</a>
                 <a routerLinkActive="active" class="link" [routerLink]="['./teams']">Команды</a>
                 <a routerLinkActive="active" class="link" [routerLink]="['./locations']">Места</a>
                 <a routerLinkActive="active" class="link" [routerLink]="['./history']">История</a>
@@ -30,14 +62,16 @@
             </div>
         
             <div class="box">
-                <a [routerLink]="['./user']"><div class="avatar"></div></a>
+                <p class="version">Free Team Games 1.1</p>
+                <a [routerLink]="['./user']" *ngIf="aAuth"><div class="avatar"></div></a>
+                <p class="phone" *ngIf="aAuth" [routerLink]="['./user']">{{mydata.phone_number}}</p>
+                <button class="login" mat-stroked-button *ngIf="!aAuth" [routerLink]="['../../auth']">Войти</button>
+                <mat-icon class="logout" aria-hidden="false" aria-label="Example logout icon" (click)="logout($event)" *ngIf="aAuth">logout</mat-icon>
             </div>
         </div>
-
       
         <div class="router-outlet">
             <router-outlet></router-outlet>
         </div>
-
     </div>
 </ng-sidebar-container>

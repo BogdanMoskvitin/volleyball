@@ -21,6 +21,7 @@
     "@angular/router": "~12.2.0",
     "angular-animations": "^0.11.0",
     "ng-sidebar": "^9.4.3",
+    "ngx-toastr": "^14.2.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

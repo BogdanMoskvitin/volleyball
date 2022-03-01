@@ -1,18 +1,44 @@
-<button class="btn" style="width: 228px;" (click)="back()">назад</button>
 <div class="container">
-    <p class="subtitle">Полное название команды: {{team?.full_name}}</p>
-    <p class="subtitle">Сокращенное название команды: {{team?.short_name}}</p>
-    <p class="subtitle" style="margin-bottom: 10px;">Количество игроков: {{count}}</p>
-    <p class="title">Список игроков</p>
+    <p class="subtitle">{{team?.full_name}}</p>
+    <div class="flex name">
+        <p class="text__title">Полное название команды: </p>
+        <p class="text__data">{{team?.full_name}}</p>
+    </div>
+    <div class="flex name">
+        <p class="text__title">Сокращенное название команды: </p>
+        <p class="text__data">{{team?.short_name}}</p>
+    </div>
+    <div class="flex">
+        <p class="text__title">Количество игроков: </p>
+        <p class="text__data" style="color: #089F5F;">{{count}}</p>
+    </div>
+    <div class="flex">
+        <p class="text__title">Описание команды: </p>
+        <p class="text__data">{{team?.description}}</p>
+    </div>
+    <p class="title">Состав команды:</p>
     <table>
         <tr class="tr__head">
             <td>Номер</td>
             <td>Имя</td>
+            <td>Подтвержден</td>
         </tr>
         <tr class="tr" *ngFor="let player of team?.players">
             <td [routerLink]="['./player', player.id]">{{player?.number}}</td>
             <td [routerLink]="['./player', player.id]">{{player?.user.full_name}}</td>
+            <td [routerLink]="['./player', player.id]">
+                <mat-icon style="color: #089F5F;" aria-hidden="false" aria-label="Example logout icon" *ngIf="player?.confirmed">done</mat-icon>
+                <mat-icon style="color: #9f0808;" aria-hidden="false" aria-label="Example logout icon" *ngIf="!player?.confirmed">close</mat-icon>
+            </td>
         </tr>
     </table>
-    <button class="btn" [routerLink]="['./add-player', id]">Вступить в команду</button>
+    <div class="mobile">
+        <div *ngFor="let player of team?.players" [routerLink]="['./player', player.id]" class="cell">
+            <p class="text">{{player?.number}} {{player?.user.full_name}}
+                <mat-icon style="color: #089F5F;" aria-hidden="false" aria-label="Example logout icon" *ngIf="player?.confirmed">done</mat-icon>
+                <mat-icon style="color: #9f0808;" aria-hidden="false" aria-label="Example logout icon" *ngIf="!player?.confirmed">close</mat-icon>
+            </p>
+        </div>
+    </div>
+    <button *ngIf="aAuth" class="btn" [routerLink]="['./add-player', id]">Заявка на вступление в команду</button>
 </div>

@@ -1,9 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'add-event-service-page',
@@ -11,55 +13,87 @@ import { environment } from 'src/environments/environment';
     styleUrls: ['./add-event.component.scss'],
 })
 
-export class AddEventComponent implements OnInit {
+export class AddEventComponent implements OnInit, OnDestroy {
 
     addEventForm: FormGroup;
     events;
     locations;
     url:string = environment.apiUrl;
+    sports;
+    types;
+    newEvent = {};
+    aSub2: Subscription;
+    aSub3: Subscription;
+    aSub4: Subscription;
+    aSub5: Subscription;
 
     constructor(
         private http: HttpClient, 
         private datePipe: DatePipe, 
-        private router: Router) {
+        private router: Router,
+        private toastr: ToastrService) {
         this.addEventForm = new FormGroup({
+            sport: new FormControl('', Validators.required),
+            type: new FormControl('', Validators.required),
             date: new FormControl('', Validators.required),
-            time: new FormControl('', Validators.required),
+            time_start: new FormControl('', Validators.required),
+            time_end: new FormControl('', Validators.required),
             location: new FormControl('', Validators.required),
             price: new FormControl('', [Validators.required, Validators.pattern("^[0-9]+$")])
         });
     }
 
     ngOnInit() {
-        this.getEvents();
         this.getLocations();
-    }
-
-    getEvents() {
-        return this.http.get(this.url + 'events/')
-            .subscribe((res) => {
-                this.events = res;
-        });
-    }
-
-    newEvent = {};
-
-    sendService(){
-        this.newEvent = {
-            time_start: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time),
-            location: this.addEventForm.value.location,
-            price: this.addEventForm.value.price
-        }
-        return this.http.post(this.url + 'events/', this.newEvent)
-            .subscribe((res) => {
-                this.router.navigateByUrl('main/header/home');
-        });
+        this.getSports();
+        this.getTypes();
     }
 
     getLocations() {
-        return this.http.get(this.url + 'locations/')
+        this.aSub2 = this.http.get(this.url + 'locations/all/')
             .subscribe((res) => {
                 this.locations = res;
         });
+    }
+
+    getSports() {
+        this.aSub3 = this.http.get(this.url + 'sports/all/')
+            .subscribe((res) => {
+                this.sports = res;
+        });
+    }
+    getTypes() {
+        this.aSub4 = this.http.get(this.url + 'events/types/')
+            .subscribe((res) => {
+                this.types = res;
+        });
+    }
+
+    sendService(){
+        this.newEvent = {
+            sport: this.addEventForm.value.sport,
+            type: this.addEventForm.value.type,
+            time_start: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time_start),
+            time_end: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time_end),
+            location: this.addEventForm.value.location,
+            price: this.addEventForm.value.price,
+        }
+        this.aSub5 = this.http.post(this.url + 'events/all/', this.newEvent).subscribe(
+            (res) => {
+                this.toastr.success('Событие создано!');
+                this.router.navigateByUrl('main/header/home');
+            },
+            error => {
+                this.toastr.error(error.error.time_start);
+            });
+    }
+
+    ngOnDestroy(){
+        this.aSub2.unsubscribe();
+        this.aSub3.unsubscribe();
+        this.aSub4.unsubscribe();
+        if(this.aSub5) {
+            this.aSub5.unsubscribe();
+        }
     }
 }
