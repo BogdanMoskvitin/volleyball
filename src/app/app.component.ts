@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './auth/services/auth.service';
 import { MyData } from './my-data.service';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-root',
@@ -18,15 +19,16 @@ export class AppComponent implements OnInit {
     private auth: AuthService, 
     private router: Router, 
     private http: HttpClient,
-    private myData: MyData
+    private myData: MyData,
+    private toastr: ToastrService
     ) {}
 
   ngOnInit() {
-      const potentialToken = localStorage.getItem('auth-token')
-      if(potentialToken !== null) {
-        this.auth.setToken(potentialToken);
-        this.getEvents();
-      }
+    const potentialToken = localStorage.getItem('auth-token')
+    if(potentialToken !== null) {
+      this.auth.setToken(potentialToken);
+      this.getEvents();
+    }
   }
 
   logout(event: Event){
@@ -36,9 +38,17 @@ export class AppComponent implements OnInit {
   }
 
   getEvents() {
-      return this.http.get(this.url + 'me/')
-          .subscribe((res) => {
-            this.myData.changeData(res);
-      });
+    return this.http.get(this.url + 'me/')
+      .subscribe(
+        (res) => {
+          this.myData.changeData(res);
+        }, error => {
+          if(error.status == 401) {
+            this.router.navigate(['/auth']).then(() => {
+              this.toastr.warning('Пожалуйста войдите в систему заново')
+            })
+          }
+        }
+      );
   }
 }
