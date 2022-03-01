@@ -18,7 +18,7 @@ jobs:
         password: ${{ secrets.SSH_PASSWORD }}
         script: |
           # Выполняет деплой
-          cd /var/www/front/
+          cd /var/www/front-dev/
           git pull
           npm i
           ng build
