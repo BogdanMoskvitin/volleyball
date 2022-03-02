@@ -43,7 +43,13 @@ export class UserChangeComponent implements OnInit, OnDestroy {
     }
 
     sendService(){
-        this.aSub2 = this.http.patch(this.url + `auth/users/${this.id}/`, this.changeForm.value).subscribe(
+        let newchangeForm = {
+            first_name: this.changeForm.value.first_name,
+            last_name: this.changeForm.value.last_name,
+            email: this.changeForm.value.email,
+            phone_number: '+7' + this.changeForm.value.phone_number,
+        }
+        this.aSub2 = this.http.patch(this.url + `auth/users/${this.id}/`, newchangeForm).subscribe(
             (res) => {
                 this.toastr.success('Данные изменены!');
                 window.location.reload();
