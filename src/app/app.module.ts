@@ -12,6 +12,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { ToastrModule } from 'ngx-toastr';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MatFormFieldModule,
     MatButtonModule,
     ToastrModule.forRoot(),
+    NgxMaskModule.forRoot(),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
