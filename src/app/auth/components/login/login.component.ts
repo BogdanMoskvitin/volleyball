@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         private toastr: ToastrService
     ) {
         this.authForm = new FormGroup({
-            phone_number: new FormControl('', [Validators.required]),
+            phone_number: new FormControl('+7', [Validators.required]),
             password: new FormControl('', [Validators.required]),
         });
     }
