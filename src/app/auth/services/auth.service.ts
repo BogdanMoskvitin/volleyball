@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { User } from "../models/auth.model";
+import { Login, Register } from "../models/auth.model";
 import { tap } from 'rxjs/operators';
 import { environment } from "src/environments/environment";
 
@@ -15,11 +15,11 @@ export class AuthService {
 
     constructor(private http: HttpClient){}
 
-    registration(user: User): Observable<User>{
-        return this.http.post<User>(this.url + 'auth/users/', user);
+    registration(user: Register): Observable<Register>{
+        return this.http.post<Register>(this.url + 'auth/users/', user);
     }
 
-    login(user: User): Observable<{access: string}> {
+    login(user: Login): Observable<{access: string}> {
         return this.http.post<{access: string}>(this.url + 'token/jwt/create/', user)
             .pipe(
                 tap(

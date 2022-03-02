@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         private toastr: ToastrService
     ) {
         this.authForm = new FormGroup({
-            phone_number: new FormControl('+7', [Validators.required]),
+            phone_number: new FormControl('', [Validators.required]),
             password: new FormControl('', [Validators.required]),
         });
     }
@@ -41,7 +41,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     sendService(){
         this.authForm.disable()
 
-        this.aSub2 = this.authService.login(this.authForm.value).subscribe(
+        let newForm = {
+            phone_number: '+7' + this.authForm.value.phone_number,
+            password: this.authForm.value.password
+        }
+
+        this.aSub2 = this.authService.login(newForm).subscribe(
             (res) => {
                 this.router.navigate(['/main']).then(() => {
                     window.location.reload();

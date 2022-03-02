@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MaterialService } from 'src/app/classes/material.service';
 import { AuthService } from '../../services/auth.service';
-import { User } from '../../models/auth.model';
+import { Register } from '../../models/auth.model';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     regForm : FormGroup;
     aSub: Subscription;
     checkPassword = false;
-    form: User = { } as User;
+    form: Register = { } as Register;
     hide = true;
     hide2 = true;
 
@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         this.form.first_name = this.regForm.value.first_name;
         this.form.last_name = this.regForm.value.last_name;
         this.form.email = this.regForm.value.email;
-        this.form.phone_number = this.regForm.value.phone_number;
+        this.form.phone_number = '+7' + this.regForm.value.phone_number;
         this.form.password = this.regForm.value.password;
     }
 
