@@ -24,6 +24,17 @@ $lightdark: #1C1C24;
     font-style: italic;
     user-select: none;
 }
+.insta_icon {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    width: 160px;
+    img{filter: invert(97%) sepia(14%) saturate(663%) hue-rotate(175deg) brightness(102%) contrast(94%);}
+}
+.insta_box:hover {
+    img{filter: invert(32%) sepia(26%) saturate(4482%) hue-rotate(168deg) brightness(96%) contrast(107%);}
+    p{color: $blue;}
+}
 .box__cell {
     display: flex;
     flex-wrap: wrap;
