@@ -56,7 +56,7 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
 
     sendService(){
         let newPassword = {password: this.changeForm.value.password};
-        this.aSub2 = this.http.patch(this.url + `auth/users/${this.id}`, newPassword).subscribe(
+        this.aSub2 = this.http.patch(this.url + `auth/users/${this.id}/`, newPassword).subscribe(
             (res) => {
                 this.toastr.success('Пароль изменен!');
                 window.location.reload();
