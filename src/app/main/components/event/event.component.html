@@ -100,10 +100,10 @@
             <br>
             <div>
                 <p class="subtitle">Участники события</p>
-                <div *ngFor="let ev of event?.surveys.true">
+                <div *ngFor="let ev of event?.participants.confirmed">
                     <p class="surveys__title">
                         <mat-icon style="color: #089F5F;" aria-hidden="false" aria-label="Example logout icon">done</mat-icon>
-                        {{ev.user.full_name}}
+                        {{ev.player.user.full_name}}
                     </p>
                 </div>
             </div>
