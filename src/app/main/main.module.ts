@@ -26,6 +26,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SidebarModule } from 'ng-sidebar';
 import { MatButtonModule } from '@angular/material/button';
 import { EventsComponent } from './components/events/events.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { EventsComponent } from './components/events/events.component';
     MatIconModule,
     SidebarModule,
     MatButtonModule,
+    MatMenuModule,
     RouterModule.forChild([
       {
         path: '',

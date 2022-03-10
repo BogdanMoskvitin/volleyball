@@ -51,12 +51,15 @@
                                     cdkAutosizeMaxRows="5"
                                     formControlName="comment"
                                     style="color: #EEF5F8;"
+                                    [(ngModel)]="text.comment"
                                     ></textarea>
                     </mat-form-field>
-                    <button class="icon__send" [disabled]="addCommentForm.invalid">
+                    <button *ngIf="!isSend" class="icon__send" [disabled]="addCommentForm.invalid">
                         <mat-icon style="color: #EEF5F8; margin-left: 20px;" aria-hidden="false" aria-label="Example send icon">send</mat-icon>
                     </button>
-                    <button class="btn__send" mat-raised-button>Отправить</button>
+                    <button *ngIf="isSend" class="icon__send" type="button" (click)="sendChangeCommit()">
+                        <mat-icon style="color: #EEF5F8; margin-left: 20px;" aria-hidden="false" aria-label="Example send icon">done</mat-icon>
+                    </button>
                 </form>
                 <p class="title__comment" (click)="openComment()">
                     <span *ngIf="!commentWindow">Открыть комментарии </span>
@@ -65,10 +68,10 @@
                     <mat-icon *ngIf="commentWindow" style="color: #EEF5F8; margin-left: 10px;" aria-hidden="false" aria-label="Example send icon">expand_less</mat-icon>
                 </p>
                 <div *ngIf="commentWindow">
-                    <div *ngFor="let c of event?.comments">
-                        <div class="box__comment">
-                            <span class="user__comment" style="user-select: none;">{{c.user.full_name}}</span>
-                            <p class="text__comment">{{c.comment}} <span style="user-select: none;" class="time__comment">{{c.time | date: 'HH:mm'}}</span></p>
+                    <div *ngFor="let comment of comments?.results">
+                        <div class="box__comment" [matMenuTriggerFor]="menu" (click)="openMenu(comment)">
+                            <span class="user__comment" style="user-select: none;">{{comment.user.full_name}}</span>
+                            <p class="text__comment">{{comment.comment}} <span style="user-select: none;" class="time__comment">{{comment.created_at | date: 'HH:mm'}}</span></p>
                         </div>
                     </div>
                 </div>
@@ -110,3 +113,8 @@
         </div>
     </div>
 </div>
+
+<mat-menu #menu="matMenu">
+    <button mat-raised-button style="width: 100%;" (click)="deleteCommit()">Удалить сообщение</button>
+    <button mat-raised-button style="width: 100%;" (click)="changeCommit()">Редактировать сообщение</button>
+</mat-menu>

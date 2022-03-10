@@ -1,10 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { MyData } from 'src/app/my-data.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatMenuTrigger } from '@angular/material/menu';
 
+interface Comment {
+    comment: string;
+    id: number;
+}
+ 
 @Component({
     selector: 'event-service-page',
     templateUrl: './event.component.html',
@@ -12,6 +18,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 
 export class EventComponent implements OnInit {
+
+    @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
     url: string = environment.apiUrl;
     idEvent: number;
@@ -25,11 +33,15 @@ export class EventComponent implements OnInit {
     idObject;
     object;
     commentWindow = false;
+    comments;
+    comment: Comment;
+    text = {comment: ''};
+    isSend;
 
     constructor(
         private http: HttpClient, 
         private activatedRoute: ActivatedRoute,
-        private myData: MyData,
+        private myData: MyData
     ) {
         this.idEvent = this.activatedRoute.snapshot.params['id'];
         this.addCommentForm = new FormGroup({
@@ -43,21 +55,64 @@ export class EventComponent implements OnInit {
     ngOnInit(): void {
         this.getUser();
         this.getEvent();
-        
+        this.getComments();
+    }
+
+    openMenu(comment){
+        console.log(this.user);
+        console.log(comment);
+        if(comment.user.id == this.user.id){
+            this.trigger.openMenu();
+            this.comment = comment;
+        } else {
+            this.trigger.closeMenu();
+        }
+    }
+
+    getComments(){
+        this.http.get(this.url + `events/all/${this.idEvent}/comments/`).subscribe(res => {
+            this.comments = res;
+        })
+    }
+
+    changeCommit(){
+        this.text.comment = this.comment.comment;
+        this.isSend = !this.isSend;
+    }
+
+    sendChangeCommit(){
+        this.http.patch(this.url + `events/all/${this.idEvent}/comments/${this.comment.id}/`, this.text).subscribe(res => {
+            console.log(res);
+            this.isSend = !this.isSend;
+            this.text.comment = '';
+            this.getComments();
+        })
+    }
+
+    deleteCommit(){
+        this.http.delete(this.url + `events/all/${this.idEvent}/comments/${this.comment.id}/`).subscribe(res => {
+            console.log(res);
+            this.getComments();
+        })
     }
 
     getUser(){
         this.myData.currentData.subscribe(res => {
             this.user = res;
-            this.getSurveys();
-            this.getObject();
+            if(this.user.id != undefined){
+                this.getSurveys();
+                this.getObject();
+            }
+            
         })
     }
 
     getObject(){
         this.http.get(this.url + `events/all/${this.idEvent}/surveys/?user=${this.user.id}`).subscribe(res => {
             this.object = res;
-            this.idObject = this.object.results[0].id;
+            if(this.object.results.length != 0){
+                this.idObject = this.object.results[0].id;
+            }
         })
     }
 
@@ -71,7 +126,7 @@ export class EventComponent implements OnInit {
     sendComment(){
         this.http.post(this.url + `events/all/${this.idEvent}/comments/`, {comment: this.addCommentForm.value.comment})
         .subscribe(res => {
-            this.getEvent();
+            this.getComments();
         })
         this.addCommentForm.reset();
     }
@@ -114,7 +169,9 @@ export class EventComponent implements OnInit {
         this.http.get(this.url + `events/all/${this.idEvent}/surveys/?user=${this.user.id}`)
         .subscribe(res => {
             this.surveys = res;
-            this.answer = this.surveys.results[0].answer;
+            if(this.surveys.results.length != 0){
+                this.answer = this.surveys.results[0].answer;
+            } 
         })
     }
 
