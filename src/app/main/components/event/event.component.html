@@ -35,14 +35,15 @@
                     <p class="text__title">Цена за человека: </p>
                     <p class="text__data" style="color: #089F5F;">{{event?.stats.price_per_player}}&#8381;</p>
                 </div>
-                <p class="text__data">Комментарий к событию: </p>
+                <p class="text__title">Комментарий к событию: </p>
                 <p class="text__data">{{event?.comment}}</p>
             </div>
     
             <div>
                 <p class="subtitle">Комментарии</p>
-                <form [formGroup]="addCommentForm" (ngSubmit)="sendComment()">
-                    <mat-form-field appearance="fill" style="width: 290px;">
+                <p *ngIf="!isAuth" style="color: #788CA0; user-select: none; margin-bottom: 10px;">Чтобы написать комментарий, войдите в систему</p>
+                <form *ngIf="isAuth" [formGroup]="addCommentForm" (ngSubmit)="sendComment()">
+                    <mat-form-field appearance="fill" class="textarea">
                         <mat-label>Введите текст</mat-label>
                         <textarea matInput
                                     cdkTextareaAutosize
@@ -60,6 +61,8 @@
                     <button *ngIf="isSend" class="icon__send" type="button" (click)="sendChangeCommit()">
                         <mat-icon style="color: #EEF5F8; margin-left: 20px;" aria-hidden="false" aria-label="Example send icon">done</mat-icon>
                     </button>
+                    <button *ngIf="!isSend" class="btn__send" mat-raised-button>Отправить</button>
+                    <button *ngIf="isSend" class="btn__send" type="button" (click)="sendChangeCommit()" mat-raised-button>Сохранить</button>
                 </form>
                 <p class="title__comment" (click)="openComment()">
                     <span *ngIf="!commentWindow">Открыть комментарии </span>
@@ -78,7 +81,8 @@
             </div>
         </div>
         <div class="box__surveys">
-            <div class="box__btns">
+            <p *ngIf="!isAuth" style="color: #788CA0; user-select: none; margin-bottom: 10px;">Чтобы проголосовать, войдите в систему</p>
+            <div class="box__btns" *ngIf="isAuth">
                 <button class="btn" style="background: #089F5F; margin-right: 10px;" *ngIf="answer == null" mat-raised-button (click)="sendTruePost()">Приду</button>
                 <button class="btn" style="background: #9f0808;" *ngIf="answer == null" mat-raised-button (click)="sendFalsePost()">Не приду</button>
 

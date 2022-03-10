@@ -28,12 +28,14 @@ $lightdark: #1C1C24;
     justify-content: space-between;
 }
 .text__title {
+    width: 200px;
     font-size: 16px;
     color: $grey;
     padding: 5px 5px 5px 0;
     user-select: none;
 }
 .text__data {
+    width: 230px;
     font-size: 16px;
     color: $light;
     padding: 5px 0;
@@ -102,10 +104,19 @@ $lightdark: #1C1C24;
     align-items: center;
     user-select: none;
 }
-@media(max-width: 700px) {
+.textarea {
+    width: 290px;
+}
+@media(max-width: 900px) {
     .container {
         width: 300px;
         padding: 20px 0;
+    }
+    .text__title {
+        width: auto;
+    }
+    .text__data {
+        width: auto;
     }
     .icon__send {
         display: none;

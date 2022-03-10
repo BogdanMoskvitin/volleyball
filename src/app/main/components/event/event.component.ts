@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MyData } from 'src/app/my-data.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material/menu';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 interface Comment {
     comment: string;
@@ -37,11 +38,13 @@ export class EventComponent implements OnInit {
     comment: Comment;
     text = {comment: ''};
     isSend;
+    isAuth: boolean;
 
     constructor(
         private http: HttpClient, 
         private activatedRoute: ActivatedRoute,
-        private myData: MyData
+        private myData: MyData,
+        private authService: AuthService
     ) {
         this.idEvent = this.activatedRoute.snapshot.params['id'];
         this.addCommentForm = new FormGroup({
@@ -53,14 +56,17 @@ export class EventComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        if(this.authService.getToken() == null) {
+            this.isAuth = false;
+        } else {
+            this.isAuth = true;
+        }
         this.getUser();
         this.getEvent();
         this.getComments();
     }
 
     openMenu(comment){
-        console.log(this.user);
-        console.log(comment);
         if(comment.user.id == this.user.id){
             this.trigger.openMenu();
             this.comment = comment;
@@ -82,7 +88,6 @@ export class EventComponent implements OnInit {
 
     sendChangeCommit(){
         this.http.patch(this.url + `events/all/${this.idEvent}/comments/${this.comment.id}/`, this.text).subscribe(res => {
-            console.log(res);
             this.isSend = !this.isSend;
             this.text.comment = '';
             this.getComments();
@@ -91,7 +96,6 @@ export class EventComponent implements OnInit {
 
     deleteCommit(){
         this.http.delete(this.url + `events/all/${this.idEvent}/comments/${this.comment.id}/`).subscribe(res => {
-            console.log(res);
             this.getComments();
         })
     }
