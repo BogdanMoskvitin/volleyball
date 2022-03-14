@@ -51,9 +51,8 @@
                 <input matInput formControlName="price">
             </mat-form-field>
 
-            <div>
-                <button mat-raised-button class="btn" [disabled]="addEventForm.invalid">Добавить событие</button>
-            </div>
+            <button mat-raised-button class="btn" type="button" (click)="openDialog()">Добавить гостей</button>
+            <button mat-raised-button class="btn" [disabled]="addEventForm.invalid">Добавить событие</button>
         </div>
     </form>
 </div>

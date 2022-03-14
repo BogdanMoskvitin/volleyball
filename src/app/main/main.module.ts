@@ -27,6 +27,10 @@ import { SidebarModule } from 'ng-sidebar';
 import { MatButtonModule } from '@angular/material/button';
 import { EventsComponent } from './components/events/events.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogContentExampleDialog } from './components/add-event/add-event.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,8 @@ import { MatMenuModule } from '@angular/material/menu';
     UserChangeComponent,
     ChangePasswordComponent,
     EventsComponent,
-    LocationComponent
+    LocationComponent,
+    DialogContentExampleDialog
   ],
   exports: [
     
@@ -63,6 +68,9 @@ import { MatMenuModule } from '@angular/material/menu';
     SidebarModule,
     MatButtonModule,
     MatMenuModule,
+    MatDialogModule,
+    MatAutocompleteModule,
+    NgxMaskModule,
     RouterModule.forChild([
       {
         path: '',
