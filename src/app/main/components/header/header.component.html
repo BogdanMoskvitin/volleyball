@@ -4,7 +4,7 @@
             <div class="flex">
                 <div *ngIf="aAuth" class="burger__user" (click)='toggleSidebar()' [routerLink]="['./user']">
                     <div class="burger__avatar"></div>
-                    <p>{{mydata.first_name}} {{mydata.last_name}}</p>
+                    <p class="burger__text">{{mydata.first_name}} {{mydata.last_name}}</p>
                 </div>
                 <div *ngIf="!aAuth" class="burger__user">
                     <div class="burger__avatar"></div>

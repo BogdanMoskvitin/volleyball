@@ -22,7 +22,7 @@
 
             <mat-form-field color="accent" appearance="fill" style="width: 280px;">
                 <mat-label>Дата</mat-label>
-                <input formControlName="date" matInput [matDatepicker]="picker2">
+                <input formControlName="date" matInput [matDatepicker]="picker2" [matDatepickerFilter]="myFilter">
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2 color="primary"></mat-datepicker>
             </mat-form-field>

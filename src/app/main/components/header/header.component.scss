@@ -12,7 +12,7 @@ ng-sidebar-container {
     height: 100%;
 }
 .burger__ul {
-    margin: 80px 30px 0 30px; 
+    margin: 100px 30px 0 30px; 
     list-style: none;
 }
 .flex {
@@ -30,6 +30,9 @@ ng-sidebar-container {
     border-radius: 50%;
     background-color: $blue;
     margin: 10px 10px 10px 0;
+}
+.burger__text {
+    color: $light;
 }
 .burger__logout {
     color: $light;
@@ -171,9 +174,9 @@ ng-sidebar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    padding: 10px 20px;
     background: $dark;
-    margin: 0 20px;
+    z-index: 100;
 }
 .logo {
     margin-top: 10px;
@@ -275,7 +278,7 @@ ng-sidebar-container {
         right: 20px;
     }
     .header {
-        margin: 0 10px;
+        padding: 10px 10px;
     }
     .logo {
         width: 100px;

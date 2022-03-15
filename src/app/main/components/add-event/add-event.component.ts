@@ -23,6 +23,12 @@ export class AddEventComponent implements OnInit, OnDestroy {
 
     @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
+    myFilter = (d: Date | null): boolean => {
+        const date = (d || new Date()).getDate();
+        const now = new Date().getDate();
+        return date >= now;
+    };
+
     addEventForm: FormGroup;
     events;
     locations;
