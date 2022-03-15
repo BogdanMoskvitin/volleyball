@@ -31,6 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogContentExampleDialog } from './components/add-event/add-event.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { NgxMaskModule } from 'ngx-mask';
+import { GuestService } from './services/guest.service';
 
 @NgModule({
   declarations: [
@@ -105,7 +106,7 @@ import { NgxMaskModule } from 'ngx-mask';
       },
     ])
   ],
-  providers: [DatePipe]
+  providers: [DatePipe, GuestService]
 })
 export class MainModule {
 }

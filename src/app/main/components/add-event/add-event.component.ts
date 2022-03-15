@@ -10,6 +10,8 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { Guest } from '../../models/event.model';
+import { GuestService } from '../../services/guest.service';
 
 @Component({
     selector: 'add-event-service-page',
@@ -32,13 +34,15 @@ export class AddEventComponent implements OnInit, OnDestroy {
     aSub3: Subscription;
     aSub4: Subscription;
     aSub5: Subscription;
+    guests;
 
     constructor(
         private http: HttpClient, 
         private datePipe: DatePipe, 
         private router: Router,
         private toastr: ToastrService,
-        public dialog: MatDialog
+        public dialog: MatDialog,
+        public guestService: GuestService
         ) {
         this.addEventForm = new FormGroup({
             sport: new FormControl('', Validators.required),
@@ -86,22 +90,35 @@ export class AddEventComponent implements OnInit, OnDestroy {
     }
 
     sendService(){
-        this.newEvent = {
-            sport: this.addEventForm.value.sport,
-            type: this.addEventForm.value.type,
-            time_start: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time_start),
-            time_end: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time_end),
-            location: this.addEventForm.value.location,
-            price: this.addEventForm.value.price,
-        }
-        this.aSub5 = this.http.post(this.url + 'events/all/', this.newEvent).subscribe(
+        this.guestService.currentGuests.subscribe((res) => {
+            this.guests = res;
+
+            let guestsId = []
+
+            this.guests.forEach(guest => {
+                guestsId.push(guest.id);
+            });
+        
+            this.newEvent = {
+                sport: this.addEventForm.value.sport,
+                type: this.addEventForm.value.type,
+                time_start: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time_start),
+                time_end: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time_end),
+                location: this.addEventForm.value.location,
+                price: this.addEventForm.value.price,
+                guests: guestsId
+            }
+        })
+        this.aSub5 = this.http.post(this.url + 'events/all/', this.newEvent)
+        .subscribe(
             (res) => {
                 this.toastr.success('Событие создано!');
                 this.router.navigateByUrl('main/header/home');
             },
             error => {
                 this.toastr.error(error.error.time_start);
-            });
+            }
+        );
     }
 
     ngOnDestroy(){
@@ -112,13 +129,6 @@ export class AddEventComponent implements OnInit, OnDestroy {
             this.aSub5.unsubscribe();
         }
     }
-}
-
-export interface Guest {
-    name?: string;
-    id?: number;
-    phone?: string;
-    email?: string;
 }
 
 @Component({
@@ -136,18 +146,26 @@ export class DialogContentExampleDialog implements OnInit {
     filteredOptions: Observable<Guest[]>;
     guest: Guest;
     form: Guest = { } as Guest;
+    baseGuests: Guest[] = [];
+    guestsData;
 
-    constructor(private http: HttpClient){
+    constructor(
+        private http: HttpClient,
+        public guestService: GuestService
+        ){
         this.createGuestForm = new FormGroup({
             id: new FormControl(''),
             name: new FormControl('', Validators.required),
-            phone: new FormControl('+7', Validators.required),
-            email: new FormControl('', Validators.required),
+            phone: new FormControl(''),
+            email: new FormControl(''),
         })
     }
 
     ngOnInit() {
         this.getGuests();
+        this.guestService.currentGuests.subscribe((res) => {
+            this.guestsData = res;
+        })
     }
     
     displayFn(user: Guest): string {
@@ -190,7 +208,7 @@ export class DialogContentExampleDialog implements OnInit {
         this.form.email = this.createGuestForm.value.email;
     }
 
-    addGuest() {
+    createGuest() {
         if(this.createGuestForm.value.id == '' || this.createGuestForm.value.id == null){
             this.constructForm();
             this.http.post(this.url + 'guests/', this.form).subscribe(res => {
@@ -207,5 +225,12 @@ export class DialogContentExampleDialog implements OnInit {
                 this.myControl.reset();
             });
         }
+    }
+
+    addGuest() {
+        this.guestService.changeGuests(this.guest);
+        this.guestService.currentGuests.subscribe((res) => {
+            this.guestsData = res
+        })
     }
 }

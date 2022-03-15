@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Гости</h2>
 <mat-dialog-content class="mat-typography">
-  <form class="example-form" [formGroup]="createGuestForm" novalidate (ngSubmit)="addGuest()">
+  <form class="example-form" [formGroup]="createGuestForm" novalidate (ngSubmit)="createGuest()">
     <div style="display: flex;">
       <div style="margin-right: 10px;">
         <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
@@ -29,11 +29,12 @@
           <input matInput formControlName="email" [value]="guest?.email">
         </mat-form-field>
         <button class="btn" mat-raised-button [disabled]="createGuestForm.invalid">Создать/Изменить</button>
+        <button class="btn" mat-raised-button type="button" (click)="addGuest()">Добавить</button>
       </div>
     
       <div style="margin: 0 10px; width: 250px;">
         <p style="color: #EEF5F8;">Список выбранных</p>
-        <p style="color: #788CA0;" *ngFor="let guest of guests?.results">{{guest.name}}</p>
+        <p style="color: #788CA0;" *ngFor="let guest of guestsData">{{guest.name}}</p>
       </div>
     </div>
   </form>
