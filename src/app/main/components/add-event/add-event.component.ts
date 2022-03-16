@@ -157,7 +157,8 @@ export class DialogContentExampleDialog implements OnInit {
 
     constructor(
         private http: HttpClient,
-        public guestService: GuestService
+        public guestService: GuestService,
+        private toastr: ToastrService
         ){
         this.createGuestForm = new FormGroup({
             id: new FormControl(''),
@@ -234,9 +235,15 @@ export class DialogContentExampleDialog implements OnInit {
     }
 
     addGuest() {
-        this.guestService.changeGuests(this.guest);
-        this.guestService.currentGuests.subscribe((res) => {
-            this.guestsData = res
-        })
+        if(!this.guestsData.includes(this.guest)){
+            this.toastr.success('Гость успешно добавлен');
+            this.guestService.changeGuests(this.guest);
+            this.guestService.currentGuests.subscribe((res) => {
+                this.guestsData = res;
+            }) 
+        } else {
+            this.toastr.warning('Такой гость уже есть');
+        }
+        this.myControl.setValue('');
     }
 }
