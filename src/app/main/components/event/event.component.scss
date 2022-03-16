@@ -4,24 +4,26 @@ $blue: #007EA7;
 $dark: #121218;
 $lightdark: #1C1C24;
 .container {
-    max-width: 800px;
+    max-width: 860px;
     border: 1px solid $grey;
     border-radius: 5px;
-    padding: 20px 30px;
     margin: 100px auto 0 auto;
     background: $lightdark;
 }
 .title {
-    font-size: 30px;
-    padding-bottom: 10px;
+    font-size: 25px;
+    padding: 20px 0 0 20px;
     color: $light;
-    margin-left: 10px;
+    margin-left: 8px;
     user-select: none;
 }
 .box {
     display: flex;
-    flex-wrap: wrap-reverse;
+    flex-wrap: wrap;
     padding: 0 5px;
+}
+.box__data {
+    padding: 20px;
 }
 .flex {
     display: flex;
@@ -43,11 +45,45 @@ $lightdark: #1C1C24;
     user-select: none;
     text-align: end;
 }
+.dangerous {
+    color: $grey;
+    user-select: none;
+    margin-bottom: 10px;
+}
+.box__btns {
+    margin: 20px 0 10px 0;
+}
+.btn {
+    width: 212px;
+}
+.box__tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.tab {
+    margin-right: 5px;
+    color: $light;
+    padding: 5px 0;
+}
+.active {
+    border-bottom: 2px solid $blue;
+}
+.surveys__title {
+    color: $light;
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
 .subtitle {
     color: $light;
     font-size: 20px;
-    margin: 20px 0 10px 0;
+    margin: 0 0 10px 0;
     user-select: none;
+}
+.textarea {
+    width: 290px;
+    color: $light;
 }
 .icon__send {
     display: inline-block;
@@ -75,6 +111,7 @@ $lightdark: #1C1C24;
     display: inline-block;
     padding: 5px 10px;
     cursor: pointer;
+    max-width: 300px;
 }
 .user__comment {
     font-size: 12px;
@@ -89,28 +126,13 @@ $lightdark: #1C1C24;
     font-size: 12px;
     color: $dark;
 }
-.box__surveys {
-    margin-left: 40px;
-}
-.box__btns {
-    margin: 20px 0 10px 0;
-}
-.btn {
-    width: 120px; 
-}
-.surveys__title {
-    color: $light;
-    display: flex;
-    align-items: center;
-    user-select: none;
-}
-.textarea {
-    width: 290px;
-}
-@media(max-width: 900px) {
+@media(max-width: 510px) {
     .container {
         width: 300px;
         padding: 20px 0;
+    }
+    .box__data {
+        padding: 0;
     }
     .text__title {
         width: auto;
@@ -118,13 +140,16 @@ $lightdark: #1C1C24;
     .text__data {
         width: auto;
     }
+    .btn {
+        width: 140px;
+    }
+    .subtitle {
+        margin: 20px 0 10px 0;
+    }
     .icon__send {
         display: none;
     }
     .btn__send {
         display: block;
-    }
-    .box__surveys {
-        margin: 0;
     }
 }

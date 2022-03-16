@@ -33,12 +33,17 @@ export class EventComponent implements OnInit {
     answer;
     idObject;
     object;
-    commentWindow = false;
+    commentWindow = true;
     comments;
     comment: Comment;
     text = {comment: ''};
     isSend;
     isAuth: boolean;
+    list = {
+        participants: true,
+        surveys: false,
+        guests: false
+    }
 
     constructor(
         private http: HttpClient, 
@@ -64,6 +69,28 @@ export class EventComponent implements OnInit {
         this.getUser();
         this.getEvent();
         this.getComments();
+    }
+
+    viewParticipants(){
+        this.list = {
+            participants: true,
+            surveys: false,
+            guests: false
+        }
+    }
+    viewSurveys(){
+        this.list = {
+            participants: false,
+            surveys: true,
+            guests: false
+        }
+    }
+    viewGuests(){
+        this.list = {
+            participants: false,
+            surveys: false,
+            guests: true
+        }
     }
 
     openMenu(comment){
