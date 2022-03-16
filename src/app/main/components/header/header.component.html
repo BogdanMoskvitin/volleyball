@@ -4,7 +4,7 @@
             <div class="flex">
                 <div *ngIf="aAuth" class="burger__user" (click)='toggleSidebar()' [routerLink]="['./user']">
                     <div class="burger__avatar"></div>
-                    <p>{{mydata.first_name}} {{mydata.last_name}}</p>
+                    <p class="burger__text">{{mydata.first_name}} {{mydata.last_name}}</p>
                 </div>
                 <div *ngIf="!aAuth" class="burger__user">
                     <div class="burger__avatar"></div>
@@ -62,7 +62,7 @@
             </div>
         
             <div class="box">
-                <p class="version">Free Team Games 1.1</p>
+                <p class="version">Free Team Games 1.2</p>
                 <a [routerLink]="['./user']" *ngIf="aAuth"><div class="avatar"></div></a>
                 <p class="phone" *ngIf="aAuth" [routerLink]="['./user']">{{mydata.phone_number}}</p>
                 <button class="login" mat-stroked-button *ngIf="!aAuth" [routerLink]="['../../auth']">Войти</button>

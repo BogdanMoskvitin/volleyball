@@ -13,6 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { ToastrModule } from 'ngx-toastr';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -29,6 +31,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     MatIconModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatDialogModule,
+    MatMenuModule,
     ToastrModule.forRoot(),
     NgxMaskModule.forRoot(),
   ],

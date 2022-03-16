@@ -26,6 +26,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { SidebarModule } from 'ng-sidebar';
 import { MatButtonModule } from '@angular/material/button';
 import { EventsComponent } from './components/events/events.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogContentExampleDialog } from './components/add-event/add-event.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { NgxMaskModule } from 'ngx-mask';
+import { GuestService } from './services/guest.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +52,8 @@ import { EventsComponent } from './components/events/events.component';
     UserChangeComponent,
     ChangePasswordComponent,
     EventsComponent,
-    LocationComponent
+    LocationComponent,
+    DialogContentExampleDialog
   ],
   exports: [
     
@@ -61,6 +68,10 @@ import { EventsComponent } from './components/events/events.component';
     MatIconModule,
     SidebarModule,
     MatButtonModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatAutocompleteModule,
+    NgxMaskModule,
     RouterModule.forChild([
       {
         path: '',
@@ -95,7 +106,7 @@ import { EventsComponent } from './components/events/events.component';
       },
     ])
   ],
-  providers: [DatePipe]
+  providers: [DatePipe, GuestService]
 })
 export class MainModule {
 }

@@ -18,44 +18,19 @@
             <td>Статус</td>
         </tr>
         <tr class="tr" *ngFor="let event of events?.results">
-            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.sport}}</td>
-            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.type}}</td>
-            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
-            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.time_end | date: 'dd.MM.YYYY HH:mm'}}</td>
-            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.location.name}}</td>
-            <td *ngIf="aAuth" [routerLink]="['../event', event.id]" style="color: #089F5F;">{{event.price}}&#8381;</td>
-            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.participants_count}}</td>
-            <td *ngIf="aAuth" [routerLink]="['../event', event.id]">{{event.status}}</td>
-
-            <td *ngIf="!aAuth" (click)="notAuth()">{{event.sport}}</td>
-            <td *ngIf="!aAuth" (click)="notAuth()">{{event.type}}</td>
-            <td *ngIf="!aAuth" (click)="notAuth()">{{event.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
-            <td *ngIf="!aAuth" (click)="notAuth()">{{event.time_end | date: 'dd.MM.YYYY HH:mm'}}</td>
-            <td *ngIf="!aAuth" (click)="notAuth()">{{event.location.name}}</td>
-            <td *ngIf="!aAuth" (click)="notAuth()" style="color: #089F5F;">{{event.price}}&#8381;</td>
-            <td *ngIf="!aAuth" (click)="notAuth()">{{event.participants_count}}</td>
-            <td *ngIf="!aAuth" (click)="notAuth()">{{event.status}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.sport}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.type}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.time_start | date: 'dd.MM.YYYY HH:mm'}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.time_end | date: 'dd.MM.YYYY HH:mm'}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.location.name}}</td>
+            <td [routerLink]="['../event', event.id]" style="color: #089F5F;">{{event.price}}&#8381;</td>
+            <td [routerLink]="['../event', event.id]">{{event.participants_count}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.status}}</td>
         </tr>
     </table>
 
-    <div class="mobile" *ngIf="aAuth">
+    <div class="mobile">
         <div *ngFor="let event of events?.results" [routerLink]="['../event', event.id]" class="cell">
-            <div class="flex">
-                <p class="text">{{event.sport}}</p>
-                <p class="text">{{event.type}}</p>
-            </div>
-            <p class="text" style="text-align: center;">{{event.time_start | date: 'dd.MM.YYYY'}}</p>
-            <p class="text" style="text-align: center; font-size: 24px; font-weight: bold;">{{event.time_start | date: 'HH:mm'}} - {{event.time_end | date: 'HH:mm'}}</p>
-            <div class="flex">
-                <p class="text" style="font-size: 18px;">{{event.location.name}}</p>
-                <p class="text" style="font-size: 18px; color: #089F5F;">{{event.price}}&#8381;</p>
-                <p class="text" style="font-size: 18px;">{{event.participants_count}}чел.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="mobile" *ngIf="!aAuth">
-        <div *ngFor="let event of events?.results" (click)="notAuth()" class="cell">
             <div class="flex">
                 <p class="text">{{event.sport}}</p>
                 <p class="text">{{event.type}}</p>

@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'events-service-page',
@@ -20,8 +19,8 @@ export class EventsComponent implements OnInit, OnDestroy {
 
     constructor(
         private http: HttpClient, 
-        private authService: AuthService,
-        private toastr: ToastrService) {}
+        private authService: AuthService
+        ) {}
     
     ngOnInit() {
         if(this.authService.getToken() == null) {
@@ -37,10 +36,6 @@ export class EventsComponent implements OnInit, OnDestroy {
             .subscribe((res) => {
                 this.events = res;
         });
-    }
-
-    notAuth(){
-        this.toastr.warning('Для просмотра подробной информации о событии нужно войти в систему');
     }
 
     ngOnDestroy(){
