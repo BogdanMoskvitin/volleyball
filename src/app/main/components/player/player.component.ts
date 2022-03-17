@@ -26,7 +26,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
     }
     
     ngOnInit() {
-        this.aSub = this.http.get(this.url + `players/all/${this.id}/`)
+        this.aSub = this.http.get(this.url + `players/${this.id}/`)
             .subscribe((res) => {
                 this.player = res;
         });

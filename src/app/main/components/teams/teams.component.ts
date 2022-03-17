@@ -29,7 +29,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
     }
 
     getTeams() {
-        this.aSub = this.http.get(this.url + 'teams/all/')
+        this.aSub = this.http.get(this.url + 'teams/')
             .subscribe((res) => {
                 this.teams = res;
         });

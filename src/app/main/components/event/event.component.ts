@@ -103,7 +103,7 @@ export class EventComponent implements OnInit {
     }
 
     getComments(){
-        this.http.get(this.url + `events/all/${this.idEvent}/comments/`).subscribe(res => {
+        this.http.get(this.url + `events/${this.idEvent}/comments/`).subscribe(res => {
             this.comments = res;
         })
     }
@@ -114,7 +114,7 @@ export class EventComponent implements OnInit {
     }
 
     sendChangeCommit(){
-        this.http.patch(this.url + `events/all/${this.idEvent}/comments/${this.comment.id}/`, this.text).subscribe(res => {
+        this.http.patch(this.url + `events/${this.idEvent}/comments/${this.comment.id}/`, this.text).subscribe(res => {
             this.isSend = !this.isSend;
             this.text.comment = '';
             this.getComments();
@@ -122,7 +122,7 @@ export class EventComponent implements OnInit {
     }
 
     deleteCommit(){
-        this.http.delete(this.url + `events/all/${this.idEvent}/comments/${this.comment.id}/`).subscribe(res => {
+        this.http.delete(this.url + `events/${this.idEvent}/comments/${this.comment.id}/`).subscribe(res => {
             this.getComments();
         })
     }
@@ -139,7 +139,7 @@ export class EventComponent implements OnInit {
     }
 
     getObject(){
-        this.http.get(this.url + `events/all/${this.idEvent}/surveys/?user=${this.user.id}`).subscribe(res => {
+        this.http.get(this.url + `events/${this.idEvent}/applications/?user=${this.user.id}`).subscribe(res => {
             this.object = res;
             if(this.object.results.length != 0){
                 this.idObject = this.object.results[0].id;
@@ -148,14 +148,14 @@ export class EventComponent implements OnInit {
     }
 
     getEvent(){
-        this.http.get(this.url + `events/all/${this.idEvent}`)
+        this.http.get(this.url + `events/${this.idEvent}/`)
         .subscribe(res => {
             this.event = res;
         })
     }
 
     sendComment(){
-        this.http.post(this.url + `events/all/${this.idEvent}/comments/`, {comment: this.addCommentForm.value.comment})
+        this.http.post(this.url + `events/${this.idEvent}/comments/`, {comment: this.addCommentForm.value.comment})
         .subscribe(res => {
             this.getComments();
         })
@@ -163,7 +163,7 @@ export class EventComponent implements OnInit {
     }
 
     sendTruePost(){
-        this.http.post(this.url + `events/all/${this.idEvent}/surveys/`, {answer: true})
+        this.http.post(this.url + `events/${this.idEvent}/surveys/`, {answer: true})
         .subscribe(res => {
             this.getEvent();
             this.getSurveys();
@@ -172,7 +172,7 @@ export class EventComponent implements OnInit {
     }
 
     sendFalsePost(){
-        this.http.post(this.url + `events/all/${this.idEvent}/surveys/`, {answer: false})
+        this.http.post(this.url + `events/${this.idEvent}/surveys/`, {answer: false})
         .subscribe(res => {
             this.getEvent();
             this.getSurveys();
@@ -181,7 +181,7 @@ export class EventComponent implements OnInit {
     }
 
     sendTruePut(){
-        this.http.put(this.url + `events/all/${this.idEvent}/surveys/${this.idObject}/`, {answer: true})
+        this.http.put(this.url + `events/${this.idEvent}/surveys/${this.idObject}/`, {answer: true})
         .subscribe(res => {
             this.getEvent();
             this.getSurveys();
@@ -189,7 +189,7 @@ export class EventComponent implements OnInit {
     }
 
     sendFalsePut(){
-        this.http.put(this.url + `events/all/${this.idEvent}/surveys/${this.idObject}/`, {answer: false})
+        this.http.put(this.url + `events/${this.idEvent}/surveys/${this.idObject}/`, {answer: false})
         .subscribe(res => {
             this.getEvent();
             this.getSurveys();
@@ -197,7 +197,7 @@ export class EventComponent implements OnInit {
     }
 
     getSurveys(){
-        this.http.get(this.url + `events/all/${this.idEvent}/surveys/?user=${this.user.id}`)
+        this.http.get(this.url + `events/${this.idEvent}/applications/?user=${this.user.id}`)
         .subscribe(res => {
             this.surveys = res;
             if(this.surveys.results.length != 0){

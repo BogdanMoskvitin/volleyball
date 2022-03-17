@@ -48,7 +48,7 @@ export class AddPlayerComponent implements OnInit, OnDestroy {
     }
 
     getTeams() {
-        this.aSub1 = this.http.get(this.url + `teams/all/${this.id}/`)
+        this.aSub1 = this.http.get(this.url + `teams/${this.id}/`)
             .subscribe((res) => {
                 this.team = res;
         });
@@ -60,7 +60,7 @@ export class AddPlayerComponent implements OnInit, OnDestroy {
             team: this.id,
             number: this.addPlayerForm.value.number
         };
-        this.aSub3 = this.http.post(this.url + 'players/all/', this.newPlayer).subscribe(
+        this.aSub3 = this.http.post(this.url + 'players/', this.newPlayer).subscribe(
             (res) => {
                 this.toastr.success('Игрок создан!');
                 this.back();

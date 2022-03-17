@@ -29,7 +29,7 @@ export class LocationsComponent implements OnInit, OnDestroy {
     }
 
     getLocations() {
-        this.aSub = this.http.get(this.url + 'locations/all/')
+        this.aSub = this.http.get(this.url + 'locations/')
             .subscribe((res) => {
                 this.locations = res;
         });

@@ -76,20 +76,20 @@ export class AddEventComponent implements OnInit, OnDestroy {
     }
 
     getLocations() {
-        this.aSub2 = this.http.get(this.url + 'locations/all/')
+        this.aSub2 = this.http.get(this.url + 'locations/')
             .subscribe((res) => {
                 this.locations = res;
         });
     }
 
     getSports() {
-        this.aSub3 = this.http.get(this.url + 'sports/all/')
+        this.aSub3 = this.http.get(this.url + 'dict/sports/')
             .subscribe((res) => {
                 this.sports = res;
         });
     }
     getTypes() {
-        this.aSub4 = this.http.get(this.url + 'events/types/')
+        this.aSub4 = this.http.get(this.url + 'dict/events/types/')
             .subscribe((res) => {
                 this.types = res;
         });
@@ -115,7 +115,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
                 guests: guestsId
             }
         })
-        this.aSub5 = this.http.post(this.url + 'events/all/', this.newEvent)
+        this.aSub5 = this.http.post(this.url + 'events/', this.newEvent)
         .subscribe(
             (res) => {
                 this.toastr.success('Событие создано!');

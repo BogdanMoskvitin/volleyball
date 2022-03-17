@@ -31,10 +31,10 @@
                     <p class="text__title">Цена: </p>
                     <p class="text__data" style="color: #089F5F;">{{event?.price}}&#8381;</p>
                 </div>
-                <div class="flex">
+                <!-- <div class="flex">
                     <p class="text__title">Цена за человека: </p>
                     <p class="text__data" style="color: #089F5F;">{{event?.stats.price_per_player}}&#8381;</p>
-                </div>
+                </div> -->
             </div>
             <div>
                 <p *ngIf="!isAuth" class="dangerous">Чтобы проголосовать, войдите в систему</p>
@@ -48,7 +48,7 @@
                 <div class="box__tabs">
                     <p class="tab" [ngClass]="{active: list.participants}" mat-raised-button (click)="viewParticipants()">Участники ({{event?.participants.confirmed.length}})</p>
                     <p class="tab" [ngClass]="{active: list.surveys}" mat-raised-button (click)="viewSurveys()">Не придут ({{event?.surveys.unknown.length + event?.surveys.false.length}})</p>
-                    <p class="tab" [ngClass]="{active: list.guests}" mat-raised-button (click)="viewGuests()">Гости ({{event?.guests.length}})</p>
+                    <p class="tab" [ngClass]="{active: list.guests}" mat-raised-button (click)="viewGuests()">Гости ({{event?.guests_count}})</p>
                 </div>
 
                 <div *ngIf="list.participants">
@@ -85,7 +85,7 @@
         </div>
 
         <div class="box__data">
-            <p class="subtitle">Комментарии</p>
+            <p class="subtitle">Комментарии({{event?.comments_count}})</p>
             <p *ngIf="!isAuth" class="dangerous">Чтобы написать комментарий, войдите в систему</p>
             <form *ngIf="isAuth" [formGroup]="addCommentForm" (ngSubmit)="sendComment()">
                 <mat-form-field appearance="fill" class="textarea">

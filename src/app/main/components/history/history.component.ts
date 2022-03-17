@@ -24,19 +24,19 @@ export class HistoryComponent implements OnInit, OnDestroy {
     }
 
     getEvents() {
-        this.aSub1 = this.http.get(this.url + `events/all?multi_status=${encodeURIComponent('4,5')}`)
+        this.aSub1 = this.http.get(this.url + `events?multi_status=${encodeURIComponent('4,5')}`)
             .subscribe((res) => {
                 this.events = res;
         });
     }
     closeEvents() {
-        this.aSub2 = this.http.get(this.url + `events/all?multi_status=4`)
+        this.aSub2 = this.http.get(this.url + `events?multi_status=4`)
             .subscribe((res) => {
                 this.events = res;
         });
     }
     cancelEvents() {
-        this.aSub3 = this.http.get(this.url + `events/all?multi_status=5`)
+        this.aSub3 = this.http.get(this.url + `events?multi_status=5`)
             .subscribe((res) => {
                 this.events = res;
         });

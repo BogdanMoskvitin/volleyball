@@ -24,14 +24,14 @@ $lightdark: #1C1C24;
     font-style: italic;
     user-select: none;
 }
-.insta_icon {
+.soc__icon {
     text-decoration: none;
     display: flex;
     align-items: center;
     width: 160px;
     img{filter: invert(97%) sepia(14%) saturate(663%) hue-rotate(175deg) brightness(102%) contrast(94%);}
 }
-.insta_box:hover {
+.soc__icon:hover {
     img{filter: invert(32%) sepia(26%) saturate(4482%) hue-rotate(168deg) brightness(96%) contrast(107%);}
     p{color: $blue;}
 }
@@ -50,9 +50,9 @@ $lightdark: #1C1C24;
     text-decoration: none;
     background: $lightdark;
 }
-.cell:hover {
-    background: $grey;
-}
+// .cell:hover {
+//     background: $grey;
+// }
 .avatar__mr {
     width: 50px;
     height: 50px;
@@ -64,6 +64,7 @@ $lightdark: #1C1C24;
 .text {
     font-size: 20px;
     color: $light;
+    user-select: none;
 }
 .link {
     font-size: 16px;

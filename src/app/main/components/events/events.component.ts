@@ -32,7 +32,7 @@ export class EventsComponent implements OnInit, OnDestroy {
     }
 
     getEvents() {
-        this.aSub = this.http.get(this.url + `events/all?multi_status=${encodeURIComponent('1,2,3')}`)
+        this.aSub = this.http.get(this.url + `events?multi_status=${encodeURIComponent('1,2,3')}`)
             .subscribe((res) => {
                 this.events = res;
         });

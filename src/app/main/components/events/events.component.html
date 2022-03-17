@@ -24,7 +24,7 @@
             <td [routerLink]="['../event', event.id]">{{event.time_end | date: 'dd.MM.YYYY HH:mm'}}</td>
             <td [routerLink]="['../event', event.id]">{{event.location.name}}</td>
             <td [routerLink]="['../event', event.id]" style="color: #089F5F;">{{event.price}}&#8381;</td>
-            <td [routerLink]="['../event', event.id]">{{event.participants_count}}</td>
+            <td [routerLink]="['../event', event.id]">{{event.applications_count}}</td>
             <td [routerLink]="['../event', event.id]">{{event.status}}</td>
         </tr>
     </table>
@@ -40,7 +40,7 @@
             <div class="flex">
                 <p class="text" style="font-size: 18px;">{{event.location.name}}</p>
                 <p class="text" style="font-size: 18px; color: #089F5F;">{{event.price}}&#8381;</p>
-                <p class="text" style="font-size: 18px;">{{event.participants_count}}чел.</p>
+                <p class="text" style="font-size: 18px;">{{event.applications_count}}чел.</p>
             </div>
         </div>
     </div>

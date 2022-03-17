@@ -40,7 +40,7 @@ export class PlayersComponent implements OnInit, OnDestroy {
         } else {
             this.aAuth = true;
         }
-        this.aSub = this.http.get(this.url + `teams/all/${this.id}/`)
+        this.aSub = this.http.get(this.url + `teams/${this.id}/`)
             .subscribe((res) => {
                 this.team = res;
                 if(this.team.players_count == 0) {
