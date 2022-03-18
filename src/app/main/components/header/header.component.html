@@ -62,7 +62,7 @@
             </div>
         
             <div class="box">
-                <p class="version">Free Team Games 1.2</p>
+                <p class="version">Free Team Club 1.2</p>
                 <a [routerLink]="['./user']" *ngIf="aAuth"><div class="avatar"></div></a>
                 <p class="phone" *ngIf="aAuth" [routerLink]="['./user']">{{mydata.phone_number}}</p>
                 <button class="login" mat-stroked-button *ngIf="!aAuth" [routerLink]="['../../auth']">Войти</button>

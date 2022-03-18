@@ -26,17 +26,10 @@ export class EventComponent implements OnInit {
     idEvent: number;
     user;
     event;
-    players;
     addCommentForm: FormGroup;
-    addStatusForm: FormGroup;
-    surveys;
-    answer;
-    idObject;
-    object;
     commentWindow = true;
     comments;
     comment: Comment;
-    text = {comment: ''};
     isSend;
     isAuth: boolean;
     list = {
@@ -53,10 +46,8 @@ export class EventComponent implements OnInit {
     ) {
         this.idEvent = this.activatedRoute.snapshot.params['id'];
         this.addCommentForm = new FormGroup({
-            comment: new FormControl('')
-        })
-        this.addStatusForm = new FormGroup({
-            player: new FormControl('', Validators.required)
+            comment: new FormControl(''),
+            id: new FormControl('')
         })
     }
 
@@ -94,6 +85,7 @@ export class EventComponent implements OnInit {
     }
 
     openMenu(comment){
+        console.log(comment)
         if(comment.user.id == this.user.id){
             this.trigger.openMenu();
             this.comment = comment;
@@ -108,20 +100,19 @@ export class EventComponent implements OnInit {
         })
     }
 
-    changeCommit(){
-        this.text.comment = this.comment.comment;
+    changeComment(){
+        this.addCommentForm.value.comment = this.comment.comment;
         this.isSend = !this.isSend;
     }
 
-    sendChangeCommit(){
-        this.http.patch(this.url + `events/${this.idEvent}/comments/${this.comment.id}/`, this.text).subscribe(res => {
+    sendChangeComment(){
+        this.http.patch(this.url + `events/${this.idEvent}/comments/${this.comment.id}/`, this.addCommentForm.value).subscribe(res => {
             this.isSend = !this.isSend;
-            this.text.comment = '';
             this.getComments();
         })
     }
 
-    deleteCommit(){
+    deleteComment(){
         this.http.delete(this.url + `events/${this.idEvent}/comments/${this.comment.id}/`).subscribe(res => {
             this.getComments();
         })
@@ -130,20 +121,6 @@ export class EventComponent implements OnInit {
     getUser(){
         this.myData.currentData.subscribe(res => {
             this.user = res;
-            if(this.user.id != undefined){
-                this.getSurveys();
-                this.getObject();
-            }
-            
-        })
-    }
-
-    getObject(){
-        this.http.get(this.url + `events/${this.idEvent}/applications/?user=${this.user.id}`).subscribe(res => {
-            this.object = res;
-            if(this.object.results.length != 0){
-                this.idObject = this.object.results[0].id;
-            }
         })
     }
 
@@ -155,58 +132,29 @@ export class EventComponent implements OnInit {
     }
 
     sendComment(){
-        this.http.post(this.url + `events/${this.idEvent}/comments/`, {comment: this.addCommentForm.value.comment})
+        this.http.post(this.url + `events/${this.idEvent}/comments/`, {comment: this.addCommentForm.value.comment, event: this.idEvent})
         .subscribe(res => {
             this.getComments();
         })
         this.addCommentForm.reset();
     }
 
-    sendTruePost(){
-        this.http.post(this.url + `events/${this.idEvent}/surveys/`, {answer: true})
-        .subscribe(res => {
-            this.getEvent();
-            this.getSurveys();
-            this.getObject();
-        });
-    }
-
-    sendFalsePost(){
-        this.http.post(this.url + `events/${this.idEvent}/surveys/`, {answer: false})
-        .subscribe(res => {
-            this.getEvent();
-            this.getSurveys();
-            this.getObject();
-        })
-    }
-
-    sendTruePut(){
-        this.http.put(this.url + `events/${this.idEvent}/surveys/${this.idObject}/`, {answer: true})
-        .subscribe(res => {
-            this.getEvent();
-            this.getSurveys();
-        });
-    }
-
-    sendFalsePut(){
-        this.http.put(this.url + `events/${this.idEvent}/surveys/${this.idObject}/`, {answer: false})
-        .subscribe(res => {
-            this.getEvent();
-            this.getSurveys();
-        })
-    }
-
-    getSurveys(){
-        this.http.get(this.url + `events/${this.idEvent}/applications/?user=${this.user.id}`)
-        .subscribe(res => {
-            this.surveys = res;
-            if(this.surveys.results.length != 0){
-                this.answer = this.surveys.results[0].answer;
-            } 
-        })
-    }
-
     openComment(){
         this.commentWindow = !this.commentWindow;
+    }
+
+    sendApplicationTrue(){
+        this.http.get(this.url + `events/${this.idEvent}/application?action=accept`)
+        .subscribe(res => {
+            console.log(res);
+            this.getEvent();
+        })
+    }
+    sendApplicationFalse(){
+        this.http.get(this.url + `events/${this.idEvent}/application?action=refuse`)
+        .subscribe(res => {
+            console.log(res);
+            this.getEvent();
+        })
     }
 }
