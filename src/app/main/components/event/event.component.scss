@@ -163,7 +163,9 @@
 // }
 
 
-
+p, span {
+    user-select: none;
+}
 .container {
     max-width: 1140px;
     margin: 120px auto 0 auto;
@@ -206,6 +208,7 @@
 .data__title {
     font-family: DinProItalic;
     font-size: 64px;
+    font-style: italic;
     color: #FFFFFF;
     span {
         font-family: DinProItalic;
@@ -275,6 +278,7 @@
     color: #191919;
     font-size: 36px;
     border: none;
+    cursor: pointer;
 }
 .participants {
 }
@@ -299,14 +303,22 @@
 .participants__btn_filter {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 281px;
-    background: none;
+    height: 68px;
+    background-color: #00000050;
     font-size: 36px;
     color: #FFFFFF;
     border: none;
+    margin: 0 10px 5px 0;
+    cursor: pointer;
     span {
         color: #959595;
     }
+}
+.active_filter {
+    background-color: #F1F8FC;
+    color: #000000;
 }
 .participants__list {
 }
@@ -315,8 +327,9 @@
     align-items: center;
     width: 462px;
     height: 68px;
-    background: linear-gradient(to right, #FF0080 15%, #FFFFFF 15% 98%, #FF0080 98%);
+    background: linear-gradient(to right, #959595 15%, #FFFFFF 15% 98%, #959595 98%);
     margin-bottom: 5px;
+    cursor: pointer;
 }
 .participants__avatar {
     width: 50px;
