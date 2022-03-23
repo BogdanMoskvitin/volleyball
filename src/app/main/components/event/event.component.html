@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <p class="title">Данные о событии</p>
     <div class="box">
         <div class="box__data">
@@ -31,10 +31,6 @@
                     <p class="text__title">Цена: </p>
                     <p class="text__data" style="color: #089F5F;">{{event?.price}}&#8381;</p>
                 </div>
-                <!-- <div class="flex">
-                    <p class="text__title">Цена за человека: </p>
-                    <p class="text__data" style="color: #089F5F;">{{event?.stats.price_per_player}}&#8381;</p>
-                </div> -->
             </div>
             <div>
                 <p *ngIf="!isAuth" class="dangerous">Чтобы проголосовать, войдите в систему</p>
@@ -137,4 +133,135 @@
 <mat-menu #menu="matMenu">
     <button mat-raised-button style="width: 100%;" (click)="deleteComment()">Удалить сообщение</button>
     <button mat-raised-button style="width: 100%;" (click)="changeComment()">Редактировать сообщение</button>
-</mat-menu>
+</mat-menu> -->
+
+
+
+<div class="container">
+    <div class="flex">
+        <div class="data">
+            <div class="data__flex_id">
+                <div class="data__box_id">
+                    <p class="data__id">№ 2453</p>
+                </div>
+            </div>
+            <div class="data__flex">
+                <div class="data__box_text">
+                    <p class="data__title">ВОЛЛЕЙБОЛ</p>
+                    <p class="data__subtitle">СКФУ, ул. Кулакова, д.2</p>
+                </div>
+                <div class="data__box_text">
+                    <p class="data__title_status">ожидается начало</p>
+                    <p class="data__subtitle" style="text-align: end;">до старта 1 д. 22 ч. 35 м.</p>
+                </div>
+            </div>
+            <div class="data__flex">
+                <div class="data__box_text">
+                    <p class="data__title">19:00-22:00</p>
+                    <p class="data__subtitle">21 марта 2022, Воскресенье</p>
+                </div>
+                <div class="data__box_text">
+                    <p class="data__title">ОТКРЫТАЯ ИГРА</p>
+                    <p class="data__subtitle" style="text-align: end;">создатель события <span style="color: #00FFFF;">Петя Петров</span></p>
+                </div>
+            </div>
+            <div class="data__flex">
+                <div class="data__box_text">
+                    <p class="data__title"><span>175</span>/2200 ₽</p>
+                    <p class="data__subtitle">[с человека / общая]</p>
+                </div>
+                <p class="data__description">Это комментарий к событию. Тут информация о том, что за мероприятие, зачем оно, да и вообще о чем оно. Ну, и в целом, что вообще тут происходит.</p>
+            </div>
+        </div>
+        <div class="vote">
+            <div class="vote__box">
+                <div class="vote__head">
+                    <p class="vote__head_title">ВЫ ПРИГЛАШЕНЫ!</p>
+                </div>
+                <div class="vote__box_text">
+                    <p class="vote__title">Вас пригласил <span style="color: #00FFFF;">Петя Петров</span>.</p>
+                    <span class="vote__subtitle">Йоу, приходи, не пожалеешь. Точно тебе говорю, будет круто!</span>
+
+                    <p class="vote__title">Участие в закрытом событии.</p>
+                    <span class="vote__subtitle">В событиях закрытого типа участие возможно строго по приглашениям или по решению модерации.</span>
+
+                    <p class="vote__title">Решение об участии.</p>
+                    <span class="vote__subtitle">Вы можете принять решение до начала события. В случае отказа приглашение будет отменено</span>
+                </div>
+            </div>
+            <div class="vote__box_btns">
+                <button class="vote__btn" style="background-color: #00FFFF;">Приду</button>
+                <button class="vote__btn" style="background-color: #FF0080;">Не приду</button>
+            </div>
+        </div>
+    </div>
+    <div class="participants__box_btns">
+        <button class="participants__btn" style="color: #191919; background-color: #FFFFFF;">игроки</button>
+        <button class="participants__btn" style="color: #FFFFFF; background-color: #191919;">чат</button>
+        <button class="participants__btn" style="color: #FFFFFF; background-color: #400080;">управление</button>
+    </div>
+    <div class="flex">
+        <div class="participants">
+            <div class="participants__data">
+                <div class="participants__filters">
+                    <button class="participants__btn_filter">
+                        <mat-icon style="color: #FFFFFF; font-size: 36px; margin: 0 20px 15px 0;" aria-hidden="false" aria-label="Example logout icon">done</mat-icon>
+                        УЧАСТНИКИ <span>(15)</span>
+                    </button>
+                    <button class="participants__btn_filter">
+                        <mat-icon style="color: #FFFFFF; font-size: 36px; margin: 0 20px 15px 0;" aria-hidden="false" aria-label="Example logout icon">groups</mat-icon>
+                        ГОСТИ <span>(5)</span>
+                    </button>
+                    <button class="participants__btn_filter">
+                        <mat-icon style="color: #FFFFFF; font-size: 36px; margin: 0 20px 15px 0;" aria-hidden="false" aria-label="Example logout icon">close</mat-icon>
+                        НЕ ПРИДУТ <span>(2)</span>
+                    </button>
+                    <button class="participants__btn_filter">
+                        <mat-icon style="color: #FFFFFF; font-size: 32px; margin: 0 20px 10px 0;" aria-hidden="false" aria-label="Example logout icon">mark_email_unread</mat-icon>
+                        ПРИГЛАШЕНЫ <span>(15)</span>
+                    </button>
+                    <button class="participants__btn_filter">
+                        <mat-icon style="color: #FFFFFF; font-size: 28px; margin: 0 20px 10px 0;" aria-hidden="false" aria-label="Example logout icon">pan_tool</mat-icon>
+                        ОТКЛОНЕНЫ <span>(2)</span>
+                    </button>
+                </div>
+                <div class="participants__list">
+                    <div class="participants__cell">
+                        <div class="participants__avatar"></div>
+                        <div class="participants__cell_text">
+                            <p class="participants__status">[игрок]</p>
+                            <p class="participants__name">Петя Петров</p>
+                        </div>
+                    </div>
+
+                    <div class="participants__cell">
+                        <div class="participants__avatar"></div>
+                        <div class="participants__cell_text">
+                            <p class="participants__status">[игрок]</p>
+                            <p class="participants__name">Петя Петров</p>
+                        </div>
+                    </div>
+
+                    <div class="participants__cell">
+                        <div class="participants__avatar"></div>
+                        <div class="participants__cell_text">
+                            <p class="participants__status">[игрок]</p>
+                            <p class="participants__name">Петя Петров</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="user">
+            <div class="user__flex">
+                <div class="user__avatar"></div>
+                <div class="user__text">
+                    <p class="user__status">[игрок]</p>
+                    <p class="user__number">+7(988)888-88-88</p>
+                    <p class="user__email">main-main@mail.ru</p>
+                </div>
+            </div>
+            <p class="user__title">Петя <br> Петрророров</p>
+        </div>
+    </div>
+</div>

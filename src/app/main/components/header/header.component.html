@@ -14,10 +14,10 @@
             </div>
     
             <div class="line"></div>
-            <li (click)='toggleSidebar()' class="burger__li">
+            <!-- <li (click)='toggleSidebar()' class="burger__li">
                 <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
                 <a [routerLink]="['./home']" class="burger__a">Главная</a>
-            </li>
+            </li> -->
             <li (click)='toggleSidebar()' class="burger__li">
                 <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">events</mat-icon>
                 <a [routerLink]="['./events']" class="burger__a">События</a>
@@ -26,14 +26,14 @@
                 <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">groups</mat-icon>
                 <a [routerLink]="['./teams']" class="burger__a">Команды</a>
             </li>
-            <li (click)='toggleSidebar()' class="burger__li">
+            <!-- <li (click)='toggleSidebar()' class="burger__li">
                 <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">place</mat-icon>
                 <a [routerLink]="['./locations']" class="burger__a">Места</a>
             </li>
             <li (click)='toggleSidebar()' class="burger__li">
                 <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">history</mat-icon>
                 <a [routerLink]="['./history']" class="burger__a">История</a>
-            </li>
+            </li> -->
             <li (click)='toggleSidebar()' class="burger__li">
                 <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">sentiment_very_satisfied</mat-icon>
                 <a [routerLink]="['./about-us']" class="burger__a">О нас</a>
@@ -50,14 +50,14 @@
         </button>
 
         <div class="header">
-            <div [routerLink]="['./home']" class="logo"></div>
+            <!-- <div [routerLink]="['./home']" class="logo"></div> -->
         
-            <div>
-                <a routerLinkActive="active" class="link" [routerLink]="['./home']">Главная</a>
+            <div style="margin-left: 330px;">
+                <!-- <a routerLinkActive="active" class="link" [routerLink]="['./home']">Главная</a> -->
                 <a routerLinkActive="active" class="link" [routerLink]="['./events']">События</a>
                 <a routerLinkActive="active" class="link" [routerLink]="['./teams']">Команды</a>
-                <a routerLinkActive="active" class="link" [routerLink]="['./locations']">Места</a>
-                <a routerLinkActive="active" class="link" [routerLink]="['./history']">История</a>
+                <!-- <a routerLinkActive="active" class="link" [routerLink]="['./locations']">Места</a>
+                <a routerLinkActive="active" class="link" [routerLink]="['./history']">История</a> -->
                 <a routerLinkActive="active" class="link" [routerLink]="['./about-us']">О нас</a>
             </div>
         

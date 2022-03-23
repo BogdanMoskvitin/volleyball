@@ -174,9 +174,10 @@ ng-sidebar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background: $dark;
+    padding: 20px;
+    // background: $dark;
     z-index: 100;
+    border-bottom: 1px solid #959595;
 }
 .logo {
     margin-top: 10px;
@@ -189,16 +190,16 @@ ng-sidebar-container {
     cursor: pointer;
 }
 .link {
+    font-family: DinProItalic;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 36px;
     color: $light;
-    padding: 36px 31px;
+    padding: 8px 40px;
     white-space: nowrap;
 }
 .active {
-    color: $blue;
-    text-decoration: underline;
-    background-color: $light;
+    color: #191919;
+    background-color: #F1F8FC;
 }
 .box {
     width: 350px;
