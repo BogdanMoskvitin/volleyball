@@ -146,31 +146,31 @@
                 </div>
             </div>
             <div class="data__flex">
-                <div class="data__box_text">
+                <div>
                     <p class="data__title">{{event?.sport.name}}</p>
                     <p class="data__subtitle">{{event?.location.name_address_short}}</p>
                 </div>
-                <div class="data__box_text">
+                <div>
                     <p class="data__title_status">{{event?.status.name}}</p>
                     <p class="data__subtitle" style="text-align: end;" *ngIf="event?.show_timer">до старта {{result | date: 'ddд. HHч. mmм. ssс.'}}</p>
                 </div>
             </div>
             <div class="data__flex">
-                <div class="data__box_text">
+                <div>
                     <p class="data__title">{{event?.short_time}}</p>
                     <p class="data__subtitle">{{event?.full_date}}</p>
                 </div>
-                <div class="data__box_text">
+                <div>
                     <p class="data__title">{{event?.type.name}}</p>
                     <p class="data__subtitle" style="text-align: end;">создатель события <span style="color: #00FFFF;">{{event?.created_by?.full_name}}</span></p>
                 </div>
             </div>
             <div class="data__flex">
-                <div class="data__box_text" *ngIf="event?.price != 0 && event?.price != null">
+                <div *ngIf="event?.price != 0 && event?.price != null">
                     <p class="data__title"><span>{{statistics?.event_stats.price_per_player}}</span>/{{event?.price}}&#8381;</p>
                     <p class="data__subtitle">[с человека / общая]</p>
                 </div>
-                <div class="data__box_text" *ngIf="event?.price == 0 || event?.price == null">
+                <div *ngIf="event?.price == 0 || event?.price == null">
                     <p class="data__title">Бесплатно</p>
                     <p class="data__subtitle">[сборы не взимаются]</p>
                 </div>
@@ -278,7 +278,7 @@
         <button class="participants__btn" style="color: #FFFFFF; background-color: #400080;" (click)="viewControl()">управление</button>
     </div>
     <div class="flex">
-        <div class="participants" *ngIf="nav.players">
+        <div *ngIf="nav.players">
             <div class="participants__data">
                 <div class="participants__filters">
                     <button [ngClass]="{active_filter: view.accepted}" class="participants__btn_filter" (click)="viewAccepted()">
@@ -311,7 +311,7 @@
                         participants__cell_moderator: application.user_status.id == 2, 
                         participants__cell_player: application.user_status.id == 3}">
                         <div class="participants__avatar"></div>
-                        <div class="participants__cell_text">
+                        <div>
                             <p class="participants__status">[{{application.user_status.status}}]</p>
                             <p class="participants__name">{{application.user.full_name}}</p>
                         </div>
@@ -321,7 +321,7 @@
                 <div class="participants__list" *ngIf="view.guests">
                     <div class="participants__cell" *ngFor="let guest of event.guests">
                         <div class="participants__avatar"></div>
-                        <div class="participants__cell_text">
+                        <div>
                             <p class="participants__status">[игрок]</p>
                             <p class="participants__name">{{guest.name}}</p>
                         </div>
@@ -331,7 +331,7 @@
                 <div class="participants__list" *ngIf="view.refused">
                     <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)">
                         <div class="participants__avatar"></div>
-                        <div class="participants__cell_text">
+                        <div>
                             <p class="participants__status">[игрок]</p>
                             <p class="participants__name">{{application.user.full_name}}</p>
                         </div>
@@ -341,7 +341,7 @@
                 <div class="participants__list" *ngIf="view.invited">
                     <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)">
                         <div class="participants__avatar"></div>
-                        <div class="participants__cell_text">
+                        <div>
                             <p class="participants__status">[игрок]</p>
                             <p class="participants__name">{{application.user.full_name}}</p>
                         </div>
@@ -351,7 +351,7 @@
                 <div class="participants__list" *ngIf="view.rejected">
                     <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)">
                         <div class="participants__avatar"></div>
-                        <div class="participants__cell_text">
+                        <div>
                             <p class="participants__status">[игрок]</p>
                             <p class="participants__name">{{application.user.full_name}}</p>
                         </div>
@@ -407,7 +407,7 @@
         <div class="user">
             <div class="user__flex">
                 <div class="user__avatar"></div>
-                <div class="user__text">
+                <div>
                     <p class="user__status">[игрок]</p>
                     <p class="user__number">{{user?.phone_number}}</p>
                     <p class="user__email">{{user?.email}}</p>
