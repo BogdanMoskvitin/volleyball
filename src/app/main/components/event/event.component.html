@@ -179,7 +179,7 @@
         </div>
         <div class="vote">
             
-            <div class="vote__box" style="border: 1px solid #00FFFF;" *ngIf="application?.application != null && application?.application.status.name == 'На модерации'">
+            <div class="vote__box" style="border: 1px solid #00FFFF;" *ngIf="application?.application != null && application?.application.status.id == '1'">
                 <div style="background-color: #00FFFF;">
                     <p class="vote__head_title">ЗАЯВКА ПОДАНА!</p>
                 </div>
@@ -192,7 +192,7 @@
                 </div>
             </div>
 
-            <div class="vote__box" style="border: 1px solid #363636;" *ngIf="application?.application != null && application?.application.status.name == 'Отказ от участия'">
+            <div class="vote__box" style="border: 1px solid #363636;" *ngIf="application?.application != null && application?.application.status.id == '5'">
                 <div style="background-color: #363636;">
                     <p class="vote__head_title" style="color: #FFFFFF;">ОТКАЗ ОТ УЧАСТИЯ!</p>
                 </div>
@@ -205,7 +205,7 @@
                 </div>
             </div>
 
-            <div class="vote__box" style="border: 1px solid #400080;" *ngIf="application?.application != null && application?.application.status.name == 'Принят'">
+            <div class="vote__box" style="border: 1px solid #400080;" *ngIf="application?.application != null && application?.application.status.id == '2'">
                 <div style="background-color: #400080;">
                     <p class="vote__head_title" style="color: #FFFFFF;">ЗАЯВКА ПРИНЯТА!</p>
                 </div>
@@ -218,7 +218,7 @@
                 </div>
             </div>
 
-            <div class="vote__box" style="border: 1px solid #FFFF00;" *ngIf="application?.application !=null && application?.application.status.name == 'Приглашение'">
+            <div class="vote__box" style="border: 1px solid #FFFF00;" *ngIf="application?.application !=null && application?.application.status.id == '4'">
                 <div style="background-color: #FFFF00;">
                     <p class="vote__head_title">ВЫ ПРИГЛАШЕНЫ!</p>
                 </div>
@@ -245,7 +245,7 @@
                 </div>
             </div>
 
-            <div class="vote__box" style="border: 1px solid #FF0080;" *ngIf="application?.application != null && application?.application.status.name == 'Отклонено'">
+            <div class="vote__box" style="border: 1px solid #FF0080;" *ngIf="application?.application != null && application?.application.status.id == '3'">
                 <div style="background-color: #FF0080;">
                     <p class="vote__head_title" style="color: #FFFFFF;">ЗАЯВКА ОТКЛОНЕНА!</p>
                 </div>
