@@ -347,7 +347,7 @@ export class EventComponent implements OnInit {
 
     sendReject(){
         if(this.application.refuse_button){
-            this.http.get(this.url + `events/${this.idEvent}/application?action=reject`)
+            this.http.get(this.url + `events/${this.idEvent}/application?action=refuse`)
             .subscribe(res => {
                 this.answer = res;
                 this.getApplication();

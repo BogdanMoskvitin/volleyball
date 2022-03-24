@@ -174,21 +174,87 @@
             </div>
         </div>
         <div class="vote">
-            <div class="vote__box">
-                <div class="vote__head">
+            
+            <div class="vote__box" style="border: 1px solid #00FFFF;" *ngIf="application?.application != null && application?.application.status.name == 'На модерации'">
+                <div style="background-color: #00FFFF;">
+                    <p class="vote__head_title">ЗАЯВКА ПОДАНА!</p>
+                </div>
+                <div class="vote__box_text">
+                    <p class="vote__title">Вы уже оставили заявку на событие.</p>
+                    <span class="vote__subtitle">{{application?.application.status.description}}</span>
+
+                    <p class="vote__title">Заявка на участие в закрытом событии.</p>
+                    <span class="vote__subtitle">{{event?.type.description}}</span>
+                </div>
+            </div>
+
+            <div class="vote__box" style="border: 1px solid #363636;" *ngIf="application?.application != null && application?.application.status.name == 'Отказ от участия'">
+                <div style="background-color: #363636;">
+                    <p class="vote__head_title" style="color: #FFFFFF;">ОТКАЗ ОТ УЧАСТИЯ!</p>
+                </div>
+                <div class="vote__box_text">
+                    <p class="vote__title">Вы отказались участвовать в событии.</p>
+                    <span class="vote__subtitle">Вы отказались от участия. Повторно подать заявку можно до начала мероприятия.</span>
+
+                    <p class="vote__title">Заявка на участие в закрытом событии.</p>
+                    <span class="vote__subtitle">Это событие закрытого или частично-закрытого типа. На событиях такого типа участие возможно строго по приглашениям или по решению модерации.</span>
+                </div>
+            </div>
+
+            <div class="vote__box" style="border: 1px solid #400080;" *ngIf="application?.application != null && application?.application.status.name == 'Принят'">
+                <div style="background-color: #400080;">
+                    <p class="vote__head_title" style="color: #FFFFFF;">ЗАЯВКА ПРИНЯТА!</p>
+                </div>
+                <div class="vote__box_text">
+                    <p class="vote__title">Ваша заявка была подтверждена.</p>
+                    <span class="vote__subtitle">Участие в событии подтверждено. Отказаться от участия можно до начала мероприятия.</span>
+
+                    <p class="vote__title">Заявка на участие в открытом событии.</p>
+                    <span class="vote__subtitle">Это событие открытого типа. Любой желающий может принять участие в данном событии.</span>
+                </div>
+            </div>
+
+            <div class="vote__box" style="border: 1px solid #FFFF00;" *ngIf="application?.application !=null && application?.application.status.name == 'Приглашение'">
+                <div style="background-color: #FFFF00;">
                     <p class="vote__head_title">ВЫ ПРИГЛАШЕНЫ!</p>
                 </div>
                 <div class="vote__box_text">
                     <p class="vote__title">Вас пригласил <span style="color: #00FFFF;">{{event?.created_by}}</span>.</p>
-                    <span class="vote__subtitle">Йоу, приходи, не пожалеешь. Точно тебе говорю, будет круто!</span>
+                    <span class="vote__subtitle" *ngIf="application?.application.comment_moderator">{{application?.application.comment_moderator}}</span>
+                    <span class="vote__subtitle" *ngIf="!application?.application.comment_moderator">{{application?.status.description}}</span>
 
-                    <p class="vote__title">Участие в закрытом событии.</p>
-                    <span class="vote__subtitle">В событиях закрытого типа участие возможно строго по приглашениям или по решению модерации.</span>
-
-                    <p class="vote__title">Решение об участии.</p>
-                    <span class="vote__subtitle">Вы можете принять решение до начала события. В случае отказа приглашение будет отменено</span>
+                    <p class="vote__title">Заявка на участие в закрытом событии.</p>
+                    <span class="vote__subtitle">Это событие закрытого или частично-закрытого типа. На событиях такого типа участие возможно строго по приглашениям или по решению модерации.</span>
                 </div>
             </div>
+
+            <div class="vote__box" style="border: 1px solid #959595;" *ngIf="application?.application !=null && application?.application.status.name == 'Открытое событие'">
+                <div style="background-color: #959595;">
+                    <p class="vote__head_title">ОТКРЫТОЕ СОБЫТИЕ!</p>
+                </div>
+                <div class="vote__box_text">
+                    <p class="vote__title">Вы можете принять участие в событии.</p>
+                    <span class="vote__subtitle">Вы можете принять решение об участии в событии.</span>
+
+                    <p class="vote__title">Заявка на участие в открытом событии.</p>
+                    <span class="vote__subtitle">Это событие открытого типа. Любой желающий может принять участие в данном событии.</span>
+                </div>
+            </div>
+
+            <div class="vote__box" style="border: 1px solid #FF0080;" *ngIf="application?.application == null">
+                <div style="background-color: #FF0080;">
+                    <p class="vote__head_title" style="color: #FFFFFF;">ЗАЯВКА ОТКЛОНЕНА!</p>
+                </div>
+                <div class="vote__box_text">
+                    <p class="vote__title">Вам запрещено участвовать в событии.</p>
+                    <span class="vote__subtitle" *ngIf="application?.application.comment_moderator">{{application?.application.comment_moderator}}</span>
+                    <span class="vote__subtitle" *ngIf="!application?.application.comment_moderator">{{application?.status.description}}</span>
+
+                    <p class="vote__title">Заявка на участие в закрытом событии.</p>
+                    <span class="vote__subtitle">Это событие открытого типа. Любой желающий может принять участие в данном событии.</span>
+                </div>
+            </div>
+
             <div class="vote__box_btns" *ngIf="application?.can_edit">
                 <button class="vote__btn_accept" (click)="sendAccept()" [ngClass]="{vote__btn_mute: !application?.accept_button}">Приду</button>
                 <button class="vote__btn_refuse" (click)="sendReject()" [ngClass]="{vote__btn_mute: !application?.refuse_button}">Не приду</button>
