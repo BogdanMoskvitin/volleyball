@@ -177,6 +177,7 @@
                 <p class="data__description">{{event?.comment}}</p>
             </div>
         </div>
+        
         <div class="vote">
             
             <div class="vote__box" style="border: 1px solid #00FFFF;" *ngIf="application?.application != null && application?.application.status.id == '1'">
@@ -187,7 +188,8 @@
                     <p class="vote__title">Вы уже оставили заявку на событие.</p>
                     <span class="vote__subtitle">{{application?.application.status.description}}</span>
 
-                    <p class="vote__title">Заявка на участие в закрытом событии.</p>
+                    <p class="vote__title" *ngIf="event?.status.id == 1">Заявка на участие в открытом событии.</p>
+                    <p class="vote__title" *ngIf="event?.status.id == 5">Заявка на участие в закрытом событии.</p>
                     <span class="vote__subtitle">{{event?.type.description}}</span>
                 </div>
             </div>
@@ -198,10 +200,11 @@
                 </div>
                 <div class="vote__box_text">
                     <p class="vote__title">Вы отказались участвовать в событии.</p>
-                    <span class="vote__subtitle">Вы отказались от участия. Повторно подать заявку можно до начала мероприятия.</span>
+                    <span class="vote__subtitle">{{application?.application.status.description}}</span>
 
-                    <p class="vote__title">Заявка на участие в закрытом событии.</p>
-                    <span class="vote__subtitle">Это событие закрытого или частично-закрытого типа. На событиях такого типа участие возможно строго по приглашениям или по решению модерации.</span>
+                    <p class="vote__title" *ngIf="event?.status.id == 1">Заявка на участие в открытом событии.</p>
+                    <p class="vote__title" *ngIf="event?.status.id == 5">Заявка на участие в закрытом событии.</p>
+                    <span class="vote__subtitle">{{event?.type.description}}</span>
                 </div>
             </div>
 
@@ -211,10 +214,11 @@
                 </div>
                 <div class="vote__box_text">
                     <p class="vote__title">Ваша заявка была подтверждена.</p>
-                    <span class="vote__subtitle">Участие в событии подтверждено. Отказаться от участия можно до начала мероприятия.</span>
+                    <span class="vote__subtitle">{{application?.application.status.description}}</span>
 
-                    <p class="vote__title">Заявка на участие в открытом событии.</p>
-                    <span class="vote__subtitle">Это событие открытого типа. Любой желающий может принять участие в данном событии.</span>
+                    <p class="vote__title" *ngIf="event?.status.id == 1">Заявка на участие в открытом событии.</p>
+                    <p class="vote__title" *ngIf="event?.status.id == 5">Заявка на участие в закрытом событии.</p>
+                    <span class="vote__subtitle">{{event?.type.description}}</span>
                 </div>
             </div>
 
@@ -227,8 +231,9 @@
                     <span class="vote__subtitle" *ngIf="application?.application.comment_moderator">{{application?.application.comment_moderator}}</span>
                     <span class="vote__subtitle" *ngIf="!application?.application.comment_moderator">{{application?.status.description}}</span>
 
-                    <p class="vote__title">Заявка на участие в закрытом событии.</p>
-                    <span class="vote__subtitle">Это событие закрытого или частично-закрытого типа. На событиях такого типа участие возможно строго по приглашениям или по решению модерации.</span>
+                    <p class="vote__title" *ngIf="event?.status.id == 1">Заявка на участие в открытом событии.</p>
+                    <p class="vote__title" *ngIf="event?.status.id == 5">Заявка на участие в закрытом событии.</p>
+                    <span class="vote__subtitle">{{event?.type.description}}</span>
                 </div>
             </div>
 
@@ -238,10 +243,11 @@
                 </div>
                 <div class="vote__box_text">
                     <p class="vote__title">Вы можете принять участие в событии.</p>
-                    <span class="vote__subtitle">Вы можете принять решение об участии в событии.</span>
+                    <span class="vote__subtitle">{{application?.application.status.description}}</span>
 
-                    <p class="vote__title">Заявка на участие в открытом событии.</p>
-                    <span class="vote__subtitle">Это событие открытого типа. Любой желающий может принять участие в данном событии.</span>
+                    <p class="vote__title" *ngIf="event?.status.id == 1">Заявка на участие в открытом событии.</p>
+                    <p class="vote__title" *ngIf="event?.status.id == 5">Заявка на участие в закрытом событии.</p>
+                    <span class="vote__subtitle">{{event?.type.description}}</span>
                 </div>
             </div>
 
@@ -254,8 +260,9 @@
                     <span class="vote__subtitle" *ngIf="application?.application.comment_moderator">{{application?.application.comment_moderator}}</span>
                     <span class="vote__subtitle" *ngIf="!application?.application.comment_moderator">{{application?.status.description}}</span>
 
-                    <p class="vote__title">Заявка на участие в закрытом событии.</p>
-                    <span class="vote__subtitle">Это событие открытого типа. Любой желающий может принять участие в данном событии.</span>
+                    <p class="vote__title" *ngIf="event?.status.id == 1">Заявка на участие в открытом событии.</p>
+                    <p class="vote__title" *ngIf="event?.status.id == 5">Заявка на участие в закрытом событии.</p>
+                    <span class="vote__subtitle">{{event?.type.description}}</span>
                 </div>
             </div>
 

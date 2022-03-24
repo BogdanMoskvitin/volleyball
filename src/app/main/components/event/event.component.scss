@@ -333,6 +333,8 @@ p, span {
     color: #000000;
 }
 .participants__list {
+    max-height: 360px;
+    overflow: auto;
 }
 .participants__cell {
     display: flex;
