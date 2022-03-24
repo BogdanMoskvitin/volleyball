@@ -212,6 +212,7 @@ export class EventComponent implements OnInit {
     result;
     statistics;
     application;
+    answer;
 
     view = {
         accepted: true,
@@ -252,6 +253,7 @@ export class EventComponent implements OnInit {
         this.getEvent();
         this.getStatistics();
         this.viewAccepted();
+        this.getApplication();
 //         this.getComments();
     }
 
@@ -333,17 +335,25 @@ export class EventComponent implements OnInit {
     }
 
     sendAccept(){
-        this.http.get(this.url + `events/${this.idEvent}/application?action=accept`)
-        .subscribe(res => {
-            this.application = res;
-        })
+        if(this.application.accept_button){
+            this.http.get(this.url + `events/${this.idEvent}/application?action=accept`)
+            .subscribe(res => {
+                this.answer = res;
+                this.getApplication();
+                this.getStatistics();
+            })
+        }
     }
 
-    sendReject (){
-        this.http.get(this.url + `events/${this.idEvent}/application?action=reject`)
-        .subscribe(res => {
-            this.application = res;
-        })
+    sendReject(){
+        if(this.application.refuse_button){
+            this.http.get(this.url + `events/${this.idEvent}/application?action=reject`)
+            .subscribe(res => {
+                this.answer = res;
+                this.getApplication();
+                this.getStatistics();
+            })
+        }
     }
 
     viewAccepted(){
@@ -412,6 +422,13 @@ export class EventComponent implements OnInit {
         this.http.get(this.url + `users/${user}/`)
         .subscribe(res => {
             this.user = res;
+        })
+    }
+
+    getApplication(){
+        this.http.get(this.url + `events/${this.idEvent}/application/`)
+        .subscribe(res => {
+            this.application = res;
         })
     }
 

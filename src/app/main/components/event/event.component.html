@@ -189,9 +189,9 @@
                     <span class="vote__subtitle">Вы можете принять решение до начала события. В случае отказа приглашение будет отменено</span>
                 </div>
             </div>
-            <div class="vote__box_btns">
-                <button class="vote__btn" style="background-color: #00FFFF;" (click)="sendAccept()">Приду</button>
-                <button class="vote__btn" style="background-color: #FF0080;" (click)="sendReject()">Не приду</button>
+            <div class="vote__box_btns" *ngIf="application?.can_edit">
+                <button class="vote__btn_accept" (click)="sendAccept()" [ngClass]="{vote__btn_mute: !application?.accept_button}">Приду</button>
+                <button class="vote__btn_refuse" (click)="sendReject()" [ngClass]="{vote__btn_mute: !application?.refuse_button}">Не приду</button>
             </div>
         </div>
     </div>
