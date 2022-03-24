@@ -162,13 +162,17 @@
                 </div>
                 <div class="data__box_text">
                     <p class="data__title">{{event?.type.name}}</p>
-                    <p class="data__subtitle" style="text-align: end;">создатель события <span style="color: #00FFFF;">{{event?.created_by}}</span></p>
+                    <p class="data__subtitle" style="text-align: end;">создатель события <span style="color: #00FFFF;">{{event?.created_by.full_name}}</span></p>
                 </div>
             </div>
             <div class="data__flex">
-                <div class="data__box_text">
+                <div class="data__box_text" *ngIf="event?.price != 0 && event?.price != null">
                     <p class="data__title"><span>{{statistics?.event_stats.price_per_player}}</span>/{{event?.price}}&#8381;</p>
                     <p class="data__subtitle">[с человека / общая]</p>
+                </div>
+                <div class="data__box_text" *ngIf="event?.price == 0 || event?.price == null">
+                    <p class="data__title">Бесплатно</p>
+                    <p class="data__subtitle">[сборы не взимаются]</p>
                 </div>
                 <p class="data__description">{{event?.comment}}</p>
             </div>
@@ -228,7 +232,7 @@
                 </div>
             </div>
 
-            <div class="vote__box" style="border: 1px solid #959595;" *ngIf="application?.application !=null && application?.application.status.name == 'Открытое событие'">
+            <div class="vote__box" style="border: 1px solid #959595;" *ngIf="application?.application == null">
                 <div style="background-color: #959595;">
                     <p class="vote__head_title">ОТКРЫТОЕ СОБЫТИЕ!</p>
                 </div>
@@ -241,7 +245,7 @@
                 </div>
             </div>
 
-            <div class="vote__box" style="border: 1px solid #FF0080;" *ngIf="application?.application == null">
+            <div class="vote__box" style="border: 1px solid #FF0080;" *ngIf="application?.application != null && application?.application.status.name == 'Отклонено'">
                 <div style="background-color: #FF0080;">
                     <p class="vote__head_title" style="color: #FFFFFF;">ЗАЯВКА ОТКЛОНЕНА!</p>
                 </div>
