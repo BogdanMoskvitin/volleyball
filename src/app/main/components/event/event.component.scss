@@ -304,6 +304,7 @@ p, span {
     font-family: DinProItalic;
     font-size: 36px;
     border: none;
+    cursor: pointer;
 }
 .participants__data {
     display: flex;
@@ -315,7 +316,7 @@ p, span {
 .participants__btn_filter {
     display: flex;
     align-items: center;
-    justify-content: center;
+    padding-left: 10px;
     width: 281px;
     height: 68px;
     background-color: #00000050;
@@ -344,6 +345,18 @@ p, span {
     background: linear-gradient(to right, #959595 15%, #FFFFFF 15% 98%, #959595 98%);
     margin-bottom: 5px;
     cursor: pointer;
+}
+.participants__cell_you {
+    background: linear-gradient(to right, #FFFF00 15%, #FFFFFF 15% 98%, #959595 98%);
+}
+.participants__cell_create {
+    background: linear-gradient(to right, #FF0080 15%, #FFFFFF 15% 98%, #959595 98%);
+}
+.participants__cell_moderator {
+    background: linear-gradient(to right, #00FFFF 15%, #FFFFFF 15% 98%, #959595 98%);
+}
+.participants__cell_player {
+    background: linear-gradient(to right, #959595 15%, #FFFFFF 15% 98%, #959595 98%);
 }
 .participants__avatar {
     width: 50px;
@@ -396,4 +409,102 @@ p, span {
     color: #FFFFFF;
     font-size: 36px;
     letter-spacing: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+$grey: #788CA0;
+$light: #EEF5F8;
+$blue: #007EA7;
+$dark: #121218;
+$lightdark: #1C1C24;
+
+.box__data {
+    padding: 20px;
+}
+.dangerous {
+    color: $grey;
+    user-select: none;
+    margin-bottom: 10px;
+}
+.subtitle {
+    color: $light;
+    font-size: 20px;
+    margin: 0 0 10px 0;
+    user-select: none;
+}
+.textarea {
+    width: 290px;
+    color: $light;
+}
+.icon__send {
+    display: inline-block;
+    background-color: $lightdark;
+    border: none;
+    cursor: pointer;
+}
+.btn__send {
+    display: none;
+    width: 290px;
+    margin: 0 0 10px 0;
+    background-color: $blue;
+}
+.title__comment {
+    color: $light;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.container__comment {
+    max-height: 300px;
+    overflow: auto;
+    border-radius: 5px;
+}
+.box__comment {
+    background-color: $grey;
+    margin: 5px 0;
+    border-radius: 5px 5px 5px 0px;
+    display: inline-block;
+    padding: 5px 10px;
+    cursor: pointer;
+    max-width: 300px;
+}
+.user__comment {
+    font-size: 12px;
+    color: $dark;
+}
+.text__comment {
+    padding: 5px 0px;
+    color: $light;
+}
+.time__comment {
+    text-align: end;
+    font-size: 12px;
+    color: $dark;
+}
+@media(max-width: 510px) {
+    .box__data {
+        padding: 0;
+    }
+    .subtitle {
+        margin: 20px 0 10px 0;
+    }
+    .icon__send {
+        display: none;
+    }
+    .btn__send {
+        display: block;
+    }
 }

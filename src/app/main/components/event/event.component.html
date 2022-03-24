@@ -152,7 +152,7 @@
                 </div>
                 <div class="data__box_text">
                     <p class="data__title_status">{{event?.status.name}}</p>
-                    <p class="data__subtitle" style="text-align: end;">до старта {{result | date: 'ddд. HHч. mmм. ssс.'}}</p>
+                    <p class="data__subtitle" style="text-align: end;" *ngIf="event?.show_timer">до старта {{result | date: 'ddд. HHч. mmм. ssс.'}}</p>
                 </div>
             </div>
             <div class="data__flex">
@@ -162,7 +162,7 @@
                 </div>
                 <div class="data__box_text">
                     <p class="data__title">{{event?.type.name}}</p>
-                    <p class="data__subtitle" style="text-align: end;">создатель события <span style="color: #00FFFF;">{{event?.created_by.full_name}}</span></p>
+                    <p class="data__subtitle" style="text-align: end;">создатель события <span style="color: #00FFFF;">{{event?.created_by?.full_name}}</span></p>
                 </div>
             </div>
             <div class="data__flex">
@@ -227,9 +227,9 @@
                     <p class="vote__head_title">ВЫ ПРИГЛАШЕНЫ!</p>
                 </div>
                 <div class="vote__box_text">
-                    <p class="vote__title">Вас пригласил <span style="color: #00FFFF;">{{event?.created_by}}</span>.</p>
+                    <p class="vote__title">Вас пригласил <span style="color: #00FFFF;">{{event?.created_by.full_name}}</span>.</p>
                     <span class="vote__subtitle" *ngIf="application?.application.comment_moderator">{{application?.application.comment_moderator}}</span>
-                    <span class="vote__subtitle" *ngIf="!application?.application.comment_moderator">{{application?.status.description}}</span>
+                    <span class="vote__subtitle" *ngIf="!application?.application.comment_moderator">{{application?.status?.description}}</span>
 
                     <p class="vote__title" *ngIf="event?.status.id == 1">Заявка на участие в открытом событии.</p>
                     <p class="vote__title" *ngIf="event?.status.id == 5">Заявка на участие в закрытом событии.</p>
@@ -273,12 +273,12 @@
         </div>
     </div>
     <div class="participants__box_btns">
-        <button class="participants__btn" style="color: #191919; background-color: #FFFFFF;">игроки</button>
-        <button class="participants__btn" style="color: #FFFFFF; background-color: #191919;">чат</button>
-        <button class="participants__btn" style="color: #FFFFFF; background-color: #400080;">управление</button>
+        <button class="participants__btn" style="color: #191919; background-color: #FFFFFF;" (click)="viewPlayers()">игроки</button>
+        <button class="participants__btn" style="color: #FFFFFF; background-color: #191919;" (click)="viewChat()">чат</button>
+        <button class="participants__btn" style="color: #FFFFFF; background-color: #400080;" (click)="viewControl()">управление</button>
     </div>
     <div class="flex">
-        <div class="participants">
+        <div class="participants" *ngIf="nav.players">
             <div class="participants__data">
                 <div class="participants__filters">
                     <button [ngClass]="{active_filter: view.accepted}" class="participants__btn_filter" (click)="viewAccepted()">
@@ -303,15 +303,21 @@
                     </button>
                 </div>
 
-                <div class="participants__list" *ngIf="view.accepted">
-                    <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)">
+                <div *ngIf="view.accepted" class="participants__list">
+                    <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)" 
+                    [ngClass]="{
+                        participants__cell_you: application.user_status.id == 0, 
+                        participants__cell_create: application.user_status.id == 1,
+                        participants__cell_moderator: application.user_status.id == 2, 
+                        participants__cell_player: application.user_status.id == 3}">
                         <div class="participants__avatar"></div>
                         <div class="participants__cell_text">
-                            <p class="participants__status">[игрок]</p>
+                            <p class="participants__status">[{{application.user_status.status}}]</p>
                             <p class="participants__name">{{application.user.full_name}}</p>
                         </div>
                     </div>
                 </div>
+
                 <div class="participants__list" *ngIf="view.guests">
                     <div class="participants__cell" *ngFor="let guest of event.guests">
                         <div class="participants__avatar"></div>
@@ -321,6 +327,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="participants__list" *ngIf="view.refused">
                     <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)">
                         <div class="participants__avatar"></div>
@@ -330,6 +337,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="participants__list" *ngIf="view.invited">
                     <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)">
                         <div class="participants__avatar"></div>
@@ -339,6 +347,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="participants__list" *ngIf="view.rejected">
                     <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)">
                         <div class="participants__avatar"></div>
@@ -349,6 +358,51 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="chat" *ngIf="nav.chat">
+            
+            <div class="box__data">
+                <p class="subtitle">Комментарии({{comments?.count}})</p>
+                <p *ngIf="!isAuth" class="dangerous">Чтобы написать комментарий, войдите в систему</p>
+                <form *ngIf="isAuth" [formGroup]="addCommentForm" (ngSubmit)="sendComment()">
+                    <mat-form-field appearance="fill" class="textarea">
+                        <mat-label>Введите текст</mat-label>
+                        <textarea matInput
+                                    cdkTextareaAutosize
+                                    #autosize="cdkTextareaAutosize"
+                                    cdkAutosizeMinRows="1"
+                                    cdkAutosizeMaxRows="5"
+                                    formControlName="comment"
+                                    ></textarea>
+                    </mat-form-field>
+                    <button *ngIf="!isSend" class="icon__send" [disabled]="addCommentForm.invalid">
+                        <mat-icon style="color: #EEF5F8; margin-left: 20px;" aria-hidden="false" aria-label="Example send icon">send</mat-icon>
+                    </button>
+                    <button *ngIf="isSend" class="icon__send" type="button" (click)="sendChangeComment()">
+                        <mat-icon style="color: #EEF5F8; margin-left: 20px;" aria-hidden="false" aria-label="Example send icon">done</mat-icon>
+                    </button>
+                    <button *ngIf="!isSend" class="btn__send" mat-raised-button>Отправить</button>
+                    <button *ngIf="isSend" class="btn__send" type="button" (click)="sendChangeComment()" mat-raised-button>Сохранить</button>
+                </form>
+                <p class="title__comment" (click)="openComment()">
+                    <span *ngIf="!commentWindow">Открыть комментарии </span>
+                    <span *ngIf="commentWindow">Закрыть комментарии </span>
+                    <mat-icon *ngIf="!commentWindow" style="color: #EEF5F8; margin-left: 10px;" aria-hidden="false" aria-label="Example send icon">expand_more</mat-icon>
+                    <mat-icon *ngIf="commentWindow" style="color: #EEF5F8; margin-left: 10px;" aria-hidden="false" aria-label="Example send icon">expand_less</mat-icon>
+                </p>
+                <div *ngIf="commentWindow" class="container__comment">
+                    <div *ngFor="let comment of comments?.results.slice().reverse()">
+                        <div class="box__comment" [matMenuTriggerFor]="menu" (click)="openMenu(comment)">
+                            <span class="user__comment" style="user-select: none;">{{comment.user.full_name}}</span>
+                            <p class="text__comment">{{comment.comment}} <span style="user-select: none;" class="time__comment">{{comment.created_at | date: 'HH:mm'}}</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="control" *ngIf="nav.control">
+            <h1 style="color: #FFFFFF;">control</h1>
         </div>
         <div class="user">
             <div class="user__flex">
@@ -363,3 +417,8 @@
         </div>
     </div>
 </div>
+
+<mat-menu #menu="matMenu">
+    <button mat-raised-button style="width: 100%;" (click)="deleteComment()">Удалить сообщение</button>
+    <button mat-raised-button style="width: 100%;" (click)="changeComment()">Редактировать сообщение</button>
+</mat-menu> -->
