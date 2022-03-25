@@ -1,5 +1,5 @@
 <div class="box__data">
-    <p class="subtitle">Комментарии({{comments?.count}})</p>
+    <p class="subtitle">Комментарии</p>
     <p *ngIf="!isAuth" class="dangerous">Чтобы написать комментарий, войдите в систему</p>
     <form *ngIf="isAuth" [formGroup]="addCommentForm" (ngSubmit)="sendComment()">
         <mat-form-field appearance="fill" class="textarea">
@@ -10,6 +10,7 @@
                         cdkAutosizeMinRows="1"
                         cdkAutosizeMaxRows="5"
                         formControlName="comment"
+                        [(ngModel)]="text.comment"
                         ></textarea>
         </mat-form-field>
         <button *ngIf="!isSend" class="icon__send" [disabled]="addCommentForm.invalid">
@@ -27,8 +28,8 @@
         <mat-icon *ngIf="!commentWindow" style="color: #EEF5F8; margin-left: 10px;" aria-hidden="false" aria-label="Example send icon">expand_more</mat-icon>
         <mat-icon *ngIf="commentWindow" style="color: #EEF5F8; margin-left: 10px;" aria-hidden="false" aria-label="Example send icon">expand_less</mat-icon>
     </p>
-    <div *ngIf="commentWindow" class="container__comment">
-        <div *ngFor="let comment of comments?.results.slice().reverse()">
+    <div *ngIf="commentWindow">
+        <div *ngFor="let comment of comments?.results">
             <div class="box__comment" [matMenuTriggerFor]="menu" (click)="openMenu(comment)">
                 <span class="user__comment" style="user-select: none;">{{comment.user.full_name}}</span>
                 <p class="text__comment">{{comment.comment}} <span style="user-select: none;" class="time__comment">{{comment.created_at | date: 'HH:mm'}}</span></p>
@@ -40,4 +41,4 @@
 <mat-menu #menu="matMenu">
     <button mat-raised-button style="width: 100%;" (click)="deleteComment()">Удалить сообщение</button>
     <button mat-raised-button style="width: 100%;" (click)="changeComment()">Редактировать сообщение</button>
-</mat-menu> -->
+</mat-menu>
