@@ -32,6 +32,7 @@ import { DialogContentExampleDialog } from './components/add-event/add-event.com
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { NgxMaskModule } from 'ngx-mask';
 import { GuestService } from './services/guest.service';
+import { EventChatComponent } from './components/event-chat/event-chat.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { GuestService } from './services/guest.service';
     ChangePasswordComponent,
     EventsComponent,
     LocationComponent,
-    DialogContentExampleDialog
+    DialogContentExampleDialog,
+    EventChatComponent
   ],
   exports: [
     
@@ -101,7 +103,7 @@ import { GuestService } from './services/guest.service';
           { path: 'about-us', component: AboutUsComponent },
           { path: 'user-change', component: UserChangeComponent },
           { path: 'change-password', component: ChangePasswordComponent },
-          { path: 'events', component: EventsComponent }
+          { path: 'events', component: EventsComponent },
         ],
       },
     ])

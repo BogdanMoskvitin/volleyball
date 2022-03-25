@@ -1,0 +1,43 @@
+<div class="box__data">
+    <p class="subtitle">Комментарии({{comments?.count}})</p>
+    <p *ngIf="!isAuth" class="dangerous">Чтобы написать комментарий, войдите в систему</p>
+    <form *ngIf="isAuth" [formGroup]="addCommentForm" (ngSubmit)="sendComment()">
+        <mat-form-field appearance="fill" class="textarea">
+            <mat-label>Введите текст</mat-label>
+            <textarea matInput
+                        cdkTextareaAutosize
+                        #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5"
+                        formControlName="comment"
+                        ></textarea>
+        </mat-form-field>
+        <button *ngIf="!isSend" class="icon__send" [disabled]="addCommentForm.invalid">
+            <mat-icon style="color: #EEF5F8; margin-left: 20px;" aria-hidden="false" aria-label="Example send icon">send</mat-icon>
+        </button>
+        <button *ngIf="isSend" class="icon__send" type="button" (click)="sendChangeComment()">
+            <mat-icon style="color: #EEF5F8; margin-left: 20px;" aria-hidden="false" aria-label="Example send icon">done</mat-icon>
+        </button>
+        <button *ngIf="!isSend" class="btn__send" mat-raised-button>Отправить</button>
+        <button *ngIf="isSend" class="btn__send" type="button" (click)="sendChangeComment()" mat-raised-button>Сохранить</button>
+    </form>
+    <p class="title__comment" (click)="openComment()">
+        <span *ngIf="!commentWindow">Открыть комментарии </span>
+        <span *ngIf="commentWindow">Закрыть комментарии </span>
+        <mat-icon *ngIf="!commentWindow" style="color: #EEF5F8; margin-left: 10px;" aria-hidden="false" aria-label="Example send icon">expand_more</mat-icon>
+        <mat-icon *ngIf="commentWindow" style="color: #EEF5F8; margin-left: 10px;" aria-hidden="false" aria-label="Example send icon">expand_less</mat-icon>
+    </p>
+    <div *ngIf="commentWindow" class="container__comment">
+        <div *ngFor="let comment of comments?.results.slice().reverse()">
+            <div class="box__comment" [matMenuTriggerFor]="menu" (click)="openMenu(comment)">
+                <span class="user__comment" style="user-select: none;">{{comment.user.full_name}}</span>
+                <p class="text__comment">{{comment.comment}} <span style="user-select: none;" class="time__comment">{{comment.created_at | date: 'HH:mm'}}</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<mat-menu #menu="matMenu">
+    <button mat-raised-button style="width: 100%;" (click)="deleteComment()">Удалить сообщение</button>
+    <button mat-raised-button style="width: 100%;" (click)="changeComment()">Редактировать сообщение</button>
+</mat-menu> -->

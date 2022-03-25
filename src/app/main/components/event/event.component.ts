@@ -175,14 +175,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 // import { MyData } from 'src/app/my-data.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatMenuTrigger } from '@angular/material/menu';
+// import { FormControl, FormGroup, Validators } from '@angular/forms';
+// import { MatMenuTrigger } from '@angular/material/menu';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
-interface Comment {
-    comment: string;
-    id: number;
-}
+// interface Comment {
+//     comment: string;
+//     id: number;
+// }
  
 @Component({
     selector: 'event-service-page',
@@ -192,17 +192,17 @@ interface Comment {
 
 export class EventComponent implements OnInit {
 
-    @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+    // @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
     url: string = environment.apiUrl;
     idEvent: number;
 //     user;
     event;
-    addCommentForm: FormGroup;
-    commentWindow = true;
-    comments;
-    comment: Comment;
-    isSend;
+    // addCommentForm: FormGroup;
+    // commentWindow = true;
+    // comments;
+    // comment: Comment;
+    // isSend;
     isAuth: boolean;
 //     list = {
 //         participants: true,
@@ -237,10 +237,10 @@ export class EventComponent implements OnInit {
         private authService: AuthService
     ) {
         this.idEvent = this.activatedRoute.snapshot.params['id'];
-        this.addCommentForm = new FormGroup({
-            comment: new FormControl(''),
-            id: new FormControl('')
-        })
+        // this.addCommentForm = new FormGroup({
+        //     comment: new FormControl(''),
+        //     id: new FormControl('')
+        // })
     }
 
     ngOnInit(): void {
@@ -278,51 +278,51 @@ export class EventComponent implements OnInit {
 //         }
 //     }
 
-    openMenu(comment){
-        console.log(comment)
-        if(comment.user.id == this.user.id){
-            this.trigger.openMenu();
-            this.comment = comment;
-        } else {
-            this.trigger.closeMenu();
-        }
-    }
+    // openMenu(comment){
+    //     console.log(comment)
+    //     if(comment.user.id == this.user.id){
+    //         this.trigger.openMenu();
+    //         this.comment = comment;
+    //     } else {
+    //         this.trigger.closeMenu();
+    //     }
+    // }
 
-    getComments(){
-        this.http.get(this.url + `events/${this.idEvent}/comments/`).subscribe(res => {
-            this.comments = res;
-        })
-    }
+    // getComments(){
+    //     this.http.get(this.url + `events/${this.idEvent}/comments/`).subscribe(res => {
+    //         this.comments = res;
+    //     })
+    // }
 
-    changeComment(){
-        this.addCommentForm.value.comment = this.comment.comment;
-        this.isSend = !this.isSend;
-    }
+    // changeComment(){
+    //     this.addCommentForm.value.comment = this.comment.comment;
+    //     this.isSend = !this.isSend;
+    // }
 
-    sendChangeComment(){
-        this.http.patch(this.url + `events/${this.idEvent}/comments/${this.comment.id}/`, this.addCommentForm.value).subscribe(res => {
-            this.isSend = !this.isSend;
-            this.getComments();
-        })
-    }
+    // sendChangeComment(){
+    //     this.http.patch(this.url + `events/${this.idEvent}/comments/${this.comment.id}/`, this.addCommentForm.value).subscribe(res => {
+    //         this.isSend = !this.isSend;
+    //         this.getComments();
+    //     })
+    // }
 
-    deleteComment(){
-        this.http.delete(this.url + `events/${this.idEvent}/comments/${this.comment.id}/`).subscribe(res => {
-            this.getComments();
-        })
-    }
+    // deleteComment(){
+    //     this.http.delete(this.url + `events/${this.idEvent}/comments/${this.comment.id}/`).subscribe(res => {
+    //         this.getComments();
+    //     })
+    // }
 
-    sendComment(){
-        this.http.post(this.url + `events/${this.idEvent}/comments/`, {comment: this.addCommentForm.value.comment, event: this.idEvent})
-        .subscribe(res => {
-            this.getComments();
-        })
-        this.addCommentForm.reset();
-    }
+    // sendComment(){
+    //     this.http.post(this.url + `events/${this.idEvent}/comments/`, {comment: this.addCommentForm.value.comment, event: this.idEvent})
+    //     .subscribe(res => {
+    //         this.getComments();
+    //     })
+    //     this.addCommentForm.reset();
+    // }
 
-    openComment(){
-        this.commentWindow = !this.commentWindow;
-    }
+    // openComment(){
+    //     this.commentWindow = !this.commentWindow;
+    // }
 
 //     getUser(){
 //         this.myData.currentData.subscribe(res => {
@@ -451,7 +451,7 @@ export class EventComponent implements OnInit {
         }
     }
     viewChat(){
-        this.getComments();
+        // this.getComments();
         this.nav = {
             players: false,
             chat: true,
