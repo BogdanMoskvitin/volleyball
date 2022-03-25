@@ -229,6 +229,7 @@ export class EventComponent implements OnInit {
     }
     applications;
     user;
+    status;
 
     constructor(
         private http: HttpClient, 
@@ -429,8 +430,10 @@ export class EventComponent implements OnInit {
         })
     }
 
-    getUser(user){
-        this.http.get(this.url + `users/${user}/`)
+    getUser(application){
+        console.log(application)
+        this.status = application.user_status.status;
+        this.http.get(this.url + `users/${application.user.id}/`)
         .subscribe(res => {
             this.user = res;
         })
