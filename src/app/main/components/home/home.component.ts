@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
@@ -9,16 +9,22 @@ import { Subscription } from 'rxjs';
     styleUrls: ['./home.component.scss'],
 })
 
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     events;
     url:string = environment.apiUrl;
     aSub: Subscription;
+    spinner: boolean;
 
     constructor(private http: HttpClient) {}
     
-    ngOnInit() {
+    ngOnInit(): void {
+        this.spinner = true;
         this.getEvents();
+    }
+
+    ngAfterViewInit(): void {
+        this.spinner = false;
     }
 
     getEvents() {

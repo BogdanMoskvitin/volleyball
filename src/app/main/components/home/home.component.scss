@@ -37,3 +37,11 @@ $lightdark: #1C1C24;
     color: $light;
     padding: 3px 0;
 }
+.spinner {
+    position: absolute;
+    top: 0; right: 0; left: 0; bottom: 0;
+    background-color: #363636;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

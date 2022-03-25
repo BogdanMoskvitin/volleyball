@@ -33,6 +33,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { NgxMaskModule } from 'ngx-mask';
 import { GuestService } from './services/guest.service';
 import { EventChatComponent } from './components/event-chat/event-chat.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { EventChatComponent } from './components/event-chat/event-chat.component
     MatDialogModule,
     MatAutocompleteModule,
     NgxMaskModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild([
       {
         path: '',

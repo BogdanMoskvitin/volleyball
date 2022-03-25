@@ -3,7 +3,7 @@ p, span {
 }
 .container {
     max-width: 1140px;
-    margin: 120px auto 0 auto;
+    margin: 30px auto 0 auto;
 }
 .flex {
     display: flex;
@@ -257,4 +257,12 @@ p, span {
     color: #FFFFFF;
     font-size: 36px;
     letter-spacing: 0;
+}
+.spinner {
+    position: absolute;
+    top: 0; right: 0; left: 0; bottom: 0;
+    background-color: #363636;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

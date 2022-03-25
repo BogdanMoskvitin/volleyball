@@ -234,7 +234,12 @@ ng-sidebar-container {
     margin-left: 10px;
 }
 .router-outlet {
-    padding: 10px;
+    position: fixed;
+    top: 91px; left: 0; right: 0; bottom: 0;
+}
+.content {
+    height: 100%;
+    overflow: auto;
 }
 @media(max-width: 1550px) {
     .logo {
