@@ -173,20 +173,35 @@ p, span {
     align-items: center;
     width: 462px;
     height: 68px;
-    background: linear-gradient(to right, #959595 15%, #FFFFFF 15% 98%, #959595 98%);
+    background: linear-gradient(to right, #959595 15%, #353535 15% 98%, #959595 98%);
     margin-bottom: 5px;
     cursor: pointer;
 }
 .participants__cell_you {
-    background: linear-gradient(to right, #FFFF00 15%, #FFFFFF 15% 98%, #959595 98%);
+    background: linear-gradient(to right, #FFFF00 15%, #353535 15% 98%, #FFFF00 98%);
 }
 .participants__cell_create {
-    background: linear-gradient(to right, #FF0080 15%, #FFFFFF 15% 98%, #959595 98%);
+    background: linear-gradient(to right, #FF0080 15%, #353535 15% 98%, #FF0080 98%);
 }
 .participants__cell_moderator {
-    background: linear-gradient(to right, #00FFFF 15%, #FFFFFF 15% 98%, #959595 98%);
+    background: linear-gradient(to right, #00FFFF 15%, #353535 15% 98%, #00FFFF 98%);
 }
 .participants__cell_player {
+    background: linear-gradient(to right, #959595 15%, #353535 15% 98%, #959595 98%);
+}
+.participants__cell:hover {
+    background: linear-gradient(to right, #959595 15%, #FFFFFF 15% 98%, #959595 98%);
+}
+.participants__cell_you:hover {
+    background: linear-gradient(to right, #FFFF00 15%, #FFFFFF 15% 98%, #FFFF00 98%);
+}
+.participants__cell_create:hover {
+    background: linear-gradient(to right, #FF0080 15%, #FFFFFF 15% 98%, #FF0080 98%);
+}
+.participants__cell_moderator:hover {
+    background: linear-gradient(to right, #00FFFF 15%, #FFFFFF 15% 98%, #00FFFF 98%);
+}
+.participants__cell_player:hover {
     background: linear-gradient(to right, #959595 15%, #FFFFFF 15% 98%, #959595 98%);
 }
 .participants__avatar {
@@ -199,10 +214,16 @@ p, span {
 }
 .participants__status {
     font-size: 24px;
-    color: #191919;
+    color: #959595;
 }
 .participants__name {
     font-size: 24px;
+    color: #FFFFFF;
+}
+.participants__cell:hover .participants__status {
+    color: #363636;
+}
+.participants__cell:hover .participants__name {
     color: #191919;
 }
 .user {
