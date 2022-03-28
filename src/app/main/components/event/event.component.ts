@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
     styleUrls: ['./event.component.scss'],
 })
 
-export class EventComponent implements OnInit, AfterViewInit {
+export class EventComponent implements OnInit {
 
     url: string = environment.apiUrl;
     idEvent: number;
@@ -56,10 +56,6 @@ export class EventComponent implements OnInit, AfterViewInit {
         this.getStatistics();
         this.viewAccepted();
         this.getApplication();
-    }
-
-    ngAfterViewInit() {
-        this.spinner = false;
     }
 
     getEvent(){
@@ -205,6 +201,7 @@ export class EventComponent implements OnInit, AfterViewInit {
             let now = new Date();
             let mls = end.getTime() - now.getTime();
             this.result = new Date(mls)
+            this.spinner = false;
         }, 1000);
     }
 }
