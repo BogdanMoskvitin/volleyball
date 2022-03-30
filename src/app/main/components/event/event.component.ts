@@ -80,6 +80,7 @@ export class EventComponent implements OnInit {
                 this.answer = res;
                 this.getApplication();
                 this.getStatistics();
+                this.viewAccepted();
             })
         }
     }
@@ -91,6 +92,7 @@ export class EventComponent implements OnInit {
                 this.answer = res;
                 this.getApplication();
                 this.getStatistics();
+                this.viewRefused();
             })
         }
     }
@@ -158,9 +160,16 @@ export class EventComponent implements OnInit {
     }
 
     getUser(application){
-        console.log(application)
         this.status = application.user_status.status;
         this.http.get(this.url + `users/${application.user.id}/`)
+        .subscribe(res => {
+            this.user = res;
+        })
+    }
+
+    getCreate(user){
+        this.status = 'Создатель';
+        this.http.get(this.url + `users/${user.id}/`)
         .subscribe(res => {
             this.user = res;
         })

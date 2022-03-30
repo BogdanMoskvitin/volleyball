@@ -1,0 +1,26 @@
+<div class="container">
+    <p class="title">Заполните данные</p>
+    <form [formGroup]="regForm" novalidate (ngSubmit)="sendService()">
+        <div class="box">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>Имя</mat-label>
+                <input matInput formControlName="first_name">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>Фамилия</mat-label>
+                <input matInput formControlName="last_name">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>E-mail</mat-label>
+                <input matInput formControlName="email">
+            </mat-form-field>
+
+            <div>
+                <button mat-raised-button [disabled]="regForm.invalid" class="btn">Отправить</button>
+            </div>
+            <p [routerLink]="['../main']" class="subtitle">Заполнить позже</p>
+        </div>
+    </form>
+</div>

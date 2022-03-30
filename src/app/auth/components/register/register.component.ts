@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MaterialService } from 'src/app/classes/material.service';
 import { AuthService } from '../../services/auth.service';
 import { Register } from '../../models/auth.model';
 import { ToastrService } from 'ngx-toastr';
@@ -28,9 +27,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
         private toastr: ToastrService
     ) {
         this.regForm = new FormGroup({
-            first_name: new FormControl('', [Validators.required]),
-            last_name: new FormControl('', [Validators.required]),
-            email: new FormControl('', [Validators.required]), 
             phone_number: new FormControl('+7', [Validators.required]),
             password: new FormControl('', [Validators.required]),
             password2: new FormControl('', [Validators.required]),
@@ -52,9 +48,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
 
     constructForm(){
-        this.form.first_name = this.regForm.value.first_name;
-        this.form.last_name = this.regForm.value.last_name;
-        this.form.email = this.regForm.value.email;
         this.form.phone_number = '+7' + this.regForm.value.phone_number;
         this.form.password = this.regForm.value.password;
     }
@@ -64,7 +57,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         this.aSub = this.authService.registration(this.form).subscribe(
             () => {
                 this.toastr.success('Вы зарегестрированы!');
-                this.router.navigate(['/auth'], {
+                this.router.navigate(['/auth/register-user'], {
                     queryParams: {
                         registered: true
                     }

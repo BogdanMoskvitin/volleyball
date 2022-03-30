@@ -23,7 +23,7 @@
                 </div>
                 <div>
                     <p class="data__title">{{event?.type.name}}</p>
-                    <p class="data__subtitle" style="text-align: end;">создатель события <span style="color: #00FFFF;">{{event?.created_by?.full_name}}</span></p>
+                    <p class="data__subtitle" style="text-align: end;">создатель события <span style="color: #00FFFF; cursor: pointer;" (click)="getCreate(event?.created_by)">{{event?.created_by?.full_name}}</span></p>
                 </div>
             </div>
             <div class="data__flex">
@@ -164,57 +164,59 @@
                     </button>
                 </div>
 
-                <div *ngIf="view.accepted" class="participants__list">
-                    <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application)" 
-                    [ngClass]="{
-                        participants__cell_you: application.user_status.id == 0, 
-                        participants__cell_create: application.user_status.id == 1,
-                        participants__cell_moderator: application.user_status.id == 2, 
-                        participants__cell_player: application.user_status.id == 3}">
-                        <div class="participants__avatar"></div>
-                        <div>
-                            <p class="participants__status">[{{application.user_status.status}}]</p>
-                            <p class="participants__name">{{application.user.full_name}}</p>
+                <div style="width: 476px;">
+                    <div *ngIf="view.accepted" class="participants__list">
+                        <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application)" 
+                        [ngClass]="{
+                            participants__cell_you: application.user_status.id == 0, 
+                            participants__cell_create: application.user_status.id == 1,
+                            participants__cell_moderator: application.user_status.id == 2, 
+                            participants__cell_player: application.user_status.id == 3}">
+                            <div class="participants__avatar"></div>
+                            <div>
+                                <p class="participants__status">[{{application.user_status.status}}]</p>
+                                <p class="participants__name">{{application.user.full_name}}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="participants__list" *ngIf="view.guests">
-                    <div class="participants__cell" *ngFor="let guest of event.guests">
-                        <div class="participants__avatar"></div>
-                        <div>
-                            <p class="participants__status">[игрок]</p>
-                            <p class="participants__name">{{guest.name}}</p>
+        
+                    <div class="participants__list" *ngIf="view.guests">
+                        <div class="participants__cell" *ngFor="let guest of event.guests">
+                            <div class="participants__avatar"></div>
+                            <div>
+                                <p class="participants__status">[игрок]</p>
+                                <p class="participants__name">{{guest.name}}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="participants__list" *ngIf="view.refused">
-                    <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)">
-                        <div class="participants__avatar"></div>
-                        <div>
-                            <p class="participants__status">[игрок]</p>
-                            <p class="participants__name">{{application.user.full_name}}</p>
+                    <div class="participants__list" *ngIf="view.refused">
+                        <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)">
+                            <div class="participants__avatar"></div>
+                            <div>
+                                <p class="participants__status">[игрок]</p>
+                                <p class="participants__name">{{application.user.full_name}}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="participants__list" *ngIf="view.invited">
-                    <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)">
-                        <div class="participants__avatar"></div>
-                        <div>
-                            <p class="participants__status">[игрок]</p>
-                            <p class="participants__name">{{application.user.full_name}}</p>
+                    <div class="participants__list" *ngIf="view.invited">
+                        <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)">
+                            <div class="participants__avatar"></div>
+                            <div>
+                                <p class="participants__status">[игрок]</p>
+                                <p class="participants__name">{{application.user.full_name}}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="participants__list" *ngIf="view.rejected">
-                    <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)">
-                        <div class="participants__avatar"></div>
-                        <div>
-                            <p class="participants__status">[игрок]</p>
-                            <p class="participants__name">{{application.user.full_name}}</p>
+                    <div class="participants__list" *ngIf="view.rejected">
+                        <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)">
+                            <div class="participants__avatar"></div>
+                            <div>
+                                <p class="participants__status">[игрок]</p>
+                                <p class="participants__name">{{application.user.full_name}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -9,11 +9,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxMaskModule } from 'ngx-mask';
+import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { RegisterProfileComponent } from './components/register-profile/register-profile.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    RegisterUserComponent,
+    RegisterProfileComponent,
   ],
   exports: [
     
@@ -38,6 +42,12 @@ import { NgxMaskModule } from 'ngx-mask';
       },
       {
         path: 'register', component: RegisterComponent
+      },
+      {
+        path: 'register-user', component: RegisterUserComponent
+      },
+      {
+        path: 'register-profile', component: RegisterProfileComponent
       },
     ])
   ],

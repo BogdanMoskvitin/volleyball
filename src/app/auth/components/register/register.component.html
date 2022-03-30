@@ -3,21 +3,6 @@
     <form [formGroup]="regForm" novalidate (ngSubmit)="checkForm()">
         <div class="box">
             <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
-                <mat-label>Имя</mat-label>
-                <input matInput formControlName="first_name">
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
-                <mat-label>Фамилия</mat-label>
-                <input matInput formControlName="last_name">
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
-                <mat-label>E-mail</mat-label>
-                <input matInput formControlName="email">
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
                 <mat-label>Телефон</mat-label>
                 <input matInput formControlName="phone_number" prefix="+7" mask="(000) 000-00-00">
             </mat-form-field>
