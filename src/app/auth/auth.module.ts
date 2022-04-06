@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
@@ -9,14 +9,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxMaskModule } from 'ngx-mask';
-import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { RegisterProfileComponent } from './components/register-profile/register-profile.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    RegisterUserComponent,
     RegisterProfileComponent,
   ],
   exports: [
@@ -31,6 +31,8 @@ import { RegisterProfileComponent } from './components/register-profile/register
     MatInputModule,
     MatButtonModule,
     NgxMaskModule,
+    MatRadioModule,
+    MatDatepickerModule,
     RouterModule.forChild([
       {
         path: '',
@@ -44,14 +46,11 @@ import { RegisterProfileComponent } from './components/register-profile/register
         path: 'register', component: RegisterComponent
       },
       {
-        path: 'register-user', component: RegisterUserComponent
-      },
-      {
         path: 'register-profile', component: RegisterProfileComponent
       },
     ])
   ],
-  providers: []
+  providers: [DatePipe]
 })
 export class AuthModule {
 }

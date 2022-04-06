@@ -27,7 +27,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
         private toastr: ToastrService
     ) {
         this.regForm = new FormGroup({
+            first_name: new FormControl('', [Validators.required]),
+            last_name: new FormControl('', [Validators.required]),
             phone_number: new FormControl('+7', [Validators.required]),
+            email: new FormControl('', [Validators.required]),
             password: new FormControl('', [Validators.required]),
             password2: new FormControl('', [Validators.required]),
         });
@@ -48,7 +51,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
 
     constructForm(){
+        this.form.first_name = this.regForm.value.first_name;
+        this.form.last_name = this.regForm.value.last_name;
         this.form.phone_number = '+7' + this.regForm.value.phone_number;
+        this.form.email = this.regForm.value.email;
         this.form.password = this.regForm.value.password;
     }
 
@@ -57,7 +63,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         this.aSub = this.authService.registration(this.form).subscribe(
             () => {
                 this.toastr.success('Вы зарегестрированы!');
-                this.router.navigate(['/auth/register-user'], {
+                this.router.navigate(['/auth/register-profile'], {
                     queryParams: {
                         registered: true
                     }

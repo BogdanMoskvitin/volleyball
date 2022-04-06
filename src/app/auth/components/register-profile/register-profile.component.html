@@ -1,9 +1,9 @@
 <div class="container">
     <p class="title">Регистрация</p>
-    <form [formGroup]="regForm" novalidate (ngSubmit)="constructForm()">
+    <form [formGroup]="regForm" novalidate (ngSubmit)="sendService()">
         <div class="box">
 
-            <div class="loading__box">
+            <!-- <div class="loading__box">
                 <div class="input__wrapper">
                     <input formControlName="avatar" type="file" id="avatar" class="input__file" (change)="onFileSelected($event)">
                     <label for="avatar" class="input__file-button">
@@ -14,16 +14,28 @@
                 <span class="input__file-name">{{regForm.value.avatar.split('\\')[2] || null}}</span>
             </div>
 
-            <img *ngIf="avatar" class="avatar" src="{{avatar}}" alt="avatar">
+            <img *ngIf="avatar" class="avatar" src="{{avatar}}" alt="avatar"> -->
 
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
-                <mat-label>Город проживания</mat-label>
-                <input matInput formControlName="city">
+            <mat-form-field color="accent" appearance="fill" style="width: 250px;">
+                <mat-label>День рождения</mat-label>
+                <input formControlName="birthday" matInput [matDatepicker]="picker2">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2 color="primary"></mat-datepicker>
             </mat-form-field>
 
+            <div style="width: 250px; margin-bottom: 15px; color: rgba(255,255,255,.7);">
+                <mat-radio-group name="gender" formControlName="gender">
+                    <div *ngFor="let gender of genders">
+                        <mat-radio-button color="primary" [style.margin.px]="'5'" value="{{gender.value}}" [checked]="gender.check">
+                            {{gender.placeholder}}
+                        </mat-radio-button>
+                    </div>
+                </mat-radio-group>
+            </div>
+
             <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
-                <mat-label>Возраст</mat-label>
-                <input matInput formControlName="age">
+                <mat-label>VK</mat-label>
+                <input matInput formControlName="vk">
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
@@ -32,8 +44,18 @@
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
-                <mat-label>VK</mat-label>
-                <input matInput formControlName="vk">
+                <mat-label>YouTube</mat-label>
+                <input matInput formControlName="youtube">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>Twitter</mat-label>
+                <input matInput formControlName="twitter">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>Facebook</mat-label>
+                <input matInput formControlName="facebook">
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">

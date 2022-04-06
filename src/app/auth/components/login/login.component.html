@@ -3,8 +3,8 @@
     <form [formGroup]="authForm" novalidate (ngSubmit)="sendService()">
         <div class="box">
             <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
-                <mat-label>Введите номер телефона</mat-label>
-                <input matInput formControlName="phone_number" prefix="+7" mask="(000) 000-00-00">
+                <mat-label>Введите логин</mat-label>
+                <input matInput formControlName="username">
             </mat-form-field>
 
             <mat-form-field appearance="fill" style="width: 250px;">
