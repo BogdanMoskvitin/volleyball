@@ -1,5 +1,5 @@
 export interface Login {
-    phone_number: string;
+    username: string;
     password: string;
 }
 export interface Register {

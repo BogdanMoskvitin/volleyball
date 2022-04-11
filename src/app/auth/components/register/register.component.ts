@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     form: Register = { } as Register;
     hide = true;
     hide2 = true;
+    loginForm = {username: '', password: ''};
 
     constructor(
         private authService: AuthService,
@@ -44,6 +45,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         if(strPassword == strPassword2){
             this.checkPassword = false;
             this.constructForm();
+            this.constructLogin();
             this.sendService();
         } else {
             this.checkPassword = true;
@@ -58,15 +60,24 @@ export class RegisterComponent implements OnInit, OnDestroy {
         this.form.password = this.regForm.value.password;
     }
 
+    constructLogin(){
+        this.loginForm.username = this.regForm.value.email;
+        this.loginForm.password = this.regForm.value.password;
+    }
+
     sendService(){
         this.regForm.disable();
         this.aSub = this.authService.registration(this.form).subscribe(
             () => {
                 this.toastr.success('Вы зарегестрированы!');
-                this.router.navigate(['/auth/register-profile'], {
-                    queryParams: {
-                        registered: true
-                    }
+                this.authService.login(this.loginForm).subscribe(() => {
+                    this.router.navigate(['/auth/register-profile'], {
+                        queryParams: {
+                            registered: true
+                        }
+                    }).then(() => {
+                        window.location.reload();
+                    });
                 })
             },
             error => {
