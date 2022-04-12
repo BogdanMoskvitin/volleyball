@@ -35,7 +35,7 @@ export class AddTeamComponent implements OnInit, OnDestroy {
         this.aSub = this.http.post(this.url + 'teams/', this.addTeamForm.value).subscribe(
             (res) => {
                 this.toastr.success('Команда создана!');
-                this.router.navigateByUrl('main/header/teams');
+                this.router.navigateByUrl('teams');
             },
             error => {
                 this.toastr.error('Ошибка создания команды');

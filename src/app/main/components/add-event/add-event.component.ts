@@ -119,7 +119,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
         .subscribe(
             (res) => {
                 this.toastr.success('Событие создано!');
-                this.router.navigateByUrl('main/header/home');
+                this.router.navigateByUrl('');
             },
             error => {
                 this.toastr.error(error.error.time_start);

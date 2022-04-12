@@ -64,7 +64,7 @@ export class PlayersComponent implements OnInit, OnDestroy {
     }
 
     back(){
-        this.router.navigateByUrl('main/header/teams');
+        this.router.navigateByUrl('teams');
     }
 
     ngOnDestroy(){

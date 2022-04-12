@@ -86,7 +86,7 @@ export class RegisterProfileComponent implements OnInit {
         }
         this.http.patch(this.url + 'me/profile/', newForm).subscribe(res => {
             this.toastr.success('Данные сохранены');
-            this.router.navigate(['../main']);
+            this.router.navigate(['']);
         }, error => {
             this.toastr.error('Ошибка сохранения')
         })

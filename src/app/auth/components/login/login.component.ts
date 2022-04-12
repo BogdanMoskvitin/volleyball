@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
         this.aSub2 = this.authService.login(this.authForm.value).subscribe(
             (res) => {
-                this.router.navigate(['/main']).then(() => {
+                this.router.navigate(['']).then(() => {
                     window.location.reload();
                 });
             },

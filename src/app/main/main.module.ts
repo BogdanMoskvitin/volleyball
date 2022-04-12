@@ -78,18 +78,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatProgressSpinnerModule,
     RouterModule.forChild([
       {
-        path: '',
-        redirectTo: 'header',
-        pathMatch: 'full'
-      },
-      {
-        path: 'header', component: HeaderComponent, children: [
-          {
-            path: '',
-            redirectTo: 'home',
-            pathMatch: 'full'
-          },
-          { path: 'home', component: HomeComponent },
+        path: '', component: HeaderComponent, children: [
+          { path: '', component: HomeComponent },
           { path: 'event/:id', component: EventComponent },
           { path: 'add-event', component: AddEventComponent },
           { path: 'add-team', component: AddTeamComponent },

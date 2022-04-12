@@ -35,7 +35,7 @@ export class AddLocationComponent implements OnInit, OnDestroy {
         this.aSub = this.http.post(this.url + 'locations/', this.addLocationForm.value).subscribe(
             (res) => {
                 this.toastr.success('Место создано!');
-                this.router.navigateByUrl('main/header/locations');
+                this.router.navigateByUrl('locations');
             },
             error => {
                 this.toastr.error('Ошибка создания места');
