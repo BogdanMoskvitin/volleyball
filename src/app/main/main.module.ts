@@ -34,6 +34,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { GuestService } from './services/guest.service';
 import { EventChatComponent } from './components/event-chat/event-chat.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SecurityComponent } from './components/security/security.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     EventsComponent,
     LocationComponent,
     DialogContentExampleDialog,
-    EventChatComponent
+    EventChatComponent,
+    SecurityComponent
   ],
   exports: [
     
@@ -96,6 +98,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
           { path: 'user-change', component: UserChangeComponent },
           { path: 'change-password', component: ChangePasswordComponent },
           { path: 'events', component: EventsComponent },
+          { path: 'security/email-confirm', component: SecurityComponent },
         ],
       },
     ])
