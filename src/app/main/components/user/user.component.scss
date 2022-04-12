@@ -77,6 +77,9 @@ $lightdark: #1C1C24;
     font-size: 24px;
     padding-bottom: 10px;
 }
+input {
+    color: $light;
+}
 @media(max-width: 700px) {
     .container {
         width: 300px;

@@ -2,29 +2,21 @@
     <p class="title">Изменить данные</p>
     <form [formGroup]="changeForm" novalidate (ngSubmit)="sendService()">
         <div class="flex">
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
-                <mat-label>Имя</mat-label>
-                <input matInput formControlName="first_name">
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
-                <mat-label>Фамилия</mat-label>
-                <input matInput formControlName="last_name">
-            </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                 <mat-label>E-mail</mat-label>
                 <input matInput formControlName="email">
             </mat-form-field>
 
+            <button mat-raised-button class="btn" type="button">Подтвердить почту</button>
+
             <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                 <mat-label>Телефон</mat-label>
                 <input matInput formControlName="phone_number">
             </mat-form-field>
 
-            <div>
-                <button mat-raised-button class="btn" [routerLink]="['../change-password']" type="button">Изменить пароль</button>
-            </div>
+            <button mat-raised-button class="btn" type="button">Подтвердить телефон</button>
+
             <div style="margin-top: 10px;">
                 <button mat-raised-button class="btn" [disabled]="changeForm.invalid || changeForm.disabled">Изменить</button>
             </div>

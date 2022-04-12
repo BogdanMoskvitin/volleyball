@@ -1,44 +1,26 @@
 <div class="container">
-    <div class="head">
-        <p class="title">{{mydata.full_name}}</p>
-        <button mat-raised-button class="btn" [routerLink]="['../user-change']">Изменить данные</button>
-    </div>
-    <div class="flex">
-        <div class="avatar"></div>
-        <div style="width: 400px;">
-            <p class="text">Основная информация</p>
-            <div class="flex">
-                <p class="text__title">Почта e-mail: </p>
-                <p class="text__data">{{mydata.email}}</p>
-            </div>
-            <div class="flex">
-                <p class="text__title">Номер телефона: </p>
-                <p class="text__data">{{mydata.phone_number}}</p>
-            </div>
-            <div class="flex">
-                <p class="text__title">Дата рождения: </p>
-                <p class="text__data">данных нет</p>
-            </div>
-            <div class="flex">
-                <p class="text__title">Всего участий в событиях: </p>
-                <p class="text__data" style="color: #089F5F;">{{mydata.stats?.total_events}}</p>
-            </div>
-            <div class="flex">
-                <p class="text__title">Дата регистрации: </p>
-                <p class="text__data">данных нет</p>
-            </div>
-        </div>
-    </div>
+    <form [formGroup]="changeForm" novalidate (ngSubmit)="sendService()">
+        <div class="flex">
+            <div class="avatar"></div>
+            <div style="width: 400px;">
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+                    <mat-label>Имя</mat-label>
+                    <input matInput formControlName="first_name">
+                </mat-form-field>
 
-    <div class="teams__box">
-        <p class="text__data">Команды</p>
-        <div class="box" *ngFor="let team of mydata.teams" [routerLink]="['../players', team.team.id]">
-            <div class="line"></div>
-            <p class="subtitle">{{team.team.full_name}}</p>
-            <div class="flex">
-                <p class="text__title">Кол-во игр: <span class="text__data" style="color: #089F5F;">{{team.events_count}}</span></p>
-                <p class="text__title" style="margin-left: 20px;">Дата вступления: <span class="text__data">данных нет</span></p>
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+                    <mat-label>Фамилия</mat-label>
+                    <input matInput formControlName="last_name">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+                    <mat-label>username</mat-label>
+                    <input matInput formControlName="username">
+                </mat-form-field>
+                <button mat-raised-button class="btn" [disabled]="changeForm.invalid || changeForm.disabled">Сохранить</button>
+                <button mat-raised-button class="btn" type="button" [routerLink]="['../../../auth/register-profile']">Профиль</button>
+                <button mat-raised-button class="btn" type="button" [routerLink]="['../user-change']">Конфиденциальность</button>
             </div>
         </div>
-    </div>
+    </form>
 </div>

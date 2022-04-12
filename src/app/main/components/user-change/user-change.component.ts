@@ -33,8 +33,6 @@ export class UserChangeComponent implements OnInit, OnDestroy {
                 this.mydata = res;
                 this.id = this.mydata.id;
                 this.changeForm = new FormGroup({
-                    first_name: new FormControl(this.mydata.first_name),
-                    last_name: new FormControl(this.mydata.last_name),
                     email: new FormControl(this.mydata.email),
                     phone_number: new FormControl(this.mydata.phone_number),
                 });
@@ -43,7 +41,7 @@ export class UserChangeComponent implements OnInit, OnDestroy {
     }
 
     sendService(){
-        this.aSub2 = this.http.patch(this.url + `auth/users/${this.id}/`, this.changeForm.value).subscribe(
+        this.aSub2 = this.http.patch(this.url + `me/`, this.changeForm.value).subscribe(
             (res) => {
                 this.toastr.success('Данные изменены!');
                 window.location.reload();

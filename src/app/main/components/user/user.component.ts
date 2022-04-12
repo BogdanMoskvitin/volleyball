@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/auth/services/auth.service';
 import { MyData } from 'src/app/my-data.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'user-service-page',
@@ -12,29 +14,48 @@ import { MyData } from 'src/app/my-data.service';
 
 export class UserComponent implements OnInit, OnDestroy {
 
+    changeForm : FormGroup;
     mydata;
-    aSub: Subscription;
+    url:string = environment.apiUrl;
+    id: number;
+    aSub1: Subscription;
+    aSub2: Subscription;
 
     constructor(
         private myData: MyData,
-        private auth: AuthService,
-        private router: Router) {}
+        private http: HttpClient,
+        private toastr: ToastrService
+    ) { }
     
     ngOnInit() {
-        this.aSub = this.myData.currentData.subscribe(
+        this.aSub1 = this.myData.currentData.subscribe(
             (res) => {
                 this.mydata = res;
+                this.id = this.mydata.id;
+                this.changeForm = new FormGroup({
+                    first_name: new FormControl(this.mydata.first_name),
+                    last_name: new FormControl(this.mydata.last_name),
+                    username: new FormControl(this.mydata.username),
+                });
             }
         );
     }
 
-    logout(event: Event){
-        event.preventDefault();
-        this.auth.logout();
-        this.router.navigate(['/auth'])
+    sendService(){
+        this.aSub2 = this.http.patch(this.url + `me/`, this.changeForm.value).subscribe(
+            (res) => {
+                this.toastr.success('Данные изменены!');
+                window.location.reload();
+            },
+            error => {
+                this.toastr.error('Ошибка изменения данных');
+            });
     }
 
     ngOnDestroy(){
-        this.aSub.unsubscribe();
+        this.aSub1.unsubscribe();
+        if(this.aSub2){
+            this.aSub2.unsubscribe();
+        }
     }
 }
