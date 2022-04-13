@@ -12,6 +12,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { RegisterProfileComponent } from './components/register-profile/register-profile.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     NgxMaskModule,
     MatRadioModule,
     MatDatepickerModule,
+    MatCheckboxModule,
     RouterModule.forChild([
       {
         path: '',

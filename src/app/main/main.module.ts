@@ -36,6 +36,7 @@ import { EventChatComponent } from './components/event-chat/event-chat.component
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SecurityEmailComponent } from './components/security-email/security-email.component';
 import { SecurityPasswordComponent } from './components/security-password/security-password.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { SecurityPasswordComponent } from './components/security-password/securi
     EventChatComponent,
     SecurityEmailComponent,
     SecurityPasswordComponent,
+    PrivacyPolicyComponent,
   ],
   exports: [
     
@@ -102,6 +104,7 @@ import { SecurityPasswordComponent } from './components/security-password/securi
           { path: 'events', component: EventsComponent },
           { path: 'security/email-confirm', component: SecurityEmailComponent },
           { path: 'security/password-reset', component: SecurityPasswordComponent },
+          { path: 'privacy-policy', component: PrivacyPolicyComponent },
         ],
       },
     ])

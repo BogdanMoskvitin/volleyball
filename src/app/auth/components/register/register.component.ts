@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     hide = true;
     hide2 = true;
     loginForm = {username: '', password: ''};
+    isPP = false;
 
     constructor(
         private authService: AuthService,
@@ -38,6 +39,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {}
+
+    acceptPP(completed: boolean) {
+        this.isPP = completed;
+    }
 
     checkForm(){
         let strPassword = this.regForm.value.password;

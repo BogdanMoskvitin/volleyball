@@ -79,6 +79,11 @@ $lightdark: #1C1C24;
     background-image: url(../../../../assets/img/bg.moskvitin.jpg);
     background-size: contain;
 }
+.privacy_policy {
+    font-size: 16px;
+    color: $light;
+    cursor: pointer;
+}
 @media(max-width: 700px) {
     .container {
         width: 300px;

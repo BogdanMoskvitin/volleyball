@@ -27,7 +27,7 @@ export class ChangePasswordComponent implements OnInit {
     ngOnInit() { }
 
     sendService(){
-        this.http.patch(this.url + `password_reset/`, this.changeForm.value).subscribe(
+        this.http.post(this.url + `password_reset/`, this.changeForm.value).subscribe(
             (res) => {
                 this.toastr.success('Письмо с инструкцией по сбросу пароля было отправлено на почту');
             },

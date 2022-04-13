@@ -1,0 +1,19 @@
+$grey: #788CA0;
+$light: #EEF5F8;
+$blue: #007EA7;
+$dark: #121218;
+$lightdark: #1C1C24;
+.container {
+    max-width: 1200px;
+    border: 1px solid $grey;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 50px auto 0 auto;
+    background: $lightdark;
+}
+h1, h2, p{
+    color: $light;
+}
+h2 {
+    margin-top: 10px;
+}
