@@ -16,6 +16,7 @@
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
+            <p [routerLink]="['../../change-password']" class="subtitle">Забыли пароль?</p>
 
             <div>
                 <button mat-raised-button class="btn" [disabled]="authForm.invalid || authForm.disabled">Войти</button>

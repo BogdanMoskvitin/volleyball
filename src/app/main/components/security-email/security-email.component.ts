@@ -5,12 +5,12 @@ import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-    selector: 'security-service-page',
-    templateUrl: './security.component.html',
-    styleUrls: ['./security.component.scss'],
+    selector: 'security-email-service-page',
+    templateUrl: './security-email.component.html',
+    styleUrls: ['./security-email.component.scss'],
 })
 
-export class SecurityComponent implements OnInit {
+export class SecurityEmailComponent implements OnInit {
 
     url:string = environment.apiUrl;
     token:string;
