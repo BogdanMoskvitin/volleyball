@@ -31,7 +31,9 @@
     <div *ngIf="commentWindow">
         <div *ngFor="let comment of comments?.results">
             <div class="flex">
-                <img src="{{comment.user.profile.photo_small}}" alt="avatar" class="avatar">
+                <img *ngIf="comment.user.profile.photo_small" src="{{comment.user.profile.photo_small}}" alt="avatar" class="avatar">
+                <div *ngIf="!comment.user.profile.photo_small" class="avatar"></div>
+
                 <div class="box__comment" [matMenuTriggerFor]="menu" (click)="openMenu(comment)">
                     <span class="user__comment" style="user-select: none;">{{comment.user.full_name}}</span>
                     <p class="text__comment">{{comment.comment}} <span style="user-select: none;" class="time__comment">{{comment.created_at | date: 'HH:mm'}}</span></p>

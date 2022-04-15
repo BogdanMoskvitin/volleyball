@@ -21,13 +21,12 @@ export class UserComponent implements OnInit, OnDestroy {
     id: number;
     aSub1: Subscription;
     aSub2: Subscription;
-
     imageChangedEvent: any = '';
     croppedImage: any = '';
     file: File = null;
     newFile: File = null;
-
     meProfile;
+    isCrop = false;
 
     constructor(
         private myData: MyData,
@@ -67,6 +66,7 @@ export class UserComponent implements OnInit, OnDestroy {
     }
 
     fileChangeEvent(event: any): void {
+        this.isCrop = !this.isCrop;
         this.imageChangedEvent = event;
         this.file = <File>event.target.files[0];
     }

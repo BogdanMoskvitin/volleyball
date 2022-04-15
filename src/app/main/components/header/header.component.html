@@ -3,7 +3,8 @@
         <ul class="burger__ul">
             <div class="flex">
                 <div *ngIf="aAuth" class="burger__user" (click)='toggleSidebar()' [routerLink]="['./user']">
-                    <img src="{{mydata.photo}}" alt="avatar" class="burger__avatar">
+                    <img *ngIf="mydata.photo" src="{{mydata.photo}}" alt="avatar" class="burger__avatar">
+                    <div *ngIf="!mydata.photo" class="burger__avatar"></div>
                     <p class="burger__text">{{mydata.first_name}} {{mydata.last_name}}</p>
                 </div>
                 <div *ngIf="!aAuth" class="burger__user">
@@ -64,7 +65,8 @@
             <div class="box">
                 <p class="version">Free Team Club 1.2</p>
                 <a [routerLink]="['./user']" *ngIf="aAuth">
-                    <img src="{{mydata.photo}}" alt="avatar" class="avatar">
+                    <img *ngIf="mydata.photo" src="{{mydata.photo}}" alt="avatar" class="avatar">
+                    <div *ngIf="!mydata.photo" class="avatar"></div>
                 </a>
                 
                 <p class="phone" *ngIf="aAuth" [routerLink]="['./user']">{{mydata.phone_number}}</p>

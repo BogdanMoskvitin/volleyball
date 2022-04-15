@@ -73,8 +73,10 @@ p, span {
 .avatar {
     width: 50px;
     height: 50px;
+    border: 1px solid #191919;
     border-radius: 50%;
-    margin-right: 5px;
+    background-color: #FFFFFF;
+    margin: 0 5px 0 0;
 }
 @media(max-width: 510px) {
     .box__data {

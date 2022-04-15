@@ -18,13 +18,12 @@ export class RegisterProfileComponent implements OnInit {
     regForm : FormGroup;
     avatar;
     url:string = environment.apiUrl;
-
     imageChangedEvent: any = '';
     croppedImage: any = '';
     file: File = null;
     newFile: File = null;
-
     meProfile;
+    isCrop = false;
 
     genders = [
         {value: '1', placeholder: 'Мужской', check: true},
@@ -78,6 +77,7 @@ export class RegisterProfileComponent implements OnInit {
     }
 
     fileChangeEvent(event: any): void {
+        this.isCrop = !this.isCrop;
         this.imageChangedEvent = event;
         this.file = <File>event.target.files[0];
     }
