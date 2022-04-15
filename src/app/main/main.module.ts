@@ -37,6 +37,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SecurityEmailComponent } from './components/security-email/security-email.component';
 import { SecurityPasswordComponent } from './components/security-password/security-password.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
     MatAutocompleteModule,
     NgxMaskModule,
     MatProgressSpinnerModule,
+    ImageCropperModule,
     RouterModule.forChild([
       {
         path: '', component: HeaderComponent, children: [

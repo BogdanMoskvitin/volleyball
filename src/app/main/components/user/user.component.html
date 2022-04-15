@@ -1,7 +1,11 @@
 <div class="container">
     <form [formGroup]="changeForm" novalidate (ngSubmit)="sendService()">
         <div class="flex">
-            <div class="avatar"></div>
+            <div>
+                <img class="avatar" [src]="croppedImage"/>
+                <input type="file" (change)="fileChangeEvent($event)"/>
+                <button mat-raised-button type="button" (click)="sendAvatar()">Сохранить</button>
+            </div>
             <div style="width: 400px;">
                 <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                     <mat-label>Имя</mat-label>
@@ -24,3 +28,17 @@
         </div>
     </form>
 </div>
+
+
+
+<image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1 / 1"
+    format="jpeg"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+    style="width: 300px;"
+></image-cropper>

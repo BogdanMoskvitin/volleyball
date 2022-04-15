@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 
 @Component({
     selector: 'user-service-page',
@@ -20,6 +21,13 @@ export class UserComponent implements OnInit, OnDestroy {
     id: number;
     aSub1: Subscription;
     aSub2: Subscription;
+
+    imageChangedEvent: any = '';
+    croppedImage: any = '';
+    file: File = null;
+    newFile: File = null;
+
+    meProfile;
 
     constructor(
         private myData: MyData,
@@ -39,6 +47,12 @@ export class UserComponent implements OnInit, OnDestroy {
                 });
             }
         );
+        this.http.get(this.url + 'me/profile/').subscribe(
+            (res) => {
+                this.meProfile = res;
+                this.croppedImage = this.meProfile.photo;
+            }
+        )
     }
 
     sendService(){
@@ -49,6 +63,52 @@ export class UserComponent implements OnInit, OnDestroy {
             },
             error => {
                 this.toastr.error('Ошибка изменения данных');
+            });
+    }
+
+    fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+        this.file = <File>event.target.files[0];
+    }
+    imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+    }
+    imageLoaded(
+        // image: LoadedImage
+        ) {
+        // show cropper
+    }
+    cropperReady() {
+        // cropper ready
+    }
+    loadImageFailed() {
+        // show message
+    }
+
+    dataURLtoFile(dataurl, filename) {
+        var arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), 
+            n = bstr.length, 
+            u8arr = new Uint8Array(n);
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, {type:mime});
+    }
+
+    sendAvatar(){
+        this.newFile = this.dataURLtoFile(this.croppedImage,'photo.jpg');
+
+        var fd = new FormData();
+        fd.append('photo', this.newFile, this.newFile.name);
+
+        this.http.patch(this.url + 'me/profile/', fd).subscribe(
+            (res) => {
+                this.toastr.success('Аватарка сохранена!');
+            },
+            error => {
+                this.toastr.error('Ошибка сохранения');
             });
     }
 
