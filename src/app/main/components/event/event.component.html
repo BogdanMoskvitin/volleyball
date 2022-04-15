@@ -172,7 +172,7 @@
                             participants__cell_create: application.user_status.id == 1,
                             participants__cell_moderator: application.user_status.id == 2, 
                             participants__cell_player: application.user_status.id == 3}">
-                            <div class="participants__avatar"></div>
+                            <img src="{{application.user.profile.photo_small}}" alt="avatar" class="participants__avatar">
                             <div>
                                 <p class="participants__status">[{{application.user_status.status}}]</p>
                                 <p class="participants__name">{{application.user.full_name}}</p>
@@ -182,7 +182,7 @@
         
                     <div class="participants__list" *ngIf="view.guests">
                         <div class="participants__cell" *ngFor="let guest of event.guests">
-                            <div class="participants__avatar"></div>
+                            <img src="{{application.user.profile.photo_small}}" alt="avatar" class="participants__avatar">
                             <div>
                                 <p class="participants__status">[игрок]</p>
                                 <p class="participants__name">{{guest.name}}</p>
@@ -192,7 +192,7 @@
 
                     <div class="participants__list" *ngIf="view.refused">
                         <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)">
-                            <div class="participants__avatar"></div>
+                            <img src="{{application.user.profile.photo_small}}" alt="avatar" class="participants__avatar">
                             <div>
                                 <p class="participants__status">[игрок]</p>
                                 <p class="participants__name">{{application.user.full_name}}</p>
@@ -202,7 +202,7 @@
 
                     <div class="participants__list" *ngIf="view.invited">
                         <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)">
-                            <div class="participants__avatar"></div>
+                            <img src="{{application.user.profile.photo_small}}" alt="avatar" class="participants__avatar">
                             <div>
                                 <p class="participants__status">[игрок]</p>
                                 <p class="participants__name">{{application.user.full_name}}</p>
@@ -212,7 +212,7 @@
 
                     <div class="participants__list" *ngIf="view.rejected">
                         <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application.user.id)">
-                            <div class="participants__avatar"></div>
+                            <img src="{{application.user.profile.photo_small}}" alt="avatar" class="participants__avatar">
                             <div>
                                 <p class="participants__status">[игрок]</p>
                                 <p class="participants__name">{{application.user.full_name}}</p>
@@ -230,7 +230,7 @@
         </div>
         <div class="user" *ngIf="status">
             <div class="user__flex">
-                <div class="user__avatar"></div>
+                <img src="{{user?.profile.photo_medium}}" alt="avatar" class="user__avatar">
                 <div>
                     <p class="user__status">[{{status}}]</p>
                     <p class="user__number">{{user?.phone_number}}</p>

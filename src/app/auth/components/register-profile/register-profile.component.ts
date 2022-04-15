@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { DatePipe } from '@angular/common';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 @Component({
     selector: 'register-profile-service-page',
@@ -15,10 +16,15 @@ import { DatePipe } from '@angular/common';
 export class RegisterProfileComponent implements OnInit {
 
     regForm : FormGroup;
-    // form: Profile = { } as Profile;
     avatar;
-    file;
     url:string = environment.apiUrl;
+
+    imageChangedEvent: any = '';
+    croppedImage: any = '';
+    file: File = null;
+    newFile: File = null;
+
+    meProfile;
 
     genders = [
         {value: '1', placeholder: 'Мужской', check: true},
@@ -32,7 +38,6 @@ export class RegisterProfileComponent implements OnInit {
         private datePipe: DatePipe, 
     ) {
         this.regForm = new FormGroup({
-            // avatar: new FormControl('', [Validators.required, this.fileJpgValidator]),
             birthday: new FormControl(''),
             gender: new FormControl(''),
             vk: new FormControl(''),
@@ -44,34 +49,14 @@ export class RegisterProfileComponent implements OnInit {
         });
     }
 
-    ngOnInit() {}
-    
-    // .jpg валидатор
-    // fileJpgValidator(control: FormControl): {[s: string]: boolean}|null {
-    //     if (!control.value.includes('.JPG')) {
-    //         return {'': true};
-    //     }
-    //     return null;
-    // }
-
-    // onFileSelected(event) {
-    //     this.file = event.target.files[0];
-    //     let reader = new FileReader();
-    //     reader.onload = ev => {
-    //         this.avatar = ev.target.result;
-    //     }
-    //     reader.readAsDataURL(this.file)
-    // }
-
-    // constructForm(){
-    //     this.form.avatar = this.file;
-    //     this.form.city = this.regForm.value.city;
-    //     this.form.age = this.regForm.value.age;
-    //     this.form.instagram = this.regForm.value.instagram;
-    //     this.form.vk = this.regForm.value.vk;
-    //     this.form.telegram = this.regForm.value.telegram;
-    //     this.sendService();
-    // }
+    ngOnInit() {
+        this.http.get(this.url + 'me/profile/').subscribe(
+            (res) => {
+                this.meProfile = res;
+                this.croppedImage = this.meProfile.photo;
+            }
+        )
+    }
 
     sendService(){
         let newForm = {
@@ -90,5 +75,51 @@ export class RegisterProfileComponent implements OnInit {
         }, error => {
             this.toastr.error('Ошибка сохранения')
         })
+    }
+
+    fileChangeEvent(event: any): void {
+        this.imageChangedEvent = event;
+        this.file = <File>event.target.files[0];
+    }
+    imageCropped(event: ImageCroppedEvent) {
+        this.croppedImage = event.base64;
+    }
+    imageLoaded(
+        // image: LoadedImage
+        ) {
+        // show cropper
+    }
+    cropperReady() {
+        // cropper ready
+    }
+    loadImageFailed() {
+        // show message
+    }
+
+    dataURLtoFile(dataurl, filename) {
+        var arr = dataurl.split(','),
+            mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), 
+            n = bstr.length, 
+            u8arr = new Uint8Array(n);
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, {type:mime});
+    }
+
+    sendAvatar(){
+        this.newFile = this.dataURLtoFile(this.croppedImage,'photo.jpg');
+
+        var fd = new FormData();
+        fd.append('photo', this.newFile, this.newFile.name);
+
+        this.http.patch(this.url + 'me/profile/', fd).subscribe(
+            (res) => {
+                this.toastr.success('Аватарка сохранена!');
+            },
+            error => {
+                this.toastr.error('Ошибка сохранения');
+            });
     }
 }

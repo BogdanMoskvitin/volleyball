@@ -3,18 +3,11 @@
     <form [formGroup]="regForm" novalidate (ngSubmit)="sendService()">
         <div class="box">
 
-            <!-- <div class="loading__box">
-                <div class="input__wrapper">
-                    <input formControlName="avatar" type="file" id="avatar" class="input__file" (change)="onFileSelected($event)">
-                    <label for="avatar" class="input__file-button">
-                        <span class="input__file-button-text">Прикрепить файл</span>
-                    </label>
-                    <span class="warning" *ngIf="regForm.controls['avatar'].invalid && regForm.controls['avatar'].touched">Прикрепите файл</span>
-                </div>
-                <span class="input__file-name">{{regForm.value.avatar.split('\\')[2] || null}}</span>
+            <div>
+                <img class="avatar" [src]="croppedImage"/>
+                <input type="file" (change)="fileChangeEvent($event)"/>
+                <button mat-raised-button type="button" (click)="sendAvatar()">Сохранить</button>
             </div>
-
-            <img *ngIf="avatar" class="avatar" src="{{avatar}}" alt="avatar"> -->
 
             <mat-form-field color="accent" appearance="fill" style="width: 250px;">
                 <mat-label>День рождения</mat-label>
@@ -70,3 +63,17 @@
         </div>
     </form>
 </div>
+
+
+
+<image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1 / 1"
+    format="jpeg"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+    style="width: 300px;"
+></image-cropper>

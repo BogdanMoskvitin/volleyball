@@ -13,6 +13,7 @@ import { RegisterProfileComponent } from './components/register-profile/register
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatRadioModule,
     MatDatepickerModule,
     MatCheckboxModule,
+    ImageCropperModule,
     RouterModule.forChild([
       {
         path: '',

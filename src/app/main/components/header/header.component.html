@@ -3,7 +3,7 @@
         <ul class="burger__ul">
             <div class="flex">
                 <div *ngIf="aAuth" class="burger__user" (click)='toggleSidebar()' [routerLink]="['./user']">
-                    <div class="burger__avatar"></div>
+                    <img src="{{mydata.photo}}" alt="avatar" class="burger__avatar">
                     <p class="burger__text">{{mydata.first_name}} {{mydata.last_name}}</p>
                 </div>
                 <div *ngIf="!aAuth" class="burger__user">
@@ -63,7 +63,10 @@
         
             <div class="box">
                 <p class="version">Free Team Club 1.2</p>
-                <a [routerLink]="['./user']" *ngIf="aAuth"><div class="avatar"></div></a>
+                <a [routerLink]="['./user']" *ngIf="aAuth">
+                    <img src="{{mydata.photo}}" alt="avatar" class="avatar">
+                </a>
+                
                 <p class="phone" *ngIf="aAuth" [routerLink]="['./user']">{{mydata.phone_number}}</p>
                 <button class="login" mat-stroked-button *ngIf="!aAuth" [routerLink]="['../../auth']">Войти</button>
                 <mat-icon class="logout" aria-hidden="false" aria-label="Example logout icon" (click)="logout($event)" *ngIf="aAuth">logout</mat-icon>
