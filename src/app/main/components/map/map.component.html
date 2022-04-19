@@ -1,0 +1,10 @@
+<h1 style="color: #fff;">Map</h1>
+<div class="container" style="width: 800px; height: 500px;">
+  <ya-map [center]="[45.05, 41.95]" [zoom]="12">
+    <ya-placemark *ngFor="let place of places" 
+      [geometry]="[place.x, place.y]" 
+      [properties]="{hintContent : place.hintContent}"
+      [options]="{iconColor: place.iconColor}"
+    ></ya-placemark>
+  </ya-map>
+</div>

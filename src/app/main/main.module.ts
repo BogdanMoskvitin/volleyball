@@ -38,6 +38,13 @@ import { SecurityEmailComponent } from './components/security-email/security-ema
 import { SecurityPasswordComponent } from './components/security-password/security-password.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { MapComponent } from './components/map/map.component';
+import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
+
+const mapConfig: YaConfig = {
+  apikey: '9bad155f-f5b0-4d07-b3b3-9edc77b23c73',
+  lang: 'ru_RU',
+};
 
 @NgModule({
   declarations: [
@@ -64,6 +71,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     SecurityEmailComponent,
     SecurityPasswordComponent,
     PrivacyPolicyComponent,
+    MapComponent,
   ],
   exports: [
     
@@ -84,6 +92,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     NgxMaskModule,
     MatProgressSpinnerModule,
     ImageCropperModule,
+    AngularYandexMapsModule.forRoot(mapConfig),
     RouterModule.forChild([
       {
         path: '', component: HeaderComponent, children: [
@@ -107,11 +116,11 @@ import { ImageCropperModule } from 'ngx-image-cropper';
           { path: 'security/email-confirm', component: SecurityEmailComponent },
           { path: 'security/password-reset', component: SecurityPasswordComponent },
           { path: 'privacy-policy', component: PrivacyPolicyComponent },
+          { path: 'map', component: MapComponent },
         ],
       },
     ])
   ],
   providers: [DatePipe, GuestService]
 })
-export class MainModule {
-}
+export class MainModule {}
