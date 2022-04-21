@@ -40,6 +40,8 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { MapComponent } from './components/map/map.component';
 import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
+import { ProfileComponent } from './components/profile/profile.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 const mapConfig: YaConfig = {
   apikey: '9bad155f-f5b0-4d07-b3b3-9edc77b23c73',
@@ -72,6 +74,7 @@ const mapConfig: YaConfig = {
     SecurityPasswordComponent,
     PrivacyPolicyComponent,
     MapComponent,
+    ProfileComponent,
   ],
   exports: [
     
@@ -92,6 +95,7 @@ const mapConfig: YaConfig = {
     NgxMaskModule,
     MatProgressSpinnerModule,
     ImageCropperModule,
+    MatRadioModule,
     AngularYandexMapsModule.forRoot(mapConfig),
     RouterModule.forChild([
       {
@@ -117,6 +121,7 @@ const mapConfig: YaConfig = {
           { path: 'security/password-reset', component: SecurityPasswordComponent },
           { path: 'privacy-policy', component: PrivacyPolicyComponent },
           { path: 'map', component: MapComponent },
+          { path: 'profile', component: ProfileComponent },
         ],
       },
     ])

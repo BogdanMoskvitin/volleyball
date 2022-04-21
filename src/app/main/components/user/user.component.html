@@ -1,45 +1,12 @@
 <div class="container">
-    <form [formGroup]="changeForm" novalidate (ngSubmit)="sendService()">
-        <div class="flex">
-            <div>
-                <img class="avatar" [src]="croppedImage"/>
-                <input type="file" (change)="fileChangeEvent($event)"/>
-                <button mat-raised-button type="button" (click)="sendAvatar()">Сохранить</button>
-            </div>
-            <div style="width: 400px;">
-                <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
-                    <mat-label>Имя</mat-label>
-                    <input matInput formControlName="first_name">
-                </mat-form-field>
-
-                <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
-                    <mat-label>Фамилия</mat-label>
-                    <input matInput formControlName="last_name">
-                </mat-form-field>
-
-                <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
-                    <mat-label>username</mat-label>
-                    <input matInput formControlName="username">
-                </mat-form-field>
-                <button mat-raised-button class="btn" [disabled]="changeForm.invalid || changeForm.disabled">Сохранить</button>
-                <button mat-raised-button class="btn" type="button" [routerLink]="['../auth/register-profile']">Профиль</button>
-                <button mat-raised-button class="btn" type="button" [routerLink]="['../user-change']">Конфиденциальность</button>
-            </div>
+    <div class="flex">
+        <img class="avatar" [src]="mydata.photo"/>
+        <div style="width: 400px;">
+            <p style="color: #fff;">Имя: {{mydata.first_name}}</p>
+            <p style="color: #fff;">Фамилия: {{mydata.last_name}}</p>
+            <p style="color: #fff;">Ник: {{mydata.username}}</p>
+            <button mat-raised-button class="btn" type="button" [routerLink]="['../profile']">Профиль</button>
+            <button mat-raised-button class="btn" type="button" [routerLink]="['../user-change']">Конфиденциальность</button>
         </div>
-    </form>
+    </div>
 </div>
-
-
-
-<image-cropper
-    [imageChangedEvent]="imageChangedEvent"
-    [maintainAspectRatio]="true"
-    [aspectRatio]="1 / 1"
-    format="jpeg"
-    (imageCropped)="imageCropped($event)"
-    (imageLoaded)="imageLoaded()"
-    (cropperReady)="cropperReady()"
-    (loadImageFailed)="loadImageFailed()"
-    style="width: 300px;"
-    *ngIf="isCrop"
-></image-cropper>

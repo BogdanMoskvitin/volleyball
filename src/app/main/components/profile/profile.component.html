@@ -1,0 +1,104 @@
+<div class="container">
+    <p class="title">Регистрация</p>
+    <form [formGroup]="regForm" novalidate (ngSubmit)="sendService()">
+        <div class="box">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+                <mat-label>Поле поиска</mat-label>
+                <input type="text" matInput [matAutocomplete]="auto" (input)="changeOption($event)" formControlName="city">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of options" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+                <mat-label>Имя</mat-label>
+                <input matInput formControlName="first_name">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+                <mat-label>Фамилия</mat-label>
+                <input matInput formControlName="last_name">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+                <mat-label>username</mat-label>
+                <input matInput formControlName="username">
+            </mat-form-field>
+
+            <div>
+                <img class="avatar" [src]="croppedImage"/>
+                <input type="file" (change)="fileChangeEvent($event)"/>
+                <button mat-raised-button type="button" (click)="sendAvatar()">Сохранить</button>
+            </div>
+
+            <mat-form-field color="accent" appearance="fill" style="width: 250px;">
+                <mat-label>День рождения</mat-label>
+                <input formControlName="birthday" matInput [matDatepicker]="picker2">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2 color="primary"></mat-datepicker>
+            </mat-form-field>
+
+            <div style="width: 250px; margin-bottom: 15px; color: rgba(255,255,255,.7);">
+                <mat-radio-group name="gender" formControlName="gender">
+                    <div *ngFor="let gender of genders">
+                        <mat-radio-button color="primary" [style.margin.px]="'5'" value="{{gender.value}}" [checked]="gender.check">
+                            {{gender.placeholder}}
+                        </mat-radio-button>
+                    </div>
+                </mat-radio-group>
+            </div>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>VK</mat-label>
+                <input matInput formControlName="vk">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>Instagram</mat-label>
+                <input matInput formControlName="instagram">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>YouTube</mat-label>
+                <input matInput formControlName="youtube">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>Twitter</mat-label>
+                <input matInput formControlName="twitter">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>Facebook</mat-label>
+                <input matInput formControlName="facebook">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                <mat-label>Telegram</mat-label>
+                <input matInput formControlName="telegram">
+            </mat-form-field>
+
+            <div>
+                <button mat-raised-button [disabled]="regForm.invalid" class="btn">Отправить</button>
+            </div>
+            <p [routerLink]="['']" class="subtitle">Отмена</p>
+        </div>
+    </form>
+</div>
+
+
+
+<image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1 / 1"
+    format="jpeg"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+    style="width: 300px;"
+    *ngIf="isCrop"
+></image-cropper>
