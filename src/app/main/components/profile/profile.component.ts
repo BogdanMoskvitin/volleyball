@@ -38,6 +38,7 @@ export class ProfileComponent implements OnInit {
     ) {
         this.regForm = new FormGroup({
             city: new FormControl(''),
+            address: new FormControl(''),
             first_name: new FormControl(''),
             last_name: new FormControl(''),
             username: new FormControl(''),
@@ -128,17 +129,25 @@ export class ProfileComponent implements OnInit {
             });
     }
 
-    options = [];
-    adress;
+    cities;
 
-    changeOption(event){
-        this.options = [];
-        this.http.get(this.url + `dadata/city/?q=${event.target.value}/`).subscribe(
+    inputCity(event){
+        this.cities = [];
+        this.http.get(this.url + `dadata/city/?q=${event.target.value}`).subscribe(
             (res) => {
-                this.adress = res;
-                this.adress.forEach(el => {
-                    this.options.push(el.value)
-                });
+                this.cities = res;
+            }
+        )
+    }
+
+    addresses;
+
+    inputAddress(event){
+        this.addresses = [];
+        this.http.get(this.url + `dadata/address/?q=${event.target.value}`).subscribe(
+            (res) => {
+                console.log(res)
+                this.addresses = res;
             }
         )
     }

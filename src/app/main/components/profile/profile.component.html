@@ -3,11 +3,21 @@
     <form [formGroup]="regForm" novalidate (ngSubmit)="sendService()">
         <div class="box">
             <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
-                <mat-label>Поле поиска</mat-label>
-                <input type="text" matInput [matAutocomplete]="auto" (input)="changeOption($event)" formControlName="city">
+                <mat-label>Город</mat-label>
+                <input type="text" matInput [matAutocomplete]="auto" (input)="inputCity($event)" formControlName="city">
                 <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of options" [value]="option">
-                        {{option}}
+                    <mat-option *ngFor="let city of cities" [value]="city">
+                        {{city}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+                <mat-label>Адрес</mat-label>
+                <input type="text" matInput [matAutocomplete]="auto2" (input)="inputAddress($event)" formControlName="address">
+                <mat-autocomplete #auto2="matAutocomplete">
+                    <mat-option *ngFor="let address of addresses" [value]="address">
+                        {{address}}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
