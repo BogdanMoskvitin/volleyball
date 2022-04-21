@@ -24,6 +24,8 @@ export class ProfileComponent implements OnInit {
     newFile: File = null;
     meProfile;
     isCrop = false;
+    cities;
+    addresses;
 
     genders = [
         {value: '1', placeholder: 'Мужской', check: true},
@@ -129,9 +131,19 @@ export class ProfileComponent implements OnInit {
             });
     }
 
-    cities;
-
+    isTimerCity = true;
     inputCity(event){
+        if(this.isTimerCity == true){
+            this.isTimerCity = false;
+            let interval = setInterval(()=>{
+                this.isTimerCity = true;
+                this.searchCities(event);
+                clearTimeout(interval);
+            }, 2000)
+        }
+    }
+
+    searchCities(event){
         this.cities = [];
         this.http.get(this.url + `dadata/city/?q=${event.target.value}`).subscribe(
             (res) => {
@@ -140,9 +152,19 @@ export class ProfileComponent implements OnInit {
         )
     }
 
-    addresses;
-
+    isTimerAddress = true;
     inputAddress(event){
+        if(this.isTimerAddress == true){
+            this.isTimerAddress = false;
+            let interval = setInterval(()=>{
+                this.isTimerAddress = true;
+                this.searchCities(event);
+                clearTimeout(interval);
+            }, 2000)
+        }
+    }
+
+    searchAddresses(event){
         this.addresses = [];
         this.http.get(this.url + `dadata/address/?q=${event.target.value}`).subscribe(
             (res) => {
