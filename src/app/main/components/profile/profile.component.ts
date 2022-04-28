@@ -26,6 +26,10 @@ export class ProfileComponent implements OnInit {
     isCrop = false;
     cities;
     addresses;
+    isCity = false;
+    controlCity = new FormControl();
+    controlAddress = new FormControl();
+    city;
 
     genders = [
         {value: '1', placeholder: 'Мужской', check: true},
@@ -39,8 +43,6 @@ export class ProfileComponent implements OnInit {
         private datePipe: DatePipe, 
     ) {
         this.regForm = new FormGroup({
-            city: new FormControl(''),
-            address: new FormControl(''),
             first_name: new FormControl(''),
             last_name: new FormControl(''),
             username: new FormControl(''),
@@ -66,7 +68,11 @@ export class ProfileComponent implements OnInit {
 
     sendService(){
         let newForm = {
-            city: this.regForm.value.city,
+            city: this.controlCity.value,
+            address: this.controlAddress.value,
+            first_name: this.regForm.value.first_name,
+            last_name: this.regForm.value.last_name,
+            username: this.regForm.value.username,
             birthday: (this.datePipe.transform(this.regForm.value.birthday, 'yyyy-MM-dd')),
             gender: this.regForm.value.gender,
             vk: this.regForm.value.vk,
@@ -82,6 +88,7 @@ export class ProfileComponent implements OnInit {
         }, error => {
             this.toastr.error('Ошибка сохранения')
         })
+        console.log(newForm)
     }
 
     fileChangeEvent(event: any): void {
@@ -141,6 +148,18 @@ export class ProfileComponent implements OnInit {
                 clearTimeout(interval);
             }, 2000)
         }
+        if(event.target.value == "") {
+            this.isCity = false;
+        }
+    }
+
+    changeCity(event) {
+        
+    }
+
+    saveCity(city) {
+        this.city = city;
+        this.isCity = true;
     }
 
     searchCities(event){
@@ -158,7 +177,7 @@ export class ProfileComponent implements OnInit {
             this.isTimerAddress = false;
             let interval = setInterval(()=>{
                 this.isTimerAddress = true;
-                this.searchCities(event);
+                this.searchAddresses(event);
                 clearTimeout(interval);
             }, 2000)
         }
@@ -166,7 +185,8 @@ export class ProfileComponent implements OnInit {
 
     searchAddresses(event){
         this.addresses = [];
-        this.http.get(this.url + `dadata/address/?q=${event.target.value}`).subscribe(
+        console.log(this.city.kladr)
+        this.http.get(this.url + `dadata/address/?q=${event.target.value}&kladr=${this.city.kladr}`).subscribe(
             (res) => {
                 console.log(res)
                 this.addresses = res;

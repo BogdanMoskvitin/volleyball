@@ -4,20 +4,20 @@
         <div class="box">
             <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                 <mat-label>Город</mat-label>
-                <input type="text" matInput [matAutocomplete]="auto" (input)="inputCity($event)" formControlName="city">
+                <input type="text" matInput [matAutocomplete]="auto" (change)="changeCity($event)" (input)="inputCity($event)" [formControl]="controlCity">
                 <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let city of cities" [value]="city">
-                        {{city}}
+                    <mat-option *ngFor="let city of cities" [value]="city.name" (click)="saveCity(city)">
+                        {{city.name}}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;" *ngIf="isCity">
                 <mat-label>Адрес</mat-label>
-                <input type="text" matInput [matAutocomplete]="auto2" (input)="inputAddress($event)" formControlName="address">
+                <input type="text" matInput [matAutocomplete]="auto2" (input)="inputAddress($event)" [formControl]="controlAddress">
                 <mat-autocomplete #auto2="matAutocomplete">
-                    <mat-option *ngFor="let address of addresses" [value]="address">
-                        {{address}}
+                    <mat-option *ngFor="let address of addresses" [value]="address.name">
+                        {{address.name}}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
