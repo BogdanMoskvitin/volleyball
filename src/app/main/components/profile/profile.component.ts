@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
     city;
 
     genders = [
-        {value: '1', placeholder: 'Мужской', check: true},
+        {value: '1', placeholder: 'Мужской', check: false},
         {value: '2', placeholder: 'Женский', check: false}
     ];
 
@@ -62,6 +62,19 @@ export class ProfileComponent implements OnInit {
             (res) => {
                 this.meProfile = res;
                 this.croppedImage = this.meProfile.photo;
+                this.controlCity.setValue(this.meProfile.city.name);
+                this.controlAddress.setValue(this.meProfile.address.name);
+                this.regForm.patchValue(this.meProfile)
+                if(this.meProfile.address.name){
+                    this.isCity = true;
+                }
+                if(this.meProfile.gender){
+                    if(this.meProfile.gender == 1) {
+                        this.genders[0].check = true;
+                    } else {
+                        this.genders[1].check = true;
+                    }
+                }
             }
         )
     }
