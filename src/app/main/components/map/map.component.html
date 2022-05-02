@@ -1,6 +1,6 @@
 <h1 style="color: #fff;">Map</h1>
 <div class="container" style="width: 800px; height: 500px;">
-  <ya-map [center]="[45.05, 41.95]" [zoom]="12">
+  <ya-map [center]="[45.05, 41.95]" [zoom]="12" (yaclick)="onMapClick($event)" [state]="{ controls: ['smallMapDefaultSet'] }">
     <ya-placemark *ngFor="let place of places" 
       [geometry]="[place.x, place.y]" 
       [properties]="{hintContent : place.hintContent}"
@@ -8,3 +8,4 @@
     ></ya-placemark>
   </ya-map>
 </div>
+<button style="height: 30px; margin: 10px;" *ngIf="isLocation" (click)="saveLocation()">Сохранить локацию</button>
