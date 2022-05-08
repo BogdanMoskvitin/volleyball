@@ -14,12 +14,17 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RegisterProfileDialog } from './components/register-profile/register-profile.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
     RegisterProfileComponent,
+    RegisterProfileDialog
   ],
   exports: [
     
@@ -37,6 +42,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     MatDatepickerModule,
     MatCheckboxModule,
     ImageCropperModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatAutocompleteModule,
     RouterModule.forChild([
       {
         path: '',

@@ -1,20 +1,17 @@
-$grey: #788CA0;
-$light: #EEF5F8;
-$blue: #007EA7;
-$dark: #121218;
-$lightdark: #1C1C24;
+$light: #FFFFFF;
+$dark: #212121;
+$blue: #2196F3;
+$lightdark: #4D61A6;
 .container {
     width: 280px;
     height: 360px;
-    border: 1px solid $grey;
-    border-radius: 5px;
     padding: 70px 30px 0;
     margin: 200px auto 0 auto;
-    background: $lightdark;
 }
 .title {
     color: $light;
-    font-size: 30px;
+    font-size: 48px;
+    font-weight: bold;
     text-align: center;
     padding-bottom: 20px;
     user-select: none;
@@ -33,12 +30,12 @@ input {
     cursor: pointer;
 }
 .btn {
-    background: $grey;
+    background: $blue;
     width: 250px;
 }
 .subtitle {
     color: $light;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     margin: 10px 0;
 }
