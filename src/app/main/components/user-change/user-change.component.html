@@ -8,18 +8,20 @@
                 <input matInput formControlName="email">
             </mat-form-field>
 
-            <button mat-raised-button class="btn" type="button">Подтвердить почту</button>
+            <button mat-raised-button class="btn" type="button" color="primary" style="margin-bottom: 10px;">Подтвердить почту</button>
 
             <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                 <mat-label>Телефон</mat-label>
                 <input matInput formControlName="phone_number">
             </mat-form-field>
 
-            <button mat-raised-button class="btn" type="button">Подтвердить телефон</button>
-
-            <div style="margin-top: 10px;">
-                <button mat-raised-button class="btn" [disabled]="changeForm.invalid || changeForm.disabled">Изменить</button>
+            <button mat-raised-button class="btn" type="button" color="primary" style="margin-bottom: 10px;">Подтвердить телефон</button>
+           
+            <div style="display: flex; width: 280px;">
+                <button mat-raised-button type="button" [routerLink]="['/profile']" style="width: 100%;">Отмена</button>
+                <button mat-raised-button [disabled]="changeForm.invalid || changeForm.disabled" color="primary" style="width: 100%;">Изменить</button>       
             </div>
+            
         </div>
     </form>
 </div>

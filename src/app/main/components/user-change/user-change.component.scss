@@ -1,21 +1,17 @@
-$grey: #788CA0;
-$light: #EEF5F8;
-$blue: #007EA7;
-$dark: #121218;
-$lightdark: #1C1C24;
+$light: #FFFFFF;
+$dark: #212121;
+$blue: #2196F3;
+$lightdark: #4D61A6;
 .container {
-    width: 300px;
-    border: 1px solid $grey;
-    border-radius: 5px;
     padding: 20px 0;
     margin: 100px auto 0 auto;
-    background: $lightdark;
 }
 .title {
-    font-size: 30px;
+    color: $light;
+    font-size: 48px;
+    font-weight: bold;
     text-align: center;
     padding-bottom: 20px;
-    color: $light;
     user-select: none;
 }
 .flex {
@@ -27,6 +23,5 @@ input {
     color: $light;
 }
 .btn {
-    background: $grey;
     width: 280px;
 }

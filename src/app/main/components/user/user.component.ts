@@ -12,6 +12,7 @@ export class UserComponent implements OnInit {
 
     mydata;
     url:string = environment.apiUrl;
+    avatar: any = '../../../../assets/img/avatar.jpg';
 
     constructor(private myData: MyData) { }
     
@@ -19,6 +20,10 @@ export class UserComponent implements OnInit {
         this.myData.currentData.subscribe(
             (res) => {
                 this.mydata = res;
+                console.log(this.mydata)
+                if(this.mydata.photo) {
+                    this.avatar = this.mydata.photo;
+                }
             }
         );
     }

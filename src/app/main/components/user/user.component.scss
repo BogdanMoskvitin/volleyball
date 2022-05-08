@@ -1,13 +1,18 @@
-$grey: #788CA0;
-$light: #EEF5F8;
-$blue: #007EA7;
-$dark: #121218;
-$lightdark: #1C1C24;
+$light: #FFFFFF;
+$dark: #212121;
+$blue: #2196F3;
+$lightdark: #4D61A6;
 .container {
     width: 600px;
     border-radius: 5px;
     padding: 20px 30px;
     margin: 100px auto 0 auto;
+}
+.title {
+    color: $light;
+    font-size: 48px;
+    font-weight: bold;
+    user-select: none;
 }
 .head {
     display: flex; 
@@ -16,23 +21,17 @@ $lightdark: #1C1C24;
     padding-bottom: 10px;
     flex-wrap: wrap;
 }
-.title {
-    font-size: 30px;
-    color: $light;
-    user-select: none;
-}
 .btn {
     background: $blue; 
     width: 150px;
 }
 .flex {
     display: flex;
-    align-items: center;
     justify-content: space-between;
 }
 .avatar {
-    width: 150px; 
-    height: 150px; 
+    width: 200px; 
+    height: 200px; 
     background: $blue; 
     margin-right: 20px; 
     border-radius: 5px;
@@ -43,7 +42,7 @@ $lightdark: #1C1C24;
 }
 .text__title {
     font-size: 16px;
-    color: $grey;
+    color: $light;
     padding: 5px 0;
     user-select: none;
 }
@@ -66,10 +65,10 @@ $lightdark: #1C1C24;
     cursor: pointer;
 }
 .box:hover {
-    background-color: $grey;
+    background-color: $light;
 }
 .line {
-    border-bottom: 1px solid $grey;
+    border-bottom: 1px solid $light;
     margin: 10px 0;
 }
 .subtitle {
@@ -79,6 +78,13 @@ $lightdark: #1C1C24;
 }
 input {
     color: $light;
+}
+.text {
+    font-size: 24px;
+    color: $light;
+    span {
+        color: $blue;
+    }
 }
 @media(max-width: 700px) {
     .container {

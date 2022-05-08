@@ -1,22 +1,22 @@
-$grey: #788CA0;
-$light: #EEF5F8;
-$blue: #007EA7;
-$dark: #121218;
-$lightdark: #1C1C24;
+$light: #FFFFFF;
+$dark: #212121;
+$blue: #2196F3;
+$lightdark: #4D61A6;
 .container {
-    width: 280px;
-    border: 1px solid $grey;
-    border-radius: 5px;
     padding: 20px 30px;
-    margin: 100px auto 0 auto;
-    background: $lightdark;
+    margin: 50px auto 0 auto;
 }
 .title {
     color: $light;
-    font-size: 30px;
+    font-size: 48px;
+    font-weight: bold;
     text-align: center;
     padding-bottom: 20px;
     user-select: none;
+}
+.flex {
+    display: flex;
+    justify-content: center;
 }
 .box {
     display: flex;
@@ -32,7 +32,6 @@ input {
     cursor: pointer;
 }
 .btn {
-    background: $grey;
     width: 250px;
 }
 .subtitle {
@@ -40,11 +39,6 @@ input {
     font-size: 14px;
     cursor: pointer;
     margin: 10px 0;
-}
-@media(max-width: 1024px) {
-    .container {
-        margin: 50px auto;
-    }
 }
 
 
@@ -109,9 +103,60 @@ input {
 
 
 
-
 .avatar {
+    display: block;
     object-fit: cover;
-    width: 100px;
-    height: 100px;
+    width: 250px;
+    height: 250px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+
+
+.input__wrapper {
+    width: 169px;
+    position: relative;
+    text-align: center;
+}
+.input__file {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+} 
+.input__file-button-text {
+    line-height: 1;
+    margin-top: 1px;
+}
+.input__file-button {
+    width: 100%;
+    max-width: 169px;
+    height: 32px;
+    background: $blue;
+    border: none;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 15px;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+
+
+
+.creation__basket {
+    width: 30px;
+    height: 30px;
+    mask-image: url(../../../../assets/img/basket.svg);
+    mask-repeat: no-repeat;
+    mask-position: center center;
+    mask-size: contain;
+    background: #ccc;
+    margin: 13px 0 0 5px;
+    cursor: pointer;
 }

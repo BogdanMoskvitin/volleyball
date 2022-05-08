@@ -1,8 +1,7 @@
-$grey: #788CA0;
-$light: #EEF5F8;
-$blue: #007EA7;
-$dark: #121218;
-$lightdark: #1C1C24;
+$light: #FFFFFF;
+$dark: #212121;
+$blue: #2196F3;
+$lightdark: #4D61A6;
 ng-sidebar-container {
     height: 100vh;
 }
@@ -38,7 +37,7 @@ ng-sidebar-container {
     color: $light;
 }
 .line {
-    border-bottom: 1px solid $grey;
+    border-bottom: 1px solid $blue;
     width: 100%;
     margin-bottom: 10px;
 }
@@ -174,10 +173,9 @@ ng-sidebar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    // background: $dark;
+    padding: 10px;
+    background: $blue;
     z-index: 100;
-    border-bottom: 1px solid #959595;
 }
 .logo {
     margin-top: 10px;
@@ -190,16 +188,16 @@ ng-sidebar-container {
     cursor: pointer;
 }
 .link {
-    font-family: DinProItalic;
+    font-weight: bold;
+    font-style: italic;
     text-decoration: none;
-    font-size: 36px;
+    font-size: 48px;
     color: $light;
-    padding: 8px 40px;
+    padding: 8px 20px;
     white-space: nowrap;
 }
 .active {
-    color: #191919;
-    background-color: #F1F8FC;
+    color: $dark;
 }
 .box {
     width: 350px;
@@ -209,7 +207,7 @@ ng-sidebar-container {
 }
 .version {
     font-size: 14px;
-    color: $grey;
+    color: $blue;
     margin-right: 10px;
     user-select: none;
 }
@@ -217,7 +215,7 @@ ng-sidebar-container {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: $blue;
+    background-color: $light;
 }
 .phone {
     font-size: 16px;
@@ -229,7 +227,7 @@ ng-sidebar-container {
     color: $light;
 }
 .logout {
-    color: #788CA0; 
+    color: $light; 
     cursor: pointer; 
     margin-left: 10px;
 }
