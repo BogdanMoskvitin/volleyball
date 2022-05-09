@@ -25,7 +25,6 @@ export class EventChatComponent implements OnInit {
     url: string = environment.apiUrl;
     idEvent: number;
     addCommentForm: FormGroup;
-    commentWindow = true;
     comments;
     comment: Comment;
     text = {comment: ''};
@@ -101,9 +100,5 @@ export class EventChatComponent implements OnInit {
             this.getComments();
         })
         this.addCommentForm.reset();
-    }
-
-    openComment(){
-        this.commentWindow = !this.commentWindow;
     }
 }

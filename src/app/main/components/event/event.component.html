@@ -6,43 +6,45 @@
                     <p class="data__id">№ {{event?.id}}</p>
                 </div>
             </div>
-            <div class="data__flex">
-                <div>
-                    <p class="data__title">{{event?.sport.name}}</p>
-                    <p class="data__subtitle">{{event?.location.name_address_short}}</p>
+            <div class="data__content">
+                <div class="data__flex">
+                    <div>
+                        <p class="data__title" style="color: #2196F3;">{{event?.sport.name}}</p>
+                        <p class="data__subtitle">{{event?.location.name_address_short}}</p>
+                    </div>
+                    <div>
+                        <p class="data__title" style="color: #2196F3;">{{event?.status.name}}</p>
+                        <p class="data__subtitle" style="text-align: end;" *ngIf="event?.show_timer">до старта {{result | date: 'ddд. HHч. mmм. ssс.'}}</p>
+                    </div>
                 </div>
-                <div>
-                    <p class="data__title_status">{{event?.status.name}}</p>
-                    <p class="data__subtitle" style="text-align: end;" *ngIf="event?.show_timer">до старта {{result | date: 'ddд. HHч. mmм. ssс.'}}</p>
+                <div class="data__flex">
+                    <div>
+                        <p class="data__title" style="font-size: 64px; font-weight: bold;">{{event?.short_time}}</p>
+                        <p class="data__subtitle">{{event?.full_date}}</p>
+                    </div>
+                    <div>
+                        <p class="data__title">{{event?.type.name}}</p>
+                        <p class="data__subtitle" style="text-align: end;">создатель события <span style="color: #2196F3; cursor: pointer;" (click)="getCreate(event?.created_by)">{{event?.created_by?.full_name}}</span></p>
+                    </div>
                 </div>
-            </div>
-            <div class="data__flex">
-                <div>
-                    <p class="data__title">{{event?.short_time}}</p>
-                    <p class="data__subtitle">{{event?.full_date}}</p>
+                <div class="data__flex">
+                    <div *ngIf="event?.price != 0 && event?.price != null">
+                        <p class="data__title">{{event?.price}}/<span>{{statistics?.event_stats.price_per_player}}&#8381;</span></p>
+                        <p class="data__subtitle">[общая/<span>с человека</span>]</p>
+                    </div>
+                    <div *ngIf="event?.price == 0 || event?.price == null">
+                        <p class="data__title">Бесплатно</p>
+                        <p class="data__subtitle">[сборы не взимаются]</p>
+                    </div>
+                    <p class="data__description">{{event?.comment}}</p>
                 </div>
-                <div>
-                    <p class="data__title">{{event?.type.name}}</p>
-                    <p class="data__subtitle" style="text-align: end;">создатель события <span style="color: #00FFFF; cursor: pointer;" (click)="getCreate(event?.created_by)">{{event?.created_by?.full_name}}</span></p>
-                </div>
-            </div>
-            <div class="data__flex">
-                <div *ngIf="event?.price != 0 && event?.price != null">
-                    <p class="data__title"><span>{{statistics?.event_stats.price_per_player}}</span>/{{event?.price}}&#8381;</p>
-                    <p class="data__subtitle">[с человека / общая]</p>
-                </div>
-                <div *ngIf="event?.price == 0 || event?.price == null">
-                    <p class="data__title">Бесплатно</p>
-                    <p class="data__subtitle">[сборы не взимаются]</p>
-                </div>
-                <p class="data__description">{{event?.comment}}</p>
             </div>
         </div>
         
         <div class="vote">
             
-            <div class="vote__box" style="border: 1px solid #00FFFF;" *ngIf="application?.application != null && application?.application.status.id == '1'">
-                <div style="background-color: #00FFFF;">
+            <div class="vote__box" *ngIf="application?.application != null && application?.application.status.id == '1'">
+                <div style="background-color: #2196F3;">
                     <p class="vote__head_title">ЗАЯВКА ПОДАНА!</p>
                 </div>
                 <div class="vote__box_text">
@@ -55,9 +57,9 @@
                 </div>
             </div>
 
-            <div class="vote__box" style="border: 1px solid #363636;" *ngIf="application?.application != null && application?.application.status.id == '5'">
-                <div style="background-color: #363636;">
-                    <p class="vote__head_title" style="color: #FFFFFF;">ОТКАЗ ОТ УЧАСТИЯ!</p>
+            <div class="vote__box" *ngIf="application?.application != null && application?.application.status.id == '5'">
+                <div style="background-color: #2196F3;">
+                    <p class="vote__head_title">ОТКАЗ ОТ УЧАСТИЯ!</p>
                 </div>
                 <div class="vote__box_text">
                     <p class="vote__title">Вы отказались участвовать в событии.</p>
@@ -69,9 +71,9 @@
                 </div>
             </div>
 
-            <div class="vote__box" style="border: 1px solid #400080;" *ngIf="application?.application != null && application?.application.status.id == '2'">
-                <div style="background-color: #400080;">
-                    <p class="vote__head_title" style="color: #FFFFFF;">ЗАЯВКА ПРИНЯТА!</p>
+            <div class="vote__box" *ngIf="application?.application != null && application?.application.status.id == '2'">
+                <div style="background-color: #2196F3;">
+                    <p class="vote__head_title">ЗАЯВКА ПРИНЯТА!</p>
                 </div>
                 <div class="vote__box_text">
                     <p class="vote__title">Ваша заявка была подтверждена.</p>
@@ -83,8 +85,8 @@
                 </div>
             </div>
 
-            <div class="vote__box" style="border: 1px solid #FFFF00;" *ngIf="application?.application !=null && application?.application.status.id == '4'">
-                <div style="background-color: #FFFF00;">
+            <div class="vote__box" *ngIf="application?.application !=null && application?.application.status.id == '4'">
+                <div style="background-color: #2196F3;">
                     <p class="vote__head_title">ВЫ ПРИГЛАШЕНЫ!</p>
                 </div>
                 <div class="vote__box_text">
@@ -98,8 +100,8 @@
                 </div>
             </div>
 
-            <div class="vote__box" style="border: 1px solid #959595;" *ngIf="application?.application == null">
-                <div style="background-color: #959595;">
+            <div class="vote__box" *ngIf="application?.application == null">
+                <div style="background-color: #2196F3;">
                     <p class="vote__head_title">ОТКРЫТОЕ СОБЫТИЕ!</p>
                 </div>
                 <div class="vote__box_text">
@@ -112,9 +114,9 @@
                 </div>
             </div>
 
-            <div class="vote__box" style="border: 1px solid #FF0080;" *ngIf="application?.application != null && application?.application.status.id == '3'">
-                <div style="background-color: #FF0080;">
-                    <p class="vote__head_title" style="color: #FFFFFF;">ЗАЯВКА ОТКЛОНЕНА!</p>
+            <div class="vote__box" *ngIf="application?.application != null && application?.application.status.id == '3'">
+                <div style="background-color: #2196F3;">
+                    <p class="vote__head_title">ЗАЯВКА ОТКЛОНЕНА!</p>
                 </div>
                 <div class="vote__box_text">
                     <p class="vote__title">Вам запрещено участвовать в событии.</p>
@@ -128,50 +130,45 @@
             </div>
 
             <div class="vote__box_btns" *ngIf="application?.can_edit">
-                <button class="vote__btn_accept" (click)="sendAccept()" [ngClass]="{vote__btn_mute: !application?.accept_button}">Приду</button>
-                <button class="vote__btn_refuse" (click)="sendReject()" [ngClass]="{vote__btn_mute: !application?.refuse_button}">Не приду</button>
+                <button class="vote__btn_accept" (click)="sendAccept()" [ngClass]="{vote__btn_mute: !application?.accept_button}">принять</button>
+                <button class="vote__btn_refuse" (click)="sendReject()" [ngClass]="{vote__btn_mute: !application?.refuse_button}">отказать</button>
             </div>
         </div>
     </div>
     <div class="participants__box_btns">
-        <button class="participants__btn" style="color: #191919; background-color: #FFFFFF;" (click)="viewPlayers()">игроки</button>
-        <button class="participants__btn" style="color: #FFFFFF; background-color: #191919;" (click)="viewChat()">чат</button>
-        <button class="participants__btn" style="color: #FFFFFF; background-color: #400080;" (click)="viewControl()">управление</button>
+        <button class="participants__btn" (click)="viewPlayers()" [ngClass]="{participants__btn_active: nav.players}">ИГРОКИ</button>
+        <button class="participants__btn" (click)="viewChat()" [ngClass]="{participants__btn_active: nav.chat}">ЧАТ</button>
+        <button class="participants__btn" (click)="viewControl()" [ngClass]="{participants__btn_active: nav.control}">УПРАВЛЕНИЕ</button>
     </div>
     <div class="flex">
         <div *ngIf="nav.players">
             <div class="participants__data">
                 <div class="participants__filters">
                     <button [ngClass]="{active_filter: view.accepted}" class="participants__btn_filter" (click)="viewAccepted()">
-                        <mat-icon style="color: #363636; font-size: 36px; margin: 0 20px 15px 0;" aria-hidden="false" aria-label="Example logout icon">done</mat-icon>
+                        <mat-icon style="color: #FFFFFF; font-size: 36px; margin: 0 20px 15px 0;" aria-hidden="false" aria-label="Example logout icon">done</mat-icon>
                         УЧАСТНИКИ <span>({{statistics?.applications.accepted}})</span>
                     </button>
                     <button [ngClass]="{active_filter: view.guests}" class="participants__btn_filter" (click)="viewGuests()">
-                        <mat-icon style="color: #363636; font-size: 36px; margin: 0 20px 15px 0;" aria-hidden="false" aria-label="Example logout icon">groups</mat-icon>
+                        <mat-icon style="color: #FFFFFF; font-size: 36px; margin: 0 20px 15px 0;" aria-hidden="false" aria-label="Example logout icon">groups</mat-icon>
                         ГОСТИ <span>({{statistics?.guests_stats.all}})</span>
                     </button>
                     <button [ngClass]="{active_filter: view.refused}" class="participants__btn_filter" (click)="viewRefused()">
-                        <mat-icon style="color: #363636; font-size: 36px; margin: 0 20px 15px 0;" aria-hidden="false" aria-label="Example logout icon">close</mat-icon>
+                        <mat-icon style="color: #FFFFFF; font-size: 36px; margin: 0 20px 15px 0;" aria-hidden="false" aria-label="Example logout icon">close</mat-icon>
                         НЕ ПРИДУТ <span>({{statistics?.applications.refused}})</span>
                     </button>
                     <button [ngClass]="{active_filter: view.invited}" class="participants__btn_filter" (click)="viewInvited()">
-                        <mat-icon style="color: #363636; font-size: 32px; margin: 0 20px 10px 0;" aria-hidden="false" aria-label="Example logout icon">mark_email_unread</mat-icon>
+                        <mat-icon style="color: #FFFFFF; font-size: 32px; margin: 0 20px 10px 0;" aria-hidden="false" aria-label="Example logout icon">mark_email_unread</mat-icon>
                         ПРИГЛАШЕНЫ <span>({{statistics?.applications.invited}})</span>
                     </button>
                     <button [ngClass]="{active_filter: view.rejected}" class="participants__btn_filter" (click)="viewRejected()">
-                        <mat-icon style="color: #363636; font-size: 28px; margin: 0 20px 10px 0;" aria-hidden="false" aria-label="Example logout icon">pan_tool</mat-icon>
+                        <mat-icon style="color: #FFFFFF; font-size: 28px; margin: 0 20px 10px 0;" aria-hidden="false" aria-label="Example logout icon">pan_tool</mat-icon>
                         ОТКЛОНЕНЫ <span>({{statistics?.applications.rejected}})</span>
                     </button>
                 </div>
 
-                <div style="width: 476px;">
+                <div style="width: 444px;">
                     <div *ngIf="view.accepted" class="participants__list">
-                        <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application)" 
-                        [ngClass]="{
-                            participants__cell_you: application.user_status.id == 0, 
-                            participants__cell_create: application.user_status.id == 1,
-                            participants__cell_moderator: application.user_status.id == 2, 
-                            participants__cell_player: application.user_status.id == 3}">
+                        <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application)">
                             <img *ngIf="application.user.profile.photo_small" src="{{application.user.profile.photo_small}}" alt="avatar" class="participants__avatar">
                             <div *ngIf="!application.user.profile.photo_small" class="participants__avatar"></div>
                             <div>
@@ -234,14 +231,11 @@
             <h1 style="color: #FFFFFF;">control</h1>
         </div>
         <div class="user" *ngIf="status">
-            <div class="user__flex">
-                <img *ngIf="user.profile.photo_medium" src="{{user?.profile.photo_medium}}" alt="avatar" class="user__avatar">
-                <div *ngIf="!user.profile.photo_medium" class="user__avatar"></div>
-                <div>
-                    <p class="user__status">[{{status}}]</p>
-                    <p class="user__number">{{user?.phone_number}}</p>
-                    <p class="user__email">{{user?.email}}</p>
-                </div>
+            <img *ngIf="user.profile.photo_medium" src="{{user?.profile.photo_medium}}" alt="avatar" class="user__avatar">
+            <div *ngIf="!user.profile.photo_medium" class="user__avatar"></div>
+            <div>
+                <p class="user__status">[{{status}}]</p>
+                <p class="user__name">{{user?.full_name}}</p>
             </div>
             <p class="user__title">{{user?.first_name}} <br> {{user?.last_name}}</p>
         </div>

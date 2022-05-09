@@ -1,5 +1,4 @@
-<div class="box__data">
-    <p class="subtitle">Комментарии</p>
+<div>
     <p *ngIf="!isAuth" class="dangerous">Чтобы написать комментарий, войдите в систему</p>
     <form *ngIf="isAuth" [formGroup]="addCommentForm" (ngSubmit)="sendComment()">
         <mat-form-field appearance="fill" class="textarea">
@@ -22,13 +21,7 @@
         <button *ngIf="!isSend" class="btn__send" mat-raised-button>Отправить</button>
         <button *ngIf="isSend" class="btn__send" type="button" (click)="sendChangeComment()" mat-raised-button>Сохранить</button>
     </form>
-    <p class="title__comment" (click)="openComment()">
-        <span *ngIf="!commentWindow">Открыть комментарии </span>
-        <span *ngIf="commentWindow">Закрыть комментарии </span>
-        <mat-icon *ngIf="!commentWindow" style="color: #EEF5F8; margin-left: 10px;" aria-hidden="false" aria-label="Example send icon">expand_more</mat-icon>
-        <mat-icon *ngIf="commentWindow" style="color: #EEF5F8; margin-left: 10px;" aria-hidden="false" aria-label="Example send icon">expand_less</mat-icon>
-    </p>
-    <div *ngIf="commentWindow">
+    <div>
         <div *ngFor="let comment of comments?.results">
             <div class="flex">
                 <img *ngIf="comment.user.profile.photo_small" src="{{comment.user.profile.photo_small}}" alt="avatar" class="avatar">
