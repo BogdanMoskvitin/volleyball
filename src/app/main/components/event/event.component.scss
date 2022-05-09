@@ -60,6 +60,14 @@ p, span {
         color: #48FFB4;
     }
 }
+.data__subtitle_map {
+    font-size: 24px;
+    color: $light;
+    cursor: pointer;
+}
+.data__subtitle_map:hover {
+    color: $blue;
+}
 .data__flex_status {
     display: flex;
     justify-content: center;

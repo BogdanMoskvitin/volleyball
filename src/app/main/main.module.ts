@@ -43,6 +43,7 @@ import { AngularYandexMapsModule, YaConfig } from 'angular8-yandex-maps';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { ProfileDialog } from './components/profile/profile.component';
+import { EventDialog } from './components/event/event.component';
 
 const mapConfig: YaConfig = {
   apikey: '9bad155f-f5b0-4d07-b3b3-9edc77b23c73',
@@ -77,6 +78,7 @@ const mapConfig: YaConfig = {
     MapComponent,
     ProfileComponent,
     ProfileDialog,
+    EventDialog,
   ],
   exports: [
     

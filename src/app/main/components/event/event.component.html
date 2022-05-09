@@ -10,7 +10,7 @@
                 <div class="data__flex">
                     <div>
                         <p class="data__title" style="color: #2196F3;">{{event?.sport.name}}</p>
-                        <p class="data__subtitle">{{event?.location.name_address_short}}</p>
+                        <p class="data__subtitle_map" (click)="openDialog()">{{event?.location.name_address_short}}</p>
                     </div>
                     <div>
                         <p class="data__title" style="color: #2196F3;">{{event?.status.name}}</p>

@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
- 
+import { MatDialog } from '@angular/material/dialog';
+import { YaEvent } from 'angular8-yandex-maps';
+
 @Component({
     selector: 'event-service-page',
     templateUrl: './event.component.html',
@@ -40,7 +42,8 @@ export class EventComponent implements OnInit {
     constructor(
         private http: HttpClient, 
         private activatedRoute: ActivatedRoute,
-        private authService: AuthService
+        private authService: AuthService,
+        public dialog: MatDialog
     ) {
         this.idEvent = this.activatedRoute.snapshot.params['id'];
     }
@@ -213,4 +216,60 @@ export class EventComponent implements OnInit {
             this.spinner = false;
         }, 1000);
     }
+
+    openDialog() {
+        const dialogRef = this.dialog.open(EventDialog);
+    
+        dialogRef.afterClosed().subscribe(result => {
+          console.log(`Dialog result: ${result}`);
+        });
+      }
+}
+
+
+
+@Component({
+  selector: 'event-dialog',
+  templateUrl: './event-dialog.html',
+})
+export class EventDialog implements OnInit {
+
+    places = [
+        {x: 45.04, y: 41.95, hintContent: 'Точка 1', iconColor: 'red'},
+        {x: 45.05, y: 41.95, hintContent: 'Точка 2', iconColor: 'green'},
+        {x: 45.06, y: 41.95, hintContent: 'Точка 3', iconColor: 'blue'},
+    ]
+
+    coords;
+    isLocation = false;
+
+    constructor() {}
+
+    ngOnInit() {}
+
+    onMapClick(e: YaEvent<ymaps.Map>): void {
+        const { target, event } = e;
+    
+        if (!target.balloon.isOpen()) {
+            this.isLocation = true;
+            const coords = event.get('coords');
+
+            target.balloon.open(coords, {
+                contentHeader: 'Новое место!',
+                contentBody:
+                    '<p>Координаты: ' +
+                    [coords[0].toPrecision(6), coords[1].toPrecision(6)].join(', ') +
+                    '</p>', 
+            }, {closeButton: false});
+            this.coords = coords;
+        } else {
+            this.isLocation = false;
+            target.balloon.close();
+        }
+      }
+
+      saveLocation(){
+        console.log({x: this.coords[0], y: this.coords[1], hintContent: 'Новая точка', iconColor: 'orange'})
+        this.places.push({x: this.coords[0], y: this.coords[1], hintContent: 'Новая точка', iconColor: 'orange'})
+      }
 }
