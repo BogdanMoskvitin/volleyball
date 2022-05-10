@@ -28,8 +28,8 @@
           <mat-label>Почта</mat-label>
           <input matInput formControlName="email" [value]="guest?.email">
         </mat-form-field>
-        <button class="btn" mat-raised-button [disabled]="createGuestForm.invalid">Создать/Изменить</button>
-        <button class="btn" mat-raised-button type="button" (click)="addGuest()">Добавить</button>
+        <button class="btn" mat-raised-button [disabled]="createGuestForm.invalid" color="primary" style="margin-bottom: 10px;">Создать/Изменить</button>
+        <button class="btn" mat-raised-button type="button" (click)="addGuest()" color="primary">Добавить</button>
       </div>
     
       <div style="margin: 0 10px; width: 250px;">

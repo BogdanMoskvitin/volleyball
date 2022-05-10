@@ -3,14 +3,11 @@ $dark: #212121;
 $blue: #2196F3;
 $lightdark: #4D61A6;
 .container {
-    width: 750px;
-    border-radius: 5px;
-    padding: 20px 30px;
+    width: 1200px;
     margin: 50px auto 0 auto;
 }
 .title {
     font-size: 48px;
-    text-align: center;
     padding-bottom: 20px;
     color: $light;
     user-select: none;

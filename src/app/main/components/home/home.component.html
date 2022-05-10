@@ -1,25 +1,59 @@
 <div class="container">
-    <p class="title">Список событий</p>
+    <div class="flex">
+        <p class="title">Список событий</p>
+        <button mat-raised-button color="primary" [routerLink]="['../add-event']">Добавить событие</button>
+    </div>
 
-    <div>
-        <div *ngFor="let event of events" [routerLink]="['../event', event.id]" class="cell">
-            <div class="flex">
-                <div>
-                    <mat-icon style="color: #EEF5F8; margin-right: 10px;" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Закрытая игра'">lock</mat-icon>
-                    <mat-icon style="color: #EEF5F8; margin-right: 10px;" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Открытая игра'">lock_open</mat-icon>
-                    <img src="../../../../assets/img/volleyball.png" alt="volleyball" width="24px" height="22px" *ngIf="event.sport == 'Волейбол'">
+    <div class="flex">
+        <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+            <mat-label>Вид спорта</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+            <mat-label>Статус события</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+            <mat-label>Выбор недели</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+            <mat-label>Выбор даты</mat-label>
+            <input matInput>
+        </mat-form-field>
+    </div>
+
+    <div class="box">
+        <div style="width: 870px; height: 660px;">
+            <ya-map [center]="[45.05, 41.95]" [zoom]="12" (yaclick)="onMapClick($event)" [state]="{ controls: ['smallMapDefaultSet'] }">
+                <ya-placemark *ngFor="let place of places" 
+                    [geometry]="[place.x, place.y]" 
+                    [properties]="{hintContent : place.hintContent}"
+                    [options]="{iconColor: place.iconColor}"
+                ></ya-placemark>
+            </ya-map>
+        </div>
+        <div>
+            <div *ngFor="let event of events" [routerLink]="['../event', event.id]" class="cell">
+                <div class="flex">
+                    <div>
+                        <mat-icon style="color: #EEF5F8; margin-right: 10px;" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Закрытая игра'">lock</mat-icon>
+                        <mat-icon style="color: #EEF5F8; margin-right: 10px;" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Открытая игра'">lock_open</mat-icon>
+                        <img src="../../../../assets/img/volleyball.png" alt="volleyball" width="24px" height="22px" *ngIf="event.sport == 'Волейбол'">
+                    </div>
+                    <p class="text">{{event.status}}</p>
                 </div>
-                <p class="text">{{event.status}}</p>
-            </div>
-            <p class="text" style="text-align: center; font-size: 24px; font-weight: bold;">{{event.date.date_short}}</p>
-            <p class="text" style="text-align: center;">{{event.date.time_short}}</p>
-            <div class="flex">
-                <p class="text" style="font-size: 18px;">{{event.location.name}}</p>
-                <p class="text" style="font-size: 18px; color: #089F5F;">{{event.price}}&#8381;</p>
-                <p class="text" style="font-size: 18px;">{{event.applications_count}}чел.</p>
+                <p class="text" style="text-align: center; font-size: 24px; font-weight: bold;">{{event.date.date_short}}</p>
+                <p class="text" style="text-align: center;">{{event.date.time_short}}</p>
+                <div class="flex">
+                    <p class="text" style="font-size: 18px;">{{event.location.name}}</p>
+                    <p class="text" style="font-size: 18px; color: #48FFB4;">{{event.price}}&#8381;</p>
+                    <p class="text" style="font-size: 18px;">{{event.applications_count}}чел.</p>
+                </div>
             </div>
         </div>
     </div>
+    <button mat-raised-button color="primary" style="margin-top: 10px;" *ngIf="isLocation" (click)="saveLocation()">Сохранить локацию</button>
 </div>
 
 <div class="spinner" *ngIf="spinner">

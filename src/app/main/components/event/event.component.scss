@@ -6,8 +6,8 @@ p, span {
     user-select: none;
 }
 .container {
-    max-width: 1140px;
-    margin: 10px auto 0 auto;
+    width: 1200px;
+    margin: 50px auto 0 auto;
 }
 .flex {
     display: flex;
@@ -86,7 +86,7 @@ p, span {
     width: 320px;
 }
 .vote__box {
-    height: 359px;
+    height: 340px;
     border: 1px solid $blue;
     background-color: $lightdark;
 }
@@ -138,7 +138,7 @@ p, span {
 }
 .participants__box_btns {
     display: flex;
-    margin: 20px 0 17px 0;
+    margin: 10px 0;
 }
 .participants__btn {
     width: 250px;

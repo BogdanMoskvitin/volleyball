@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { Guest } from '../../models/event.model';
 import { GuestService } from '../../services/guest.service';
+import { YaEvent } from 'angular8-yandex-maps';
 
 @Component({
     selector: 'add-event-service-page',
@@ -41,6 +42,14 @@ export class AddEventComponent implements OnInit, OnDestroy {
     aSub4: Subscription;
     aSub5: Subscription;
     guests;
+    places = [
+        {x: 45.04, y: 41.95, hintContent: 'Точка 1', iconColor: 'red'},
+        {x: 45.05, y: 41.95, hintContent: 'Точка 2', iconColor: 'green'},
+        {x: 45.06, y: 41.95, hintContent: 'Точка 3', iconColor: 'blue'},
+    ]
+
+    coords;
+    isLocation = false;
 
     constructor(
         private http: HttpClient, 
@@ -125,6 +134,32 @@ export class AddEventComponent implements OnInit, OnDestroy {
                 this.toastr.error(error.error.time_start);
             }
         );
+    }
+    
+    onMapClick(e: YaEvent<ymaps.Map>): void {
+        const { target, event } = e;
+    
+        if (!target.balloon.isOpen()) {
+            this.isLocation = true;
+            const coords = event.get('coords');
+
+            target.balloon.open(coords, {
+                contentHeader: 'Новое место!',
+                contentBody:
+                    '<p>Координаты: ' +
+                    [coords[0].toPrecision(6), coords[1].toPrecision(6)].join(', ') +
+                    '</p>', 
+            }, {closeButton: false});
+            this.coords = coords;
+        } else {
+            this.isLocation = false;
+            target.balloon.close();
+        }
+    }
+
+    saveLocation(){
+        console.log({x: this.coords[0], y: this.coords[1], hintContent: 'Новая точка', iconColor: 'orange'})
+        this.places.push({x: this.coords[0], y: this.coords[1], hintContent: 'Новая точка', iconColor: 'orange'})
     }
 
     ngOnDestroy(){
@@ -246,4 +281,5 @@ export class DialogContentExampleDialog implements OnInit {
         }
         this.myControl.setValue('');
     }
+
 }

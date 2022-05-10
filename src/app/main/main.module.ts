@@ -104,7 +104,7 @@ const mapConfig: YaConfig = {
     RouterModule.forChild([
       {
         path: '', component: HeaderComponent, children: [
-          { path: '', component: HomeComponent },
+          { path: 'events', component: HomeComponent },
           { path: 'event/:id', component: EventComponent },
           { path: 'add-event', component: AddEventComponent },
           { path: 'add-team', component: AddTeamComponent },
@@ -120,7 +120,7 @@ const mapConfig: YaConfig = {
           { path: 'about-us', component: AboutUsComponent },
           { path: 'user-change', component: UserChangeComponent },
           { path: 'change-password', component: ChangePasswordComponent },
-          { path: 'events', component: EventsComponent },
+          // { path: 'events', component: EventsComponent },
           { path: 'security/email-confirm', component: SecurityEmailComponent },
           { path: 'security/password-reset', component: SecurityPasswordComponent },
           { path: 'privacy-policy', component: PrivacyPolicyComponent },
