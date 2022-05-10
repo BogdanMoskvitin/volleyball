@@ -1,27 +1,26 @@
 <div class="container">
     <div class="head">
-        <div class="empty"></div>
         <p class="title">Список команд</p>
-        <button *ngIf="aAuth" mat-raised-button class="btn" [routerLink]="['../add-team']">Добавить команду</button>
+        <button *ngIf="aAuth" mat-raised-button color="primary" [routerLink]="['../add-team']">Добавить команду</button>
         <mat-icon *ngIf="aAuth" class="add" aria-hidden="false" aria-label="Example add icon" [routerLink]="['../add-team']">add</mat-icon>
-        <div *ngIf="!aAuth" class="empty"></div>
     </div>
-    <table>
-        <tr class="tr__head">
-            <td>Полное название</td>
-            <td>Короткое название</td>
-            <td>Количество игроков</td>
-        </tr>
-        <tr class="tr" *ngFor="let team of teams?.results">
-            <td [routerLink]="['../players', team.id]">{{team.full_name}}</td>
-            <td [routerLink]="['../players', team.id]">{{team.short_name}}</td>
-            <td [routerLink]="['../players', team.id]">{{team.players_count}}</td>
-        </tr>
-    </table>
-    <div class="mobile">
-        <div *ngFor="let team of teams?.results" [routerLink]="['../players', team.id]" class="cell">
-            <p class="text">{{team.full_name}}</p>
-            <p class="text">Кол-во игроков: {{team.players_count}}</p>
+
+    <div style="display: flex;">
+        <div>
+            <div class="participants__cell" *ngFor="let team of teams?.results" (click)="getTeam(team)">
+                <img *ngIf="team.photo_small" src="{{team.photo_small}}" alt="avatar" class="participants__avatar">
+                <div *ngIf="!team.photo_small" class="participants__avatar"></div>
+                <p class="participants__name">{{team.full_name}}</p> 
+                <p class="participants__count">{{team.players_count}}</p>
+            </div>
+        </div>
+        <div style="margin-left: 20px;">
+            <div class="participants__cell" *ngFor="let player of team?.players">
+                <img *ngIf="player.user.profile.photo_small" src="{{player.user.profile.photo_small}}" alt="avatar" class="participants__avatar">
+                <div *ngIf="!player.user.profile.photo_small" class="participants__avatar"></div>
+                <p class="participants__name">{{player.user.full_name}}</p> 
+                <p class="participants__count">{{player.number}}</p>
+            </div>
         </div>
     </div>
 </div>

@@ -1,21 +1,19 @@
-$grey: #788CA0;
-$light: #EEF5F8;
-$blue: #007EA7;
-$dark: #121218;
-$lightdark: #1C1C24;
+$light: #FFFFFF;
+$dark: #212121;
+$blue: #2196F3;
+$lightdark: #4D61A6;
 .container {
-    width: 300px;
+    width: 400px;
     border-radius: 5px;
     padding: 20px 0;
-    margin: 100px auto 0 auto;
-    background: $lightdark;
+    margin: 50px auto 0 auto;
 }
 .title {
-    font-size: 30px;
-    text-align: center;
+    font-size: 48px;
     padding-bottom: 20px;
     color: $light;
     user-select: none;
+    font-weight: bold;
 }
 .subtitle {
     font-size: 18px;
@@ -24,12 +22,7 @@ $lightdark: #1C1C24;
 .box {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 input {
     color: $light;
-}
-.btn {
-    background: $grey;
-    width: 280px;
 }

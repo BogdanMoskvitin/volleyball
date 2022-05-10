@@ -16,6 +16,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
     url:string = environment.apiUrl;
     aSub: Subscription;
     aAuth: boolean;
+    team;
 
     constructor(private http: HttpClient, private authService: AuthService) {}
     
@@ -33,6 +34,16 @@ export class TeamsComponent implements OnInit, OnDestroy {
             .subscribe((res) => {
                 this.teams = res;
         });
+    }
+
+    getTeam(team){
+        // this.status = application.user_status.status;
+        console.log(team)
+        this.http.get(this.url + `teams/${team.id}/`)
+        .subscribe(res => {
+            this.team = res;
+            console.log(this.team)
+        })
     }
 
     ngOnDestroy(){

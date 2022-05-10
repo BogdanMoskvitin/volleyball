@@ -46,7 +46,7 @@ p, span {
 }
 .data__title {
     font-size: 48px;
-    color: #FFFFFF;
+    color: $light;
     span {
         font-size: 48px;
         color: #48FFB4;
@@ -74,11 +74,11 @@ p, span {
 }
 .data__title_status {
     font-size: 36px;
-    color: #FFFF00;
+    color: $light;
 }
 .data__description {
     font-size: 24px;
-    color: #959595;
+    color: $light;
     text-align: end;
     width: 400px;
 }
@@ -116,7 +116,7 @@ p, span {
     height: 50px;
     width: 185px;
     margin: 2px;
-    color: #191919;
+    color: $dark;
     font-size: 24px;
     border: none;
     cursor: pointer;
@@ -126,7 +126,7 @@ p, span {
     height: 50px;
     width: 185px;
     margin: 2px;
-    color: #191919;
+    color: $dark;
     font-size: 24px;
     border: none;
     cursor: pointer;
@@ -192,10 +192,10 @@ p, span {
 }
 .participants__list::-webkit-scrollbar {
     height: 5px;
-    background-color: #000000;
+    background-color: $dark;
 }
 .participants__list::-webkit-scrollbar-thumb {
-    background-color: #FFFFFF;
+    background-color: $light;
     border-radius: 0;
 }
 .participants__cell {
@@ -227,10 +227,10 @@ p, span {
     color: $dark;
 }
 .participants__cell:hover .participants__status {
-    color: #363636;
+    color: $dark;
 }
 .participants__cell:hover .participants__name {
-    color: #191919;
+    color: $dark;
 }
 .user {
     margin-left: 20px;
@@ -251,11 +251,11 @@ p, span {
 .user__avatar {
     width: 200px;
     height: 200px;
-    background-color: #FFFFFF;
+    background-color: $light;
     margin: 20px auto;
 }
 .user__title {
-    color: #FFFFFF;
+    color: $light;
     font-size: 36px;
     letter-spacing: 0;
 }

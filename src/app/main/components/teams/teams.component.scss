@@ -1,38 +1,25 @@
-$grey: #788CA0;
-$light: #EEF5F8;
-$blue: #007EA7;
-$dark: #121218;
-$lightdark: #1C1C24;
+$light: #FFFFFF;
+$dark: #212121;
+$blue: #2196F3;
+$lightdark: #4D61A6;
 .container {
-    width: 600px;
+    width: 880px;
     border-radius: 5px;
     padding: 20px 30px;
-    margin: 100px auto 0 auto;
+    margin: 50px auto 0 auto;
 }
 .head {
     display: flex; 
-    justify-content: space-between; 
     align-items: center; 
     margin-bottom: 10px;
 }
-.empty {
-    width: 150px;
-}
 .title {
-    font-size: 30px;
-    text-align: center;
+    font-size: 48px;
     color: $light;
     user-select: none;
     margin-left: 10px;
-}
-.btn {
-    background: $blue; 
-    width: 150px; 
-    height: 30px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    margin-right: 10px;
+    font-weight: bold;
+    margin-right: 20px;
 }
 .add {
     display: none;
@@ -52,7 +39,7 @@ table {
     }
 }
 td {
-    border-bottom: 1px solid $grey;
+    border-bottom: 1px solid $blue;
     padding: 10px 30px;
     font-size: 18px;
     text-align: center;
@@ -63,14 +50,14 @@ td {
     background: $lightdark;
 }
 .tr:hover {
-    background-color: $grey;
+    background-color: $blue;
 }
 .mobile {
     display: none;
 }
 .cell {
-    border-top: 1px solid $grey;
-    border-bottom: 1px solid $grey;
+    border-top: 1px solid $blue;
+    border-bottom: 1px solid $blue;
     margin-bottom: 5px;
     border-radius: 5px;
     background: $lightdark;
@@ -85,16 +72,6 @@ td {
     align-items: center;
 }
 @media(max-width: 700px) {
-    .container {
-        width: 290px;
-        padding: 20px 0;
-    }
-    .empty {
-        display: none;
-    }
-    .btn {
-        display: none;
-    }
     .add {
         display: block;
     }
@@ -104,4 +81,48 @@ td {
     .mobile {
         display: block;
     }
+}
+
+
+
+
+
+
+
+.participants__cell {
+    display: flex;
+    align-items: center;
+    width: 430px;
+    height: 68px;
+    background: linear-gradient(to right, $blue 15%, $light 15% 98%, $blue 98%);
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.participants__cell:last-child {
+    margin: 0;
+}
+.participants__avatar {
+    width: 50px;
+    height: 50px;
+    border: 1px solid $dark;
+    border-radius: 50%;
+    background-color: $light;
+    margin: 0 5px 0 43px;
+    flex-shrink: 0;
+}
+.participants__name {
+    font-size: 24px;
+    color: $dark;
+}
+.participants__count {
+    font-size: 24px;
+    color: $dark;
+    margin-left: auto;
+    padding: 0 20px;
+}
+.participants__cell:hover .participants__status {
+    color: $dark;
+}
+.participants__cell:hover .participants__name {
+    color: $dark;
 }
