@@ -1,0 +1,67 @@
+$light: #FFFFFF;
+$dark: #212121;
+$blue: #2196F3;
+$lightdark: #0D47A1;
+p, span {
+    user-select: none;
+}
+.dangerous {
+    color: $lightdark;
+    user-select: none;
+    margin-bottom: 10px;
+}
+.textarea {
+    width: 290px;
+    color: $light;
+}
+.icon__send {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.btn__send {
+    display: none;
+    width: 290px;
+    margin: 0 0 10px 0;
+    background-color: $blue;
+}
+.container__comment {
+    max-height: 300px;
+    overflow: auto;
+    border-radius: 5px;
+}
+.box__comment {
+    background-color: $lightdark;
+    margin: 5px 0;
+    border-radius: 5px 5px 5px 0px;
+    display: inline-block;
+    padding: 5px 10px;
+    cursor: pointer;
+    max-width: 300px;
+}
+.user__comment {
+    font-size: 14px;
+    color: $dark;
+}
+.text__comment {
+    font-size: 20px;
+    padding: 5px 0px;
+    color: $light;
+}
+.time__comment {
+    text-align: end;
+    font-size: 14px;
+    color: $dark;
+}
+.flex {
+    display: flex;
+    align-items: center;
+}
+.avatar {
+    width: 50px;
+    height: 50px;
+    border: 1px solid $dark;
+    border-radius: 50%;
+    background-color: $light;
+    margin: 0 5px 0 0;
+}

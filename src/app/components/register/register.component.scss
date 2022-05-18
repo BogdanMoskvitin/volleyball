@@ -1,0 +1,35 @@
+$light: #FFFFFF;
+$dark: #212121;
+$blue: #2196F3;
+$lightdark: #0D47A1;
+.container {
+    width: 280px;
+    padding: 20px 30px;
+    margin: 50px auto 0 auto;
+}
+.title {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 20px;
+    user-select: none;
+}
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.btn__icon {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.btn {
+    background: $blue;
+    width: 250px;
+}
+.subtitle {
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px 0;
+}

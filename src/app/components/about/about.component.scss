@@ -1,0 +1,72 @@
+$light: #FFFFFF;
+$dark: #212121;
+$blue: #2196F3;
+$lightdark: #0D47A1;
+.container {
+    width: 1200px;
+    margin: 50px auto 0 auto;
+}
+.title {
+    font-size: 48px;
+    padding-bottom: 20px;
+    user-select: none;
+    font-weight: bold;
+}
+.soc__icon {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    width: 160px;
+    img{filter: invert(97%) sepia(14%) saturate(663%) hue-rotate(175deg) brightness(102%) contrast(94%);}
+}
+.soc__icon:hover {
+    img{filter: invert(43%) sepia(90%) saturate(2135%) hue-rotate(187deg) brightness(103%) contrast(91%);}
+    p{color: $blue;}
+}
+.box__cell {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+.cell {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    width: 270px;
+    margin: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    background: $lightdark;
+}
+.avatar__mr {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-image: url(../../../assets/img/mr.marshanskiy.jpg);
+    background-size: contain;
+}
+.text {
+    font-size: 20px;
+    user-select: none;
+}
+.link {
+    font-size: 16px;
+    text-decoration: none;
+}
+.avatar__bg {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-image: url(../../../assets/img/bg.moskvitin.jpg);
+    background-size: contain;
+}
+.privacy_policy {
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+.privacy_policy:hover {
+    color: $blue;
+}

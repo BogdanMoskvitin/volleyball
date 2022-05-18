@@ -1,0 +1,38 @@
+$light: #FFFFFF;
+$dark: #212121;
+$blue: #2196F3;
+$lightdark: #0D47A1;
+.container {
+    width: 1200px;
+    margin: 50px auto 0 auto;
+}
+.title {
+    font-size: 48px;
+    user-select: none;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.cell {
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background: $lightdark;
+    width: 280px;
+    min-height: 110px;
+    padding: 10px;
+    cursor: pointer;
+}
+.cell:hover {
+    background: $blue;
+}
+.box {
+    display: flex;
+    justify-content: space-between;
+}
+.text {
+    font-size: 16px;
+    padding: 3px 0;
+}
+.flex {
+    display: flex;
+    flex-direction: column;
+}

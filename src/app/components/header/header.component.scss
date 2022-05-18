@@ -1,0 +1,241 @@
+$light: #FFFFFF;
+$dark: #212121;
+$blue: #2196F3;
+$lightdark: #0D47A1;
+ng-sidebar-container {
+    height: 100vh;
+}
+::ng-deep .ng-sidebar {
+    background-color: $lightdark;
+    width: 100%;
+    height: 100%;
+}
+.burger__ul {
+    margin: 100px 30px 0 30px; 
+    list-style: none;
+}
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.burger__user {
+    display: flex; 
+    align-items: center;
+}
+.burger__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $blue;
+    margin: 10px 10px 10px 0;
+}
+.burger__text {
+    color: $light;
+}
+.burger__logout {
+    color: $light;
+}
+.line {
+    border-bottom: 1px solid $blue;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.burger__li {
+    padding: 0 0 15px 0;
+    display: flex;
+    align-items: center;
+}
+.burger__a {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-size: 25px;
+    transition: all 0.4s ease-in-out;
+    color: $light;
+    text-decoration-line: none;
+    margin-left: 10px;
+}
+.burger__a:hover {
+    color: $blue;
+    text-decoration-line: underline;
+}
+.burger {
+    z-index: 1010;
+    display: none;
+	width: 30px;
+    height: 30px;
+    top: 30px;
+    right: 30px;
+    position: fixed;
+    outline: none;
+    border: none;
+    background: none;
+}
+.burger__line1 {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    width: 30px;
+    height: 5px;
+    background-color: $blue;
+    border-radius: 25%;
+    opacity: 100;
+    transform: translateX(0);
+    transition: all 0.4s ease-in-out;
+}
+.burger__line1_active {
+	position: absolute;
+    left: 0;
+    top: 15px;
+    width: 30px;
+    height: 5px;
+    background-color: $blue;
+    border-radius: 25%;
+    opacity: 0;
+    transform: translateX(40px);
+    transition: all 0.4s ease-in-out;
+}
+.burger__line2 {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    width: 30px;
+    height: 5px;
+    background-color: $blue;
+    border-radius: 25%;
+    opacity: 100;
+    transform: translateX(0);
+    transition: all 0.4s ease-in-out;
+}
+.burger__line2_active {
+	position: absolute;
+    left: 0;
+    top: 15px;
+    width: 30px;
+    height: 5px;
+    background-color: $blue;
+    border-radius: 25%;
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: all 0.4s ease-in-out;
+}
+.burger__line3 {
+	position: absolute;
+	left: 0;
+	top: 5px;
+	width: 30px;
+	height: 5px;
+    background-color: $light;
+    border-radius: 25%;
+    transform: rotate(0deg);
+    transform-origin: 5%;
+    transition: transform 0.5s;
+}
+.burger__line3_active {
+	position: absolute;
+	left: 0;
+	top: 5px;
+	width: 30px;
+	height: 5px;
+    background-color: $light;
+    border-radius: 25%;
+    transform: rotate(45deg);
+    transform-origin: 5%;
+    transition: transform 0.5s;
+}
+.burger__line4 {
+	position: absolute;
+	left: 0;
+	top: 25px;
+	width: 30px;
+	height: 5px;
+    background-color: $light;
+    border-radius: 25%;
+    transform: rotate(0deg);
+    transform-origin: 5%;
+    transition: transform 0.5s;
+}
+.burger__line4_active {
+	position: absolute;
+	left: 0;
+	top: 25px;
+	width: 30px;
+	height: 5px;
+    background-color: $light;
+    border-radius: 25%;
+    transform: rotate(-45deg);
+    transform-origin: 5%;
+    transition: transform 0.5s;
+}
+.header {
+    position: fixed;
+    top: 0; right: 0; left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: $blue;
+    z-index: 100;
+}
+.logo {
+    margin-top: 10px;
+    width: 350px;
+    height: 70px;
+    background-image: url(../../../assets/img/logoFTC.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center left;
+    cursor: pointer;
+}
+.link {
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    font-size: 48px;
+    color: $light;
+    padding: 8px 20px;
+    white-space: nowrap;
+}
+.active {
+    color: $dark;
+}
+.box {
+    width: 350px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.version {
+    font-size: 14px;
+    color: $blue;
+    margin-right: 10px;
+    user-select: none;
+}
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $light;
+}
+.phone {
+    font-size: 16px;
+    color: $light;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.login {
+    color: $light;
+}
+.logout {
+    color: $light; 
+    cursor: pointer; 
+    margin-left: 10px;
+}
+.router-outlet {
+    position: fixed;
+    top: 91px; left: 0; right: 0; bottom: 0;
+}
+.content {
+    height: 100%;
+    overflow: auto;
+}

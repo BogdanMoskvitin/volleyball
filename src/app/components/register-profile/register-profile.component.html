@@ -1,0 +1,74 @@
+<div class="container">
+    <p class="title">Регистрация</p>
+    <div class="flex">
+        <div style="margin: 0 10px;">
+            <img [src]="croppedImage" alt="" class="avatar">
+            <button mat-raised-button (click)="openDialog()" type="button" class="btn" color="primary">Установить аватарку</button>
+        </div>
+        <div style="margin: 0 10px;">
+        
+            <form [formGroup]="regForm" novalidate (ngSubmit)="sendService()">
+                <div class="box">
+
+                    <mat-form-field color="accent" appearance="fill" style="width: 250px;">
+                        <mat-label>День рождения</mat-label>
+                        <input formControlName="birthday" matInput [matDatepicker]="picker2">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                    </mat-form-field>
+        
+                    <div style="width: 250px; margin-bottom: 15px;">
+                        <mat-radio-group name="gender" formControlName="gender">
+                            <div *ngFor="let gender of genders">
+                                <mat-radio-button color="primary" [style.margin.px]="'5'" value="{{gender.value}}" [checked]="gender.check">
+                                    {{gender.placeholder}}
+                                </mat-radio-button>
+                            </div>
+                        </mat-radio-group>
+                    </div>
+        
+                    <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
+                        <mat-label>Город</mat-label>
+                        <input type="text" matInput [matAutocomplete]="auto" (change)="changeCity($event)" (input)="inputCity($event)" [formControl]="controlCity">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let city of cities" [value]="city.name" (click)="saveCity(city)">
+                                {{city.name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+        
+                    <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;" *ngIf="isCity">
+                        <mat-label>Адрес</mat-label>
+                        <input type="text" matInput [matAutocomplete]="auto2" (input)="inputAddress($event)" [formControl]="controlAddress">
+                        <mat-autocomplete #auto2="matAutocomplete">
+                            <mat-option *ngFor="let address of addresses" [value]="address.name">
+                                {{address.name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+
+
+                    <div formArrayName="socials">
+                        <div *ngFor="let social of getFormsControls()['controls']; let i = index">
+            
+                            <div style="display: flex;">
+                                <div class="creation__box_inputs" [formGroupName]="i">
+                                    <mat-form-field class="example-full-width" appearance="fill" style="width: 220px;">
+                                        <mat-label>Вставьте url</mat-label>
+                                        <input matInput formControlName="social">
+                                    </mat-form-field>
+                                </div>
+                                <button type="button" class="creation__basket" (click)="deleteSocial(i)"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <button mat-raised-button class="btn" type="button" style="margin-bottom: 10px;" color="primary" (click)="addSocial()">Добавить социальную сеть</button>
+                    
+                    <button mat-raised-button [disabled]="regForm.invalid" class="btn" color="primary">Отправить</button>
+                    <p [routerLink]="['']" class="subtitle">Заполнить позже</p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
