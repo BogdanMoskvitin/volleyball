@@ -1,71 +1,17 @@
 $light: #FFFFFF;
 $dark: #212121;
 $blue: #2196F3;
-$lightdark: #0D47A1;
-.container {
-    width: 1200px;
-    margin: 50px auto 0 auto;
-}
+
 .head {
     display: flex; 
     align-items: center; 
     margin-bottom: 10px;
-}
-.title {
-    font-size: 48px;
-    user-select: none;
-    font-weight: bold;
-    margin-right: 20px;
 }
 .add {
     display: none;
     color: $light;
     font-size: 30px;
     padding-bottom: 10px;
-}
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-.tr__head {
-    background-color: $blue;
-    td {
-        color: $light;
-        cursor: default;
-    }
-}
-td {
-    border-bottom: 1px solid $blue;
-    padding: 10px 30px;
-    font-size: 18px;
-    text-align: center;
-    cursor: pointer;
-    color: $light;
-}
-.tr {
-    background: $lightdark;
-}
-.tr:hover {
-    background-color: $blue;
-}
-.mobile {
-    display: none;
-}
-.cell {
-    border-top: 1px solid $blue;
-    border-bottom: 1px solid $blue;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    background: $lightdark;
-    width: 280px;
-    padding: 10px;
-}
-.text {
-    font-size: 16px;
-    color: $light;
-    padding: 3px 0;
-    display: flex;
-    align-items: center;
 }
 .participants__cell {
     display: flex;

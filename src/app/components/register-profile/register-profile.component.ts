@@ -50,7 +50,9 @@ export class RegisterProfileComponent implements OnInit {
         this.http.get(this.url + 'me/profile/').subscribe(
             (res) => {
                 this.meProfile = res;
-                this.croppedImage = this.meProfile.photo;
+                if(this.meProfile.photo) {
+                    this.croppedImage = this.meProfile.photo;
+                }
             }
         )
     }

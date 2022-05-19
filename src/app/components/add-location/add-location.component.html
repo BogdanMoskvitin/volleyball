@@ -1,5 +1,5 @@
 <div class="container">
-    <p class="title">Добавить место</p>
+    <h1>Добавить место</h1>
     <form [formGroup]="addLocationForm" novalidate (ngSubmit)="sendService()">
         <div class="box">
             <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
@@ -18,7 +18,7 @@
             </mat-form-field>
 
             <div>
-                <button mat-raised-button class="btn" [disabled]="addLocationForm.invalid">Добавить место</button>
+                <button mat-raised-button style="width: 280px" color="primary" [disabled]="addLocationForm.invalid">Добавить место</button>
             </div>
         </div>
     </form>

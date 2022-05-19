@@ -47,7 +47,7 @@
             <span style="color: #2196F3; cursor: pointer; margin: 10px 0;" [routerLink]="['../../privacy-policy']">Политика конфидециальности</span>
 
             <div>
-                <button mat-raised-button [disabled]="regForm.invalid || regForm.disabled || !isPP" class="btn">Зарегестрироваться</button>
+                <button mat-raised-button style="width: 250px;" color="primary" [disabled]="regForm.invalid || regForm.disabled || !isPP">Зарегестрироваться</button>
             </div>
             <p [routerLink]="['../login']" class="subtitle">Уже зарегистрированы?</p>
         </div>

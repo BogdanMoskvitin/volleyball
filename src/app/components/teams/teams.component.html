@@ -1,6 +1,6 @@
 <div class="container">
     <div class="head">
-        <p class="title">Список команд</p>
+        <h1 style="margin-right: 20px;">Список команд</h1>
         <button *ngIf="aAuth" mat-raised-button color="primary" [routerLink]="['../add-team']">Добавить команду</button>
         <mat-icon *ngIf="aAuth" class="add" aria-hidden="false" aria-label="Example add icon" [routerLink]="['../add-team']">add</mat-icon>
     </div>

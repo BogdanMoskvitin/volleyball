@@ -1,6 +1,6 @@
 <div class="container">
     <div class="flex">
-        <p class="title">Список событий</p>
+        <h1>Список событий</h1>
         <button mat-raised-button color="primary" [routerLink]="['../add-event']">Добавить событие</button>
     </div>
 
@@ -24,7 +24,7 @@
     </div>
 
     <div class="box">
-        <div style="width: 870px; height: 660px;">
+        <div class="map">
             <ya-map [center]="[45.05, 41.95]" [zoom]="12" (yaclick)="onMapClick($event)" [state]="{ controls: ['smallMapDefaultSet'] }">
                 <ya-placemark *ngFor="let place of places" 
                     [geometry]="[place.x, place.y]" 
@@ -34,7 +34,7 @@
             </ya-map>
         </div>
         <div>
-            <div *ngFor="let event of events" [routerLink]="['../event', event.id]" class="cell">
+            <div class="cell" *ngFor="let event of events" [routerLink]="['../event', event.id]">
                 <div class="flex">
                     <div>
                         <mat-icon style="color: #EEF5F8; margin-right: 10px;" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Закрытая игра'">lock</mat-icon>

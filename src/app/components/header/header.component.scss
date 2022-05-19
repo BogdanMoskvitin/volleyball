@@ -2,6 +2,7 @@ $light: #FFFFFF;
 $dark: #212121;
 $blue: #2196F3;
 $lightdark: #0D47A1;
+
 ng-sidebar-container {
     height: 100vh;
 }
@@ -177,16 +178,6 @@ ng-sidebar-container {
     background: $blue;
     z-index: 100;
 }
-.logo {
-    margin-top: 10px;
-    width: 350px;
-    height: 70px;
-    background-image: url(../../../assets/img/logoFTC.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center left;
-    cursor: pointer;
-}
 .link {
     font-weight: bold;
     font-style: italic;
@@ -233,7 +224,7 @@ ng-sidebar-container {
 }
 .router-outlet {
     position: fixed;
-    top: 91px; left: 0; right: 0; bottom: 0;
+    top: 78px; left: 0; right: 0; bottom: 0;
 }
 .content {
     height: 100%;

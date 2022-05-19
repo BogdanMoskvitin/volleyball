@@ -1,5 +1,5 @@
 <div class="container">
-    <p class="title">Добавить игрока</p>
+    <h1>Добавить игрока</h1>
     <form [formGroup]="addPlayerForm" novalidate (ngSubmit)="sendService()">
         <div class="box">
             <p class="subtitle">Под каким номером хотите вступить в команду?</p>
@@ -10,7 +10,7 @@
             </mat-form-field>
 
             <div>
-                <button mat-raised-button class="btn" [disabled]="addPlayerForm.invalid">Вступить в команду</button>
+                <button mat-raised-button style="width: 280px;" color="primary" [disabled]="addPlayerForm.invalid">Вступить в команду</button>
             </div>
         </div>
     </form>

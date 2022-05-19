@@ -1,5 +1,5 @@
 <div class="container">
-    <p class="title">Авторизация</p>
+    <h1>Авторизация</h1>
     <form [formGroup]="authForm" novalidate (ngSubmit)="sendService()">
         <div class="box">
             <mat-form-field class="example-full-width" appearance="fill" style="width: 250px;">
@@ -19,7 +19,7 @@
             <p [routerLink]="['../change-password']" class="subtitle">Забыли пароль?</p>
 
             <div>
-                <button mat-raised-button class="btn" [disabled]="authForm.invalid || authForm.disabled">Войти</button>
+                <button mat-raised-button style="width: 250px;" color="primary" [disabled]="authForm.invalid || authForm.disabled">Войти</button>
             </div>
             <p [routerLink]="['../register']" class="subtitle">Еще не зарегистрированы?</p>
         </div>

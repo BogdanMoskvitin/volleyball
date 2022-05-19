@@ -1,72 +1,15 @@
 $light: #FFFFFF;
 $dark: #212121;
 $blue: #2196F3;
-$lightdark: #0D47A1;
-.container {
-    width: 1200px;
-    margin: 50px auto 0 auto;
-}
-.title {
-    font-size: 48px;
-    font-weight: bold;
-    user-select: none;
-}
-.head {
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding-bottom: 10px;
-    flex-wrap: wrap;
-}
-.btn {
-    background: $blue; 
-    width: 150px;
-}
+
 .flex {
     display: flex;
 }
 .avatar {
-    width: 200px; 
-    height: 200px; 
-    background: $blue; 
-    margin-right: 20px; 
+    width: 200px;
+    height: 200px;
+    margin-right: 20px;
     border-radius: 5px;
-}
-.text {
-    font-size: 20px;
-}
-.text__title {
-    font-size: 16px;
-    padding: 5px 0;
-    user-select: none;
-}
-.text__data {
-    font-size: 16px;
-    padding: 5px 0;
-    font-weight: 500;
-    user-select: none;
-}
-.teams__box {
-    background-color: $lightdark;
-    border-radius: 5px;
-    padding: 20px;
-}
-.box {
-    width: 100%;
-    min-height: 80px; 
-    margin-bottom: 10px;
-    cursor: pointer;
-}
-.box:hover {
-    background-color: $light;
-}
-.line {
-    border-bottom: 1px solid $light;
-    margin: 10px 0;
-}
-.subtitle {
-    font-size: 24px;
-    padding-bottom: 10px;
 }
 .text {
     font-size: 24px;

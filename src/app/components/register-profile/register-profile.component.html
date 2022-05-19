@@ -1,9 +1,9 @@
 <div class="container">
-    <p class="title">Регистрация</p>
+    <h1>Редактирование профиля</h1>
     <div class="flex">
         <div style="margin: 0 10px;">
             <img [src]="croppedImage" alt="" class="avatar">
-            <button mat-raised-button (click)="openDialog()" type="button" class="btn" color="primary">Установить аватарку</button>
+            <button mat-raised-button (click)="openDialog()" type="button" style="width: 250px;" color="primary">Установить аватарку</button>
         </div>
         <div style="margin: 0 10px;">
         
@@ -47,13 +47,11 @@
                         </mat-autocomplete>
                     </mat-form-field>
 
-
-
                     <div formArrayName="socials">
                         <div *ngFor="let social of getFormsControls()['controls']; let i = index">
             
                             <div style="display: flex;">
-                                <div class="creation__box_inputs" [formGroupName]="i">
+                                <div [formGroupName]="i">
                                     <mat-form-field class="example-full-width" appearance="fill" style="width: 220px;">
                                         <mat-label>Вставьте url</mat-label>
                                         <input matInput formControlName="social">
@@ -63,9 +61,9 @@
                             </div>
                         </div>
                     </div>
-                    <button mat-raised-button class="btn" type="button" style="margin-bottom: 10px;" color="primary" (click)="addSocial()">Добавить социальную сеть</button>
+                    <button mat-raised-button type="button" style="width: 250px; margin-bottom: 10px;" color="primary" (click)="addSocial()">Добавить социальную сеть</button>
                     
-                    <button mat-raised-button [disabled]="regForm.invalid" class="btn" color="primary">Отправить</button>
+                    <button mat-raised-button [disabled]="regForm.invalid" style="width: 250px;" color="primary">Отправить</button>
                     <p [routerLink]="['']" class="subtitle">Заполнить позже</p>
                 </div>
             </form>

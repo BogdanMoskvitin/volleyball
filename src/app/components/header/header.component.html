@@ -3,8 +3,8 @@
         <ul class="burger__ul">
             <div class="flex">
                 <div *ngIf="aAuth" class="burger__user" (click)='toggleSidebar()' [routerLink]="['./user']">
-                    <img *ngIf="mydata.photo" src="{{mydata.photo}}" alt="avatar" class="burger__avatar">
-                    <div *ngIf="!mydata.photo" class="burger__avatar"></div>
+                    <img class="burger__avatar" *ngIf="mydata.photo" src="{{mydata.photo}}" alt="avatar">
+                    <div class="burger__avatar" *ngIf="!mydata.photo"></div>
                     <p class="burger__text">{{mydata.first_name}} {{mydata.last_name}}</p>
                 </div>
                 <div *ngIf="!aAuth" class="burger__user">

@@ -1,55 +1,31 @@
-$light: #FFFFFF;
-$dark: #212121;
-$blue: #2196F3;
-$lightdark: #0D47A1;
-.container {
-    padding: 20px 30px;
-    margin: 50px auto 0 auto;
-}
-.title {
-    font-size: 48px;
-    font-weight: bold;
-    text-align: center;
-    padding-bottom: 20px;
-    user-select: none;
-}
 .flex {
     display: flex;
-    justify-content: center;
+}
+.avatar {
+    display: block;
+    object-fit: cover;
+    width: 250px;
+    height: 250px;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 .box {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.btn__icon {
-    border: none;
-    background: none;
+.creation__basket {
+    width: 30px;
+    height: 30px;
+    mask-image: url(../../../assets/img/basket.svg);
+    mask-repeat: no-repeat;
+    mask-position: center center;
+    mask-size: contain;
+    background: #ccc;
+    margin: 13px 0 0 5px;
     cursor: pointer;
 }
-.btn {
-    width: 250px;
-}
-.subtitle {
-    font-size: 14px;
-    cursor: pointer;
-    margin: 10px 0;
-}
 
-
-
-
-
-
-
-
-
-
-.loading__box {
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-}
 .input__wrapper {
     width: 169px;
     position: relative;
@@ -60,10 +36,6 @@ $lightdark: #0D47A1;
     visibility: hidden;
     position: absolute;
 } 
-.input__file-button-text {
-    line-height: 1;
-    margin-top: 1px;
-}
 .input__file-button {
     width: 100%;
     max-width: 169px;
@@ -81,77 +53,12 @@ $lightdark: #0D47A1;
     cursor: pointer;
     margin: 0 auto;
 }
-.input__file-name {
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 18px;
-    color: #0B5CA6;
-    padding: 6px 0 6px 30px;
-}
-.warning {
-    display: block;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 16px;
-    color: red;
-}
-
-
-
-.avatar {
-    display: block;
-    object-fit: cover;
-    width: 250px;
-    height: 250px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-
-
-.input__wrapper {
-    width: 169px;
-    position: relative;
-    text-align: center;
-}
-.input__file {
-    opacity: 0;
-    visibility: hidden;
-    position: absolute;
-} 
 .input__file-button-text {
     line-height: 1;
     margin-top: 1px;
 }
-.input__file-button {
-    width: 100%;
-    max-width: 169px;
-    height: 32px;
-    background: $blue;
-    border: none;
-    font-weight: normal;
+.subtitle {
     font-size: 14px;
-    line-height: 15px;
-    color: #FFFFFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 3px;
     cursor: pointer;
-    margin: 0 auto;
-}
-
-
-
-
-.creation__basket {
-    width: 30px;
-    height: 30px;
-    mask-image: url(../../../assets/img/basket.svg);
-    mask-repeat: no-repeat;
-    mask-position: center center;
-    mask-size: contain;
-    background: #ccc;
-    margin: 13px 0 0 5px;
-    cursor: pointer;
+    margin: 10px 0;
 }

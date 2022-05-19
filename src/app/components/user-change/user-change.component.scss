@@ -1,21 +1,12 @@
-$light: #FFFFFF;
-$dark: #212121;
-$blue: #2196F3;
-$lightdark: #0D47A1;
-.container {
-    width: 1200px;
-    margin: 50px auto 0 auto;
-}
 .title {
     font-size: 48px;
     font-weight: bold;
     padding-bottom: 20px;
     user-select: none;
+    text-align: center;
 }
 .flex {
     display: flex;
     flex-direction: column;
-}
-.btn {
-    width: 280px;
+    align-items: center;
 }
