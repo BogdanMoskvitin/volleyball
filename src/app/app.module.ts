@@ -52,6 +52,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { TeamComponent } from './components/team/team.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -70,6 +71,7 @@ const appRoutes: Routes = [
       { path: 'add-team', component: AddTeamComponent },
       { path: 'add-player', component: AddPlayerComponent },
       { path: 'add-location', component: AddLocationComponent },
+      { path: 'team/:id', component: TeamComponent },
       { path: 'teams', component: TeamsComponent },
       { path: 'user', component: UserComponent },
       { path: 'about', component: AboutComponent },
@@ -114,6 +116,7 @@ const appRoutes: Routes = [
     RegisterComponent,
     RegisterProfileComponent,
     RegisterProfileDialog,
+    TeamComponent,
   ],
   imports: [
     HttpClientModule,

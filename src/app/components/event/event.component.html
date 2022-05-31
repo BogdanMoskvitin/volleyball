@@ -9,122 +9,77 @@
             <div class="data__content">
                 <div class="data__flex">
                     <div>
-                        <p class="data__title" style="color: #2196F3;">{{event?.sport.name}}</p>
-                        <p class="data__subtitle_map" (click)="openDialog()">{{event?.location.name_address_short}}</p>
+                        <div style="margin: 10px 0;">
+                            <p class="data__title" style="color: #2196F3;">{{event?.sport.name}}</p>
+                            <p class="data__subtitle_map" (click)="openDialog()">{{event?.location.name_address_short}}</p>
+                        </div>
+                        <div style="margin: 10px 0;">
+                            <p class="data__title_time">{{event?.short_time}}</p>
+                            <p class="data__subtitle">{{event?.full_date}}</p>
+                        </div>
+                        <div style="margin: 10px 0;" *ngIf="event?.price != 0 && event?.price != null">
+                            <p class="data__title">{{event?.price}}/<span>{{statistics?.event_stats.price_per_player}}&#8381;</span></p>
+                            <p class="data__subtitle">[общая/<span>с человека</span>]</p>
+                        </div>
+                        <div style="margin: 10px 0;" *ngIf="event?.price == 0 || event?.price == null">
+                            <p class="data__title">Бесплатно</p>
+                            <p class="data__subtitle">[сборы не взимаются]</p>
+                        </div>
                     </div>
                     <div>
-                        <p class="data__title" style="color: #2196F3;">{{event?.status.name}}</p>
-                        <p class="data__subtitle" style="text-align: end;" *ngIf="event?.show_timer">до старта {{result | date: 'ddд. HHч. mmм. ssс.'}}</p>
+                        <div style="margin: 10px 0;">
+                            <p class="data__title" style="color: #2196F3; text-align: end;">{{event?.status.name}}</p>
+                            <p class="data__subtitle" style="text-align: end;" *ngIf="event?.show_timer">до старта {{result | date: 'ddд. HHч. mmм. ssс.'}}</p>
+                        </div>
+                        <div style="margin: 10px 0;">
+                            <p class="data__title" style="text-align: end;">{{event?.type.name}}</p>
+                            <p class="data__subtitle" style="text-align: end;">создатель события <span style="color: #2196F3; cursor: pointer;" (click)="getCreate(event?.created_by)">{{event?.created_by?.full_name}}</span></p>
+                        </div>
+                        <p class="data__description" style="text-align: end; margin: 10px 0;">{{event?.comment}}</p>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="data-mobile">
+            <div class="data__flex">
+                <img src="../../../../assets/img/volleyball.png" alt="volleyball" width="24px" height="22px" *ngIf="event.sport.name == 'Волейбол'">
+                <p class="data__subtitle_map-mobile" (click)="openDialog()">{{event?.location.name_address_short}}</p>
+                <div class="data__box_id-mobile">
+                    <p class="data__id-mobile">№ {{event?.id}}</p>
+                </div>
+            </div>
+            <div class="data__content-mobile">
                 <div class="data__flex">
-                    <div>
-                        <p class="data__title" style="font-size: 64px; font-weight: bold;">{{event?.short_time}}</p>
-                        <p class="data__subtitle">{{event?.full_date}}</p>
-                    </div>
-                    <div>
-                        <p class="data__title">{{event?.type.name}}</p>
-                        <p class="data__subtitle" style="text-align: end;">создатель события <span style="color: #2196F3; cursor: pointer;" (click)="getCreate(event?.created_by)">{{event?.created_by?.full_name}}</span></p>
-                    </div>
+                    <p class="data__title-mobile" style="color: #2196F3;">{{event?.status.name}}</p>
+                    <p class="data__subtitle-mobile" style="text-align: end;" *ngIf="event?.show_timer">{{result | date: 'ddд HHч mmм ssс'}}</p>
                 </div>
-                <div class="data__flex">
-                    <div *ngIf="event?.price != 0 && event?.price != null">
-                        <p class="data__title">{{event?.price}}/<span>{{statistics?.event_stats.price_per_player}}&#8381;</span></p>
-                        <p class="data__subtitle">[общая/<span>с человека</span>]</p>
-                    </div>
-                    <div *ngIf="event?.price == 0 || event?.price == null">
-                        <p class="data__title">Бесплатно</p>
-                        <p class="data__subtitle">[сборы не взимаются]</p>
-                    </div>
-                    <p class="data__description">{{event?.comment}}</p>
+                <p class="data__title_time-mobile">{{event?.short_time}}</p>
+                <p class="data__subtitle-mobile" style="text-align: center;">{{event?.full_date}}</p>
+
+                <div style="margin: 10px 0;" *ngIf="event?.price != 0 && event?.price != null">
+                    <p class="data__title-mobile">{{event?.price}}/<span>{{statistics?.event_stats.price_per_player}}&#8381;</span></p>
+                    <p class="data__subtitle-mobile">[общая/<span>с человека</span>]</p>
                 </div>
+                <div style="margin: 10px 0;" *ngIf="event?.price == 0 || event?.price == null">
+                    <p class="data__title-mobile">Бесплатно</p>
+                    <p class="data__subtitle-mobile">[сборы не взимаются]</p>
+                </div>
+
+                <p class="data__description" style="text-align: end; margin: 10px 0;">{{event?.comment}}</p>
             </div>
         </div>
         
         <div class="vote">
-            
-            <div class="vote__box" *ngIf="application?.application != null && application?.application.status.id == '1'">
+            <div class="vote__box">
                 <div style="background-color: #2196F3;">
-                    <p class="vote__head_title">ЗАЯВКА ПОДАНА!</p>
+                    <p class="vote__head_title">СТАТУС ЗАЯВКИ</p>
                 </div>
                 <div class="vote__box_text">
-                    <p class="vote__title">Вы уже оставили заявку на событие.</p>
-                    <span class="vote__subtitle">{{application?.application.status.description}}</span>
+                    <p class="vote__title">Здесь должен быть какой-то текст.</p>
+                    <span class="vote__subtitle">{{application?.application?.status.description}}</span>
 
-                    <p class="vote__title" *ngIf="event?.status.id == 1">Заявка на участие в открытом событии.</p>
-                    <p class="vote__title" *ngIf="event?.status.id == 5">Заявка на участие в закрытом событии.</p>
-                    <span class="vote__subtitle">{{event?.type.description}}</span>
-                </div>
-            </div>
-
-            <div class="vote__box" *ngIf="application?.application != null && application?.application.status.id == '5'">
-                <div style="background-color: #2196F3;">
-                    <p class="vote__head_title">ОТКАЗ ОТ УЧАСТИЯ!</p>
-                </div>
-                <div class="vote__box_text">
-                    <p class="vote__title">Вы отказались участвовать в событии.</p>
-                    <span class="vote__subtitle">{{application?.application.status.description}}</span>
-
-                    <p class="vote__title" *ngIf="event?.status.id == 1">Заявка на участие в открытом событии.</p>
-                    <p class="vote__title" *ngIf="event?.status.id == 5">Заявка на участие в закрытом событии.</p>
-                    <span class="vote__subtitle">{{event?.type.description}}</span>
-                </div>
-            </div>
-
-            <div class="vote__box" *ngIf="application?.application != null && application?.application.status.id == '2'">
-                <div style="background-color: #2196F3;">
-                    <p class="vote__head_title">ЗАЯВКА ПРИНЯТА!</p>
-                </div>
-                <div class="vote__box_text">
-                    <p class="vote__title">Ваша заявка была подтверждена.</p>
-                    <span class="vote__subtitle">{{application?.application.status.description}}</span>
-
-                    <p class="vote__title" *ngIf="event?.status.id == 1">Заявка на участие в открытом событии.</p>
-                    <p class="vote__title" *ngIf="event?.status.id == 5">Заявка на участие в закрытом событии.</p>
-                    <span class="vote__subtitle">{{event?.type.description}}</span>
-                </div>
-            </div>
-
-            <div class="vote__box" *ngIf="application?.application !=null && application?.application.status.id == '4'">
-                <div style="background-color: #2196F3;">
-                    <p class="vote__head_title">ВЫ ПРИГЛАШЕНЫ!</p>
-                </div>
-                <div class="vote__box_text">
-                    <p class="vote__title">Вас пригласил <span style="color: #00FFFF;">{{event?.created_by.full_name}}</span>.</p>
-                    <span class="vote__subtitle" *ngIf="application?.application.comment_moderator">{{application?.application.comment_moderator}}</span>
-                    <span class="vote__subtitle" *ngIf="!application?.application.comment_moderator">{{application?.status?.description}}</span>
-
-                    <p class="vote__title" *ngIf="event?.status.id == 1">Заявка на участие в открытом событии.</p>
-                    <p class="vote__title" *ngIf="event?.status.id == 5">Заявка на участие в закрытом событии.</p>
-                    <span class="vote__subtitle">{{event?.type.description}}</span>
-                </div>
-            </div>
-
-            <div class="vote__box" *ngIf="application?.application == null">
-                <div style="background-color: #2196F3;">
-                    <p class="vote__head_title">ОТКРЫТОЕ СОБЫТИЕ!</p>
-                </div>
-                <div class="vote__box_text">
-                    <p class="vote__title">Вы можете принять участие в событии.</p>
-                    <span class="vote__subtitle">{{application?.application.status.description}}</span>
-
-                    <p class="vote__title" *ngIf="event?.status.id == 1">Заявка на участие в открытом событии.</p>
-                    <p class="vote__title" *ngIf="event?.status.id == 5">Заявка на участие в закрытом событии.</p>
-                    <span class="vote__subtitle">{{event?.type.description}}</span>
-                </div>
-            </div>
-
-            <div class="vote__box" *ngIf="application?.application != null && application?.application.status.id == '3'">
-                <div style="background-color: #2196F3;">
-                    <p class="vote__head_title">ЗАЯВКА ОТКЛОНЕНА!</p>
-                </div>
-                <div class="vote__box_text">
-                    <p class="vote__title">Вам запрещено участвовать в событии.</p>
-                    <span class="vote__subtitle" *ngIf="application?.application.comment_moderator">{{application?.application.comment_moderator}}</span>
-                    <span class="vote__subtitle" *ngIf="!application?.application.comment_moderator">{{application?.status.description}}</span>
-
-                    <p class="vote__title" *ngIf="event?.status.id == 1">Заявка на участие в открытом событии.</p>
-                    <p class="vote__title" *ngIf="event?.status.id == 5">Заявка на участие в закрытом событии.</p>
+                    <p class="vote__title">Здесь должен быть какой-то текст.</p>
                     <span class="vote__subtitle">{{event?.type.description}}</span>
                 </div>
             </div>
@@ -138,7 +93,7 @@
     <div class="participants__box_btns">
         <button class="participants__btn" (click)="viewPlayers()" [ngClass]="{participants__btn_active: nav.players}">ИГРОКИ</button>
         <button class="participants__btn" (click)="viewChat()" [ngClass]="{participants__btn_active: nav.chat}">ЧАТ</button>
-        <button class="participants__btn" (click)="viewControl()" [ngClass]="{participants__btn_active: nav.control}">УПРАВЛЕНИЕ</button>
+        <button class="participants__btn" (click)="viewControl()" [ngClass]="{participants__btn_active: nav.control}">УПР</button>
     </div>
     <div class="flex">
         <div *ngIf="nav.players">
@@ -166,7 +121,7 @@
                     </button>
                 </div>
 
-                <div style="width: 444px;">
+                <div class="participants__container">
                     <div *ngIf="view.accepted" class="participants__list">
                         <div class="participants__cell" *ngFor="let application of applications" (click)="getUser(application)">
                             <img *ngIf="application.user.profile.photo_small" src="{{application.user.profile.photo_small}}" alt="avatar" class="participants__avatar">

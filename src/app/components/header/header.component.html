@@ -39,7 +39,9 @@
         </button>
 
         <div class="header">
-            <div style="margin-left: 350px;">
+            <div style="width: 1200px; margin: 0 auto;">
+                <div class="flex">
+            <div>
                 <a routerLinkActive="active" class="link" [routerLink]="['./events']">События</a>
                 <a routerLinkActive="active" class="link" [routerLink]="['./teams']">Команды</a>
                 <a routerLinkActive="active" class="link" [routerLink]="['./about']">О нас</a>
@@ -57,6 +59,8 @@
                 <p class="phone" *ngIf="aAuth" [routerLink]="['./user']">{{mydata.phone_number}}</p>
                 <button class="login" mat-stroked-button *ngIf="!aAuth" [routerLink]="['./login']">Войти</button>
                 <mat-icon class="logout" aria-hidden="false" aria-label="Example logout icon" (click)="logout($event)" *ngIf="aAuth">logout</mat-icon>
+            </div>
+        </div>
             </div>
         </div>
       

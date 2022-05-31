@@ -1,0 +1,10 @@
+<div class="container">
+    <h1>{{team?.full_name}}</h1>
+    
+    <div class="participants__cell" *ngFor="let player of team?.players">
+        <img *ngIf="player.user.profile.photo_small" src="{{player.user.profile.photo_small}}" alt="avatar" class="participants__avatar">
+        <div *ngIf="!player.user.profile.photo_small" class="participants__avatar"></div>
+        <p class="participants__name">{{player.user.full_name}}</p> 
+        <p class="participants__count">{{player.number}}</p>
+    </div>
+</div>

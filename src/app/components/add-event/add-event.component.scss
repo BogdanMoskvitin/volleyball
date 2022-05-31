@@ -1,12 +1,44 @@
 .box {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 .map {
     width: 900px;
     height: 660px;
+    margin-bottom: 10px;
 }
 .flex {
     display: flex;
     flex-direction: column;
+}
+@media(max-width: 1220px){
+    .map {width: 800px;}
+}
+@media(max-width: 1120px){
+    .map {width: 700px;}
+}
+@media(max-width: 1020px){
+    .map {width: 600px;}
+}
+@media(max-width: 920px){
+    .map {width: 500px;}
+}
+@media(max-width: 820px){
+    .map {width: 400px;}
+}
+@media(max-width: 720px){
+    .map {width: 600px; height: 400px;}
+}
+@media(max-width: 620px){
+    .map {width: 500px; height: 300px;}
+}
+@media(max-width: 520px){
+    .map {width: 400px; height: 300px;}
+}
+@media(max-width: 420px){
+    .map {width: 300px; height: 200px;}
+}
+@media(max-width: 320px){
+    .map {width: 200px; height: 200px;}
 }

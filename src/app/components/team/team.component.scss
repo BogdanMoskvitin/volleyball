@@ -50,21 +50,6 @@ $blue: #2196F3;
 .participants__cell:hover .participants__name {
     color: $dark;
 }
-.desktop {
-    display: block;
-    display: flex;
-}
-.mobile {
-    display: none;
-}
-@media(max-width: 920px){
-    .desktop {
-        display: none;
-    }
-    .mobile {
-        display: block;
-    }
-}
 @media(max-width: 460px){
     .participants__name {
         font-size: 20px;

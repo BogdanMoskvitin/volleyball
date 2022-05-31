@@ -6,14 +6,17 @@ $blue: #2196F3;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 .box {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 .map {
     width: 870px;
     height: 660px;
+    margin-bottom: 10px;
 }
 .cell {
     margin-bottom: 5px;
@@ -39,4 +42,34 @@ $blue: #2196F3;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+@media(max-width: 1220px){
+    .map {width: 800px;}
+}
+@media(max-width: 1130px){
+    .map {width: 700px;}
+}
+@media(max-width: 1030px){
+    .map {width: 600px;}
+}
+@media(max-width: 930px){
+    .map {width: 500px;}
+}
+@media(max-width: 830px){
+    .map {width: 400px;}
+}
+@media(max-width: 730px){
+    .map {width: 600px; height: 400px;}
+}
+@media(max-width: 620px){
+    .map {width: 500px; height: 300px;}
+}
+@media(max-width: 520px){
+    .map {width: 400px; height: 300px;}
+}
+@media(max-width: 420px){
+    .map {width: 300px; height: 200px;}
+}
+@media(max-width: 320px){
+    .map {width: 200px; height: 200px;}
 }
