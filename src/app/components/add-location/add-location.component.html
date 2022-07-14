@@ -1,25 +1,27 @@
-<div class="container">
-    <h1>Добавить место</h1>
-    <form [formGroup]="addLocationForm" novalidate (ngSubmit)="sendService()">
-        <div class="box">
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
-                <mat-label>Название</mat-label>
-                <input matInput formControlName="name">
-            </mat-form-field>
+<h2 mat-dialog-title>Сохранение места</h2>
+<mat-dialog-content class="mat-typography" style="min-width: 300px;">
+    <div class="container">
+        <form [formGroup]="addLocationForm" novalidate (ngSubmit)="sendService()">
+            <div class="box">
+                <p>x: {{data.x}} <br> y: {{data.y}}</p>
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+                    <mat-label>Название</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
-                <mat-label>Адрес</mat-label>
-                <input matInput formControlName="address">
-            </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+                    <mat-label>Описание</mat-label>
+                    <input matInput formControlName="description">
+                </mat-form-field>
 
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
-                <mat-label>Описание</mat-label>
-                <input matInput formControlName="description">
-            </mat-form-field>
-
-            <div>
-                <button mat-raised-button style="width: 280px" color="primary" [disabled]="addLocationForm.invalid">Добавить место</button>
+                <div>
+                    <button mat-raised-button style="width: 280px" color="primary" [disabled]="addLocationForm.invalid">Добавить место</button>
+                </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Отмена</button>
+</mat-dialog-actions>

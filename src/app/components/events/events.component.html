@@ -26,29 +26,33 @@
     <div class="box">
         <div class="map">
             <ya-map [center]="[45.05, 41.95]" [zoom]="12" (yaclick)="onMapClick($event)" [state]="{ controls: ['smallMapDefaultSet'] }">
-                <ya-placemark *ngFor="let place of places" 
-                    [geometry]="[place.x, place.y]" 
-                    [properties]="{hintContent : place.hintContent}"
-                    [options]="{iconColor: place.iconColor}"
+                <ya-placemark *ngFor="let location of locations?.results" 
+                    [geometry]="[location.lat, location.lon]" 
+                    [properties]="{hintContent : location.name}"
+                    [options]="{iconColor: 'gold'}"
+                    (yaclick)="filterLocation(location.id)"
                 ></ya-placemark>
             </ya-map>
         </div>
-        <div>
-            <div class="cell" *ngFor="let event of events" [routerLink]="['../event', event.id]">
-                <div class="flex">
-                    <div>
-                        <mat-icon style="color: #EEF5F8; margin-right: 10px;" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Закрытая игра'">lock</mat-icon>
-                        <mat-icon style="color: #EEF5F8; margin-right: 10px;" aria-hidden="false" aria-label="Example logout icon" *ngIf="event.type == 'Открытая игра'">lock_open</mat-icon>
-                        <img src="../../../../assets/img/volleyball.png" alt="volleyball" width="24px" height="22px" *ngIf="event.sport == 'Волейбол'">
+        <div class="box__events">
+            <div *ngFor="let event of events | keyvalue">
+                <p>{{event.key}}</p>
+                <div class="cell" *ngFor="let e of $any(event).value" [routerLink]="['../event', e.id]">
+                    <div class="flex">
+                        <div>
+                            <mat-icon style="color: #EEF5F8; margin-right: 10px;" aria-hidden="false" aria-label="Example logout icon" *ngIf="e.type == 'Закрытая игра'">lock</mat-icon>
+                            <mat-icon style="color: #EEF5F8; margin-right: 10px;" aria-hidden="false" aria-label="Example logout icon" *ngIf="e.type == 'Открытая игра'">lock_open</mat-icon>
+                            <img src="../../../../assets/img/volleyball.png" alt="volleyball" width="24px" height="22px" *ngIf="e.sport == 'Волейбол'">
+                        </div>
+                        <p class="text">{{e.status}}</p>
                     </div>
-                    <p class="text">{{event.status}}</p>
-                </div>
-                <p class="text" style="text-align: center; font-size: 24px; font-weight: bold;">{{event.date.date_short}}</p>
-                <p class="text" style="text-align: center;">{{event.date.time_short}}</p>
-                <div class="flex">
-                    <p class="text" style="font-size: 18px;">{{event.location.name}}</p>
-                    <p class="text" style="font-size: 18px; color: #48FFB4;">{{event.price}}&#8381;</p>
-                    <p class="text" style="font-size: 18px;">{{event.applications_count}}чел.</p>
+                    <p class="text" style="text-align: center; font-size: 24px; font-weight: bold;">{{e.short_date}}</p>
+                    <p class="text" style="text-align: center;">{{e.short_time}}</p>
+                    <div class="flex">
+                        <p class="text" style="font-size: 18px;">{{e.location.name}}</p>
+                        <p class="text" style="font-size: 18px; color: #48FFB4;">{{e.price}}&#8381;</p>
+                        <p class="text" style="font-size: 18px;">{{e.applications_count}}чел.</p>
+                    </div>
                 </div>
             </div>
         </div>

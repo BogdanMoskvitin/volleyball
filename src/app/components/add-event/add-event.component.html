@@ -4,10 +4,10 @@
     <div class="box">
         <div class="map">
             <ya-map [center]="[45.05, 41.95]" [zoom]="12" (yaclick)="onMapClick($event)" [state]="{ controls: ['smallMapDefaultSet'] }">
-                <ya-placemark *ngFor="let place of places" 
-                    [geometry]="[place.x, place.y]" 
-                    [properties]="{hintContent : place.hintContent}"
-                    [options]="{iconColor: place.iconColor}"
+                <ya-placemark *ngFor="let location of locations?.results" 
+                    [geometry]="[location.lat, location.lon]" 
+                    [properties]="{hintContent : location.name}"
+                    [options]="{iconColor: 'gold'}"
                 ></ya-placemark>
             </ya-map>
         </div>

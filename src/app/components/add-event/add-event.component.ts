@@ -13,6 +13,7 @@ import { map, startWith } from 'rxjs/operators';
 import { Guest } from 'src/app/models/event.model';
 import { GuestService } from 'src/app/services/guest.service';
 import { YaEvent } from 'angular8-yandex-maps';
+import { AddLocationComponent } from '../add-location/add-location.component';
 
 @Component({
     selector: 'add-event-service-page',
@@ -78,6 +79,21 @@ export class AddEventComponent implements OnInit, OnDestroy {
 
     openDialog() {
         const dialogRef = this.dialog.open(DialogContentExampleDialog);
+    
+        dialogRef.afterClosed().subscribe(result => {
+          console.log(`Dialog result: ${result}`);
+        });
+    }
+
+    saveLocation() {
+        const dialogRef = this.dialog.open(AddLocationComponent, {
+            data: {
+                x: this.coords[0], 
+                y: this.coords[1], 
+                hintContent: 'Новая точка', 
+                iconColor: 'orange'
+            }
+        });
     
         dialogRef.afterClosed().subscribe(result => {
           console.log(`Dialog result: ${result}`);
@@ -157,10 +173,10 @@ export class AddEventComponent implements OnInit, OnDestroy {
         }
     }
 
-    saveLocation(){
-        console.log({x: this.coords[0], y: this.coords[1], hintContent: 'Новая точка', iconColor: 'orange'})
-        this.places.push({x: this.coords[0], y: this.coords[1], hintContent: 'Новая точка', iconColor: 'orange'})
-    }
+    // saveLocation(){
+    //     console.log({x: this.coords[0], y: this.coords[1], hintContent: 'Новая точка', iconColor: 'orange'})
+    //     this.places.push({x: this.coords[0], y: this.coords[1], hintContent: 'Новая точка', iconColor: 'orange'})
+    // }
 
     ngOnDestroy(){
         this.aSub2.unsubscribe();

@@ -18,6 +18,21 @@ $blue: #2196F3;
     height: 660px;
     margin-bottom: 10px;
 }
+.box__events {
+    height: 660px;
+    overflow: auto;
+}
+.box__events::-webkit-scrollbar {
+    width: 8px;
+}
+.box__events::-webkit-scrollbar {
+    height: 5px;
+    background-color: $dark;
+}
+.box__events::-webkit-scrollbar-thumb {
+    background-color: $light;
+    border-radius: 0;
+}
 .cell {
     margin-bottom: 5px;
     border-radius: 5px;

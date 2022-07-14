@@ -12,9 +12,11 @@ import { YaEvent } from 'angular8-yandex-maps';
 
 export class EventsComponent implements OnInit, AfterViewInit, OnDestroy {
 
+    locations;
     events;
     url:string = environment.apiUrl;
     aSub: Subscription;
+    aSub2: Subscription;
     spinner: boolean;
     places = [
         {x: 45.04, y: 41.95, hintContent: 'Точка 1', iconColor: 'red'},
@@ -30,6 +32,7 @@ export class EventsComponent implements OnInit, AfterViewInit, OnDestroy {
     ngOnInit(): void {
         this.spinner = true;
         this.getEvents();
+        this.getLocations();
     }
 
     ngAfterViewInit(): void {
@@ -37,7 +40,21 @@ export class EventsComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     getEvents() {
-        this.aSub = this.http.get(this.url + 'main/')
+        this.aSub = this.http.get(this.url + 'events/group-by-date?multi_status=1,2,3')
+            .subscribe((res) => {
+                this.events = res;
+        });
+    }
+
+    getLocations() {
+        this.aSub2 = this.http.get(this.url + 'locations/')
+            .subscribe((res) => {
+                this.locations = res;
+        });
+    }
+
+    filterLocation(id): void {
+        this.aSub = this.http.get(this.url + `events/group-by-date?multi_status=1%2C2%2C3&location=${id}`)
             .subscribe((res) => {
                 this.events = res;
         });
@@ -71,5 +88,6 @@ export class EventsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnDestroy(){
         this.aSub.unsubscribe();
+        this.aSub2.unsubscribe();
     }
 }
