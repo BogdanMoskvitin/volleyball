@@ -30,7 +30,7 @@
                     [geometry]="[location.lat, location.lon]" 
                     [properties]="{hintContent : location.name}"
                     [options]="{iconColor: 'gold'}"
-                    (yaclick)="filterLocation(location.id)"
+                    (yaclick)="openDialog(location.id)"
                 ></ya-placemark>
             </ya-map>
         </div>

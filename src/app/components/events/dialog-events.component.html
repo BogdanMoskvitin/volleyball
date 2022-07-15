@@ -1,0 +1,7 @@
+<mat-dialog-content class="mat-typography">
+  <button mat-raised-button color="primary" class="btn" (click)="openDialog(data.id)" mat-dialog-close>Добавить событие</button>
+  <button mat-raised-button color="primary" class="btn" [routerLink]="['../location', data.id]" mat-dialog-close>Об организации</button>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close>Закрыть</button>
+</mat-dialog-actions>

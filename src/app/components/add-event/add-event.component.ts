@@ -1,13 +1,13 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { Guest } from 'src/app/models/event.model';
@@ -58,8 +58,9 @@ export class AddEventComponent implements OnInit, OnDestroy {
         private router: Router,
         private toastr: ToastrService,
         public dialog: MatDialog,
-        public guestService: GuestService
-        ) {
+        public guestService: GuestService,
+        @Inject(MAT_DIALOG_DATA) public data,
+    ) {
         this.addEventForm = new FormGroup({
             sport: new FormControl('', Validators.required),
             type: new FormControl('', Validators.required),
@@ -78,25 +79,17 @@ export class AddEventComponent implements OnInit, OnDestroy {
     }
 
     openDialog() {
-        const dialogRef = this.dialog.open(DialogContentExampleDialog);
-    
-        dialogRef.afterClosed().subscribe(result => {
-          console.log(`Dialog result: ${result}`);
-        });
+        this.dialog.open(DialogContentExampleDialog);
     }
 
     saveLocation() {
-        const dialogRef = this.dialog.open(AddLocationComponent, {
+        this.dialog.open(AddLocationComponent, {
             data: {
                 x: this.coords[0], 
                 y: this.coords[1], 
                 hintContent: 'Новая точка', 
                 iconColor: 'orange'
             }
-        });
-    
-        dialogRef.afterClosed().subscribe(result => {
-          console.log(`Dialog result: ${result}`);
         });
     }
 
@@ -135,7 +128,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
                 type: this.addEventForm.value.type,
                 time_start: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time_start),
                 time_end: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time_end),
-                location: this.addEventForm.value.location,
+                location: this.data.id,
                 price: this.addEventForm.value.price,
                 guests: guestsId
             }
@@ -151,32 +144,6 @@ export class AddEventComponent implements OnInit, OnDestroy {
             }
         );
     }
-    
-    onMapClick(e: YaEvent<ymaps.Map>): void {
-        const { target, event } = e;
-    
-        if (!target.balloon.isOpen()) {
-            this.isLocation = true;
-            const coords = event.get('coords');
-
-            target.balloon.open(coords, {
-                contentHeader: 'Новое место!',
-                contentBody:
-                    '<p>Координаты: ' +
-                    [coords[0].toPrecision(6), coords[1].toPrecision(6)].join(', ') +
-                    '</p>', 
-            }, {closeButton: false});
-            this.coords = coords;
-        } else {
-            this.isLocation = false;
-            target.balloon.close();
-        }
-    }
-
-    // saveLocation(){
-    //     console.log({x: this.coords[0], y: this.coords[1], hintContent: 'Новая точка', iconColor: 'orange'})
-    //     this.places.push({x: this.coords[0], y: this.coords[1], hintContent: 'Новая точка', iconColor: 'orange'})
-    // }
 
     ngOnDestroy(){
         this.aSub2.unsubscribe();

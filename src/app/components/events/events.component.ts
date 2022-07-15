@@ -1,8 +1,12 @@
-import { Component, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { YaEvent } from 'angular8-yandex-maps';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AddEventComponent } from '../add-event/add-event.component';
+import { AddLocationComponent } from '../add-location/add-location.component';
 
 @Component({
     selector: 'events-service-page',
@@ -27,7 +31,10 @@ export class EventsComponent implements OnInit, AfterViewInit, OnDestroy {
     coords;
     isLocation = false;
 
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        public dialog: MatDialog,
+    ) {}
     
     ngOnInit(): void {
         this.spinner = true;
@@ -37,6 +44,34 @@ export class EventsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngAfterViewInit(): void {
         this.spinner = false;
+    }
+
+    saveLocation() {
+        const dialogRef = this.dialog.open(AddLocationComponent, {
+            data: {
+                x: this.coords[0], 
+                y: this.coords[1], 
+                hintContent: 'Новая точка', 
+                iconColor: 'orange'
+            }
+        });
+    
+        dialogRef.afterClosed().subscribe(() => {
+            this.getLocations()
+        });
+    }
+
+    openDialog(id) {
+        const dialogRef = this.dialog.open(DialogEventsComponent, {
+            data: {
+              id: id,
+            },
+          });
+        this.filterLocation(id)
+    
+        dialogRef.afterClosed().subscribe(() => {
+            this.getEvents()
+        })
     }
 
     getEvents() {
@@ -81,13 +116,29 @@ export class EventsComponent implements OnInit, AfterViewInit, OnDestroy {
         }
     }
 
-    saveLocation(){
-        console.log({x: this.coords[0], y: this.coords[1], hintContent: 'Новая точка', iconColor: 'orange'})
-        this.places.push({x: this.coords[0], y: this.coords[1], hintContent: 'Новая точка', iconColor: 'orange'})
-    }
-
     ngOnDestroy(){
         this.aSub.unsubscribe();
         this.aSub2.unsubscribe();
+    }
+}
+
+@Component({
+    selector: 'dialog-events',
+    templateUrl: './dialog-events.component.html',
+    styleUrls: ['./events.component.scss'],
+})
+export class DialogEventsComponent implements OnInit {
+    constructor(
+        public dialog: MatDialog,
+        @Inject(MAT_DIALOG_DATA) public data
+    ){ }
+    ngOnInit() { }
+
+    openDialog(id) {
+        this.dialog.open(AddEventComponent, {
+            data: {
+              id: id,
+            },
+        });
     }
 }

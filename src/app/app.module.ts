@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import { EventsComponent } from './components/events/events.component';
+import { DialogEventsComponent, EventsComponent } from './components/events/events.component';
 import { EventComponent } from './components/event/event.component';
 import { AddEventComponent } from './components/add-event/add-event.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -53,6 +53,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { TeamComponent } from './components/team/team.component';
+import { LocationComponent } from './components/location/location.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -84,9 +85,10 @@ const appRoutes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'register-profile', component: RegisterProfileComponent },
+      { path: 'location/:id', component: LocationComponent },
     ],
   },
-  // { path: '**', component: NotFoundComponent }
+  { path: '**', component: EventsComponent }
 ];
 
 @NgModule({
@@ -117,6 +119,8 @@ const appRoutes: Routes = [
     RegisterProfileComponent,
     RegisterProfileDialog,
     TeamComponent,
+    DialogEventsComponent,
+    LocationComponent,
   ],
   imports: [
     HttpClientModule,
