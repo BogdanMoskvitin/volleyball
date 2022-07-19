@@ -1,0 +1,20 @@
+<mat-dialog-content class="mat-typography">
+  <div class="flex">
+    <div>
+      <p>address: {{data.location.address}}</p>
+      <p>description: {{data.location.description}}</p>
+      <p>name: {{data.location.name}}</p>
+      <p>lat: {{data.location.lat}}</p>
+      <p>lon: {{data.location.lon}}</p>
+      <p>id: {{data.location.id}}</p>
+      <button mat-raised-button color="primary" class="btn" (click)="openDialog(data.location.id)" mat-dialog-close>Добавить событие</button>
+      <button mat-raised-button color="primary" class="btn" [routerLink]="['../location', data.location.id]" mat-dialog-close>Об организации</button>
+    </div>
+    <div>
+      <events-service-page [events]="events"></events-service-page>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close>Закрыть</button>
+</mat-dialog-actions>

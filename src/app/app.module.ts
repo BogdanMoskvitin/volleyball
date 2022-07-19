@@ -1,5 +1,5 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import { DialogEventsComponent, EventsComponent } from './components/events/events.component';
+import { EventsComponent } from './components/events/events.component';
 import { EventComponent } from './components/event/event.component';
 import { AddEventComponent } from './components/add-event/add-event.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -54,6 +54,8 @@ import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { TeamComponent } from './components/team/team.component';
 import { LocationComponent } from './components/location/location.component';
+import { DialogEventsComponent, MapComponent } from './components/map/map.component';
+import { MainComponent } from './components/main/main.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -65,8 +67,8 @@ const mapConfig: YaConfig = {
 const appRoutes: Routes = [
   {
     path: '', component: HeaderComponent, children: [
-      { path: '', redirectTo: 'events', pathMatch: 'full' },
-      { path: 'events', component: EventsComponent },
+      { path: '', redirectTo: 'main', pathMatch: 'full' },
+      { path: 'main', component: MainComponent },
       { path: 'event/:id', component: EventComponent },
       { path: 'add-event', component: AddEventComponent },
       { path: 'add-team', component: AddTeamComponent },
@@ -121,6 +123,8 @@ const appRoutes: Routes = [
     TeamComponent,
     DialogEventsComponent,
     LocationComponent,
+    MapComponent,
+    MainComponent
   ],
   imports: [
     HttpClientModule,

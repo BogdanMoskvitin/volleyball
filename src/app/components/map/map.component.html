@@ -1,0 +1,18 @@
+<div class="map">
+    <ya-map 
+        [center]="[45.05, 41.95]" 
+        [zoom]="12" 
+        (yaclick)="onMapClick($event)" 
+        [state]="{ controls: ['smallMapDefaultSet'] }" 
+        (ready)="onMapReady($event)"
+    >
+        <ya-placemark
+            *ngFor="let placemark of placemarks"
+            [geometry]="placemark.geometry"
+            [properties]="placemark.properties"
+            [options]="placemark.options"
+            (yaclick)="openDialog(placemark.location)"
+        ></ya-placemark>
+    </ya-map>
+    <button mat-raised-button color="primary" style="margin-top: 10px;" *ngIf="isLocation" (click)="saveLocation()">Сохранить локацию</button>
+</div>
