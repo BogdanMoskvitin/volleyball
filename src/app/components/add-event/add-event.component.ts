@@ -12,7 +12,6 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { Guest } from 'src/app/models/event.model';
 import { GuestService } from 'src/app/services/guest.service';
-import { YaEvent } from 'angular8-yandex-maps';
 import { AddLocationComponent } from '../add-location/add-location.component';
 
 @Component({
@@ -33,12 +32,10 @@ export class AddEventComponent implements OnInit, OnDestroy {
 
     addEventForm: FormGroup;
     events;
-    locations;
     url:string = environment.apiUrl;
     sports;
     types;
     newEvent = {};
-    aSub2: Subscription;
     aSub3: Subscription;
     aSub4: Subscription;
     aSub5: Subscription;
@@ -73,7 +70,6 @@ export class AddEventComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.getLocations();
         this.getSports();
         this.getTypes();
     }
@@ -90,13 +86,6 @@ export class AddEventComponent implements OnInit, OnDestroy {
                 hintContent: 'Новая точка', 
                 iconColor: 'orange'
             }
-        });
-    }
-
-    getLocations() {
-        this.aSub2 = this.http.get(this.url + 'locations/')
-            .subscribe((res) => {
-                this.locations = res;
         });
     }
 
@@ -146,7 +135,6 @@ export class AddEventComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(){
-        this.aSub2.unsubscribe();
         this.aSub3.unsubscribe();
         this.aSub4.unsubscribe();
         if(this.aSub5) {

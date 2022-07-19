@@ -36,15 +36,6 @@
                         <input formControlName="time_end" type="time" matInput name="time_end" min="00:00" max="23:59">
                     </mat-form-field>
         
-                    <mat-form-field appearance="fill" style="width: 280px;">
-                        <mat-label>Место</mat-label>
-                        <mat-select formControlName="location">
-                            <mat-option *ngFor="let location of locations?.results" [value]="location.id">
-                                {{location.name}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-        
                     <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                         <mat-label>Цена</mat-label>
                         <input matInput formControlName="price">

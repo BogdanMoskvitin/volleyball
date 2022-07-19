@@ -2,11 +2,11 @@ import { Component, OnDestroy, OnInit, AfterViewInit, Inject } from '@angular/co
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
-import { YaEvent } from 'angular8-yandex-maps';
+import { YaEvent, YaReadyEvent } from 'angular8-yandex-maps';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AddEventComponent } from '../add-event/add-event.component';
 import { AddLocationComponent } from '../add-location/add-location.component';
+// import { Router } from '@angular/router';
 
 @Component({
     selector: 'events-service-page',
@@ -17,6 +17,7 @@ import { AddLocationComponent } from '../add-location/add-location.component';
 export class EventsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     locations;
+    placemarks = [];
     events;
     url:string = environment.apiUrl;
     aSub: Subscription;
@@ -31,9 +32,25 @@ export class EventsComponent implements OnInit, AfterViewInit, OnDestroy {
     coords;
     isLocation = false;
 
+    // clustererOptions: ymaps.IClustererOptions = {
+    //     gridSize: 32,
+    //     clusterDisableClickZoom: true,
+    //     preset: 'islands#greenClusterIcons',
+
+    //     groupByCoordinates: false,
+
+    //     clusterHideIconOnBalloonOpen: false,
+    //     geoObjectHideIconOnBalloonOpen: false,
+    // };
+
+    map: ymaps.Map;
+    // balloon
+
     constructor(
         private http: HttpClient,
+        // private router: Router,
         public dialog: MatDialog,
+        @Inject(MAT_DIALOG_DATA) public data
     ) {}
     
     ngOnInit(): void {
@@ -61,12 +78,111 @@ export class EventsComponent implements OnInit, AfterViewInit, OnDestroy {
         });
     }
 
+    onMapReady(event: YaReadyEvent<ymaps.Map>): void {
+        this.map = event.target;
+
+        let clearCoord = []
+
+        this.locations.results.forEach((location) => {
+            if(location.lat && location.lon) {
+                clearCoord.push([location.lat, location.lon])
+
+                this.placemarks.push({
+                geometry: [location.lat, location.lon],
+                properties: {
+                    hintContent: location.name,
+                    // balloonContent: `
+                    //     <button 
+                    //         style="background: #2196F3; color: #fff; border-radius: 4px; border: none; padding: 0 16px; line-height: 36px; display: block; width: 160px; margin-top: 20px; cursor: pointer;"
+                    //         class="btn-add" id="${location.id}"
+                    //     >
+                    //         Добавить событие ${location.id}
+                    //     </button>
+                    //     <button 
+                    //         style="background: #2196F3; color: #fff; border-radius: 4px; border: none; padding: 0 16px; line-height: 36px; display: block; width: 160px; margin-top: 5px; cursor: pointer;"
+                    //         class="btn-router" id="${location.id}"
+                    //     >
+                    //         Об организации ${location.id}
+                    //     </button>
+                    // `,
+                    // clusterCaption: `placemark <strong>${location.id}</strong>`,
+                    // id: location.id
+                },
+                options: {
+                    preset: 'islands#greenDotIcon',
+                },
+                id: location.id,
+                });
+            }
+        });
+
+        this.map.setBounds(ymaps.util.bounds.fromPoints(clearCoord), {
+            checkZoomRange: true,
+            zoomMargin: [20]
+        })
+
+        // this.map.balloon.events.add('open', function (event) {
+        //     let btnAdd = document.getElementsByClassName('btn-add')
+        //     let btnRouter = document.getElementsByClassName('btn-router')
+        //     setTimeout(() => {
+        //         // btnAdd[0].addEventListener('click', (e) => {
+        //         //     console.log('btnAdd', (e.target as HTMLButtonElement).id)
+        //         //     // this.dialog.open(AddEventComponent, {
+        //         //     //     data: {
+        //         //     //       id: (e.target as HTMLButtonElement).id,
+        //         //     //     },
+        //         //     // });
+        //         //     this.openDialog()
+        //         // })
+        //         btnAdd[0].addEventListener('click', (e) => this.openDialog)
+        //         btnRouter[0].addEventListener('click', (e) => {
+        //             console.log('btnRouter', (e.target as HTMLButtonElement).id)
+        //             // this.router.navigate("['../location', (e.target as HTMLButtonElement).id]")
+        //         })
+        //     }, 100)
+        // });
+
+        // this.map.balloon.events.add('click', function (event) {
+        //     let btnAdd = document.getElementsByClassName('btn-add')
+        //     let btnRouter = document.getElementsByClassName('btn-router')
+        //     setTimeout(() => {
+        //         // btnAdd[0].addEventListener('click', (e) => {
+        //         //     console.log('btnAdd', (e.target as HTMLButtonElement).id)
+        //         //     // this.dialog.open(AddEventComponent, {
+        //         //     //     data: {
+        //         //     //       id: (e.target as HTMLButtonElement).id,
+        //         //     //     },
+        //         //     // });
+        //         //     this.openDialog()
+        //         // })
+        //         btnAdd[0].addEventListener('click', (e) => this.openDialog())
+        //         btnRouter[0].addEventListener('click', (e) => {
+        //             console.log('btnRouter', (e.target as HTMLButtonElement).id)
+        //             // this.router.navigate("['../location', (e.target as HTMLButtonElement).id]")
+        //         })
+        //     }, 100)
+        // });
+    }
+
+    // onClustererReady(event: YaReadyEvent<ymaps.Clusterer>): void {
+    //     const clusterer = event.target;
+
+    //     clusterer.options.set({
+    //       gridSize: 100,
+    //       clusterDisableClickZoom: true,
+    //     });
+
+    //     this.map.setBounds(clusterer.getBounds(), {
+    //       checkZoomRange: true,
+    //     });
+    // }
+
     openDialog(id) {
         const dialogRef = this.dialog.open(DialogEventsComponent, {
             data: {
               id: id,
             },
-          });
+        });
         this.filterLocation(id)
     
         dialogRef.afterClosed().subscribe(() => {

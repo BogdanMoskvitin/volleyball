@@ -25,33 +25,49 @@
 
     <div class="box">
         <div class="map">
-            <ya-map [center]="[45.05, 41.95]" [zoom]="12" (yaclick)="onMapClick($event)" [state]="{ controls: ['smallMapDefaultSet'] }">
-                <ya-placemark *ngFor="let location of locations?.results" 
-                    [geometry]="[location.lat, location.lon]" 
-                    [properties]="{hintContent : location.name}"
-                    [options]="{iconColor: 'gold'}"
-                    (yaclick)="openDialog(location.id)"
-                ></ya-placemark>
+            <ya-map 
+                [center]="[45.05, 41.95]" 
+                [zoom]="12" 
+                (yaclick)="onMapClick($event)" 
+                [state]="{ controls: ['smallMapDefaultSet'] }" 
+                (ready)="onMapReady($event)"
+            >
+                <!-- <ya-clusterer 
+                    [options]="clustererOptions" 
+                    (ready)="onClustererReady($event)" 
+                > -->
+                    <ya-placemark
+                        *ngFor="let placemark of placemarks"
+                        [geometry]="placemark.geometry"
+                        [properties]="placemark.properties"
+                        [options]="placemark.options"
+                        (yaclick)="openDialog(placemark.id)"
+                    ></ya-placemark>
+                <!-- </ya-clusterer> -->
             </ya-map>
         </div>
         <div class="box__events">
             <div *ngFor="let event of events | keyvalue">
-                <p>{{event.key}}</p>
+                <p style="text-align: center;">{{event.key}}</p>
                 <div class="cell" *ngFor="let e of $any(event).value" [routerLink]="['../event', e.id]">
-                    <div class="flex">
-                        <div>
-                            <mat-icon style="color: #EEF5F8; margin-right: 10px;" aria-hidden="false" aria-label="Example logout icon" *ngIf="e.type == 'Закрытая игра'">lock</mat-icon>
-                            <mat-icon style="color: #EEF5F8; margin-right: 10px;" aria-hidden="false" aria-label="Example logout icon" *ngIf="e.type == 'Открытая игра'">lock_open</mat-icon>
+                    <div class="flex" style="align-items: start;">
+                        <div class="flex" style="align-items: start;">
+                            <mat-icon style="color: #EEF5F8; margin-right: 5px;" aria-hidden="false" aria-label="Example logout icon" *ngIf="e.type == 'Закрытая игра'">lock</mat-icon>
+                            <mat-icon style="color: #EEF5F8; margin-right: 5px;" aria-hidden="false" aria-label="Example logout icon" *ngIf="e.type == 'Открытая игра'">lock_open</mat-icon>
                             <img src="../../../../assets/img/volleyball.png" alt="volleyball" width="24px" height="22px" *ngIf="e.sport == 'Волейбол'">
+                            <span class="text" style="font-size: 18px; margin-left: 5px; position: relative;">
+                                {{e.applications_count}}
+                                <mat-icon style="color: #EEF5F8; position: absolute; top: 0;" aria-hidden="false" aria-label="Example logout icon">person</mat-icon>
+                            </span>
                         </div>
-                        <p class="text">{{e.status}}</p>
+                        <p class="point" style="background: blue;" *ngIf="e.status == 'Зарегистрировано'"></p>
+                        <p class="point" style="background: yellow;" *ngIf="e.status == 'Ожидается начало'"></p>
+                        <p class="point" style="background: green;" *ngIf="e.status == 'Сейчас идет'"></p>
                     </div>
-                    <p class="text" style="text-align: center; font-size: 24px; font-weight: bold;">{{e.short_date}}</p>
-                    <p class="text" style="text-align: center;">{{e.short_time}}</p>
+                    <p class="text" style="text-align: center; font-size: 28px; font-weight: bold;">{{e.short_time}}</p>
                     <div class="flex">
                         <p class="text" style="font-size: 18px;">{{e.location.name}}</p>
                         <p class="text" style="font-size: 18px; color: #48FFB4;">{{e.price}}&#8381;</p>
-                        <p class="text" style="font-size: 18px;">{{e.applications_count}}чел.</p>
                     </div>
                 </div>
             </div>

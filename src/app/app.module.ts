@@ -50,7 +50,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ToastrModule } from 'ngx-toastr';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { TeamComponent } from './components/team/team.component';
 import { LocationComponent } from './components/location/location.component';
@@ -152,7 +152,8 @@ const appRoutes: Routes = [
   providers: [
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: TokenInterceptor }, 
     { provide: MAT_DATE_LOCALE, useValue: 'ru-RU' },
-    DatePipe, GuestService, ThemeService
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    DatePipe, GuestService, ThemeService,
   ],
   bootstrap: [ AppComponent ]
 })
