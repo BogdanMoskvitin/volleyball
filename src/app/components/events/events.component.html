@@ -1,4 +1,5 @@
 <div class="box__events">
+    <p *ngIf="isEvents">Нет ближайших событий</p>
     <div *ngFor="let event of events | keyvalue">
         <p style="text-align: center;">{{event.key}}</p>
         <div class="cell" *ngFor="let e of $any(event).value" [routerLink]="['../event', e.id]">

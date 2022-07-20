@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
     selector: 'events-service-page',
@@ -6,6 +6,17 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./events.component.scss'],
 })
 
-export class EventsComponent {
+export class EventsComponent implements OnChanges {
     @Input() events;
+    isEvents: boolean
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes.events) {
+            if (Object.keys(this.events).length == 0) {
+                this.isEvents = true
+            } else {
+                this.isEvents = false
+            }
+        }
+    }
 }
