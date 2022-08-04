@@ -5,17 +5,15 @@
         <div class="cell" *ngFor="let e of $any(event).value" [routerLink]="['../event', e.id]">
             <div class="flex" style="align-items: start;">
                 <div class="flex" style="align-items: start;">
-                    <mat-icon style="color: #EEF5F8; margin-right: 5px;" aria-hidden="false" aria-label="Example logout icon" *ngIf="e.type == 'Закрытая игра'">lock</mat-icon>
-                    <mat-icon style="color: #EEF5F8; margin-right: 5px;" aria-hidden="false" aria-label="Example logout icon" *ngIf="e.type == 'Открытая игра'">lock_open</mat-icon>
-                    <img src="../../../../assets/img/volleyball.png" alt="volleyball" width="24px" height="22px" *ngIf="e.sport == 'Волейбол'">
+                    <img src="../../../../assets/img/volleyball.png" alt="volleyball" width="24px" height="22px" *ngIf="e.sport.name == 'Волейбол'">
                     <span class="text" style="font-size: 18px; margin-left: 5px; position: relative;">
                         {{e.applications_count}}
                         <mat-icon style="color: #EEF5F8; position: absolute; top: 0;" aria-hidden="false" aria-label="Example logout icon">person</mat-icon>
                     </span>
                 </div>
-                <p class="point" style="background: blue;" *ngIf="e.status == 'Зарегистрировано'"></p>
-                <p class="point" style="background: yellow;" *ngIf="e.status == 'Ожидается начало'"></p>
-                <p class="point" style="background: green;" *ngIf="e.status == 'Сейчас идет'"></p>
+                <p class="point" style="background: blue;" *ngIf="e.status.name == 'Зарегистрировано'"></p>
+                <p class="point" style="background: yellow;" *ngIf="e.status.name == 'Ожидается начало'"></p>
+                <p class="point" style="background: green;" *ngIf="e.status.name == 'Сейчас идет'"></p>
             </div>
             <p class="text" style="text-align: center; font-size: 28px; font-weight: bold;">{{e.short_time}}</p>
             <div class="flex">

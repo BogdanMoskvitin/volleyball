@@ -40,11 +40,6 @@ export class AddEventComponent implements OnInit, OnDestroy {
     aSub4: Subscription;
     aSub5: Subscription;
     guests;
-    places = [
-        {x: 45.04, y: 41.95, hintContent: 'Точка 1', iconColor: 'red'},
-        {x: 45.05, y: 41.95, hintContent: 'Точка 2', iconColor: 'green'},
-        {x: 45.06, y: 41.95, hintContent: 'Точка 3', iconColor: 'blue'},
-    ]
 
     coords;
     isLocation = false;
@@ -64,7 +59,6 @@ export class AddEventComponent implements OnInit, OnDestroy {
             date: new FormControl('', Validators.required),
             time_start: new FormControl('', Validators.required),
             time_end: new FormControl('', Validators.required),
-            location: new FormControl('', Validators.required),
             price: new FormControl('', [Validators.required, Validators.pattern("^[0-9]+$")])
         });
     }

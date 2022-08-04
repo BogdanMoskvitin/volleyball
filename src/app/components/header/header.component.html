@@ -17,7 +17,7 @@
             <div class="line"></div>
             <li (click)='toggleSidebar()' class="burger__li">
                 <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">events</mat-icon>
-                <a [routerLink]="['./events']" class="burger__a">События</a>
+                <a [routerLink]="['./main']" class="burger__a">События</a>
             </li>
             <li (click)='toggleSidebar()' class="burger__li">
                 <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">groups</mat-icon>
@@ -42,7 +42,7 @@
             <div style="width: 1200px; margin: 0 auto;">
                 <div class="flex">
             <div>
-                <a routerLinkActive="active" class="link" [routerLink]="['./events']">События</a>
+                <a routerLinkActive="active" class="link" [routerLink]="['./main']">События</a>
                 <a routerLinkActive="active" class="link" [routerLink]="['./teams']">Команды</a>
                 <a routerLinkActive="active" class="link" [routerLink]="['./about']">О нас</a>
             </div>
