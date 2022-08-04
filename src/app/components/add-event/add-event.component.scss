@@ -12,6 +12,14 @@
     display: flex;
     flex-direction: column;
 }
+.active {
+    color: #fff;
+    background: #2196F3;
+}
+.inactive {
+    color: #000;
+    background: #CFD8DC;
+}
 @media(max-width: 1220px){
     .map {width: 800px;}
 }

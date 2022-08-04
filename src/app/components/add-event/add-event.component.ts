@@ -44,6 +44,24 @@ export class AddEventComponent implements OnInit, OnDestroy {
     coords;
     isLocation = false;
 
+    day;
+    isDate = {
+        isToday: false,
+        isTomorrow: false,
+        isCalendar: false
+    }
+
+    start = ''
+    end = ''
+    isTimeStart = {
+        isNow: false,
+        isTime: false
+    }
+    isTimeEnd = {
+        isMidnight: false,
+        isTime: false
+    }
+
     constructor(
         private http: HttpClient, 
         private datePipe: DatePipe, 
@@ -56,9 +74,9 @@ export class AddEventComponent implements OnInit, OnDestroy {
         this.addEventForm = new FormGroup({
             sport: new FormControl('', Validators.required),
             type: new FormControl('', Validators.required),
-            date: new FormControl('', Validators.required),
-            time_start: new FormControl('', Validators.required),
-            time_end: new FormControl('', Validators.required),
+            date: new FormControl(''),
+            time_start: new FormControl(''),
+            time_end: new FormControl(''),
             price: new FormControl('', [Validators.required, Validators.pattern("^[0-9]+$")])
         });
     }
@@ -105,12 +123,24 @@ export class AddEventComponent implements OnInit, OnDestroy {
             this.guests.forEach(guest => {
                 guestsId.push(guest.id);
             });
+
+            if(this.day == '') {
+                this.day = this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd')
+            }
+
+            if(this.start == '') {
+                this.start = this.addEventForm.value.time_start
+            }
+
+            if(this.end == '') {
+                this.end = this.addEventForm.value.time_end
+            }
         
             this.newEvent = {
                 sport: this.addEventForm.value.sport,
                 type: this.addEventForm.value.type,
-                time_start: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time_start),
-                time_end: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time_end),
+                time_start: (this.day + 'T' + this.start),
+                time_end: (this.day + 'T' + this.end),
                 location: this.data.id,
                 price: this.addEventForm.value.price,
                 guests: guestsId
@@ -126,6 +156,66 @@ export class AddEventComponent implements OnInit, OnDestroy {
                 this.toastr.error(error.error.time_start);
             }
         );
+    }
+
+    setToday() {
+        this.isDate = {
+            isToday: true,
+            isTomorrow: false,
+            isCalendar: false
+        }
+
+        this.day = new Date()
+        this. day = this.datePipe.transform(this.day, 'yyyy-MM-dd')
+    }
+    setTomorrow() {
+        this.isDate = {
+            isToday: false,
+            isTomorrow: true,
+            isCalendar: false
+        }
+
+        this.day = new Date()
+        this.day.setDate(this.day.getDate() + 1)
+        this.day = this.datePipe.transform(this.day, 'yyyy-MM-dd')
+    }
+    viewCalendar() {
+        this.day = ''
+        this.isDate = {
+            isToday: false,
+            isTomorrow: false,
+            isCalendar: true
+        }
+    }
+
+    setNow() {
+        this.isTimeStart = {
+            isNow: true,
+            isTime: false
+        }
+        const now = new Date()
+        this.start = now.getHours() + ':' + now.getMinutes()
+    }
+    viewTimeStart() {
+        this.isTimeStart = {
+            isNow: false,
+            isTime: true
+        }
+        this.start = ''
+    }
+    setMidnight() {
+        this.isTimeEnd = {
+            isMidnight: true,
+            isTime: false
+        }
+        this.end = '23:59'
+    }
+    viewTimeEnd() {
+        this.isTimeEnd = {
+            isMidnight: false,
+            isTime: true
+        }
+        this.end = ''
     }
 
     ngOnDestroy(){
@@ -224,8 +314,6 @@ export class DialogContentExampleDialog implements OnInit {
                 this.myControl.reset();
             });
         } else {
-            console.log('patch')
-            console.log(this.createGuestForm.value)
             this.http.patch(this.url + `guests/${this.createGuestForm.value.id}/`, this.createGuestForm.value).subscribe(res => {
                 this.getGuests();
                 this.createGuestForm.reset();
