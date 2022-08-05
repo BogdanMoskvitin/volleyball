@@ -71,6 +71,9 @@ export class AddEventComponent implements OnInit, OnDestroy {
         name: 'Открытая игра'
     }
 
+    isPrice = false
+    event
+
     constructor(
         private http: HttpClient, 
         private datePipe: DatePipe, 
@@ -87,7 +90,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
             date: new FormControl(''),
             time_start: new FormControl(''),
             time_end: new FormControl(''),
-            price: new FormControl('', Validators.pattern("^[0-9]+$"))
+            price: new FormControl(0, Validators.pattern("^[0-9]+$"))
         });
     }
 
@@ -159,14 +162,15 @@ export class AddEventComponent implements OnInit, OnDestroy {
         this.aSub5 = this.http.post(this.url + 'events/', this.newEvent)
         .subscribe(
             (res) => {
+                this.event = res
                 this.toastr.success('Событие создано!');
                 this.dialogRef.close();
-                this.router.navigateByUrl('/main');
+                this.router.navigateByUrl(`/event/${this.event.id}`)
             },
             error => {
                 this.toastr.error(error.error.time_start);
             }
-        );
+        )
     }
 
     setToday() {
@@ -227,6 +231,14 @@ export class AddEventComponent implements OnInit, OnDestroy {
             isTime: true
         }
         this.end = ''
+    }
+
+    closePrice() {
+        this.isPrice = false
+        this.addEventForm.controls['price'].setValue(0)
+    }
+    viewPrice() {
+        this.isPrice = true
     }
 
     ngOnDestroy(){

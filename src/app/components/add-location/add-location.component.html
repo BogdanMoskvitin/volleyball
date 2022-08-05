@@ -3,7 +3,6 @@
     <div class="container">
         <form [formGroup]="addLocationForm" novalidate (ngSubmit)="sendService()">
             <div class="box">
-                <p>x: {{data.x}} <br> y: {{data.y}}</p>
                 <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                     <mat-label>Название</mat-label>
                     <input matInput formControlName="name">

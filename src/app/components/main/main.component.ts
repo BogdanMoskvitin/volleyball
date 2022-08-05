@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, AfterViewInit, Inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
@@ -10,12 +10,12 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
     styleUrls: ['./main.component.scss'],
 })
 
-export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
+export class MainComponent implements OnInit, OnDestroy {
 
     events;
     url:string = environment.apiUrl;
     aSub: Subscription;
-    spinner: boolean;
+    spinner = true;
 
     coords;
     isLocation = false;
@@ -27,19 +27,15 @@ export class MainComponent implements OnInit, AfterViewInit, OnDestroy {
     ) {}
     
     ngOnInit(): void {
-        this.spinner = true;
         this.getEvents();
-    }
-
-    ngAfterViewInit(): void {
-        this.spinner = false;
     }
 
     getEvents() {
         this.aSub = this.http.get(this.url + 'events/group-by-date?multi_status=1,2,3')
             .subscribe((res) => {
                 this.events = res;
-        });
+                this.spinner = false
+        })
     }
 
     ngOnDestroy(){

@@ -2,26 +2,13 @@
             <form [formGroup]="addEventForm" novalidate (ngSubmit)="sendService()">
                 <div class="flex">
                     <p>Вид спорта: {{sport.name}}</p>
-                    <!-- <mat-form-field appearance="fill" style="width: 280px;">
-                        <mat-label>Вид спорта</mat-label>
-                        <mat-select formControlName="sport">
-                            <mat-option *ngFor="let sport of sports?.results" [value]="sport.id">
-                                {{sport.name}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field> -->
-                    <img style="width: 30px; margin-bottom: 20px;" src="../../../assets/img/volleyball.png" alt="volleyball">
+                    <img style="width: 30px; margin-bottom: 20px; cursor: pointer;" src="../../../assets/img/volleyball.png" alt="volleyball">
         
                     <p>Тип события: {{type.name}}</p>
-                    <!-- <mat-form-field appearance="fill" style="width: 280px;">
-                        <mat-label>Тип события</mat-label>
-                        <mat-select formControlName="type">
-                            <mat-option *ngFor="let type of types?.results" [value]="type.id">
-                                {{type.name}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field> -->
-                    <mat-icon style="color: #000; margin-bottom: 20px;" aria-hidden="false" aria-label="Example logout icon">lock_open</mat-icon>
+
+                    <mat-icon style="color: #000; margin-bottom: 20px; cursor: pointer;" aria-hidden="false" aria-label="Example logout icon">lock_open</mat-icon>
+
+                    <p>Дата события: {{day}}</p>
 
                     <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
                         <button mat-raised-button color="primary" type="button" (click)="setToday()" [ngClass]="isDate.isToday? 'active' : 'inactive'">Сегодня</button>
@@ -36,6 +23,8 @@
                         <mat-datepicker #picker2 color="primary"></mat-datepicker>
                     </mat-form-field>
 
+                    <p>Время начала: {{start}}</p>
+
                     <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
                         <button style="width: 130px;" mat-raised-button color="primary" type="button" (click)="setNow()" [ngClass]="isTimeStart.isNow? 'active' : 'inactive'">Текущее время</button>
                         <button style="width: 130px;" mat-raised-button color="primary" type="button" (click)="viewTimeStart()" [ngClass]="isTimeStart.isTime? 'active' : 'inactive'">Другое время</button>
@@ -46,6 +35,8 @@
                         <input formControlName="time_start" type="time" matInput name="time_start" min="00:00" max="23:59">
                     </mat-form-field>
 
+                    <p>Время окончания: {{end}}</p>
+
                     <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
                         <button style="width: 130px;" mat-raised-button color="primary" type="button" (click)="setMidnight()" [ngClass]="isTimeEnd.isMidnight? 'active' : 'inactive'">До конца дня</button>
                         <button style="width: 130px;" mat-raised-button color="primary" type="button" (click)="viewTimeEnd()" [ngClass]="isTimeEnd.isTime? 'active' : 'inactive'">Другое время</button>
@@ -55,13 +46,20 @@
                         <mat-label>Время конца события</mat-label>
                         <input formControlName="time_end" type="time" matInput name="time_end" min="00:00" max="23:59">
                     </mat-form-field>
+
+                    <p>Стоимость: {{addEventForm.value.price}}</p>
+
+                    <div>
+                        <mat-icon style="color: #000; margin-bottom: 20px; cursor: pointer;" aria-hidden="false" aria-label="Example logout icon" (click)="closePrice()">money_off</mat-icon>
+                        <mat-icon style="color: #000; margin-bottom: 20px; cursor: pointer; margin-left: 10px;" aria-hidden="false" aria-label="Example logout icon" (click)="viewPrice()">attach_money</mat-icon>
+                    </div>
         
-                    <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+                    <mat-form-field *ngIf="isPrice" class="example-full-width" appearance="fill" style="width: 280px;">
                         <mat-label>Цена</mat-label>
-                        <input matInput formControlName="price">
+                        <input matInput formControlName="price" type="number">
                     </mat-form-field>
         
-                    <button mat-raised-button style="width: 280px;" color="primary" style="margin-bottom: 10px;" type="button" (click)="openDialog()">Добавить гостей</button>
+                    <!-- <button mat-raised-button style="width: 280px;" color="primary" style="margin-bottom: 10px;" type="button" (click)="openDialog()">Добавить гостей</button> -->
                     <button mat-raised-button style="width: 280px;" color="primary" [disabled]="addEventForm.invalid">Добавить событие</button>
                 </div>
             </form>
