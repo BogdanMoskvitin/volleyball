@@ -217,6 +217,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
             isTime: true
         }
         this.start = ''
+        this.addEventForm.controls['time_start'].setValue('')
     }
     setMidnight() {
         this.isTimeEnd = {
@@ -231,6 +232,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
             isTime: true
         }
         this.end = ''
+        this.addEventForm.controls['time_end'].setValue('')
     }
 
     closePrice() {
