@@ -110,10 +110,10 @@ export class MapComponent implements OnInit, OnDestroy {
 
             target.balloon.open(coords, {
                 contentHeader: 'Новое место!',
-                contentBody:
-                    '<p>Координаты: ' +
-                    [coords[0].toPrecision(6), coords[1].toPrecision(6)].join(', ') +
-                    '</p>', 
+                // contentBody:
+                //     '<p>Координаты: ' +
+                //     [coords[0].toPrecision(6), coords[1].toPrecision(6)].join(', ') +
+                //     '</p>', 
             }, {closeButton: false});
             this.coords = coords;
         } else {

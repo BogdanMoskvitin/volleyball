@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { Guest } from 'src/app/models/event.model';
@@ -62,6 +62,15 @@ export class AddEventComponent implements OnInit, OnDestroy {
         isTime: false
     }
 
+    sport = {
+        id: 1,
+        name: 'Волейбол',
+    }
+    type = {
+        id: 1,
+        name: 'Открытая игра'
+    }
+
     constructor(
         private http: HttpClient, 
         private datePipe: DatePipe, 
@@ -70,14 +79,15 @@ export class AddEventComponent implements OnInit, OnDestroy {
         public dialog: MatDialog,
         public guestService: GuestService,
         @Inject(MAT_DIALOG_DATA) public data,
+        public dialogRef: MatDialogRef<AddEventComponent>
     ) {
         this.addEventForm = new FormGroup({
-            sport: new FormControl('', Validators.required),
-            type: new FormControl('', Validators.required),
+            // sport: new FormControl('', Validators.required),
+            // type: new FormControl('', Validators.required),
             date: new FormControl(''),
             time_start: new FormControl(''),
             time_end: new FormControl(''),
-            price: new FormControl('', [Validators.required, Validators.pattern("^[0-9]+$")])
+            price: new FormControl('', Validators.pattern("^[0-9]+$"))
         });
     }
 
@@ -137,8 +147,8 @@ export class AddEventComponent implements OnInit, OnDestroy {
             }
         
             this.newEvent = {
-                sport: this.addEventForm.value.sport,
-                type: this.addEventForm.value.type,
+                sport: this.sport.id,
+                type: this.type.id,
                 time_start: (this.day + 'T' + this.start),
                 time_end: (this.day + 'T' + this.end),
                 location: this.data.id,
@@ -150,7 +160,8 @@ export class AddEventComponent implements OnInit, OnDestroy {
         .subscribe(
             (res) => {
                 this.toastr.success('Событие создано!');
-                this.router.navigateByUrl('');
+                this.dialogRef.close();
+                this.router.navigateByUrl('/main');
             },
             error => {
                 this.toastr.error(error.error.time_start);
