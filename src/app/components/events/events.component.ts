@@ -11,17 +11,10 @@ export class EventsComponent implements OnChanges {
     isEvents: boolean
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (this.isEmpty(this.events)) {
+        if (this.events.length == 0) {
             this.isEvents = true
         } else {
             this.isEvents = false
         }
-    }
-
-    isEmpty(obj) {
-        for (let key in obj) {
-          return false;
-        }
-        return true;
     }
 }
