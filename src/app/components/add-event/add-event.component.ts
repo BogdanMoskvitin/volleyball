@@ -73,6 +73,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
 
     isPrice = false
     event
+    validForm = false
 
     constructor(
         private http: HttpClient, 
@@ -148,7 +149,22 @@ export class AddEventComponent implements OnInit, OnDestroy {
             if(this.end == '') {
                 this.end = this.addEventForm.value.time_end
             }
-        
+
+            if(this.day == '') {
+                this.toastr.error('Выберите дату!')
+                return
+            }
+
+            if(this.start == '') {
+                this.toastr.error('Укажите время начала!')
+                return
+            }
+
+            if(this.end == '') {
+                this.toastr.error('Укажите время окончания!')
+                return
+            }
+
             this.newEvent = {
                 sport: this.sport.id,
                 type: this.type.id,
@@ -158,19 +174,25 @@ export class AddEventComponent implements OnInit, OnDestroy {
                 price: this.addEventForm.value.price,
                 guests: guestsId
             }
+
+            this.validForm = true
         })
-        this.aSub5 = this.http.post(this.url + 'events/', this.newEvent)
-        .subscribe(
-            (res) => {
-                this.event = res
-                this.toastr.success('Событие создано!');
-                this.dialogRef.close();
-                this.router.navigateByUrl(`/event/${this.event.id}`)
-            },
-            error => {
-                this.toastr.error(error.error.non_field_errors);
-            }
-        )
+        if(this.validForm) {
+            this.aSub5 = this.http.post(this.url + 'events/', this.newEvent)
+            .subscribe(
+                (res) => {
+                    this.event = res
+                    this.toastr.success('Событие создано!');
+                    this.dialogRef.close();
+                    this.router.navigateByUrl(`/event/${this.event.id}`)
+                },
+                error => {
+                    this.toastr.error(error.error.non_field_errors);
+                }
+            )
+        } else {
+            return
+        }
     }
 
     setToday() {
