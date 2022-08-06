@@ -8,7 +8,7 @@
       <button mat-raised-button color="primary" class="btn" [routerLink]="['../location', data.location.id]" mat-dialog-close>Об организации</button>
     </div>
     <div>
-      <events-service-page [events]="events"></events-service-page>
+      <events-service-page [events]="events" (isEvent)="isEvent($event)"></events-service-page>
     </div>
   </div>
 </mat-dialog-content>

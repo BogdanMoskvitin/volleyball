@@ -2,7 +2,7 @@
     <p *ngIf="isEvents">Нет ближайших событий</p>
     <div *ngFor="let event of events">
         <p style="text-align: center;">{{event.date}}</p>
-        <div class="cell" *ngFor="let e of event.events" [routerLink]="['../event', e.id]">
+        <div class="cell" *ngFor="let e of event.events" (click)="openEvent(e.id)">
             <div class="flex" style="align-items: center;">
                 <div class="flex" style="align-items: center;">
                     <mat-icon style="color: #EEF5F8; font-size: 22px; width: 20px; height: 22px;" aria-hidden="false" aria-label="Example logout icon">{{e.type.icon}}</mat-icon>

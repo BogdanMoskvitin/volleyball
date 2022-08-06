@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { YaEvent, YaReadyEvent } from 'angular8-yandex-maps';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddEventComponent } from '../add-event/add-event.component';
 import { AddLocationComponent } from '../add-location/add-location.component';
 
@@ -109,11 +109,7 @@ export class MapComponent implements OnInit, OnDestroy {
             const coords = event.get('coords');
 
             target.balloon.open(coords, {
-                contentHeader: 'Новое место!',
-                // contentBody:
-                //     '<p>Координаты: ' +
-                //     [coords[0].toPrecision(6), coords[1].toPrecision(6)].join(', ') +
-                //     '</p>', 
+                contentHeader: 'Новое место!'
             }, {closeButton: false});
             this.coords = coords;
         } else {
@@ -141,6 +137,7 @@ export class DialogEventsComponent implements OnInit, OnDestroy {
         public dialog: MatDialog,
         @Inject(MAT_DIALOG_DATA) public data,
         private http: HttpClient,
+        public dialogRef: MatDialogRef<DialogEventsComponent>
     ){ }
     ngOnInit() {
         this.getEvents(this.data.location.id)
@@ -159,6 +156,12 @@ export class DialogEventsComponent implements OnInit, OnDestroy {
             .subscribe((res) => {
                 this.events = res;
         });
+    }
+
+    isEvent(e) {
+        if(e) {
+            this.dialogRef.close()
+        }
     }
 
     ngOnDestroy(): void {

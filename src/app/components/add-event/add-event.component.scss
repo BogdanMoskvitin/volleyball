@@ -12,6 +12,21 @@
     display: flex;
     flex-direction: column;
 }
+.bg__icon {
+    border-radius: 5px;
+    background: #e0e0e0;
+    box-shadow:  4px 4px 7px #bebebe, -4px -4px 7px #ffffff; 
+    width: 35px; 
+    height: 35px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.bg__icon_active {
+    background: #2196F3;    
+}
 .active {
     color: #fff;
     background: #2196F3;

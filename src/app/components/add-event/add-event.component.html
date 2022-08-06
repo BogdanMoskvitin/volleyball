@@ -2,11 +2,18 @@
             <form [formGroup]="addEventForm" novalidate (ngSubmit)="sendService()">
                 <div class="flex">
                     <p>Вид спорта: {{sport.name}}</p>
-                    <img style="width: 30px; margin-bottom: 20px; cursor: pointer;" src="../../../assets/img/volleyball.png" alt="volleyball">
+                    <div class="bg__icon bg__icon_active">
+                        <div style="width: 28px; height: 28px;">
+                            <img style="width: 30px; margin-bottom: 20px; cursor: pointer;" src="../../../assets/img/volleyball.png" alt="volleyball">
+                        </div>
+                    </div>
         
                     <p>Тип события: {{type.name}}</p>
-
-                    <mat-icon style="color: #000; margin-bottom: 20px; cursor: pointer;" aria-hidden="false" aria-label="Example logout icon">lock_open</mat-icon>
+                    <div class="bg__icon bg__icon_active">
+                        <div style="width: 24px; height: 24px;">
+                            <mat-icon style="color: #fff; margin-bottom: 20px; cursor: pointer;" aria-hidden="false" aria-label="Example logout icon">lock_open</mat-icon>
+                        </div>
+                    </div>
 
                     <p>Дата события: {{day}}</p>
 
@@ -49,9 +56,17 @@
 
                     <p>Стоимость: {{addEventForm.value.price}}</p>
 
-                    <div>
-                        <mat-icon style="color: #000; margin-bottom: 20px; cursor: pointer;" aria-hidden="false" aria-label="Example logout icon" (click)="closePrice()">money_off</mat-icon>
-                        <mat-icon style="color: #000; margin-bottom: 20px; cursor: pointer; margin-left: 10px;" aria-hidden="false" aria-label="Example logout icon" (click)="viewPrice()">attach_money</mat-icon>
+                    <div style="display: flex;">
+                        <div class="bg__icon" [ngClass]="{bg__icon_active: !isPrice}">
+                            <div style="width: 23px; height: 24px;">
+                                <mat-icon style="margin-bottom: 20px; cursor: pointer;" [style.color]="isPrice? '#000':'#fff'" aria-hidden="false" aria-label="Example logout icon" (click)="closePrice()">money_off</mat-icon>
+                            </div>
+                        </div>
+                        <div class="bg__icon" [ngClass]="{bg__icon_active: isPrice}">
+                            <div style="width: 23px; height: 24px;">
+                                <mat-icon style="margin-bottom: 20px; cursor: pointer;" [style.color]="!isPrice? '#000':'#fff'" aria-hidden="false" aria-label="Example logout icon" (click)="viewPrice()">attach_money</mat-icon>
+                            </div>
+                        </div>
                     </div>
         
                     <mat-form-field *ngIf="isPrice" class="example-full-width" appearance="fill" style="width: 280px;">
