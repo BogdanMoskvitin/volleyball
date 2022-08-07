@@ -55,11 +55,11 @@ export class MapComponent implements OnInit, OnDestroy {
     onMapReady(event: YaReadyEvent<ymaps.Map>): void {
         this.aSub = this.getLocations().subscribe((res) => {
             this.locations = res;
-            this.qwerty(event)
+            this.setPlacemarks(event)
         });
     }
 
-    qwerty(event) {
+    setPlacemarks(event) {
         this.map = event.target;
 
         let clearCoord = []
@@ -74,7 +74,7 @@ export class MapComponent implements OnInit, OnDestroy {
                         hintContent: location.name,
                     },
                     options: {
-                        preset: 'islands#greenDotIcon',
+                        preset: location.confirmed? 'islands#blueCircleDotIcon' : 'islands#grayCircleDotIcon',
                     },
                     location: location
                 });
