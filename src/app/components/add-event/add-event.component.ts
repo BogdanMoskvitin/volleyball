@@ -86,8 +86,8 @@ export class AddEventComponent implements OnInit, OnDestroy {
             // sport: new FormControl('', Validators.required),
             // type: new FormControl('', Validators.required),
             date: new FormControl('', Validators.required),
-            time_start: new FormControl(''),
-            time_end: new FormControl(''),
+            time_start: new FormControl('', Validators.required),
+            time_end: new FormControl('', Validators.required),
             price: new FormControl(0, Validators.pattern("^[0-9]+$"))
         });
     }

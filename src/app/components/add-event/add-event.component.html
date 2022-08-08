@@ -4,14 +4,14 @@
                     <p>Вид спорта: {{sport.name}}</p>
                     <div class="bg__icon bg__icon_active">
                         <div style="width: 28px; height: 28px;">
-                            <img style="width: 30px; margin-bottom: 20px; cursor: pointer;" src="../../../assets/img/volleyball.png" alt="volleyball">
+                            <img style="width: 20px; padding: 3px 0 0 2px; cursor: pointer;" src={{sports.results[0].image.file}} alt="volleyball">
                         </div>
                     </div>
         
                     <p>Тип события: {{type.name}}</p>
                     <div class="bg__icon bg__icon_active">
                         <div style="width: 24px; height: 24px;">
-                            <mat-icon style="color: #fff; margin-bottom: 20px; cursor: pointer;" aria-hidden="false" aria-label="Example logout icon">lock_open</mat-icon>
+                            <mat-icon style="color: #fff; margin-bottom: 20px; cursor: pointer;" aria-hidden="false" aria-label="Example logout icon">{{types.results[0].icon}}</mat-icon>
                         </div>
                     </div>
 
