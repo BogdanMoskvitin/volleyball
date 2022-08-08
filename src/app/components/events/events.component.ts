@@ -12,13 +12,15 @@ export class EventsComponent implements OnChanges {
     @Output() isEvent = new EventEmitter<boolean>(false)
     isEvents: boolean
 
-    constructor(private router: Router) {}
+    constructor(private router: Router) { }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes.events) {
-            this.isEvents = false
-        } else {
-            this.isEvents = true
+        if(this.events) {
+            if(this.events.length == 0) {
+                this.isEvents = true
+            } else {
+                this.isEvents = false
+            }
         }
     }
 
