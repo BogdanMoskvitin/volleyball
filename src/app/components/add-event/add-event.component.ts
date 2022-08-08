@@ -154,7 +154,9 @@ export class AddEventComponent implements OnInit, OnDestroy {
                 this.router.navigateByUrl(`/event/${this.event.id}`)
             },
             error => {
-                this.toastr.error(error.error.non_field_errors);
+                error.error.forEach(e => {
+                    this.toastr.error(e)
+                })
             }
         )
     }
