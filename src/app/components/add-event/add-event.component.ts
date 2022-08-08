@@ -44,15 +44,12 @@ export class AddEventComponent implements OnInit, OnDestroy {
     coords;
     isLocation = false;
 
-    day;
     isDate = {
         isToday: false,
         isTomorrow: false,
         isCalendar: false
     }
 
-    start = ''
-    end = ''
     isTimeStart = {
         isNow: false,
         isTime: false
@@ -88,7 +85,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
         this.addEventForm = new FormGroup({
             // sport: new FormControl('', Validators.required),
             // type: new FormControl('', Validators.required),
-            date: new FormControl(''),
+            date: new FormControl('', Validators.required),
             time_start: new FormControl(''),
             time_end: new FormControl(''),
             price: new FormControl(0, Validators.pattern("^[0-9]+$"))
@@ -138,61 +135,28 @@ export class AddEventComponent implements OnInit, OnDestroy {
                 guestsId.push(guest.id);
             });
 
-            if(this.day == '') {
-                this.day = this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd')
-            }
-
-            if(this.start == '') {
-                this.start = this.addEventForm.value.time_start
-            }
-
-            if(this.end == '') {
-                this.end = this.addEventForm.value.time_end
-            }
-
-            if(this.day == '') {
-                this.toastr.error('Выберите дату!')
-                return
-            }
-
-            if(this.start == '') {
-                this.toastr.error('Укажите время начала!')
-                return
-            }
-
-            if(this.end == '') {
-                this.toastr.error('Укажите время окончания!')
-                return
-            }
-
             this.newEvent = {
                 sport: this.sport.id,
                 type: this.type.id,
-                time_start: (this.day + 'T' + this.start),
-                time_end: (this.day + 'T' + this.end),
+                time_start: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time_start),
+                time_end: (this.datePipe.transform(this.addEventForm.value.date, 'yyyy-MM-dd') + 'T' + this.addEventForm.value.time_end),
                 location: this.data.id,
                 price: this.addEventForm.value.price,
                 guests: guestsId
             }
-
-            this.validForm = true
         })
-        if(this.validForm) {
-            this.aSub5 = this.http.post(this.url + 'events/', this.newEvent)
-            .subscribe(
-                (res) => {
-                    this.event = res
-                    this.toastr.success('Событие создано!');
-                    this.dialogRef.close();
-                    this.router.navigateByUrl(`/event/${this.event.id}`)
-                },
-                error => {
-                    this.toastr.error(error.error.non_field_errors);
-                }
-            )
-        } else {
-            return
-        }
+        this.aSub5 = this.http.post(this.url + 'events/', this.newEvent)
+        .subscribe(
+            (res) => {
+                this.event = res
+                this.toastr.success('Событие создано!');
+                this.dialogRef.close();
+                this.router.navigateByUrl(`/event/${this.event.id}`)
+            },
+            error => {
+                this.toastr.error(error.error.non_field_errors);
+            }
+        )
     }
 
     setToday() {
@@ -202,8 +166,8 @@ export class AddEventComponent implements OnInit, OnDestroy {
             isCalendar: false
         }
 
-        this.day = new Date()
-        this. day = this.datePipe.transform(this.day, 'yyyy-MM-dd')
+        let day = new Date()
+        this.addEventForm.controls.date.setValue(day)
     }
     setTomorrow() {
         this.isDate = {
@@ -212,12 +176,11 @@ export class AddEventComponent implements OnInit, OnDestroy {
             isCalendar: false
         }
 
-        this.day = new Date()
-        this.day.setDate(this.day.getDate() + 1)
-        this.day = this.datePipe.transform(this.day, 'yyyy-MM-dd')
+        let day = new Date()
+        day.setDate(day.getDate() + 1)
+        this.addEventForm.controls.date.setValue(day)
     }
     viewCalendar() {
-        this.day = ''
         this.isDate = {
             isToday: false,
             isTomorrow: false,
@@ -231,30 +194,30 @@ export class AddEventComponent implements OnInit, OnDestroy {
             isTime: false
         }
         const now = new Date()
-        this.start = now.getHours() + ':' + now.getMinutes()
+        let start = now.getHours() + ':' + now.getMinutes()
+        this.addEventForm.controls.time_start.setValue(start)
     }
     viewTimeStart() {
         this.isTimeStart = {
             isNow: false,
             isTime: true
         }
-        this.start = ''
-        this.addEventForm.controls['time_start'].setValue('')
+        this.addEventForm.controls.time_start.setValue('')
     }
     setMidnight() {
         this.isTimeEnd = {
             isMidnight: true,
             isTime: false
         }
-        this.end = '23:59'
+        let end = '23:59'
+        this.addEventForm.controls.time_end.setValue(end)
     }
     viewTimeEnd() {
         this.isTimeEnd = {
             isMidnight: false,
             isTime: true
         }
-        this.end = ''
-        this.addEventForm.controls['time_end'].setValue('')
+        this.addEventForm.controls.time_end.setValue('')
     }
 
     closePrice() {

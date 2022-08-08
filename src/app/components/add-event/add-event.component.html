@@ -15,7 +15,7 @@
                         </div>
                     </div>
 
-                    <p>Дата события: {{day}}</p>
+                    <p>Дата события: {{addEventForm.value.date | date: "dd:MM"}}</p>
 
                     <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
                         <button mat-raised-button color="primary" type="button" (click)="setToday()" [ngClass]="isDate.isToday? 'active' : 'inactive'">Сегодня</button>
@@ -30,7 +30,7 @@
                         <mat-datepicker #picker2 color="primary"></mat-datepicker>
                     </mat-form-field>
 
-                    <p>Время начала: {{start}}</p>
+                    <p>Время начала: {{addEventForm.value.time_start}}</p>
 
                     <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
                         <button style="width: 130px;" mat-raised-button color="primary" type="button" (click)="setNow()" [ngClass]="isTimeStart.isNow? 'active' : 'inactive'">Текущее время</button>
@@ -42,7 +42,7 @@
                         <input formControlName="time_start" type="time" matInput name="time_start" min="00:00" max="23:59">
                     </mat-form-field>
 
-                    <p>Время окончания: {{end}}</p>
+                    <p>Время окончания: {{addEventForm.value.time_end}}</p>
 
                     <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
                         <button style="width: 130px;" mat-raised-button color="primary" type="button" (click)="setMidnight()" [ngClass]="isTimeEnd.isMidnight? 'active' : 'inactive'">До конца дня</button>
