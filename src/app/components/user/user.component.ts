@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MyData } from 'src/app/services/my-data.service';
 import { environment } from 'src/environments/environment';
@@ -13,8 +14,9 @@ export class UserComponent implements OnInit {
     mydata;
     url:string = environment.apiUrl;
     avatar: any = '../../../../assets/img/avatar.jpg';
+    meProfile
 
-    constructor(private myData: MyData) { }
+    constructor(private myData: MyData, private http: HttpClient) { }
     
     ngOnInit() {
         this.myData.currentData.subscribe(
@@ -25,6 +27,14 @@ export class UserComponent implements OnInit {
                     this.avatar = this.mydata.photo;
                 }
             }
-        );
+        )
+        this.http.get(this.url + 'me/profile/').subscribe(
+            (res) => {
+                this.meProfile = res;
+                if(this.meProfile.photo) {
+                    this.avatar = this.meProfile.photo;
+                }
+            }
+        )
     }
 }

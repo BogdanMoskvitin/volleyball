@@ -81,7 +81,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
             () => {
                 this.toastr.success('Вы зарегестрированы!');
                 this.authService.login(this.loginForm).subscribe(() => {
-                    this.router.navigate(['/auth/register-profile'], {
+                    this.router.navigate(['/register-profile'], {
                         queryParams: {
                             registered: true
                         }
@@ -91,7 +91,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
                 })
             },
             error => {
-                this.router.navigate(['/auth'])
+                this.router.navigate(['/register'])
                 this.toastr.error('Ошибка регистрации');
                 this.regForm.enable();
             }

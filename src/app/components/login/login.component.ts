@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                 });
             },
             error => {
-                this.router.navigate(['/auth'])
+                this.router.navigate(['/login'])
                 this.toastr.error(error.error.detail);
                 this.authForm.enable();
             }

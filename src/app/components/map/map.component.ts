@@ -119,7 +119,9 @@ export class MapComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(){
-        this.aSub.unsubscribe();
+        if(this.aSub) {
+            this.aSub.unsubscribe();
+        }
     }
 }
 
