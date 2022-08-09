@@ -64,7 +64,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
         let clearCoord = []
 
-        this.locations.results.forEach((location) => {
+        this.locations.forEach((location) => {
             if(location.lat && location.lon) {
                 clearCoord.push([location.lat, location.lon])
 
