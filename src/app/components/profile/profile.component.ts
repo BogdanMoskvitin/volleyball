@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit {
     cities;
     addresses;
     city;
+    address
     isCity = false;
     controlCity = new FormControl();
     controlAddress = new FormControl();
@@ -73,8 +74,8 @@ export class ProfileComponent implements OnInit {
 
     sendService(){
         let newForm = {
-            city: this.controlCity.value,
-            address: this.controlAddress.value,
+            city: this.city.fias_id,
+            address: this.address.fias_id,
             birthday: (this.datePipe.transform(this.regForm.value.birthday, 'yyyy-MM-dd')),
             gender: this.regForm.value.gender,
             vk: '',
@@ -134,6 +135,10 @@ export class ProfileComponent implements OnInit {
     saveCity(city) {
         this.city = city;
         this.isCity = true;
+    }
+
+    saveAddress(address) {
+        this.address = address
     }
 
     searchCities(event){
