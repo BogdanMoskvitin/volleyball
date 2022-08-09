@@ -108,9 +108,16 @@ export class ProfileComponent implements OnInit {
     openDialog() {
         const dialogRef = this.dialog.open(ProfileDialog);
     
-        dialogRef.afterClosed().subscribe(result => {
-          console.log(`Dialog result: ${result}`);
-        });
+        dialogRef.afterClosed().subscribe(() => {
+            this.http.get(this.url + 'me/profile/').subscribe(
+                (res) => {
+                    this.meProfile = res;
+                    if(this.meProfile.photo) {
+                        this.croppedImage = this.meProfile.photo;
+                    }
+                }
+            )
+        })
     }
 
     isTimerCity = true;
