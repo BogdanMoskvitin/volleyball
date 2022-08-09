@@ -44,10 +44,22 @@
             <section class="example-section" style="width: 280px;">
                 <mat-checkbox class="example-margin" (change)="acceptPP($event.checked)">Я принимаю условия: </mat-checkbox>
             </section>
-            <span style="color: #2196F3; cursor: pointer; margin: 10px 0;" [routerLink]="['../../privacy-policy']">Политика конфидециальности</span>
+            <span 
+                style="color: #2196F3; cursor: pointer; margin: 10px 0;" 
+                [routerLink]="['../privacy-policy']"
+            >
+                Политика конфидециальности
+            </span>
 
             <div>
-                <button mat-raised-button style="width: 250px;" color="primary" [disabled]="regForm.invalid || regForm.disabled || !isPP">Зарегестрироваться</button>
+                <button 
+                    mat-raised-button 
+                    style="width: 250px;" 
+                    color="primary" 
+                    [disabled]="regForm.invalid || regForm.disabled || !isPP || !checkPassword"
+                >
+                    Зарегестрироваться
+                </button>
             </div>
             <p [routerLink]="['../login']" class="subtitle">Уже зарегистрированы?</p>
         </div>

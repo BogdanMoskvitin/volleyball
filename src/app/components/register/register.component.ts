@@ -36,6 +36,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
             password: new FormControl('', [Validators.required]),
             password2: new FormControl('', [Validators.required]),
         });
+        this.regForm.get('password2').valueChanges.subscribe(password2 => {
+            if(this.regForm.value.password == password2) {
+                this.checkPassword = true
+            }
+        })
     }
 
     ngOnInit() {}
@@ -48,12 +53,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
         let strPassword = this.regForm.value.password;
         let strPassword2 = this.regForm.value.password2;
         if(strPassword == strPassword2){
-            this.checkPassword = false;
+            this.checkPassword = true;
             this.constructForm();
             this.constructLogin();
             this.sendService();
         } else {
-            this.checkPassword = true;
+            this.checkPassword = false;
         }
     }
 
