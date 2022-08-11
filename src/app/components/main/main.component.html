@@ -1,6 +1,6 @@
 <div class="container">
     <div class="box">
-        <map-service-page [locations]="locations"></map-service-page>
+        <map-service-page *ngIf="locations" [locations]="locations"></map-service-page>
         <events-service-page [events]="events"></events-service-page>
     </div>
 </div>
