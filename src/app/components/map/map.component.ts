@@ -13,12 +13,11 @@ import { AddLocationComponent } from '../add-location/add-location.component';
     styleUrls: ['./map.component.scss'],
 })
 
-export class MapComponent implements OnInit, OnDestroy {
+export class MapComponent implements OnInit {
 
-    locations;
+    @Input() locations
     placemarks = [];
     url:string = environment.apiUrl;
-    aSub: Subscription;
 
     coords;
     isLocation = false;
@@ -31,12 +30,10 @@ export class MapComponent implements OnInit, OnDestroy {
         @Inject(MAT_DIALOG_DATA) public data
     ) {}
     
-    ngOnInit(): void {
-        // this.getLocations();
-    }
+    ngOnInit(): void { }
 
     saveLocation() {
-        const dialogRef = this.dialog.open(AddLocationComponent, {
+        this.dialog.open(AddLocationComponent, {
             data: {
                 x: this.coords[0], 
                 y: this.coords[1], 
@@ -44,19 +41,10 @@ export class MapComponent implements OnInit, OnDestroy {
                 iconColor: 'orange'
             }
         });
-    
-        dialogRef.afterClosed().subscribe(() => {
-            this.aSub = this.getLocations().subscribe((res) => {
-                this.locations = res;
-            });
-        });
     }
 
     onMapReady(event: YaReadyEvent<ymaps.Map>): void {
-        this.aSub = this.getLocations().subscribe((res) => {
-            this.locations = res;
-            this.setPlacemarks(event)
-        });
+        this.setPlacemarks(event)
     }
 
     setPlacemarks(event) {
@@ -96,11 +84,6 @@ export class MapComponent implements OnInit, OnDestroy {
         });
     }
 
-    getLocations() {
-        return this.http.get(this.url + 'locations/')
-            
-    }
-
     onMapClick(e: YaEvent<ymaps.Map>): void {
         const { target, event } = e;
     
@@ -115,12 +98,6 @@ export class MapComponent implements OnInit, OnDestroy {
         } else {
             this.isLocation = false;
             target.balloon.close();
-        }
-    }
-
-    ngOnDestroy(){
-        if(this.aSub) {
-            this.aSub.unsubscribe();
         }
     }
 }

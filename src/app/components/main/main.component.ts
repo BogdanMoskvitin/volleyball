@@ -12,7 +12,9 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export class MainComponent implements OnInit, OnDestroy {
 
-    events;
+    main
+    events
+    locations
     url:string = environment.apiUrl;
     aSub: Subscription;
     spinner = true;
@@ -27,13 +29,15 @@ export class MainComponent implements OnInit, OnDestroy {
     ) {}
     
     ngOnInit(): void {
-        this.getEvents();
+        this.getMain();
     }
 
-    getEvents() {
-        this.aSub = this.http.get(this.url + 'events/group-by-date?multi_status=1,2,3')
+    getMain() {
+        this.aSub = this.http.get(this.url + 'main')
             .subscribe((res) => {
-                this.events = res;
+                this.main = res;
+                this.events = this.main.events
+                this.locations = this.main.locations
                 this.spinner = false
         })
     }
