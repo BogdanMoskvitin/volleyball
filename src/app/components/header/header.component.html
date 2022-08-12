@@ -47,10 +47,19 @@
                 <a routerLinkActive="active" class="link" [routerLink]="['./about']">О нас</a>
             </div>
 
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px; margin-top: 20px;">
+                <mat-label style="color: #000;">Город</mat-label>
+                <input type="text" matInput [matAutocomplete]="auto" (input)="inputCity($event)" [formControl]="controlCity" style="color: #fff;">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let city of cities" [value]="city.name" (click)="sendCity(city.id)">
+                        {{city.name}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
             <mat-slide-toggle [checked]="isDarkTheme | async" labelPosition="before" (change)="toggleDarkTheme($event.checked)">{{titleTheme}}</mat-slide-toggle>
         
             <div class="box">
-                <p class="version">Free Team Club 1.2</p>
                 <a [routerLink]="['./user']" *ngIf="aAuth">
                     <img *ngIf="mydata.photo" src="{{mydata.photo}}" alt="avatar" class="avatar">
                     <div *ngIf="!mydata.photo" class="avatar"></div>

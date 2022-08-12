@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnDestroy, OnInit, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
@@ -13,15 +13,14 @@ import { AddLocationComponent } from '../add-location/add-location.component';
     styleUrls: ['./map.component.scss'],
 })
 
-export class MapComponent implements OnInit {
+export class MapComponent implements OnChanges {
 
     @Input() locations
+
     placemarks = [];
     url:string = environment.apiUrl;
-
     coords;
     isLocation = false;
-
     map: ymaps.Map;
 
     constructor(
@@ -29,8 +28,36 @@ export class MapComponent implements OnInit {
         public dialog: MatDialog,
         @Inject(MAT_DIALOG_DATA) public data
     ) {}
-    
-    ngOnInit(): void { }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if(this.map != undefined) {
+            this.map.geoObjects.removeAll()
+        
+            let clearCoord = []
+
+            this.locations.forEach((location) => {
+                if(location.lat && location.lon) {
+                    clearCoord.push([location.lat, location.lon])
+
+                    this.placemarks.push({
+                        geometry: [location.lat, location.lon],
+                        properties: {
+                            hintContent: location.name,
+                        },
+                        options: {
+                            preset: location.confirmed? 'islands#blueCircleDotIcon' : 'islands#grayCircleDotIcon',
+                        },
+                        location: location
+                    });
+                }
+            });
+
+            this.map.setBounds(ymaps.util.bounds.fromPoints(clearCoord), {
+                checkZoomRange: true,
+                zoomMargin: [20]
+            })
+        }
+    }
 
     saveLocation() {
         this.dialog.open(AddLocationComponent, {

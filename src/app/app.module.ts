@@ -56,6 +56,7 @@ import { TeamComponent } from './components/team/team.component';
 import { LocationComponent } from './components/location/location.component';
 import { DialogEventsComponent, MapComponent } from './components/map/map.component';
 import { MainComponent } from './components/main/main.component';
+import { MainService } from './services/main.service';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -157,7 +158,7 @@ const appRoutes: Routes = [
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: TokenInterceptor }, 
     { provide: MAT_DATE_LOCALE, useValue: 'ru-RU' },
     { provide: MAT_DIALOG_DATA, useValue: {} },
-    DatePipe, GuestService, ThemeService,
+    DatePipe, GuestService, ThemeService, MainService
   ],
   bootstrap: [ AppComponent ]
 })

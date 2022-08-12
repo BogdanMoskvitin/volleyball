@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MainService } from 'src/app/services/main.service';
 
 @Component({
     selector: 'main-service-page',
@@ -25,20 +26,21 @@ export class MainComponent implements OnInit, OnDestroy {
     constructor(
         private http: HttpClient,
         public dialog: MatDialog,
+        private mainService: MainService,
         @Inject(MAT_DIALOG_DATA) public data
     ) {}
     
     ngOnInit(): void {
-        this.getMain();
-    }
-
-    getMain() {
-        this.aSub = this.http.get(this.url + 'main')
+        let city
+        this.mainService.currentCity.subscribe(res => {
+            city = res
+            this.mainService.getMain(city)
             .subscribe((res) => {
                 this.main = res;
                 this.events = this.main.events
                 this.locations = this.main.locations
                 this.spinner = false
+            })
         })
     }
 
