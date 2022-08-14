@@ -1,0 +1,15 @@
+<mat-dialog-content class="mat-typography">
+  <mat-form-field class="example-full-width" appearance="fill" style="width: 250px; margin-top: 20px;">
+    <mat-label>Город</mat-label>
+    <input type="text" matInput [matAutocomplete]="auto" (keyup)="inputCity($event)" [formControl]="controlCity">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let city of cities" [value]="city.name" (click)="sendCity(city)">
+        {{city.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close>Закрыть</button>
+</mat-dialog-actions>

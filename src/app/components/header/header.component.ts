@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { MyData } from 'src/app/services/my-data.service';
 import { ThemeService } from 'src/app/services/theme.service';
@@ -9,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MainService } from 'src/app/services/main.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: 'header-service-page',
@@ -16,24 +16,21 @@ import { MainService } from 'src/app/services/main.service';
     styleUrls: ['./header.component.scss'],
 })
 
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
 
     mydata;
-    aSub: Subscription;
     aAuth: Boolean;
     isDarkTheme: Observable<boolean>;
     titleTheme = 'Темная тема';
-    url:string = environment.apiUrl;
-    cities;
-    controlCity = new FormControl();
+    selectCity;
 
     constructor(
         private myData: MyData,
         private authService: AuthService, 
         private router: Router,
         private themeService: ThemeService,
-        private http: HttpClient,
-        private mainService: MainService
+        private mainService: MainService,
+        public dialog: MatDialog,
     ) {}
     
     ngOnInit() {
@@ -42,37 +39,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
         } else {
             this.aAuth = true;
         }
-        this.aSub = this.myData.currentData.subscribe(
+        this.myData.currentData.subscribe(
             (res) => {
                 this.mydata = res;
             }
         );
         this.isDarkTheme = this.themeService.isDarkTheme;
-    }
-
-    sendCity(city) {
-        console.log(city)
-        this.mainService.changeCity(city)
-    }
-
-    isTimerCity = true;
-    inputCity(event){
-        if(this.isTimerCity == true){
-            this.isTimerCity = false;
-            let interval = setInterval(()=>{
-                this.isTimerCity = true;
-                this.searchCities(event);
-                clearTimeout(interval);
-            }, 2000)
-        }
-    }
-    searchCities(event){
-        this.cities = [];
-        this.http.get(this.url + `dict/cities/?search=${event.target.value}`).subscribe(
-            (res) => {
-                this.cities = res;
-            }
-        )
+        this.mainService.currentCity.subscribe((res) => {
+            this.selectCity = res
+        })
     }
 
     opened = false;
@@ -94,7 +69,54 @@ export class HeaderComponent implements OnInit, OnDestroy {
         checked ? this.titleTheme = 'Светлая тема' : this.titleTheme = 'Темная тема';
     }
 
-    ngOnDestroy(){
-        this.aSub.unsubscribe();
+    openDialog() {
+        this.dialog.open(DialogCityComponent)
+    }
+}
+
+@Component({
+    selector: 'dialog-city',
+    templateUrl: './dialog-city.component.html',
+    styleUrls: ['./header.component.scss'],
+})
+export class DialogCityComponent implements OnInit {
+    url:string = environment.apiUrl;
+    cities;
+    controlCity = new FormControl();
+
+    constructor(
+        private http: HttpClient,
+        private mainService: MainService,
+        public dialog: MatDialog,
+    ){ }
+
+    ngOnInit() { }
+
+    sendCity(city) {
+        this.mainService.changeCity(city)
+        this.dialog.closeAll()
+    }
+
+    isTimerCity = true;
+    inputCity(event){
+        if(this.isTimerCity == true){
+            this.isTimerCity = false;
+            let interval = setInterval(()=>{
+                this.isTimerCity = true;
+                this.searchCities(event);
+                clearTimeout(interval);
+            }, 2000)
+        }
+    }
+    searchCities(event){
+        this.cities = [];
+        this.http.get(this.url + `dict/cities/?search=${event.target.value}`).subscribe(
+            (res) => {
+                this.cities = res;
+                if(this.cities.length == 0) {
+                    this.cities = [{name: 'Ничего не найдено'}]
+                }
+            }
+        )
     }
 }

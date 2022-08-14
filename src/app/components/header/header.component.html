@@ -47,15 +47,7 @@
                 <a routerLinkActive="active" class="link" [routerLink]="['./about']">О нас</a>
             </div>
 
-            <mat-form-field class="example-full-width" appearance="fill" style="width: 250px; margin-top: 20px;">
-                <mat-label style="color: #000;">Город</mat-label>
-                <input type="text" matInput [matAutocomplete]="auto" (input)="inputCity($event)" [formControl]="controlCity" style="color: #fff;">
-                <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let city of cities" [value]="city.name" (click)="sendCity(city.id)">
-                        {{city.name}}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
+            <p style="cursor: pointer; color: #fff; font-size: 18px; text-decoration: underline;" (click)="openDialog()">{{selectCity.name}}</p>
 
             <mat-slide-toggle [checked]="isDarkTheme | async" labelPosition="before" (change)="toggleDarkTheme($event.checked)">{{titleTheme}}</mat-slide-toggle>
         

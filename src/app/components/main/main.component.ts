@@ -32,7 +32,7 @@ export class MainComponent implements OnInit, OnDestroy {
     
     ngOnInit(): void {
         let city
-        this.mainService.currentCity.subscribe(res => {
+        this.aSub = this.mainService.currentCity.subscribe(res => {
             city = res
             this.mainService.getMain(city)
             .subscribe((res) => {

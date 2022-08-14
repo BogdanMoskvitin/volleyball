@@ -10,7 +10,7 @@ import { AddTeamComponent } from './components/add-team/add-team.component';
 import { AddPlayerComponent } from './components/add-player/add-player.component';
 import { AddLocationComponent } from './components/add-location/add-location.component';
 import { TeamsComponent } from './components/teams/teams.component';
-import { HeaderComponent } from './components/header/header.component';
+import { DialogCityComponent, HeaderComponent } from './components/header/header.component';
 import { UserComponent } from './components/user/user.component';
 import { AboutComponent } from './components/about/about.component';
 import { UserChangeComponent } from './components/user-change/user-change.component';
@@ -125,7 +125,8 @@ const appRoutes: Routes = [
     DialogEventsComponent,
     LocationComponent,
     MapComponent,
-    MainComponent
+    MainComponent,
+    DialogCityComponent,
   ],
   imports: [
     HttpClientModule,
