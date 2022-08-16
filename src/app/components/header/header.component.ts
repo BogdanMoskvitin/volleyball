@@ -42,6 +42,11 @@ export class HeaderComponent implements OnInit {
         this.myData.currentData.subscribe(
             (res) => {
                 this.mydata = res;
+                if(this.mydata.city) {
+                    this.mainService.changeCity(this.mydata.city)
+                } else {
+                    this.mainService.changeCity({id: 4, name: 'г Ставрополь'})
+                }
             }
         );
         this.isDarkTheme = this.themeService.isDarkTheme;
@@ -93,8 +98,10 @@ export class DialogCityComponent implements OnInit {
     ngOnInit() { }
 
     sendCity(city) {
-        this.mainService.changeCity(city)
-        this.dialog.closeAll()
+        if(!city.status) {
+            this.mainService.changeCity(city)
+            this.dialog.closeAll()
+        }
     }
 
     isTimerCity = true;
@@ -114,7 +121,7 @@ export class DialogCityComponent implements OnInit {
             (res) => {
                 this.cities = res;
                 if(this.cities.length == 0) {
-                    this.cities = [{name: 'Ничего не найдено'}]
+                    this.cities = [{name: 'Ничего не найдено', status: 'disabled'}]
                 }
             }
         )

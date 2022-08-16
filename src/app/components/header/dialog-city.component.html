@@ -3,7 +3,7 @@
     <mat-label>Город</mat-label>
     <input type="text" matInput [matAutocomplete]="auto" (keyup)="inputCity($event)" [formControl]="controlCity">
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let city of cities" [value]="city.name" (click)="sendCity(city)">
+      <mat-option *ngFor="let city of cities" [value]="city.name" (click)="sendCity(city)" [disabled]="city.status">
         {{city.name}}
       </mat-option>
     </mat-autocomplete>

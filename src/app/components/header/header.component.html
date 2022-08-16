@@ -47,7 +47,7 @@
                 <a routerLinkActive="active" class="link" [routerLink]="['./about']">О нас</a>
             </div>
 
-            <p style="cursor: pointer; color: #fff; font-size: 18px; text-decoration: underline;" (click)="openDialog()">{{selectCity.name}}</p>
+            <p style="cursor: pointer; color: #fff; font-size: 18px; text-decoration: underline;" (click)="openDialog()">{{selectCity?.short_name}}</p>
 
             <mat-slide-toggle [checked]="isDarkTheme | async" labelPosition="before" (change)="toggleDarkTheme($event.checked)">{{titleTheme}}</mat-slide-toggle>
         
