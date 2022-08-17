@@ -1,7 +1,7 @@
 <div class="map">
     <ya-map 
-        [center]="[45.05, 41.95]" 
-        [zoom]="12" 
+        [center]="center" 
+        [zoom]="zoom" 
         (yaclick)="onMapClick($event)" 
         [state]="{ controls: ['smallMapDefaultSet'] }" 
         (ready)="onMapReady($event)"

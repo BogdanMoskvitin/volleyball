@@ -6,6 +6,7 @@ import { YaEvent, YaReadyEvent } from 'angular8-yandex-maps';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddEventComponent } from '../add-event/add-event.component';
 import { AddLocationComponent } from '../add-location/add-location.component';
+import { MyData } from 'src/app/services/my-data.service';
 
 @Component({
     selector: 'map-service-page',
@@ -22,11 +23,15 @@ export class MapComponent implements OnChanges {
     coords;
     isLocation = false;
     map: ymaps.Map;
+    center
+    zoom = 12
+    mydata
 
     constructor(
         private http: HttpClient,
         public dialog: MatDialog,
-        @Inject(MAT_DIALOG_DATA) public data
+        @Inject(MAT_DIALOG_DATA) public data,
+        private myData: MyData
     ) {}
 
     ngOnChanges(changes: SimpleChanges) {
@@ -35,27 +40,34 @@ export class MapComponent implements OnChanges {
         
             let clearCoord = []
 
-            this.locations.forEach((location) => {
-                if(location.lat && location.lon) {
-                    clearCoord.push([location.lat, location.lon])
-
-                    this.placemarks.push({
-                        geometry: [location.lat, location.lon],
-                        properties: {
-                            hintContent: location.name,
-                        },
-                        options: {
-                            preset: location.confirmed? 'islands#blueCircleDotIcon' : 'islands#grayCircleDotIcon',
-                        },
-                        location: location
-                    });
-                }
-            });
-
-            this.map.setBounds(ymaps.util.bounds.fromPoints(clearCoord), {
-                checkZoomRange: true,
-                zoomMargin: [20]
-            })
+            if(this.locations.length) {
+                this.locations.forEach((location) => {
+                    if(location.lat && location.lon) {
+                        clearCoord.push([location.lat, location.lon])
+        
+                        this.placemarks.push({
+                            geometry: [location.lat, location.lon],
+                            properties: {
+                                hintContent: location.name,
+                            },
+                            options: {
+                                preset: location.confirmed? 'islands#blueCircleDotIcon' : 'islands#grayCircleDotIcon',
+                            },
+                            location: location
+                        });
+                    }
+                });
+        
+                this.map.setBounds(ymaps.util.bounds.fromPoints(clearCoord), {
+                    checkZoomRange: true,
+                    zoomMargin: [20]
+                })
+            } else {
+                this.myData.currentData.subscribe((res) => {
+                    this.mydata = res
+                    this.center = [this.mydata.city.lat, this.mydata.city.lon]
+                })
+            }  
         }
     }
 
@@ -78,28 +90,34 @@ export class MapComponent implements OnChanges {
         this.map = event.target;
 
         let clearCoord = []
-
-        this.locations.forEach((location) => {
-            if(location.lat && location.lon) {
-                clearCoord.push([location.lat, location.lon])
-
-                this.placemarks.push({
-                    geometry: [location.lat, location.lon],
-                    properties: {
-                        hintContent: location.name,
-                    },
-                    options: {
-                        preset: location.confirmed? 'islands#blueCircleDotIcon' : 'islands#grayCircleDotIcon',
-                    },
-                    location: location
-                });
-            }
-        });
-
-        this.map.setBounds(ymaps.util.bounds.fromPoints(clearCoord), {
-            checkZoomRange: true,
-            zoomMargin: [20]
-        })
+        if(this.locations.length) {
+            this.locations.forEach((location) => {
+                if(location.lat && location.lon) {
+                    clearCoord.push([location.lat, location.lon])
+    
+                    this.placemarks.push({
+                        geometry: [location.lat, location.lon],
+                        properties: {
+                            hintContent: location.name,
+                        },
+                        options: {
+                            preset: location.confirmed? 'islands#blueCircleDotIcon' : 'islands#grayCircleDotIcon',
+                        },
+                        location: location
+                    });
+                }
+            });
+    
+            this.map.setBounds(ymaps.util.bounds.fromPoints(clearCoord), {
+                checkZoomRange: true,
+                zoomMargin: [20]
+            })
+        } else {
+            this.myData.currentData.subscribe((res) => {
+                this.mydata = res
+                this.center = [this.mydata.city.lat, this.mydata.city.lon]
+            })
+        }  
     }
 
 
