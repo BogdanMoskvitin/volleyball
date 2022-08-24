@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -9,7 +9,7 @@ import { environment } from "src/environments/environment";
 export class MainService {    
 
   url:string = environment.apiUrl;
-  private dataSource = new Subject();
+  private dataSource = new BehaviorSubject({});
   currentCity = this.dataSource.asObservable();
 
   constructor(private http: HttpClient) { }

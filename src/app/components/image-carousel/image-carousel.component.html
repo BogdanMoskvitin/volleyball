@@ -1,0 +1,16 @@
+<div class="carousel__container" [ngStyle]="{'width.px': width, 'height.px': height}">
+  <div class="carousel__box" [ngStyle]="getStyle(speed)">
+    <img 
+      *ngFor="let image of images"
+      src={{image.file}} 
+      alt={{image.file_name}}
+      [ngStyle]="{'width.px': width}"
+    >
+  </div>
+  <button class="btn" (click)="back()">
+    <mat-icon style="color: #fff; padding-left: 9px;" aria-hidden="false" aria-label="Example home icon">arrow_back_ios</mat-icon>
+  </button>
+  <button class="btn" (click)="next()">
+    <mat-icon style="color: #fff; padding-left: 3px;" aria-hidden="false" aria-label="Example home icon">arrow_forward_ios</mat-icon>
+  </button>
+</div>  

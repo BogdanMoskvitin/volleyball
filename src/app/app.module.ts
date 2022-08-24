@@ -57,6 +57,7 @@ import { LocationComponent } from './components/location/location.component';
 import { DialogEventsComponent, MapComponent } from './components/map/map.component';
 import { MainComponent } from './components/main/main.component';
 import { MainService } from './services/main.service';
+import { ImageCarouselComponent } from './components/image-carousel/image-carousel.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -127,6 +128,7 @@ const appRoutes: Routes = [
     MapComponent,
     MainComponent,
     DialogCityComponent,
+    ImageCarouselComponent,
   ],
   imports: [
     HttpClientModule,

@@ -1,6 +1,7 @@
 <mat-dialog-content class="mat-typography">
   <div class="flex">
     <div>
+      <image-carousel-service-page *ngIf="data.location.images.length" [width]="300" [height]="200" [speed]="0.5" [images]="data.location.images"></image-carousel-service-page>
       <p>Адрес: {{data.location.address}}</p>
       <p>Название: {{data.location.name}}</p>
       <p>Описание: {{data.location.description}}</p>
