@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
     ) {
         this.regForm = new FormGroup({
             birthday: new FormControl(''),
-            gender: new FormControl(''),
+            gender: new FormControl('1'),
             socials: new FormArray([]),
         });
     }
