@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
                 if(this.mydata.city) {
                     this.mainService.changeCity(this.mydata.city)
                 } else {
-                    this.mainService.changeCity({id: 4, name: 'г Ставрополь'})
+                    this.mainService.changeCity({id: 4, short_name: 'г Ставрополь'})
                 }
             }
         );

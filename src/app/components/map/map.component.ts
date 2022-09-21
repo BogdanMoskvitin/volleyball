@@ -21,7 +21,6 @@ export class MapComponent implements OnChanges {
     placemarks = [];
     url:string = environment.apiUrl;
     coords;
-    isLocation = false;
     map: ymaps.Map;
     center
     zoom = 12
@@ -130,20 +129,8 @@ export class MapComponent implements OnChanges {
     }
 
     onMapClick(e: YaEvent<ymaps.Map>): void {
-        const { target, event } = e;
-    
-        if (!target.balloon.isOpen()) {
-            this.isLocation = true;
-            const coords = event.get('coords');
-
-            target.balloon.open(coords, {
-                contentHeader: 'Новое место!'
-            }, {closeButton: false});
-            this.coords = coords;
-        } else {
-            this.isLocation = false;
-            target.balloon.close();
-        }
+        this.coords = e.event.get('coords');
+        this.saveLocation()
     }
 }
 

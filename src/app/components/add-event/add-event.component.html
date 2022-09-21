@@ -15,7 +15,7 @@
                         </div>
                     </div>
 
-                    <p>Дата события: {{addEventForm.value.date | date: "dd:MM"}}</p>
+                    <p>Дата события: {{addEventForm.value.date | date: "dd.MM"}}</p>
 
                     <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
                         <button mat-raised-button color="primary" type="button" (click)="setToday()" [ngClass]="isDate.isToday? 'active' : 'inactive'">Сегодня</button>
