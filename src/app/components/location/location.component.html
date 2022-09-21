@@ -1,4 +1,7 @@
-<p>id: {{location?.id}}</p>
-<p>name: {{location?.name}}</p>
-<p>address: {{location?.address}}</p>
-<p>description: {{location?.description}}</p>
+<div class="container">
+  <button mat-raised-button color="primary" (click)="changeLocation(location)">Редактировать место</button>
+  <p>id: {{location?.id}}</p>
+  <p>name: {{location?.name}}</p>
+  <p>address: {{location?.address}}</p>
+  <p>description: {{location?.description}}</p>  
+</div>

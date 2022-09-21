@@ -8,7 +8,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { AddTeamComponent } from './components/add-team/add-team.component';
 import { AddPlayerComponent } from './components/add-player/add-player.component';
-import { AddLocationComponent } from './components/add-location/add-location.component';
+import { AddLocationComponent, ImagesDialog } from './components/add-location/add-location.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { DialogCityComponent, HeaderComponent } from './components/header/header.component';
 import { UserComponent } from './components/user/user.component';
@@ -58,6 +58,8 @@ import { DialogEventsComponent, MapComponent } from './components/map/map.compon
 import { MainComponent } from './components/main/main.component';
 import { MainService } from './services/main.service';
 import { ImageCarouselComponent } from './components/image-carousel/image-carousel.component';
+import { ChangeLocationComponent } from './components/change-location/change-location.component';
+import { ImagesService } from './services/images.service';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -129,6 +131,8 @@ const appRoutes: Routes = [
     MainComponent,
     DialogCityComponent,
     ImageCarouselComponent,
+    ChangeLocationComponent,
+    ImagesDialog,
   ],
   imports: [
     HttpClientModule,
@@ -161,7 +165,7 @@ const appRoutes: Routes = [
     { provide: HTTP_INTERCEPTORS, multi: true, useClass: TokenInterceptor }, 
     { provide: MAT_DATE_LOCALE, useValue: 'ru-RU' },
     { provide: MAT_DIALOG_DATA, useValue: {} },
-    DatePipe, GuestService, ThemeService, MainService
+    DatePipe, GuestService, ThemeService, MainService, ImagesService,
   ],
   bootstrap: [ AppComponent ]
 })

@@ -1,16 +1,8 @@
-<h2 mat-dialog-title>Сохранение места</h2>
+<h2 mat-dialog-title>Редактирование места</h2>
 <mat-dialog-content class="mat-typography" style="min-width: 300px;">
     <div class="container">
         <form [formGroup]="addLocationForm" novalidate (ngSubmit)="sendService()">
             <div class="box">
-
-                <p *ngFor="let image of images">{{image.name}}</p>
-
-                <div>
-                    <img *ngIf="croppedImage" [src]="croppedImage" alt="" class="avatar">
-                    <button mat-raised-button (click)="openDialog()" type="button" style="width: 280px; margin-bottom: 10px;" color="primary">Добавить картинку</button>
-                </div>
-
                 <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
                     <mat-label>Название</mat-label>
                     <input matInput formControlName="name">
@@ -22,7 +14,7 @@
                 </mat-form-field>
 
                 <div>
-                    <button mat-raised-button style="width: 280px" color="primary" [disabled]="addLocationForm.invalid">Добавить место</button>
+                    <button mat-raised-button style="width: 280px" color="primary" [disabled]="addLocationForm.invalid">Изменить место</button>
                 </div>
             </div>
         </form>

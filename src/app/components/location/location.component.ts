@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ChangeLocationComponent } from '../change-location/change-location.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'location-service-page',
@@ -18,6 +21,9 @@ export class LocationComponent implements OnInit {
     constructor(
         private http: HttpClient, 
         private activatedRoute: ActivatedRoute,
+        public dialog: MatDialog,
+        private toastr: ToastrService,
+        private router: Router,
     ) {
         this.idLocation = this.activatedRoute.snapshot.params['id'];
     }
@@ -31,5 +37,17 @@ export class LocationComponent implements OnInit {
         .subscribe(res => {
             this.location = res
         })
+    }
+
+    changeLocation(location) {
+        const dialogRef = this.dialog.open(ChangeLocationComponent, {
+            data: {
+                location
+            }
+        })
+
+        dialogRef.afterClosed().subscribe(result => {
+            this.getLocation()
+        });
     }
 }
