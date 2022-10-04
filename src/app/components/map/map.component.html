@@ -1,5 +1,7 @@
 <div class="map">
+    <div class="filter" [style.display]="isDarkTheme==true?'block':'none'"></div>
     <ya-map 
+        [style.filter]="isDarkTheme==true?'grayscale(1)':''"
         [center]="center" 
         [zoom]="zoom" 
         (yaclick)="onMapClick($event)" 

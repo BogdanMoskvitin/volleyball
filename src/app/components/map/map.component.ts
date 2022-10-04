@@ -9,6 +9,7 @@ import { AddLocationComponent } from '../add-location/add-location.component';
 import { MyData } from 'src/app/services/my-data.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
     selector: 'map-service-page',
@@ -28,6 +29,7 @@ export class MapComponent implements OnChanges, OnInit {
     zoom = 12
     mydata
     isAuth: boolean;
+    isDarkTheme = false;
 
     constructor(
         private http: HttpClient,
@@ -35,8 +37,16 @@ export class MapComponent implements OnChanges, OnInit {
         @Inject(MAT_DIALOG_DATA) public data,
         private myData: MyData,
         private authService: AuthService,
-        private router: Router 
-    ) {}
+        private router: Router,
+        private themeService: ThemeService
+    ) {
+        themeService.isDarkTheme.subscribe(res => {
+            this.isDarkTheme = res
+            if(this.isDarkTheme) {
+                
+            }
+        })
+    }
 
     ngOnInit(): void {
         if(this.authService.getToken() == null) {

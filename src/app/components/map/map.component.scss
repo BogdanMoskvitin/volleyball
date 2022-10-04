@@ -6,6 +6,7 @@ $blue: #2196F3;
     width: 870px;
     height: 800px;
     margin-bottom: 10px;
+    position: relative;
 }
 .btn {
     display: block;
@@ -14,6 +15,16 @@ $blue: #2196F3;
 }
 .flex {
     display: flex;
+}
+.filter {
+    mix-blend-mode: difference;
+    pointer-events: none;
+    position: absolute;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: #fff;
 }
 @media(max-width: 1220px){
     .map {width: 800px;}
