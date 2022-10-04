@@ -1,4 +1,4 @@
-<ng-sidebar-container style="overflow: hidden;" [ngClass]="{'dark-theme': isDarkTheme | async}" class="mat-app-background">
+<ng-sidebar-container style="overflow: hidden;" [ngClass]="{'dark-theme': isDarkTheme}" class="mat-app-background">
     <ng-sidebar [opened]="opened" position="top">
         <ul class="burger__ul">
             <div class="flex">
@@ -49,7 +49,8 @@
 
             <p style="cursor: pointer; color: #fff; font-size: 18px; text-decoration: underline;" (click)="openDialog()">{{selectCity?.short_name}}</p>
 
-            <mat-slide-toggle [checked]="isDarkTheme | async" labelPosition="before" (change)="toggleDarkTheme($event.checked)">{{titleTheme}}</mat-slide-toggle>
+            <mat-icon *ngIf="!isDarkTheme" style="color: #fff; cursor: pointer;" (click)="toggleDarkTheme(true)">dark_mode</mat-icon>
+            <mat-icon *ngIf="isDarkTheme" style="color: #fff; cursor: pointer;" (click)="toggleDarkTheme(false)">light_mode</mat-icon>
         
             <div class="box">
                 <a [routerLink]="['./user']" *ngIf="aAuth">

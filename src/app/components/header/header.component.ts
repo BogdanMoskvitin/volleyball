@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
 
     mydata;
     aAuth: Boolean;
-    isDarkTheme: Observable<boolean>;
+    isDarkTheme;
     titleTheme = 'Темная тема';
     selectCity;
 
@@ -31,7 +31,11 @@ export class HeaderComponent implements OnInit {
         private themeService: ThemeService,
         private mainService: MainService,
         public dialog: MatDialog,
-    ) {}
+    ) {
+        themeService.isDarkTheme.subscribe(res => {
+            this.isDarkTheme = res
+        })
+    }
     
     ngOnInit() {
         if(this.authService.getToken() == null) {
@@ -49,7 +53,6 @@ export class HeaderComponent implements OnInit {
                 }
             }
         );
-        this.isDarkTheme = this.themeService.isDarkTheme;
         this.mainService.currentCity.subscribe((res) => {
             this.selectCity = res
         })
