@@ -5,7 +5,8 @@
       <p>Адрес: {{data.location.address}}</p>
       <p>Название: {{data.location.name}}</p>
       <p>Описание: {{data.location.description}}</p>
-      <button mat-raised-button color="primary" class="btn" (click)="openDialog(data.location.id)" mat-dialog-close>Добавить событие</button>
+      <button *ngIf="isAuth" mat-raised-button color="primary" class="btn" (click)="openDialog(data.location.id)" mat-dialog-close>Добавить событие</button>
+      <button *ngIf="!isAuth" mat-raised-button color="primary" class="btn" [routerLink]="['../login']" mat-dialog-close>Добавить событие</button>
       <button mat-raised-button color="primary" class="btn" [routerLink]="['../location', data.location.id]" mat-dialog-close>Об организации</button>
     </div>
     <div>

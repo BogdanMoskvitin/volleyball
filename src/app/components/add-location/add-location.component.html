@@ -4,7 +4,7 @@
         <form [formGroup]="addLocationForm" novalidate (ngSubmit)="sendService()">
             <div class="box">
 
-                <p *ngFor="let image of images">{{image.name}}</p>
+                <image-carousel-service-page *ngIf="images.length" [width]="300" [height]="200" [speed]="0.5" [images]="images$ | async"></image-carousel-service-page>
 
                 <div>
                     <img *ngIf="croppedImage" [src]="croppedImage" alt="" class="avatar">

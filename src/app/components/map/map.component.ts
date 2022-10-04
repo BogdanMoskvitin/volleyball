@@ -7,6 +7,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { AddEventComponent } from '../add-event/add-event.component';
 import { AddLocationComponent } from '../add-location/add-location.component';
 import { MyData } from 'src/app/services/my-data.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'map-service-page',
@@ -14,7 +16,7 @@ import { MyData } from 'src/app/services/my-data.service';
     styleUrls: ['./map.component.scss'],
 })
 
-export class MapComponent implements OnChanges {
+export class MapComponent implements OnChanges, OnInit {
 
     @Input() locations
 
@@ -25,13 +27,24 @@ export class MapComponent implements OnChanges {
     center
     zoom = 12
     mydata
+    isAuth: boolean;
 
     constructor(
         private http: HttpClient,
         public dialog: MatDialog,
         @Inject(MAT_DIALOG_DATA) public data,
-        private myData: MyData
+        private myData: MyData,
+        private authService: AuthService,
+        private router: Router 
     ) {}
+
+    ngOnInit(): void {
+        if(this.authService.getToken() == null) {
+            this.isAuth = false;
+        } else {
+            this.isAuth = true;
+        }
+    }
 
     ngOnChanges(changes: SimpleChanges) {
         if(this.map != undefined) {
@@ -129,8 +142,12 @@ export class MapComponent implements OnChanges {
     }
 
     onMapClick(e: YaEvent<ymaps.Map>): void {
-        this.coords = e.event.get('coords');
-        this.saveLocation()
+        if(this.isAuth) {
+            this.coords = e.event.get('coords');
+            this.saveLocation()
+        } else {
+            this.router.navigate(['./login'])
+        }
     }
 }
 
@@ -143,14 +160,21 @@ export class DialogEventsComponent implements OnInit, OnDestroy {
     aSub: Subscription
     events
     url:string = environment.apiUrl;
+    isAuth: boolean;
 
     constructor(
         public dialog: MatDialog,
         @Inject(MAT_DIALOG_DATA) public data,
         private http: HttpClient,
-        public dialogRef: MatDialogRef<DialogEventsComponent>
+        public dialogRef: MatDialogRef<DialogEventsComponent>,
+        private authService: AuthService
     ){ }
     ngOnInit() {
+        if(this.authService.getToken() == null) {
+            this.isAuth = false;
+        } else {
+            this.isAuth = true;
+        }
         this.getEvents(this.data.location.id)
     }
 

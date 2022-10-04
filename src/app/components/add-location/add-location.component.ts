@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { ImagesService } from 'src/app/services/images.service';
@@ -21,6 +21,7 @@ export class AddLocationComponent implements OnInit, OnDestroy {
     url:string = environment.apiUrl;
     aSub: Subscription;
     croppedImage: any = '';
+    images$ = new BehaviorSubject([])
     images = []
 
     constructor(
@@ -41,11 +42,16 @@ export class AddLocationComponent implements OnInit, OnDestroy {
     ngOnInit() {}
 
     sendService(){
+        let images = []
+        this.images.forEach(res => {
+            images.push(res.id)
+        })
         let newForm = {
             name: this.addLocationForm.value.name,
             description: this.addLocationForm.value.description,
             lat: this.data.x,
-            lon: this.data.y
+            lon: this.data.y,
+            images: images
         }
         this.aSub = this.http.post(this.url + 'locations/', newForm).subscribe(
             (res) => {
@@ -61,17 +67,9 @@ export class AddLocationComponent implements OnInit, OnDestroy {
     
         dialogRef.afterClosed().subscribe(() => {
             this.imagesService.currentImages.subscribe((res) => {
-                console.log(res)
+                this.images$.next(res)
                 this.images = res
             })
-        //     this.http.get(this.url + 'me/profile/').subscribe(
-        //         (res) => {
-        //             this.meProfile = res;
-        //             if(this.meProfile.photo) {
-        //                 this.croppedImage = this.meProfile.photo;
-        //             }
-        //         }
-        //     )
         })
     }
 
@@ -141,17 +139,17 @@ export class AddLocationComponent implements OnInit, OnDestroy {
       sendAvatar(){
           this.newFile = this.dataURLtoFile(this.croppedImage,this.name);
           var fd = new FormData();
-          fd.append(this.name, this.newFile, this.newFile.name);
+          fd.append('file', this.newFile, this.newFile.name);
 
-          this.imagesService.changeImages({name: this.name, file: fd})
-  
-        //   this.http.patch(this.url + 'me/profile/', fd).subscribe(
-        //       (res) => {
-        //           this.toastr.success('Картинка сохранена!');
-        //       },
-        //       error => {
-        //           this.toastr.error('Ошибка сохранения');
-        //       });
+        this.http.post(this.url + 'files/', fd).subscribe(
+            (res) => {
+                this.toastr.success('Картинка сохранена!');
+                this.imagesService.changeImages(res)
+            },
+            error => {
+                this.toastr.error('Ошибка сохранения');
+            }
+        )
       }
   }
   
