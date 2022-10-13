@@ -77,27 +77,24 @@ export class EventComponent implements OnInit {
     }
 
     sendAccept(){
-        if(this.application.accept_button){
-            this.http.get(this.url + `events/${this.idEvent}/application?action=accept`)
-            .subscribe(res => {
-                this.answer = res;
-                this.getApplication();
-                this.getStatistics();
-                this.viewAccepted();
-            })
-        }
+        this.http.get(this.url + `events/${this.idEvent}/application?action=accept`)
+        .subscribe(res => {
+            console.log(res)
+            this.answer = res;
+            this.getApplication();
+            this.getStatistics();
+            this.viewAccepted();
+        })
     }
 
     sendReject(){
-        if(this.application.refuse_button){
-            this.http.get(this.url + `events/${this.idEvent}/application?action=refuse`)
-            .subscribe(res => {
-                this.answer = res;
-                this.getApplication();
-                this.getStatistics();
-                this.viewRefused();
-            })
-        }
+        this.http.get(this.url + `events/${this.idEvent}/application?action=refuse`)
+        .subscribe(res => {
+            this.answer = res;
+            this.getApplication();
+            this.getStatistics();
+            this.viewRefused();
+        })
     }
 
     viewAccepted(){

@@ -1,4 +1,4 @@
-<div>
+<div style="width: 390px;">
     <p *ngIf="!isAuth" class="dangerous">Чтобы написать комментарий, войдите в систему</p>
     <form *ngIf="isAuth" [formGroup]="addCommentForm" (ngSubmit)="sendComment()">
         <mat-form-field appearance="fill" class="textarea">
