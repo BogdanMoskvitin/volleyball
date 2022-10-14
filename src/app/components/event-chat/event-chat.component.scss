@@ -11,12 +11,14 @@ p, span {
     margin-bottom: 10px;
 }
 .textarea {
-    width: 346px;
+    width: 326px;
 }
 .icon__send {
     border: none;
-    background: none;
     cursor: pointer;
+    min-height: 60px;
+    background: #CFD8DC;
+    padding: 0 10px;
 }
 .btn__send {
     display: none;
@@ -31,7 +33,7 @@ p, span {
 }
 .box__comment {
     background-color: $blue;
-    margin: 5px 0;
+    margin: 3px 0;
     border-radius: 5px 5px 5px 0px;
     display: inline-block;
     padding: 4px 10px;
@@ -44,7 +46,7 @@ p, span {
 }
 .text__comment {
     font-size: 20px;
-    color: $light;
+    color: $dark;
 }
 .time__comment {
     text-align: end;
@@ -60,5 +62,23 @@ p, span {
     height: 50px;
     border-radius: 5px;
     background-color: $light;
-    margin: 0 5px 0 0;
+    margin: 0 5px 0 10px;
+}
+
+
+::ng-deep mat-form-field {
+    .mat-form-field-wrapper {
+        margin-bottom: -1.25em;
+    }
+    .mat-form-field-underline {
+        display: none;
+    }
+    .mat-form-field-flex {
+        padding-bottom: 14px;
+        background: #CFD8DC;
+    }
+    textarea.mat-input-element.cdk-textarea-autosize {
+        padding-left: 10px;
+        color: #000;
+    }
 }

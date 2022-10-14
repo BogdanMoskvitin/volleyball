@@ -185,7 +185,7 @@ ng-sidebar-container {
     text-decoration: none;
     font-size: 48px;
     color: $light;
-    padding: 8px 20px;
+    padding: 8px 20px 8px 0;
     white-space: nowrap;
 }
 .active {
@@ -205,13 +205,13 @@ ng-sidebar-container {
 .avatar {
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: 5px;
     background-color: $light;
 }
 .phone {
     font-size: 16px;
     color: $light;
-    margin-left: 10px;
+    margin-right: 10px;
     cursor: pointer;
 }
 .login {

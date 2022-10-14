@@ -29,7 +29,7 @@ p, span {
 .price {
     position: relative;
     font-weight: 700;
-    font-size: 32px;
+    font-size: 28px;
     color: #00C853;
 }
 .ruble {
@@ -57,7 +57,7 @@ p, span {
     margin-top: 25px;
 }
 .accept {
-    width: 190px;
+    width: 195px;
     height: 40px;
     background: #00C853;
     border-radius: 5px;
@@ -67,7 +67,7 @@ p, span {
     cursor: pointer;
 }
 .reject {
-    width: 190px;
+    width: 195px;
     height: 40px;
     background: #D50000;
     border-radius: 5px;
@@ -87,6 +87,18 @@ p, span {
     padding: 0 10px;
     margin-bottom: 10px;
     cursor: pointer;
+}
+.participants__cell_active {
+    background: #2196F3;
+    .participants__icon {
+        color: #fff;
+    }
+    .participants__title {
+        color: #fff;
+    }
+    .participants__count {
+        color: #fff;
+    }
 }
 .participants__flex {
     display: flex;

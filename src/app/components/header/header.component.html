@@ -53,14 +53,12 @@
             <mat-icon *ngIf="isDarkTheme" style="color: #fff; cursor: pointer;" (click)="toggleDarkTheme(false)">light_mode</mat-icon>
         
             <div class="box">
+                <p class="phone" *ngIf="aAuth" [routerLink]="['./user']">{{mydata.phone_number}}</p>
                 <a [routerLink]="['./user']" *ngIf="aAuth">
                     <img *ngIf="mydata.photo" src="{{mydata.photo}}" alt="avatar" class="avatar">
                     <div *ngIf="!mydata.photo" class="avatar"></div>
                 </a>
-                
-                <p class="phone" *ngIf="aAuth" [routerLink]="['./user']">{{mydata.phone_number}}</p>
                 <button class="login" mat-stroked-button *ngIf="!aAuth" [routerLink]="['./login']">Войти</button>
-                <mat-icon class="logout" aria-hidden="false" aria-label="Example logout icon" (click)="logout($event)" *ngIf="aAuth">logout</mat-icon>
             </div>
         </div>
             </div>

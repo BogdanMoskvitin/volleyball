@@ -1,38 +1,40 @@
-<div style="width: 390px;">
-    <p *ngIf="!isAuth" class="dangerous">Чтобы написать комментарий, войдите в систему</p>
-    <form *ngIf="isAuth" [formGroup]="addCommentForm" (ngSubmit)="sendComment()">
-        <mat-form-field appearance="fill" class="textarea">
-            <mat-label>Введите текст</mat-label>
-            <textarea matInput
-                        cdkTextareaAutosize
-                        #autosize="cdkTextareaAutosize"
-                        cdkAutosizeMinRows="1"
-                        cdkAutosizeMaxRows="5"
-                        formControlName="comment"
-                        [(ngModel)]="text.comment"
-                        ></textarea>
-        </mat-form-field>
-        <button *ngIf="!isSend" class="icon__send" [disabled]="addCommentForm.invalid">
-            <mat-icon style="margin-left: 20px;" aria-hidden="false" aria-label="Example send icon">send</mat-icon>
-        </button>
-        <button *ngIf="isSend" class="icon__send" type="button" (click)="sendChangeComment()">
-            <mat-icon style="margin-left: 20px;" aria-hidden="false" aria-label="Example send icon">done</mat-icon>
-        </button>
-        <button *ngIf="!isSend" class="btn__send" mat-raised-button>Отправить</button>
-        <button *ngIf="isSend" class="btn__send" type="button" (click)="sendChangeComment()" mat-raised-button>Сохранить</button>
-    </form>
-    <div>
-        <div *ngFor="let comment of comments?.results">
-            <div class="flex">
-                <img *ngIf="comment.user.profile.photo_small" src="{{comment.user.profile.photo_small}}" alt="avatar" class="avatar">
-                <div *ngIf="!comment.user.profile.photo_small" class="avatar"></div>
-
-                <div class="box__comment" [matMenuTriggerFor]="menu" (click)="openMenu(comment)">
-                    <span class="user__comment" style="user-select: none;">{{comment.user.full_name}}</span>
-                    <p class="text__comment">{{comment.comment}} <span style="user-select: none;" class="time__comment">{{comment.created_at | date: 'HH:mm'}}</span></p>
+<div style="width: 390px; height: 600px; position: relative; background: #37474F;">
+    <div style="position: absolute; bottom: 0;">
+        <div>
+            <div *ngFor="let comment of comments?.results">
+                <div class="flex">
+                    <img *ngIf="comment.user.profile.photo_small" src="{{comment.user.profile.photo_small}}" alt="avatar" class="avatar">
+                    <div *ngIf="!comment.user.profile.photo_small" class="avatar"></div>
+    
+                    <div class="box__comment" [matMenuTriggerFor]="menu" (click)="openMenu(comment)">
+                        <span class="user__comment" style="user-select: none;">{{comment.user.full_name}}</span>
+                        <p class="text__comment">{{comment.comment}} <span style="user-select: none;" class="time__comment">{{comment.created_at | date: 'HH:mm'}}</span></p>
+                    </div>
                 </div>
             </div>
         </div>
+        <p *ngIf="!isAuth" class="dangerous">Чтобы написать комментарий, войдите в систему</p>
+        <form *ngIf="isAuth" [formGroup]="addCommentForm" (ngSubmit)="sendComment()" style="display: flex; margin-top: 10px;">
+            <mat-form-field appearance="legacy" class="textarea">
+                <mat-label style="padding-left: 10px; color: rgba(0, 0, 0, 0.54);">Введите текст</mat-label>
+                <textarea matInput
+                            cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1"
+                            cdkAutosizeMaxRows="5"
+                            formControlName="comment"
+                            [(ngModel)]="text.comment"
+                            ></textarea>
+            </mat-form-field>
+            <button *ngIf="!isSend" class="icon__send" [disabled]="addCommentForm.invalid">
+                <mat-icon style="margin-left: 20px; color: #2196F3;" aria-hidden="false" aria-label="Example send icon">send</mat-icon>
+            </button>
+            <button *ngIf="isSend" class="icon__send" type="button" (click)="sendChangeComment()">
+                <mat-icon style="margin-left: 20px; color: #2196F3;" aria-hidden="false" aria-label="Example send icon">done</mat-icon>
+            </button>
+            <!-- <button *ngIf="!isSend" class="btn__send" mat-raised-button>Отправить</button>
+            <button *ngIf="isSend" class="btn__send" type="button" (click)="sendChangeComment()" mat-raised-button>Сохранить</button> -->
+        </form>
     </div>
 </div>
 
