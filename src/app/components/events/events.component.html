@@ -1,5 +1,5 @@
 <div class="box__events">
-    <p *ngIf="isEvents">Нет ближайших событий</p>
+    <p *ngIf="isEvents" style="margin-left: 10px;">Нет ближайших событий</p>
     <div *ngFor="let event of events">
         <p style="text-align: center;">{{event.date}}</p>
         <div class="cell" *ngFor="let e of event.events" (click)="openEvent(e.id)">

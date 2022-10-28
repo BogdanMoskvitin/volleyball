@@ -28,9 +28,9 @@
                 <a [routerLink]="['./about']" class="burger__a">О нас</a>
             </li>
         </ul>
-        </ng-sidebar>
+    </ng-sidebar>
 
-        <div ng-sidebar-content>
+    <div ng-sidebar-content>
         <button (click)='toggleSidebar()' class="burger">
             <span [ngClass]="{'burger__line1': !opened, 'burger__line1_active': opened}"></span>
             <span [ngClass]="{'burger__line2': !opened, 'burger__line2_active': opened}"></span>
@@ -41,26 +41,26 @@
         <div class="header">
             <div style="width: 1200px; margin: 0 auto;">
                 <div class="flex">
-            <div>
-                <a routerLinkActive="active" class="link" [routerLink]="['./main']">События</a>
-                <a routerLinkActive="active" class="link" [routerLink]="['./teams']">Команды</a>
-                <a routerLinkActive="active" class="link" [routerLink]="['./about']">О нас</a>
-            </div>
+                    <div>
+                        <a routerLinkActive="active" class="link" [routerLink]="['./main']">События</a>
+                        <a routerLinkActive="active" class="link" [routerLink]="['./teams']">Команды</a>
+                        <a routerLinkActive="active" class="link" [routerLink]="['./about']">О нас</a>
+                    </div>
 
-            <p style="cursor: pointer; color: #fff; font-size: 18px; text-decoration: underline;" (click)="openDialog()">{{selectCity?.short_name}}</p>
+                    <p class="city" (click)="openDialog()">{{selectCity?.short_name}}</p>
 
-            <mat-icon *ngIf="!isDarkTheme" style="color: #fff; cursor: pointer;" (click)="toggleDarkTheme(true)">dark_mode</mat-icon>
-            <mat-icon *ngIf="isDarkTheme" style="color: #fff; cursor: pointer;" (click)="toggleDarkTheme(false)">light_mode</mat-icon>
-        
-            <div class="box">
-                <p class="phone" *ngIf="aAuth" [routerLink]="['./user']">{{mydata.phone_number}}</p>
-                <a [routerLink]="['./user']" *ngIf="aAuth">
-                    <img *ngIf="mydata.photo" src="{{mydata.photo}}" alt="avatar" class="avatar">
-                    <div *ngIf="!mydata.photo" class="avatar"></div>
-                </a>
-                <button class="login" mat-stroked-button *ngIf="!aAuth" [routerLink]="['./login']">Войти</button>
-            </div>
-        </div>
+                    <mat-icon *ngIf="!isDarkTheme" class="icon" (click)="toggleDarkTheme(true)">dark_mode</mat-icon>
+                    <mat-icon *ngIf="isDarkTheme" class="icon" (click)="toggleDarkTheme(false)">light_mode</mat-icon>
+                
+                    <div class="box">
+                        <p class="phone" *ngIf="aAuth" [routerLink]="['./user']">{{mydata.phone_number}}</p>
+                        <a [routerLink]="['./user']" *ngIf="aAuth">
+                            <img *ngIf="mydata.photo" src="{{mydata.photo}}" alt="avatar" class="avatar">
+                            <div *ngIf="!mydata.photo" class="avatar"></div>
+                        </a>
+                        <button class="login" mat-stroked-button *ngIf="!aAuth" [routerLink]="['./login']">Войти</button>
+                    </div>
+                </div>
             </div>
         </div>
       

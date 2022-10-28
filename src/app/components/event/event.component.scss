@@ -8,6 +8,7 @@ p, span {
 .flex {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 .cell {
     width: 360px;
