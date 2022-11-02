@@ -1,27 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/theming';
+@use '@angular/material' as mat;
+@use "styles/components.style" as components;
+@use "styles/custom-themes/light-theme" as light-theme;
 
-@include mat-core();
+$color-config: light-theme.$light-color-config;
 
-$primary: mat-palette($mat-blue);
-$warn:    mat-palette($mat-red);
-$theme: mat-light-theme($primary, $warn);
+@include mat.core();
 
-@include angular-material-theme($theme);
-
-// Our dark theme
-.dark-theme {
-  $dark-primary: mat-palette($mat-blue);
-  $dark-warn:    mat-palette($mat-red);
-  $dark-theme: mat-dark-theme($dark-primary, $dark-warn);
-  
-  @include angular-material-theme($dark-theme);
-}
-
-
+@include mat.all-component-themes($color-config);
+@include components.theme($color-config);
 
 @import '~ngx-toastr/toastr';
-// @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,700;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 $light: #FFFFFF;
 $dark: #212121;

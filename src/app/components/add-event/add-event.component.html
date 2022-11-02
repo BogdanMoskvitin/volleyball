@@ -4,22 +4,22 @@
                     <p>Вид спорта: {{sport.name}}</p>
                     <div class="bg__icon bg__icon_active">
                         <div style="width: 28px; height: 28px;">
-                            <img style="width: 20px; padding: 3px 0 0 2px; cursor: pointer;" src={{sports.results[0].image.file}} alt="volleyball">
+                            <img style="width: 20px; padding: 3px 0 0 2px; cursor: pointer;" src={{sports?.results[0].image.file}} alt="volleyball">
                         </div>
                     </div>
         
                     <p>Тип события: {{type.name}}</p>
                     <div class="bg__icon bg__icon_active">
                         <div style="width: 24px; height: 24px;">
-                            <mat-icon style="color: #fff; margin-bottom: 20px; cursor: pointer;" aria-hidden="false" aria-label="Example logout icon">{{types.results[0].icon}}</mat-icon>
+                            <mat-icon style="color: #fff; margin-bottom: 20px; cursor: pointer;" aria-hidden="false" aria-label="Example logout icon">{{types?.results[0].icon}}</mat-icon>
                         </div>
                     </div>
 
                     <p>Дата события: {{addEventForm.value.date | date: "dd.MM"}}</p>
 
                     <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-                        <button mat-raised-button color="primary" type="button" (click)="setToday()" [ngClass]="isDate.isToday? 'active' : 'inactive'">Сегодня</button>
-                        <button mat-raised-button color="primary" type="button" (click)="setTomorrow()" [ngClass]="isDate.isTomorrow? 'active' : 'inactive'">Завтра</button>
+                        <button mat-raised-button color="primary" type="button" (click)="setToday()" [ngClass]="isDate.isToday? 'active' : 'inactive'" style="margin-right: 5px;">Сегодня</button>
+                        <button mat-raised-button color="primary" type="button" (click)="setTomorrow()" [ngClass]="isDate.isTomorrow? 'active' : 'inactive'" style="margin-right: 5px;">Завтра</button>
                         <button mat-raised-button color="primary" type="button" (click)="viewCalendar()" [ngClass]="isDate.isCalendar? 'active' : 'inactive'">Другая дата</button>
                     </div>
         

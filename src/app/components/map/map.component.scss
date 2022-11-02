@@ -15,6 +15,7 @@ $blue: #2196F3;
 }
 .flex {
     display: flex;
+    flex-wrap: wrap;
 }
 .filter {
     mix-blend-mode: difference;
@@ -52,7 +53,4 @@ $blue: #2196F3;
 }
 @media(max-width: 420px){
     .map {width: 300px; height: 200px;}
-}
-@media(max-width: 320px){
-    .map {width: 200px; height: 200px;}
 }

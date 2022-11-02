@@ -2,13 +2,15 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { MyData } from 'src/app/services/my-data.service';
-import { ThemeService } from 'src/app/services/theme.service';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MainService } from 'src/app/services/main.service';
 import { MatDialog } from '@angular/material/dialog';
+import { Theme, ThemeService } from '../../shared/theme.service';
+import { StyleManager } from '../../shared/style-manager';
+import { LocalStorageService } from '../../shared/local-storage.service';
 
 @Component({
     selector: 'header-service-page',
@@ -23,6 +25,8 @@ export class HeaderComponent implements OnInit {
     isDarkTheme;
     titleTheme = 'Темная тема';
     selectCity;
+    themes: Theme[];
+    selectedTheme: Theme;
 
     constructor(
         private myData: MyData,
@@ -31,10 +35,18 @@ export class HeaderComponent implements OnInit {
         private themeService: ThemeService,
         private mainService: MainService,
         public dialog: MatDialog,
+        public styleManager: StyleManager,
+        private localStorage: LocalStorageService
     ) {
-        themeService.isDarkTheme.subscribe(res => {
-            this.isDarkTheme = res
-        })
+        this.themes = themeService.themes;
+
+        const themeName = this.localStorage.getValue(LocalStorageService.themeKey);
+
+        if (themeName) {
+        this.selectedTheme = this.selectTheme(themeName);
+        } else {
+        this.selectedTheme = this.selectTheme(ThemeService.defaultTheme.name);
+        }
     }
     
     ngOnInit() {
@@ -71,11 +83,22 @@ export class HeaderComponent implements OnInit {
             window.location.reload();
         });
     }
-
-    toggleDarkTheme(checked: boolean) {
-        this.themeService.setDarkTheme(checked);
-        checked ? this.titleTheme = 'Светлая тема' : this.titleTheme = 'Темная тема';
-    }
+    
+    selectTheme(themeName: string): Theme {
+        themeName == 'light-theme' ? this.isDarkTheme = true : this.isDarkTheme = false;
+        const theme = this.themeService.findTheme(themeName);
+    
+        if (theme) {
+          this.themeService.updateTheme(theme);
+          this.styleManager.removeStyle('theme');
+          this.styleManager.setStyle('theme', `${theme.name}.css`);
+          this.localStorage.store(LocalStorageService.themeKey, theme.name);
+    
+          return theme;
+        }
+    
+        return ThemeService.defaultTheme;
+      }
 
     openDialog() {
         this.dialog.open(DialogCityComponent)

@@ -17,15 +17,15 @@
             <div class="line"></div>
             <li (click)='toggleSidebar()' class="burger__li">
                 <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">events</mat-icon>
-                <a [routerLink]="['./main']" class="burger__a">События</a>
+                <p [routerLink]="['./main']" class="burger__a">События</p>
             </li>
             <li (click)='toggleSidebar()' class="burger__li">
                 <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">groups</mat-icon>
-                <a [routerLink]="['./teams']" class="burger__a">Команды</a>
+                <p [routerLink]="['./teams']" class="burger__a">Команды</p>
             </li>
             <li (click)='toggleSidebar()' class="burger__li">
                 <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">sentiment_very_satisfied</mat-icon>
-                <a [routerLink]="['./about']" class="burger__a">О нас</a>
+                <p [routerLink]="['./about']" class="burger__a">О нас</p>
             </li>
         </ul>
     </ng-sidebar>
@@ -49,8 +49,8 @@
 
                     <p class="city" (click)="openDialog()">{{selectCity?.short_name}}</p>
 
-                    <mat-icon *ngIf="!isDarkTheme" class="icon" (click)="toggleDarkTheme(true)">dark_mode</mat-icon>
-                    <mat-icon *ngIf="isDarkTheme" class="icon" (click)="toggleDarkTheme(false)">light_mode</mat-icon>
+                    <mat-icon *ngIf="!isDarkTheme" class="icon" (click)="selectTheme('light-theme')">dark_mode</mat-icon>
+                    <mat-icon *ngIf="isDarkTheme" class="icon" (click)="selectTheme('dark-theme')">light_mode</mat-icon>
                 
                     <div class="box">
                         <p class="phone" *ngIf="aAuth" [routerLink]="['./user']">{{mydata.phone_number}}</p>

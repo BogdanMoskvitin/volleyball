@@ -9,7 +9,8 @@ import { AddLocationComponent } from '../add-location/add-location.component';
 import { MyData } from 'src/app/services/my-data.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { ThemeService } from 'src/app/services/theme.service';
+import { LocalStorageService } from 'src/app/shared/local-storage.service';
+import { ThemeService } from 'src/app/shared/theme.service';
 
 @Component({
     selector: 'map-service-page',
@@ -38,14 +39,9 @@ export class MapComponent implements OnChanges, OnInit {
         private myData: MyData,
         private authService: AuthService,
         private router: Router,
-        private themeService: ThemeService
+        private themeService: ThemeService,
     ) {
-        themeService.isDarkTheme.subscribe(res => {
-            this.isDarkTheme = res
-            if(this.isDarkTheme) {
-                
-            }
-        })
+       
     }
 
     ngOnInit(): void {
@@ -54,6 +50,10 @@ export class MapComponent implements OnChanges, OnInit {
         } else {
             this.isAuth = true;
         }
+        this.themeService.themeOBS
+        .subscribe(res => {
+            res.isDark ? this.isDarkTheme = true : this.isDarkTheme = false;
+        })
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -123,7 +123,7 @@ export class MapComponent implements OnChanges, OnInit {
                             hintContent: location.name,
                         },
                         options: {
-                            preset: location.confirmed? 'islands#blueCircleDotIcon' : 'islands#grayCircleDotIcon',
+                            preset: location.confirmed? 'islands#greenCircleDotIcon' : 'islands#blueCircleDotIcon',
                         },
                         location: location
                     });
