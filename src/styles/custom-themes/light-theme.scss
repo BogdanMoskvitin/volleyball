@@ -71,3 +71,6 @@ $light-color-config: theming.mat-create-color-config(
 @include mat.all-component-themes($light-color-config);
 @include components.theme($light-color-config);
 
+.cell {
+  background: #CFD8DC;
+}

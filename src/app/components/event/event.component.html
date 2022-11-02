@@ -34,6 +34,7 @@
             <p class="address" (click)="openDialog()">{{event?.location.address}}</p>
         </div>
         <div class="cell" style="position: relative;">
+            <p class="title">{{application.application.status.description}}</p>
             <div class="flex" style="position: absolute; bottom: 0; left: 0;">
                 <button class="accept" (click)="sendAccept()">Принять</button>
                 <button class="reject" (click)="sendReject()">Отказать</button>
@@ -87,35 +88,39 @@
 
         <div *ngIf="view.accepted" >
             <div class="profile" *ngFor="let application of applications">
-                <img class="profile__avatar" src="{{application.user.profile.photo_small}}" alt="avatar">
+                <img *ngIf="application.user.profile.photo_small" class="profile__avatar" src="{{application.user.profile.photo_small}}" alt="avatar">
+                <img *ngIf="!application.user.profile.photo_small" src="../../../assets/img/avatar.jpg" alt="avatar">
                 <p class="profile__name">{{application.user.full_name}}</p>
             </div>
         </div>
 
         <div *ngIf="view.guests">
             <div class="profile" *ngFor="let guest of event.guests">
-                <img class="profile__avatar" src="{{application.user.profile.photo_small}}" alt="avatar" >
+                <img src="../../../assets/img/avatar.jpg" alt="avatar">
                 <p class="profile__name">{{guest.name}}</p>
             </div>
         </div>
 
         <div *ngIf="view.refused">
             <div class="profile" *ngFor="let application of applications">
-                <img class="profile__avatar" src="{{application.user.profile.photo_small}}" alt="avatar">
+                <img *ngIf="application.user.profile.photo_small" class="profile__avatar" src="{{application.user.profile.photo_small}}" alt="avatar">
+                <img *ngIf="!application.user.profile.photo_small" src="../../../assets/img/avatar.jpg" alt="avatar">
                 <p class="profile__name">{{application.user.full_name}}</p>
             </div>
         </div>
 
         <div *ngIf="view.invited">
             <div class="profile" *ngFor="let application of applications">
-                <img class="profile__avatar" src="{{application.user.profile.photo_small}}" alt="avatar">
+                <img *ngIf="application.user.profile.photo_small" class="profile__avatar" src="{{application.user.profile.photo_small}}" alt="avatar">
+                <img *ngIf="!application.user.profile.photo_small" src="../../../assets/img/avatar.jpg" alt="avatar">
                 <p class="profile__name">{{application.user.full_name}}</p>
             </div>
         </div>
 
         <div *ngIf="view.rejected">
             <div class="profile" *ngFor="let application of applications">
-                <img class="profile__avatar" src="{{application.user.profile.photo_small}}" alt="avatar">
+                <img *ngIf="application.user.profile.photo_small" class="profile__avatar" src="{{application.user.profile.photo_small}}" alt="avatar">
+                <img *ngIf="!application.user.profile.photo_small" src="../../../assets/img/avatar.jpg" alt="avatar">
                 <p class="profile__name">{{application.user.full_name}}</p>
             </div>
         </div>

@@ -13,19 +13,16 @@ p, span {
 .cell {
     width: 360px;
     height: 160px;
-    background: #37474F;
-    border: 1px solid #CFD8DC;
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
     border-radius: 5px;
     padding: 15px;
     margin-bottom: 30px;
 }
 .subtitle {
-    font-size: 20px;
-    color: #607D8B;
+    font-size: 18px;
 }
 .title {
     font-size: 20px;
-    color: #FFFFFF;
 }
 .price {
     position: relative;
@@ -43,18 +40,15 @@ p, span {
 .time {
     font-weight: 700;
     font-size: 36px;
-    color: #FFFFFF;
     text-align: center;
 }
 .date {
     font-weight: 700;
     font-size: 24px;
-    color: #FFFFFF;
     text-align: center;
 }
 .address {
     font-size: 20px;
-    color: #FFFFFF;
     margin-top: 25px;
 }
 .accept {
@@ -80,7 +74,7 @@ p, span {
 .participants__cell {
     width: 372px;
     height: 60px;
-    background: #CFD8DC;
+    background: linear-gradient(to left, #2196F3 9%, #CFD8DC 9% 100%);
     border-radius: 5px;
     display: flex;
     justify-content: space-between;

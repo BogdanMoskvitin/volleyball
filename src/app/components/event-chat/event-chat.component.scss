@@ -19,6 +19,7 @@ p, span {
     min-height: 60px;
     background: #CFD8DC;
     padding: 0 10px;
+    border-radius: 0 0 5px 0;
 }
 .btn__send {
     display: none;
@@ -65,7 +66,6 @@ p, span {
     margin: 0 5px 0 10px;
 }
 
-
 ::ng-deep mat-form-field {
     .mat-form-field-wrapper {
         margin-bottom: -1.25em;
@@ -76,6 +76,7 @@ p, span {
     .mat-form-field-flex {
         padding-bottom: 14px;
         background: #CFD8DC;
+        border-radius: 0 0 0 5px;
     }
     textarea.mat-input-element.cdk-textarea-autosize {
         padding-left: 10px;
