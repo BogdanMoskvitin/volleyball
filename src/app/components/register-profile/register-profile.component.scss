@@ -1,0 +1,65 @@
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+.avatar {
+    display: block;
+    object-fit: cover;
+    width: 250px;
+    height: 250px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.creation__basket {
+    width: 30px;
+    height: 30px;
+    mask-image: url(../../../assets/img/basket.svg);
+    mask-repeat: no-repeat;
+    mask-position: center center;
+    mask-size: contain;
+    background: #ccc;
+    margin: 13px 0 0 5px;
+    cursor: pointer;
+}
+
+.input__wrapper {
+    width: 169px;
+    position: relative;
+    text-align: center;
+}
+.input__file {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+} 
+.input__file-button {
+    width: 100%;
+    max-width: 169px;
+    height: 32px;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;
+    color: #4C4C4C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 auto;
+}
+.input__file-button-text {
+    line-height: 1;
+    margin-top: 1px;
+}
+.subtitle {
+    font-size: 14px;
+    cursor: pointer;
+    margin: 10px 0;
+}

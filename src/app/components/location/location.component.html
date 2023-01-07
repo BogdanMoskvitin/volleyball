@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="flex">
+    <p class="title">{{location?.name}}</p>
+    <button mat-raised-button color="primary" (click)="changeLocation(location)">Редактировать место</button>
+  </div>
+
+  <image-carousel-service-page *ngIf="location?.images.length" [width]="300" [height]="200" [speed]="0.5" [images]="location?.images"></image-carousel-service-page>
+  
+  <p class="subtitle">Адрес: {{location?.address}}</p>
+  <p class="subtitle">Описание: {{location?.description}}</p>  
+</div>

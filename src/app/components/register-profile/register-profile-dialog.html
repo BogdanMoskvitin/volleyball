@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Редактирование аватарки</h2>
+<mat-dialog-content class="mat-typography" style="min-width: 300px;">
+  <image-cropper
+    [hideResizeSquares]="true"
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1 / 1"
+    format="jpeg"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+    *ngIf="isCrop"
+    style="width: 500px; height: auto; padding: 0;"
+  ></image-cropper>
+
+  <div class="input__wrapper">
+    <input type="file" id="installationContract" class="input__file" (change)="fileChangeEvent($event)">
+    <label for="installationContract" class="input__file-button">
+       <span class="input__file-button-text">Выберите файл</span>
+    </label>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Отмена</button>
+  <button mat-raised-button [mat-dialog-close]="true" (click)="sendAvatar()" color="primary">Сохранить</button>
+</mat-dialog-actions>

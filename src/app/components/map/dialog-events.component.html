@@ -1,0 +1,19 @@
+<mat-dialog-content class="mat-typography">
+  <div class="flex">
+    <div style="margin-right: 10px;">
+      <image-carousel-service-page *ngIf="data.location.images.length" [width]="300" [height]="200" [speed]="0.5" [images]="data.location.images"></image-carousel-service-page>
+      <p style="margin-top: 10px;">Адрес: {{data.location.address}}</p>
+      <p>Название: {{data.location.name}}</p>
+      <p>Описание: {{data.location.description}}</p>
+      <button *ngIf="isAuth" mat-raised-button color="primary" class="btn" (click)="openDialog(data.location.id)" mat-dialog-close>Добавить событие</button>
+      <button *ngIf="!isAuth" mat-raised-button color="primary" class="btn" [routerLink]="['../login']" mat-dialog-close>Добавить событие</button>
+      <button mat-raised-button color="primary" class="btn" [routerLink]="['../location', data.location.id]" mat-dialog-close>Об организации</button>
+    </div>
+    <div>
+      <events-service-page [events]="events" (isEvent)="isEvent($event)"></events-service-page>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close>Закрыть</button>
+</mat-dialog-actions>

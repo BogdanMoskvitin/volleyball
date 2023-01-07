@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Редактирование места</h2>
+<mat-dialog-content class="mat-typography" style="min-width: 300px;">
+    <div class="container">
+        <form [formGroup]="addLocationForm" novalidate (ngSubmit)="sendService()">
+            <div class="box">
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+                    <mat-label>Название</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+                    <mat-label>Описание</mat-label>
+                    <input matInput formControlName="description">
+                </mat-form-field>
+
+                <div>
+                    <button mat-raised-button style="width: 280px" color="primary" [disabled]="addLocationForm.invalid">Изменить место</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Отмена</button>
+</mat-dialog-actions>

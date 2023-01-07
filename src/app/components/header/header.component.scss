@@ -1,0 +1,260 @@
+$light: #FFFFFF;
+$dark: #212121;
+$blue: #2196F3;
+$lightdark: #0D47A1;
+
+ng-sidebar-container {
+    height: 100vh;
+}
+::ng-deep .ng-sidebar {
+    width: 100%;
+    height: 100%;
+}
+.burger__ul {
+    margin: 100px 30px 0 30px; 
+    list-style: none;
+}
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.burger__user {
+    display: flex; 
+    align-items: center;
+}
+.burger__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: $blue;
+    margin: 10px 10px 10px 0;
+}
+.line {
+    border-bottom: 1px solid $blue;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.burger__li {
+    padding: 0 0 15px 0;
+    display: flex;
+    align-items: center;
+}
+.burger__a {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-size: 25px;
+    transition: all 0.4s ease-in-out;
+    text-decoration-line: none;
+    margin-left: 10px;
+}
+.burger__a:hover {
+    color: $blue;
+    text-decoration-line: underline;
+}
+.burger {
+    z-index: 1010;
+    display: none;
+	width: 30px;
+    height: 30px;
+    top: 20px;
+    left: 30px;
+    position: fixed;
+    outline: none;
+    border: none;
+    background: none;
+}
+.burger__line1 {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    width: 30px;
+    height: 5px;
+    background-color: $light;
+    border-radius: 25%;
+    opacity: 100;
+    transform: translateX(0);
+    transition: all 0.4s ease-in-out;
+}
+.burger__line1_active {
+	position: absolute;
+    left: 0;
+    top: 15px;
+    width: 30px;
+    height: 5px;
+    background-color: $light;
+    border-radius: 25%;
+    opacity: 0;
+    transform: translateX(40px);
+    transition: all 0.4s ease-in-out;
+}
+.burger__line2 {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    width: 30px;
+    height: 5px;
+    background-color: $light;
+    border-radius: 25%;
+    opacity: 100;
+    transform: translateX(0);
+    transition: all 0.4s ease-in-out;
+}
+.burger__line2_active {
+	position: absolute;
+    left: 0;
+    top: 15px;
+    width: 30px;
+    height: 5px;
+    background-color: $light;
+    border-radius: 25%;
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: all 0.4s ease-in-out;
+}
+.burger__line3 {
+	position: absolute;
+	left: 0;
+	top: 5px;
+	width: 30px;
+	height: 5px;
+    background-color: $light;
+    border-radius: 25%;
+    transform: rotate(0deg);
+    transform-origin: 5%;
+    transition: transform 0.5s;
+}
+.burger__line3_active {
+	position: absolute;
+	left: 0;
+	top: 5px;
+	width: 30px;
+	height: 5px;
+    background-color: $light;
+    border-radius: 25%;
+    transform: rotate(45deg);
+    transform-origin: 5%;
+    transition: transform 0.5s;
+}
+.burger__line4 {
+	position: absolute;
+	left: 0;
+	top: 25px;
+	width: 30px;
+	height: 5px;
+    background-color: $light;
+    border-radius: 25%;
+    transform: rotate(0deg);
+    transform-origin: 5%;
+    transition: transform 0.5s;
+}
+.burger__line4_active {
+	position: absolute;
+	left: 0;
+	top: 25px;
+	width: 30px;
+	height: 5px;
+    background-color: $light;
+    border-radius: 25%;
+    transform: rotate(-45deg);
+    transform-origin: 5%;
+    transition: transform 0.5s;
+}
+.header {
+    position: fixed;
+    top: 0; right: 0; left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: $blue;
+    z-index: 100;
+    height: 58px;
+}
+.link {
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: none;
+    font-size: 48px;
+    color: $light;
+    padding: 8px 20px 8px 0;
+    white-space: nowrap;
+}
+.link:hover {
+    color: #ECEFF1;
+}
+.active {
+    color: $dark;
+}
+.active:hover {
+    color: #263238;
+}
+.city {
+    cursor: pointer;
+    color: $light; 
+    font-size: 18px; 
+    text-decoration: underline;
+}
+.city:hover {
+    color: #ECEFF1;
+}
+.icon {
+    color: $light;
+    cursor: pointer;
+}
+.icon:hover {
+    color: #ECEFF1;
+}
+.box {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.box:hover {
+    .phone {
+        color: #ECEFF1;
+    }
+}
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: $light;
+}
+.phone {
+    font-size: 16px;
+    color: $light;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.login {
+    color: $light;
+}
+.router-outlet {
+    position: fixed;
+    top: 78px; left: 0; right: 0; bottom: 0;
+}
+.content {
+    height: 100%;
+    overflow: auto;
+}
+@media(max-width: 1000px){
+    .link {
+        font-size: 36px;
+    }
+}
+@media(max-width: 850px){
+    .box {
+        display: none;
+    }
+    .link {
+        display: none;
+    }
+    .burger {
+        display: block;
+    }
+}
+
+::ng-deep.cdk-overlay-pane  {
+    max-width: 100vw !important;
+}

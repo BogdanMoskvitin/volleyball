@@ -1,0 +1,135 @@
+<div class="container">
+    <div class="flex">
+        <div class="cell" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="flex" style="padding: 5px 0;">
+                <p class="subtitle">Идентификатор:</p>
+                <p class="title">#{{event?.id}}</p>
+            </div>
+            <div class="flex" style="padding: 5px 0;">
+                <p class="subtitle">Вид спорта:</p>
+                <p class="title">{{event?.sport.name}}</p>
+            </div>
+            <div class="flex" style="padding: 5px 0;">
+                <p class="subtitle">Статус события</p>
+                <p class="title">{{event?.status.name}}</p>
+            </div>
+            <div class="flex" style="padding: 5px 0;">
+                <p class="subtitle">Тип события:</p>
+                <p class="title">{{event?.type.name}}</p>
+            </div>
+        </div>
+        <div class="cell">
+            <div class="flex">
+                <p></p>
+                <p class="price" *ngIf="event?.price != 0 && event?.price != null">
+                    <mat-icon class="ruble">currency_ruble</mat-icon>
+                    {{event?.price}}
+                </p>
+                <p class="price" *ngIf="event?.price == 0 || event?.price == null">
+                    Бесплатно
+                </p>
+            </div>
+            <p class="time">{{event?.short_time}}</p>
+            <p class="date">{{event?.full_date}}</p>
+            <p class="address" (click)="openDialog()">{{event?.location.address}}</p>
+        </div>
+        <div class="cell" style="position: relative;">
+            <p class="title">{{event?.status.description}}</p>
+            <div class="flex" style="position: absolute; bottom: 0; left: 0;" *ngIf="isAuth">
+                <button class="accept" (click)="sendAccept()">Принять</button>
+                <button class="reject" (click)="sendReject()">Отказать</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex">
+
+        <div>
+            <div class="participants__cell" (click)="viewAccepted()" [ngClass]="{participants__cell_active: view.accepted}">
+                <div class="participants__flex">
+                    <mat-icon class="participants__icon">done</mat-icon>
+                    <p class="participants__title">Участники</p>
+                </div>
+                <p class="participants__count">{{statistics?.applications.accepted}}</p>
+            </div>
+
+            <div class="participants__cell" (click)="viewGuests()" [ngClass]="{participants__cell_active: view.guests}">
+                <div class="participants__flex">
+                    <mat-icon class="participants__icon">groups</mat-icon>
+                    <p class="participants__title">Гости</p>
+                </div>
+                <p class="participants__count">{{statistics?.guests_stats.all}}</p>
+            </div>
+
+            <div class="participants__cell" (click)="viewRefused()" [ngClass]="{participants__cell_active: view.refused}">
+                <div class="participants__flex">
+                    <mat-icon class="participants__icon">close</mat-icon>
+                    <p class="participants__title">Не придут</p>
+                </div>
+                <p class="participants__count">{{statistics?.applications.refused}}</p>
+            </div>
+
+            <div class="participants__cell" (click)="viewInvited()" [ngClass]="{participants__cell_active: view.invited}">
+                <div class="participants__flex">
+                    <mat-icon class="participants__icon">mark_email_unread</mat-icon>
+                    <p class="participants__title">Приглашены</p>
+                </div>
+                <p class="participants__count">{{statistics?.applications.invited}}</p>
+            </div>
+
+            <div class="participants__cell" (click)="viewRejected()" [ngClass]="{participants__cell_active: view.rejected}">
+                <div class="participants__flex">
+                    <mat-icon class="participants__icon">pan_tool</mat-icon>
+                    <p class="participants__title">Отклонены</p>
+                </div>
+                <p class="participants__count">{{statistics?.applications.rejected}}</p>
+            </div>
+        </div>
+
+        <div *ngIf="view.accepted" >
+            <div class="profile" *ngFor="let application of applications">
+                <img *ngIf="application.user.profile.photo_small" class="profile__avatar" src="{{application.user.profile.photo_small}}" alt="avatar">
+                <img *ngIf="!application.user.profile.photo_small" src="../../../assets/img/avatar.jpg" alt="avatar">
+                <p class="profile__name">{{application.user.full_name}}</p>
+            </div>
+        </div>
+
+        <div *ngIf="view.guests">
+            <div class="profile" *ngFor="let guest of event.guests">
+                <img src="../../../assets/img/avatar.jpg" alt="avatar">
+                <p class="profile__name">{{guest.name}}</p>
+            </div>
+        </div>
+
+        <div *ngIf="view.refused">
+            <div class="profile" *ngFor="let application of applications">
+                <img *ngIf="application.user.profile.photo_small" class="profile__avatar" src="{{application.user.profile.photo_small}}" alt="avatar">
+                <img *ngIf="!application.user.profile.photo_small" src="../../../assets/img/avatar.jpg" alt="avatar">
+                <p class="profile__name">{{application.user.full_name}}</p>
+            </div>
+        </div>
+
+        <div *ngIf="view.invited">
+            <div class="profile" *ngFor="let application of applications">
+                <img *ngIf="application.user.profile.photo_small" class="profile__avatar" src="{{application.user.profile.photo_small}}" alt="avatar">
+                <img *ngIf="!application.user.profile.photo_small" src="../../../assets/img/avatar.jpg" alt="avatar">
+                <p class="profile__name">{{application.user.full_name}}</p>
+            </div>
+        </div>
+
+        <div *ngIf="view.rejected">
+            <div class="profile" *ngFor="let application of applications">
+                <img *ngIf="application.user.profile.photo_small" class="profile__avatar" src="{{application.user.profile.photo_small}}" alt="avatar">
+                <img *ngIf="!application.user.profile.photo_small" src="../../../assets/img/avatar.jpg" alt="avatar">
+                <p class="profile__name">{{application.user.full_name}}</p>
+            </div>
+        </div>
+
+        <event-chat-service-page></event-chat-service-page>
+
+    </div>
+</div>
+
+<div class="spinner" *ngIf="spinner">
+    <mat-spinner></mat-spinner>
+</div>

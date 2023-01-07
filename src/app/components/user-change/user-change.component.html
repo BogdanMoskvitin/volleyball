@@ -1,0 +1,27 @@
+<div class="container">
+    <p class="title">Изменить данные</p>
+    <form [formGroup]="changeForm" novalidate (ngSubmit)="sendService()">
+        <div class="flex">
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+                <mat-label>E-mail</mat-label>
+                <input matInput formControlName="email">
+            </mat-form-field>
+
+            <button mat-raised-button style="width: 280px; margin-bottom: 10px;" color="primary" type="button">Подтвердить почту</button>
+
+            <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+                <mat-label>Телефон</mat-label>
+                <input matInput formControlName="phone_number">
+            </mat-form-field>
+
+            <button mat-raised-button style="width: 280px; margin-bottom: 10px;" color="primary" type="button">Подтвердить телефон</button>
+           
+            <div style="display: flex; width: 280px;">
+                <button mat-raised-button type="button" [routerLink]="['/profile']" style="width: 100%;">Отмена</button>
+                <button mat-raised-button [disabled]="changeForm.invalid || changeForm.disabled" color="primary" style="width: 100%;">Изменить</button>       
+            </div>
+            
+        </div>
+    </form>
+</div>

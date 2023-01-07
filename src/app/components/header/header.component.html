@@ -1,0 +1,73 @@
+<ng-sidebar-container style="overflow: hidden;" [ngClass]="{'dark-theme': isDarkTheme}" class="mat-app-background">
+    <ng-sidebar [opened]="opened" position="top">
+        <ul class="burger__ul">
+            <div class="flex">
+                <div *ngIf="aAuth" class="burger__user" (click)='toggleSidebar()' [routerLink]="['./user']">
+                    <img class="burger__avatar" *ngIf="mydata.photo" src="{{mydata.photo}}" alt="avatar">
+                    <div class="burger__avatar" *ngIf="!mydata.photo"></div>
+                    <p class="burger__text">{{mydata.first_name}} {{mydata.last_name}}</p>
+                </div>
+                <div *ngIf="!aAuth" class="burger__user">
+                    <div class="burger__avatar"></div>
+                    <p>{{mydata.first_name}} {{mydata.last_name}}</p>
+                </div>
+                <mat-icon class="burger__logout" aria-hidden="false" aria-label="Example logout icon" (click)="logout($event)">logout</mat-icon>
+            </div>
+    
+            <div class="line"></div>
+            <li (click)='toggleSidebar()' class="burger__li">
+                <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">events</mat-icon>
+                <p [routerLink]="['./main']" class="burger__a">События</p>
+            </li>
+            <li (click)='toggleSidebar()' class="burger__li">
+                <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">groups</mat-icon>
+                <p [routerLink]="['./teams']" class="burger__a">Команды</p>
+            </li>
+            <li (click)='toggleSidebar()' class="burger__li">
+                <mat-icon style="color: #788CA0;" aria-hidden="false" aria-label="Example home icon">sentiment_very_satisfied</mat-icon>
+                <p [routerLink]="['./about']" class="burger__a">О нас</p>
+            </li>
+        </ul>
+    </ng-sidebar>
+
+    <div ng-sidebar-content>
+        <button (click)='toggleSidebar()' class="burger">
+            <span [ngClass]="{'burger__line1': !opened, 'burger__line1_active': opened}"></span>
+            <span [ngClass]="{'burger__line2': !opened, 'burger__line2_active': opened}"></span>
+            <span [ngClass]="{'burger__line3': !opened, 'burger__line3_active': opened}"></span>
+            <span [ngClass]="{'burger__line4': !opened, 'burger__line4_active': opened}"></span>
+        </button>
+
+        <div class="header">
+            <div style="width: 1200px; margin: 0 auto;">
+                <div class="flex">
+                    <div>
+                        <a routerLinkActive="active" class="link" [routerLink]="['./main']">События</a>
+                        <a routerLinkActive="active" class="link" [routerLink]="['./teams']">Команды</a>
+                        <a routerLinkActive="active" class="link" [routerLink]="['./about']">О нас</a>
+                    </div>
+
+                    <p class="city" (click)="openDialog()">{{selectCity?.short_name}}</p>
+
+                    <mat-icon *ngIf="!isDarkTheme" class="icon" (click)="selectTheme('light-theme')">dark_mode</mat-icon>
+                    <mat-icon *ngIf="isDarkTheme" class="icon" (click)="selectTheme('dark-theme')">light_mode</mat-icon>
+                
+                    <div class="box">
+                        <p class="phone" *ngIf="aAuth" [routerLink]="['./user']">{{mydata.phone_number}}</p>
+                        <a [routerLink]="['./user']" *ngIf="aAuth">
+                            <img *ngIf="mydata.photo" src="{{mydata.photo}}" alt="avatar" class="avatar">
+                            <div *ngIf="!mydata.photo" class="avatar"></div>
+                        </a>
+                        <button class="login" mat-stroked-button *ngIf="!aAuth" [routerLink]="['./login']">Войти</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <div class="router-outlet">
+            <div class="content">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</ng-sidebar-container>

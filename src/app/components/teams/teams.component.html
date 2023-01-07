@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="head">
+        <h1 style="margin-right: 20px;">Список команд</h1>
+        <button *ngIf="aAuth" mat-raised-button color="primary" [routerLink]="['../add-team']">Добавить команду</button>
+        <mat-icon *ngIf="aAuth" class="add" aria-hidden="false" aria-label="Example add icon" [routerLink]="['../add-team']">add</mat-icon>
+    </div>
+
+    <div class="desktop">
+        <div>
+            <div class="participants__cell" *ngFor="let team of teams?.results" (click)="getTeam(team)">
+                <img *ngIf="team.photo_small" src="{{team.photo_small}}" alt="avatar" class="participants__avatar">
+                <div *ngIf="!team.photo_small" class="participants__avatar"></div>
+                <p class="participants__name">{{team.full_name}}</p> 
+                <p class="participants__count">{{team.players_count}}</p>
+            </div>
+        </div>
+        <div style="margin-left: 20px;">
+            <div class="participants__cell" *ngFor="let player of team?.players">
+                <img *ngIf="player.user.profile.photo_small" src="{{player.user.profile.photo_small}}" alt="avatar" class="participants__avatar">
+                <div *ngIf="!player.user.profile.photo_small" class="participants__avatar"></div>
+                <p class="participants__name">{{player.user.full_name}}</p> 
+                <p class="participants__count">{{player.number}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile">
+        <div class="participants__cell" *ngFor="let team of teams?.results" [routerLink]="['../team', team.id]">
+            <img *ngIf="team.photo_small" src="{{team.photo_small}}" alt="avatar" class="participants__avatar">
+            <div *ngIf="!team.photo_small" class="participants__avatar"></div>
+            <p class="participants__name">{{team.full_name}}</p> 
+            <p class="participants__count">{{team.players_count}}</p>
+        </div>
+    </div>
+</div>

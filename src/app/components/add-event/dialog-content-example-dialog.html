@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Гости</h2>
+<mat-dialog-content class="mat-typography">
+  <form class="example-form" [formGroup]="createGuestForm" novalidate (ngSubmit)="createGuest()">
+    <div style="display: flex;">
+      <div style="margin-right: 10px;">
+        <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+          <mat-label>Поле поиска</mat-label>
+          <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="saveGuest(option)">
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div style="display: flex; flex-direction: column; margin: 0 10px;">
+        <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+          <mat-label>Имя</mat-label>
+          <input matInput formControlName="name" [value]="guest?.name">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+          <mat-label>Телефон</mat-label>
+          <input matInput formControlName="phone" [value]="guest?.phone" prefix="+7" mask="(000) 000-00-00">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill" style="width: 280px;">
+          <mat-label>Почта</mat-label>
+          <input matInput formControlName="email" [value]="guest?.email">
+        </mat-form-field>
+        <button class="btn" mat-raised-button [disabled]="createGuestForm.invalid" color="primary" style="margin-bottom: 10px;">Создать/Изменить</button>
+        <button class="btn" mat-raised-button type="button" (click)="addGuest()" color="primary">Добавить</button>
+      </div>
+    
+      <div style="margin: 0 10px; width: 250px;">
+        <p>Список выбранных</p>
+        <p *ngFor="let guest of guestsData">{{guest.name}}</p>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close>Закрыть</button>
+</mat-dialog-actions>

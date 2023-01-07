@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="flex" style="align-items: center; justify-content: start; margin-bottom: 20px;">  
+        <h1 style="margin-right: 20px;">Ваш профиль</h1>
+        <button mat-raised-button color="primary" type="button" [routerLink]="['../profile']">Редактировать</button>
+    </div>
+    <div class="flex">
+        <img class="avatar" [src]="avatar"/>
+        <div>
+            <p class="text">Имя: <span>{{mydata.first_name}}</span></p>
+            <p class="text">Фамилия: <span>{{mydata.last_name}}</span></p>
+            <p class="text">Ник: <span>{{mydata.username}}</span></p>
+            <p class="text">Почта: <span>{{mydata.email}}</span></p>
+            <p class="text">Телефон: <span>{{mydata.phone_number}}</span></p>
+        </div>
+    </div>
+</div>

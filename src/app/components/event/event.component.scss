@@ -1,0 +1,144 @@
+$light: #FFFFFF;
+$dark: #212121;
+$blue: #2196F3;
+$lightdark: #0D47A1;
+p, span {
+    user-select: none;
+}
+.flex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.cell {
+    width: 360px;
+    height: 160px;
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+.subtitle {
+    font-size: 18px;
+}
+.title {
+    font-size: 20px;
+}
+.price {
+    position: relative;
+    font-weight: 700;
+    font-size: 28px;
+    color: #00C853;
+}
+.ruble {
+    position: absolute;
+    top: 4px;
+    left: -27px;
+    font-size: 29px;
+    font-weight: 700;
+}
+.time {
+    font-weight: 700;
+    font-size: 36px;
+    text-align: center;
+}
+.date {
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+}
+.address {
+    font-size: 20px;
+    margin-top: 25px;
+}
+.accept {
+    width: 195px;
+    height: 40px;
+    background: #00C853;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+}
+.reject {
+    width: 195px;
+    height: 40px;
+    background: #D50000;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+}
+.participants__cell {
+    width: 372px;
+    height: 60px;
+    background: linear-gradient(to left, #2196F3 9%, #CFD8DC 9% 100%);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.participants__cell_active {
+    background: #2196F3;
+    .participants__icon {
+        color: #fff;
+    }
+    .participants__title {
+        color: #fff;
+    }
+    .participants__count {
+        color: #fff;
+    }
+}
+.participants__flex {
+    display: flex;
+    align-items: center;
+}
+.participants__icon {
+    font-size: 24px;
+    color: #000000;
+    margin-right: 10px;
+}
+.participants__title {
+    font-size: 24px;
+    color: #000000;
+}
+.participants__count {
+    font-size: 24px;
+    color: #000000;
+}
+.profile {
+    width: 372px;
+    height: 60px;
+    background: #CFD8DC;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.profile__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.profile__name {
+    font-size: 24px;
+    color: #000000;
+}
+.spinner {
+    position: absolute;
+    top: 0; right: 0; left: 0; bottom: 0;
+    background-color: $dark;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 101;
+}
