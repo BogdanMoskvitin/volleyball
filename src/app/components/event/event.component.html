@@ -34,7 +34,7 @@
             <p class="address" (click)="openDialog()">{{event?.location.address}}</p>
         </div>
         <div class="cell" style="position: relative;">
-            <p class="title">{{application.application.status.description}}</p>
+            <p class="title">{{event?.status.description}}</p>
             <div class="flex" style="position: absolute; bottom: 0; left: 0;">
                 <button class="accept" (click)="sendAccept()">Принять</button>
                 <button class="reject" (click)="sendReject()">Отказать</button>

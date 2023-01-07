@@ -125,6 +125,7 @@ export class DialogCityComponent implements OnInit {
 
     sendCity(city) {
         if(!city.status) {
+            this.http.patch(this.url + `me/profile/`, {city: city.fias_id}).subscribe()
             this.mainService.changeCity(city)
             this.dialog.closeAll()
         }
