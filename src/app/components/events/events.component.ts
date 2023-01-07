@@ -1,6 +1,5 @@
-import { Component, Input, OnChanges, Output, SimpleChanges, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, Output, SimpleChanges, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'events-service-page',
@@ -8,21 +7,12 @@ import { AuthService } from 'src/app/services/auth.service';
     styleUrls: ['./events.component.scss'],
 })
 
-export class EventsComponent implements OnChanges, OnInit {
+export class EventsComponent implements OnChanges {
     @Input() events
     @Output() isEvent = new EventEmitter<boolean>(false)
     isEvents: boolean
-    isAuth: boolean;
 
-    constructor(private router: Router, private authService: AuthService) { }
-
-    ngOnInit() {
-        if(this.authService.getToken() == null) {
-            this.isAuth = false;
-        } else {
-            this.isAuth = true;
-        }
-    }
+    constructor(private router: Router) { }
 
     ngOnChanges(changes: SimpleChanges): void {
         if(this.events) {
@@ -35,11 +25,7 @@ export class EventsComponent implements OnChanges, OnInit {
     }
 
     openEvent(id) {
-        if(this.isAuth) {
-            this.router.navigate(['../event', id])
-            this.isEvent.emit(true)
-        } else {
-            return
-        }
+        this.router.navigate(['../event', id])
+        this.isEvent.emit(true)
     }
 }

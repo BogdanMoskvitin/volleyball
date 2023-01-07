@@ -35,7 +35,7 @@
         </div>
         <div class="cell" style="position: relative;">
             <p class="title">{{event?.status.description}}</p>
-            <div class="flex" style="position: absolute; bottom: 0; left: 0;">
+            <div class="flex" style="position: absolute; bottom: 0; left: 0;" *ngIf="isAuth">
                 <button class="accept" (click)="sendAccept()">Принять</button>
                 <button class="reject" (click)="sendReject()">Отказать</button>
             </div>

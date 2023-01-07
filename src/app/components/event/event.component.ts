@@ -56,9 +56,11 @@ export class EventComponent implements OnInit {
             this.isAuth = true;
         }
         this.getEvent();
-        this.getStatistics();
+        if(this.isAuth) {
+            this.getStatistics();
+            this.getApplication();
+        }
         this.viewAccepted();
-        this.getApplication();
     }
 
     getEvent(){
